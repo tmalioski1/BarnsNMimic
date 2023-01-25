@@ -1,6 +1,6 @@
 """create models
 
-Revision ID: fbf65a184cbf
+Revision ID: ffdc0a98111c
 Revises:
 Create Date: 2023-01-25 14:35:30.605940
 
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'fbf65a184cbf'
+revision = 'ffdc0a98111c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -71,6 +71,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
 
