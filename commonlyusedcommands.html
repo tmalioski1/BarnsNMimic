@@ -1,0 +1,7 @@
+pipenv run flask db init
+flask db migrate -m "create models"
+flask db upgrade
+flask seed all
+
+
+Revision ID: ffdc0a98111c

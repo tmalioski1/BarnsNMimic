@@ -8,14 +8,14 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'),  nullable=False)
-    book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('songs.id'), ondelete='CASCADE'),  nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id'), ondelete='CASCADE'),  nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     review_txt = db.Column(db.String(5000))
-    recommended = db.Column(db.Boolean),
+    recommended = db.Column(db.Boolean)
     spoilers = db.Column(db.Boolean)
 
 
-    song = db.relationship('Song', back_populates='reviews')
+    book = db.relationship('Book', back_populates='reviews')
     user = db.relationship('User', back_populates='reviews')
 
     def to_dict(self):

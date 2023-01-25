@@ -1,18 +1,17 @@
 from app.models import db, Review, environment, SCHEMA
 
-
 # Adds a comment1 user, you can add other users here if you want
 def seed_reviews():
     review1 = Review(
-        user_id= 1, book_id=1, stars= 5, review_txt = 'Amazing book', recommended= 'Yes', spoilers='No')
+        user_id= 1, book_id=1, stars= 5, review_txt = 'Amazing book', recommended=True, spoilers=False)
     review2 = Review(
-        user_id= 2, book_id=2, stars= 1, review_txt = 'Just terrible', recommended= 'No', spoilers='No')
+        user_id= 2, book_id=2, stars= 1, review_txt = 'Just terrible', recommended=False, spoilers=False)
     review3 = Review(
-        user_id= 3, book_id=2, stars= 3, review_txt = 'Pretty average', recommended= 'Yes', spoilers='No')
+        user_id= 3, book_id=2, stars= 3, review_txt = 'Pretty average', recommended=True, spoilers=False)
     review4 = Review(
-        user_id= 3, book_id=2, stars= 1, review_txt = 'Changed my mind, terrible', recommended= 'No', spoilers='No')
+        user_id= 3, book_id=2, stars= 1, review_txt = 'Changed my mind, terrible', recommended=False, spoilers=False)
     review5 = Review(
-        user_id= 2, book_id=2, stars= 4, review_txt = 'Didn\'t read', recommended= 'Yes', spoilers='Yes')
+        user_id= 2, book_id=2, stars= 4, review_txt = 'Didn\'t read', recommended=True, spoilers=True)
 
     db.session.add(review1)
     db.session.add(review2)
