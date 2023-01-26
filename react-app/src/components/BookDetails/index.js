@@ -9,11 +9,7 @@ const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const bookObj = useSelector(state => state.books.singleBook);
-  console.log('this is the title', bookObj.title)
   const bookData = Object.values(bookObj)
-  console.log('this is the bookObj---', bookObj)
-  console.log('this is the bookData---', bookData[0])
-
 
 
 

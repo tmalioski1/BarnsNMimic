@@ -103,6 +103,7 @@ const booksReducer = (state = initialState, action) => {
 
           return newState;
         }
+        
         case GET_ONE_BOOK:{
             const newState = { allBooks: {...state.allBooks}, singleBook: {} }
             const specificBook = action.book
