@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
 class Book(db.Model):
   __tablename__ = 'books'
 
@@ -11,9 +12,9 @@ class Book(db.Model):
   title = db.Column(db.String(255), nullable=False)
   author = db.Column(db.String(255), nullable=False)
   type = db.Column(db.String(255), nullable=False)
-  price_paperback = db.Column(db.Numeric, nullable=True)
-  price_hardcover = db.Column(db.Numeric, nullable=True)
-  price_eBook = db.Column(db.Numeric, nullable=True)
+  price_paperback = db.Column(db.String, nullable=True)
+  price_hardcover = db.Column(db.String, nullable=True)
+  price_eBook = db.Column(db.String, nullable=True)
   genre = db.Column(db.String(255), nullable=True)
   overview = db.Column(db.String(5000), nullable=True)
   editorial_review = db.Column(db.String(5000), nullable=True)
@@ -25,7 +26,6 @@ class Book(db.Model):
 
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
-
 
 
   def to_dict(self):
