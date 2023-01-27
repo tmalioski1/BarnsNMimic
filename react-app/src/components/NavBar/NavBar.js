@@ -1,9 +1,19 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import {useSelector} from 'react-redux'
+import OpenModalButton from '../OpenModalButton'
+import LogoutButton from '../auth/LogoutButton';
 
-const NavBar = () => {
+import './navbar.css'
+
+const NavBar = ({loaded}) => {
+  const sessionUser = useSelector(state => state.session.user);
+  let sessionLinks;
+  if(sessionUser):
+    sessionLinks = (
+
+    )
+
   return (
     <nav>
       <ul>
