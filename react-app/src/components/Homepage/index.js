@@ -27,11 +27,14 @@ if (!books.length) {
 
 return (
     <section className="HomePage Container">
-        <div id='book-container'>
+        <div id='main-books-container'>
             {
              books.map(book => (
-                <div className = 'book-container' key={book.id}>
-                    <div>{book.author}</div>
+                <div className ='single-book-container' key={book.id}>
+                    <NavLink
+                      to={`/books/${book.id}`} style={{textDecoration: 'none'}}>
+                        <div>{book.title}</div>
+                        </NavLink>
                 </div>
              ))
 
