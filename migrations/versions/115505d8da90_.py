@@ -1,8 +1,8 @@
-"""adjust decimals again and again and again
+"""empty message
 
-Revision ID: af595d85dd79
+Revision ID: 115505d8da90
 Revises: 
-Create Date: 2023-01-25 21:07:17.166118
+Create Date: 2023-01-26 16:08:19.174675
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'af595d85dd79'
+revision = '115505d8da90'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,13 +35,13 @@ def upgrade():
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('author', sa.String(length=255), nullable=False),
     sa.Column('type', sa.String(length=255), nullable=False),
-    sa.Column('price_paperback', sa.String(), nullable=True),
-    sa.Column('price_hardcover', sa.String(), nullable=True),
-    sa.Column('price_eBook', sa.String(), nullable=True),
+    sa.Column('price_paperback', sa.Integer(), nullable=True),
+    sa.Column('price_hardcover', sa.Integer(), nullable=True),
+    sa.Column('price_eBook', sa.Integer(), nullable=True),
     sa.Column('genre', sa.String(length=255), nullable=True),
     sa.Column('overview', sa.String(length=5000), nullable=True),
     sa.Column('editorial_review', sa.String(length=5000), nullable=True),
-    sa.Column('publication_date', sa.Date(), nullable=True),
+    sa.Column('publication_date', sa.String(), nullable=True),
     sa.Column('publisher', sa.String(length=255), nullable=True),
     sa.Column('cover_art', sa.String(length=255), nullable=True),
     sa.Column('pages', sa.Integer(), nullable=True),

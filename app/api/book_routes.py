@@ -11,11 +11,12 @@ book_routes = Blueprint('books', __name__)
 @book_routes.route('/')
 def all_books():
     books = Book.query.all()
+
     return {'books': [book.to_dict() for book in books]}
 
 #get a book by ID for book details page
 @book_routes.route('/<int:id>')
-@login_required
+# @login_required
 def book(id):
     book = Book.query.get(id)
 
@@ -27,7 +28,7 @@ def book(id):
 
 #post a book
 @book_routes.route('/', methods = ['POST'])
-@login_required
+# @login_required
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
