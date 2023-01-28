@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
@@ -24,16 +24,22 @@ const UploadBookModal = () => {
   const [publisher, setPublisher] = useState('')
   const [cover_art, setCoverArt] = useState('')
   const [pages, setPages] = useState('')
-  const [sales_rank, setSalesRank] = useState('')
-  const [errors, setErrors] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-
-
   const {closeModal} = useModal();
+
+  useEffect(()=> {
+    const errors = [];
+
+    if (price_paperback <= 0) errors.push('Price must be greater than 0');
+    if (price_hardcover <= 0) errors.push('Price must be greater than 0');
+    if (price_eBook <= 0) errors.push('Price must be greater than 0');
+    if (pages <= 0) errors.push('Pages must be greater than 0');
+    setValidationErrors(errors);
+  }, [price_paperback, price_hardcover, price_eBook, pages])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setErrors([])
     setHasSubmitted(true);
     if (validationErrors.length) return alert(`Cannot Submit`);
 
@@ -51,9 +57,7 @@ const UploadBookModal = () => {
       'publication_date': publication_date,
       'publisher': publisher,
       'cover_art': cover_art,
-      'pages': pages,
-      'sales_rank': sales_rank,
-
+      'pages': pages
     }
 
     let createdBook = await dispatch(createBook(newBook))
@@ -68,17 +72,27 @@ const UploadBookModal = () => {
 
 
 
+
+
+
     return (
-      <div className="upload-form-container-check">
-      <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
+      <>
       <div id='header-div'>
       <h1 className='header-upload'>Upload Book here</h1>
       </div>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
+
+      <div className="upload-form-container-check">
+        {hasSubmitted && validationErrors.length > 0 &&(
+            <div>
+            The following errors were found:
+            <ul>
+              {validationErrors.map(error => (
+                <div key={error}>{error}</div>
+              ))}
+            </ul>
+     </div>
+        )}
+      <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
 
           <div id='upload-form-title'>
             <label>
@@ -206,8 +220,8 @@ const UploadBookModal = () => {
             <label>
             Publication Date
             <input
-             type="number"
-             value={dateStringConverter(publication_date)}
+             type="date"
+             value={publication_date}
              placeholder= 'Publication Date'
              onChange={(e) => setPublicationDate(e.target.value)}
              required
@@ -255,18 +269,7 @@ const UploadBookModal = () => {
             </label>
              </div>
 
-          <div id='upload-form-salesRank'>
-            <label>
-            Sales Rank
-            <input
-             type="number"
-             value={sales_rank}
-             placeholder= 'Sales Rank'
-             onChange={(e) => setSalesRank(e.target.value)}
-             required
-            />
-            </label>
-             </div>
+
 
           <button className='book-submit-button' type="submit">Upload</button>
       </form>
@@ -274,8 +277,8 @@ const UploadBookModal = () => {
 
   </div>
 
-
+  </>
     )
-    }
+  }
 
     export default UploadBookModal;

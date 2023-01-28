@@ -17,4 +17,3 @@ class BookForm(FlaskForm):
   publisher= StringField('Publisher')
   cover_art  = StringField('Book Cover')
   pages = IntegerField('Pages')
-  sales_rank= IntegerField('Sales Rank')
