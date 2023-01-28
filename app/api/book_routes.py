@@ -44,4 +44,5 @@ def new_book():
     if form.errors:
         return {
             "errors": form.errors
+
         }, 400

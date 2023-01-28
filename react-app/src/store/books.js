@@ -1,7 +1,7 @@
 
 const GET_ALL_BOOKS = 'song/GET_ALL_BOOKS'
 const GET_ONE_BOOK = 'song/GET_ONE_BOOK'
-// const POST_BOOK = 'song/POST_BOOK'
+const POST_BOOK = 'song/POST_BOOK'
 // const UPDATE_BOOK = 'song/UPDATE_BOOK'
 // const DELETE_BOOK = 'song/DELETE_BOOK'
 
@@ -14,10 +14,10 @@ const getOne = (book) => ({
     book
 })
 
-// const postSong = (song) => ({
-//   type: POST_BOOK,
-//   song
-// })
+const postBook = (book) => ({
+  type: POST_BOOK,
+  book
+})
 
 // const updateSong = (song) => ({
 //   type: UPDATE_BOOK,
@@ -31,7 +31,6 @@ const getOne = (book) => ({
 
 export const getOneBook = (id) => async(dispatch) => {
     const response = await fetch(`/api/books/${id}`)
-    console.log('this is the response', response)
     if(response.ok){
         const book = await response.json()
         dispatch(getOne(book))
@@ -49,21 +48,19 @@ export const getAllBooks = () => async (dispatch) => {
     return response
   };
 
-//   export const createSong = (newSong) => async (dispatch) => {
-//     console.log('thunk' , newSong)
-//     const response = await fetch('/api/songs/', {
-//       method: 'POST',
-//       body: newSong
-//     })
-//     console.log('err?', response)
+  export const createBook = (newBook) => async (dispatch) => {
+    const response = await fetch('/api/books/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newBook)
+    })
+    if (response.ok) {
+      const createdNewBook = await response.json();
+      dispatch(postBook(createdNewBook));
+      return createdNewBook;
+    }
 
-//     if (response.ok) {
-//       const createdNewSong = await response.json();
-//       dispatch(postSong(createdNewSong));
-//       return createdNewSong;
-//     }
-
-//   }
+  }
 
 //   export const updateASong = (payload, songId) => async dispatch => {
 //     const response = await fetch(`/api/songs/${songId}`, {
@@ -103,7 +100,7 @@ const booksReducer = (state = initialState, action) => {
 
           return newState;
         }
-        
+
         case GET_ONE_BOOK:{
             const newState = { allBooks: {...state.allBooks}, singleBook: {} }
             const specificBook = action.book
@@ -111,11 +108,11 @@ const booksReducer = (state = initialState, action) => {
             return newState
         }
 
-        // case POST_BOOK: {
-        //   const newState = { ...state, allSongs: { ...state.allSongs}}
-        //   newState.allSongs[action.song.id] = action.song;
-        //   return newState
-        // }
+        case POST_BOOK: {
+          const newState = { ...state, allBooks: { ...state.allBooks}}
+          newState.allBooks[action.book.id] = action.book;
+          return newState
+        }
 
         // case UPDATE_BOOK: {
         //   const newState = { ...state, allSongs: { ...state.allSongs}}
