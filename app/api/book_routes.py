@@ -21,7 +21,7 @@ def book(id):
     book = Book.query.get(id)
 
     if not book:
-        return {"errors": "Song not found"}, 404
+        return {"errors": "Book not found"}, 404
 
     return {'book': book.to_dict()} , 200
 
