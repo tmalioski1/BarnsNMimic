@@ -26,12 +26,16 @@ const UploadBookModal = () => {
   const [pages, setPages] = useState('')
   const [sales_rank, setSalesRank] = useState('')
   const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
 
   const {closeModal} = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrors([])
+    setHasSubmitted(true);
+    if (validationErrors.length) return alert(`Cannot Submit`);
 
     const newBook = {
       'publisher_id': sessionUser.id,
@@ -51,11 +55,9 @@ const UploadBookModal = () => {
       'sales_rank': sales_rank,
 
     }
-    console.log('this is the newbook-----------', newBook)
 
     let createdBook = await dispatch(createBook(newBook))
 
-    console.log('this is the created book---',  createdBook)
 
     if(createdBook) {
       (closeModal)
@@ -63,9 +65,7 @@ const UploadBookModal = () => {
     }
   }
 
-  function dateStringConverter(string) {
-    return Number(string)
-  }
+
 
 
     return (
