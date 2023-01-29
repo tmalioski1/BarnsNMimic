@@ -15,6 +15,7 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
      <>
       <nav className='nav'>
+        <div className='greenbar'></div>
       <div className='header'>
       <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
           <div className='homelink-container'>
