@@ -41,6 +41,10 @@ const BookDetails = () => {
     newArray.push(array[2])
     newArray.push(array[0])
     const joinedArray = newArray.join('/')
+    if (joinedArray[0] === '/' && joinedArray[1] === '/') {
+      let slicedString = joinedArray.slice(2)
+      return slicedString
+    } 
     return joinedArray
   }
 

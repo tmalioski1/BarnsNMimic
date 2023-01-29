@@ -16,7 +16,6 @@ def all_books():
 
 #get a book by ID for book details page
 @book_routes.route('/<int:id>')
-@login_required
 def book(id):
     book = Book.query.get(id)
 
