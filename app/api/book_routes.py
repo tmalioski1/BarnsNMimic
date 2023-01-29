@@ -49,4 +49,28 @@ def new_book():
 
 
 
+# update book by id
+@book_routes.route('/<int:book_id>', methods=['PUT'])
+@login_required
+def update_song(book_id):
 
+    current_book = Book.query.get(book_id)
+    form = BookForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        form.populate_obj(current_book)
+        db.session.add(current_book)
+        db.session.commit()
+        return current_book.to_dict(), 201
+
+# delete book by id
+@book_routes.route('/<int:book_id>', methods=['DELETE'])
+@login_required
+def delete_book(book_id):
+    deleted_book = Book.query.get(book_id)
+    db.session.delete(deleted_book)
+    db.session.commit()
+
+    return {"message": 'successfully deleted'}

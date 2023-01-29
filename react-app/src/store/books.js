@@ -2,8 +2,8 @@
 const GET_ALL_BOOKS = 'song/GET_ALL_BOOKS'
 const GET_ONE_BOOK = 'song/GET_ONE_BOOK'
 const POST_BOOK = 'song/POST_BOOK'
-// const UPDATE_BOOK = 'song/UPDATE_BOOK'
-// const DELETE_BOOK = 'song/DELETE_BOOK'
+const UPDATE_BOOK = 'song/UPDATE_BOOK'
+const DELETE_BOOK = 'song/DELETE_BOOK'
 
 const getAll = (books) => ({
     type: GET_ALL_BOOKS,
@@ -19,15 +19,15 @@ const postBook = (book) => ({
   book
 })
 
-// const updateSong = (song) => ({
-//   type: UPDATE_BOOK,
-//   song
-// })
+const updateBook = (book) => ({
+  type: UPDATE_BOOK,
+  book
+})
 
-// const deleteSong = (songId) => ({
-//   type: DELETE_BOOK,
-//   songId
-// })
+const deleteBook = (bookId) => ({
+  type: DELETE_BOOK,
+  bookId
+})
 
 export const getOneBook = (id) => async(dispatch) => {
     const response = await fetch(`/api/books/${id}`)
@@ -62,29 +62,29 @@ export const getAllBooks = () => async (dispatch) => {
 
   }
 
-//   export const updateASong = (payload, songId) => async dispatch => {
-//     const response = await fetch(`/api/songs/${songId}`, {
-//       method: 'PUT',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(payload)
-//     })
-//     if(response.ok) {
-//       const editedSong = await response.json()
-//       dispatch(updateSong(editedSong))
-//     return editedSong
-//     }
-//   }
+  export const updateABook = (payload, bookId) => async dispatch => {
+    const response = await fetch(`/api/books/${bookId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    if(response.ok) {
+      const editedBook = await response.json()
+      dispatch(updateBook(editedBook))
+    return editedBook
+    }
+  }
 
-//   export const deleteASong = (songId) => async(dispatch) => {
-//     const response = await fetch(`/api/songs/${songId}`, {
-//      method: 'DELETE',
-//     })
-//     if (response.ok) {
-//       const deletionResponse = await response.json();
-//       dispatch(deleteSong(songId));
-//       return deletionResponse
-//     }
-//  }
+  export const deleteABook = (bookId) => async(dispatch) => {
+    const response = await fetch(`/api/books/${bookId}`, {
+     method: 'DELETE',
+    })
+    if (response.ok) {
+      const deletionResponse = await response.json();
+      dispatch(deleteBook(bookId));
+      return deletionResponse
+    }
+ }
 
 
 
@@ -114,21 +114,18 @@ const booksReducer = (state = initialState, action) => {
           return newState
         }
 
-        // case UPDATE_BOOK: {
-        //   const newState = { ...state, allSongs: { ...state.allSongs}}
-        //   newState.allSongs[action.song.id] = action.song;
-        //   return newState
-        // }
+        case UPDATE_BOOK: {
+          const newState = {...state}
+          newState.allBooks[action.book.id] = action.book;
+          newState.singleBook[action.book.id] = action.book;
+          return newState
+        }
 
-        // case DELETE_BOOK: {
-        //   const newState = {...state}
-        //   const newAllSongsObject = {...state.allSongs}
-        //   const newSingleSongObject = {}
-        //   delete newAllSongsObject[action.songId]
-        //   newState.singleSong = newSingleSongObject
-        //   newState.allSongs = newAllSongsObject
-        //   return newState
-        // }
+        case DELETE_BOOK: {
+          const newState = {...state, allBooks: { ...state.allBooks}}
+          delete newState.allBooks[action.id]
+          return newState
+        }
 
         default:
           return state

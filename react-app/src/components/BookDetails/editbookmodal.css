@@ -1,0 +1,27 @@
+#edit-form-container{
+    height: 100%
+}
+#edit-book-form{
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+#edit-book-form > * {
+    margin-bottom: .1vh;
+}
+
+#edit-header-div{
+    display: flex;
+    justify-content: center;
+    margin-bottom: .2vh;
+}
+
+#edit-form-book_title-container{
+    display: flex;
+    justify-content: space-between
+
+
+}

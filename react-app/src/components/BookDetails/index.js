@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
-import { getOneBook} from '../../store/books';
+import { getOneBook, deleteABook } from '../../store/books';
+import OpenModalButton from '../OpenModalButton';
+import EditBookModal from './EditBookModal'
 import './bookdetails.css';
 
 
@@ -10,7 +12,8 @@ const BookDetails = () => {
   const { id } = useParams();
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
-
+  const userObj = useSelector(state => state.session?.user)
+  const history = useHistory()
 
 
   useEffect(() => {
@@ -19,6 +22,16 @@ const BookDetails = () => {
 
   if (!bookData.length){
     return null
+  }
+
+  let message = ''
+  const handleDeletion = async (bookId) => {
+    const response = await dispatch(deleteABook(bookId))
+    if (response) {
+      message = response.message
+    }
+    history.push(`/`)
+
   }
 
   function dateFix (string) {
@@ -36,9 +49,21 @@ const BookDetails = () => {
   return (
     <section>
     <div className='book-detail-page-container'>
-        <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback}</div>
-
+        <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback}, {bookData[0].title}</div>
     </div>
+
+    <div className='book-edit-and-delete'>
+          {userObj?.id === bookData[0].publisher_id &&
+          <button
+            className='delete-and-edit'
+            onClick={() => handleDeletion(bookData[0].id)}>Delete</button>}
+              {userObj?.id === bookData[0].publisher_id &&
+                <OpenModalButton
+                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
+                 buttonText={'Edit'}
+              />}
+          </div>
+
     </section>
 
 
