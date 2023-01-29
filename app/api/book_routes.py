@@ -16,7 +16,7 @@ def all_books():
 
 #get a book by ID for book details page
 @book_routes.route('/<int:id>')
-# @login_required
+@login_required
 def book(id):
     book = Book.query.get(id)
 
@@ -28,7 +28,7 @@ def book(id):
 
 #post a book
 @book_routes.route('/', methods = ['POST'])
-# @login_required
+@login_required
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']

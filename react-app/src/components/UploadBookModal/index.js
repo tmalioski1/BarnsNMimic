@@ -138,6 +138,7 @@ const UploadBookModal = () => {
             Paperback Price
             <input
              type="number"
+             min= '1'
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
@@ -151,6 +152,7 @@ const UploadBookModal = () => {
             Hardcover Price
             <input
              type="number"
+             min= '1'
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardCover(e.target.value)}
@@ -164,6 +166,7 @@ const UploadBookModal = () => {
             eBook Price
             <input
              type="number"
+             min= '1'
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}

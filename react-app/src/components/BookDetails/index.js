@@ -20,6 +20,7 @@ const BookDetails = () => {
   if (!bookData.length){
     return null
   }
+  
   function dateFix (string) {
     const array = string.split('-')
     const newArray = []
