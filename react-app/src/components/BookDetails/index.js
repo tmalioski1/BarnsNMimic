@@ -49,6 +49,7 @@ const BookDetails = () => {
   return (
     <section>
     <div className='book-detail-page-container'>
+    <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
         <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback}, {bookData[0].title}</div>
     </div>
 
