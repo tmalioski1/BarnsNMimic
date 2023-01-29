@@ -1,8 +1,8 @@
-"""empty message
+"""rid of notnull on type
 
-Revision ID: 115505d8da90
+Revision ID: 0079dc4bfab9
 Revises: 
-Create Date: 2023-01-26 16:08:19.174675
+Create Date: 2023-01-28 19:42:51.295201
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '115505d8da90'
+revision = '0079dc4bfab9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,7 +34,7 @@ def upgrade():
     sa.Column('publisher_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('author', sa.String(length=255), nullable=False),
-    sa.Column('type', sa.String(length=255), nullable=False),
+    sa.Column('type', sa.String(length=255), nullable=True),
     sa.Column('price_paperback', sa.Integer(), nullable=True),
     sa.Column('price_hardcover', sa.Integer(), nullable=True),
     sa.Column('price_eBook', sa.Integer(), nullable=True),

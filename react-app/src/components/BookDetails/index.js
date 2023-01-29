@@ -20,7 +20,7 @@ const BookDetails = () => {
   if (!bookData.length){
     return null
   }
-  
+
   function dateFix (string) {
     const array = string.split('-')
     const newArray = []
@@ -36,7 +36,7 @@ const BookDetails = () => {
   return (
     <section>
     <div className='book-detail-page-container'>
-        <div>{dateFix(bookData[0].publication_date)}</div>
+        <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback}</div>
 
     </div>
     </section>

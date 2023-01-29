@@ -13,7 +13,6 @@ const UploadBookModal = () => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
-  const [type, setType] = useState('Paperback')
   const [price_paperback, setPricePaperback] = useState('')
   const [price_hardcover, setPriceHardCover] = useState('')
   const [price_eBook, setPriceeBook] = useState('')
@@ -30,13 +29,9 @@ const UploadBookModal = () => {
 
   useEffect(()=> {
     const errors = [];
-
-    if (price_paperback <= 0) errors.push('Price must be greater than 0');
-    if (price_hardcover <= 0) errors.push('Price must be greater than 0');
-    if (price_eBook <= 0) errors.push('Price must be greater than 0');
-    if (pages <= 0) errors.push('Pages must be greater than 0');
+    if (!price_paperback && !price_hardcover && !price_eBook) errors.push('At least one book type must have a price')
     setValidationErrors(errors);
-  }, [price_paperback, price_hardcover, price_eBook, pages])
+  }, [price_paperback, price_hardcover, price_eBook])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -47,7 +42,6 @@ const UploadBookModal = () => {
       'publisher_id': sessionUser.id,
       'title': title,
       'author': author,
-      'type': type,
       'price_paperback': price_paperback,
       'price_hardcover': price_hardcover,
       'price_eBook': price_eBook,
@@ -121,28 +115,17 @@ const UploadBookModal = () => {
              </div>
 
 
-          <select
-            onChange={(e) => setType(e.target.value)}
-            value={type}
-            name='type'
-            id='upload-form-type'
-            className='Select-Upload-Book-Input'
-            >
-              <option value="Paperback">Paperback</option>
-              <option value="Hardcover">Hardcover</option>
-              <option value="eBook">eBook</option>
-          </select>
-
           <div id='upload-form-pricePaperback'>
             <label>
             Paperback Price
             <input
              type="number"
+             step="0.01"
              min= '1'
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
-             required
+
             />
             </label>
              </div>
@@ -152,11 +135,11 @@ const UploadBookModal = () => {
             Hardcover Price
             <input
              type="number"
+             step="0.01"
              min= '1'
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardCover(e.target.value)}
-             required
             />
             </label>
              </div>
@@ -166,11 +149,11 @@ const UploadBookModal = () => {
             eBook Price
             <input
              type="number"
+             step="0.01"
              min= '1'
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}
-             required
             />
             </label>
              </div>
@@ -264,6 +247,7 @@ const UploadBookModal = () => {
             Pages
             <input
              type="number"
+             min= '1'
              value={pages}
              placeholder= 'Pages'
              onChange={(e) => setPages(e.target.value)}
