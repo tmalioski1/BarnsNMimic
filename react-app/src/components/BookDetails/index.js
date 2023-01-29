@@ -44,7 +44,7 @@ const BookDetails = () => {
     if (joinedArray[0] === '/' && joinedArray[1] === '/') {
       let slicedString = joinedArray.slice(2)
       return slicedString
-    } 
+    }
     return joinedArray
   }
 
@@ -54,7 +54,7 @@ const BookDetails = () => {
     <section>
     <div className='book-detail-page-container'>
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
-        <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback}, {bookData[0].title}</div>
+        <div>{dateFix(bookData[0].publication_date)}, ${bookData[0].price_paperback.toFixed(2)}, {bookData[0].title}</div>
     </div>
 
     <div className='book-edit-and-delete'>
