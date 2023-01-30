@@ -53,10 +53,14 @@ const BookDetails = () => {
   return (
     <section>
     <div className='book-detail-page-container'>
+      <div className='book-image-details'>
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
-        <div>{dateFix(bookData[0].publication_date)}, {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': ''} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': ''} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': ''} {bookData[0].title}</div>
+    <div className='book-details-and-buttons'>
+    <div className='book-details-and-buttons-top'>
+    <div className= 'book-details-title'>{bookData[0].title}</div>
+    <div className= 'book-details-author'>by {bookData[0].author}</div>
     </div>
-
+    <div>{dateFix(bookData[0].publication_date)}, {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': ''} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': ''} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': ''}</div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
@@ -67,6 +71,9 @@ const BookDetails = () => {
                  modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
                  buttonText={'Edit'}
               />}
+          </div>
+          </div>
+          </div>
           </div>
 
     </section>

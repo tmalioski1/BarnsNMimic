@@ -1,0 +1,29 @@
+.book-detail-page-container{
+  margin-top: 4.5vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+
+}
+
+.book-image-details{
+    display: flex;
+}
+
+.book-image-container{
+  margin-left: 11vw;
+}
+
+.book-details-and-buttons{
+    display: flex;
+    margin-left: 7.5vw;
+    flex-direction: column;
+}
+
+.book-details-author{
+    margin-bottom: 3vh;
+}
+
+.book-details-and-buttons-top{
+    border-bottom: 1px solid rgb(197, 195, 195);
+    width: 45vw;
+}
