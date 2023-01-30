@@ -1,0 +1,86 @@
+.homePage-container{
+  margin-left: 4vw;
+  margin-right: 4vw;
+  margin-top: 3vh;
+
+}
+
+
+
+.genre-container{
+  /* border: 1px solid #333; */
+  margin-bottom: 20px;
+  display: block;
+  border-bottom: 1.5px solid #f2f2f2;
+
+}
+
+.genre-word{
+  font-family: Poynter,Georgia,serif;
+  font-style: italic;
+  font-weight: 600;
+  color: rgb(70, 67, 67)
+}
+
+
+.slider-panel{
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-margin: 200px;
+  margin-bottom: 35px;
+  overflow-x: hidden;
+  margin-left: 2vw;
+}
+
+.slider-panel:hover{
+  overflow-x: scroll;
+}
+
+.slider-eachbook {
+  /* flex: 0 0 auto; */
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+.homepage-book-container-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+}
+
+.will-change-to-img{
+  /* border: 1px solid red; */
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+  margin-top: 25px;
+  margin-right: 20px;
+  object-fit: fill;
+}
+.home-book-title{
+  font-family: Poynter,Georgia,serif;
+  font-weight: 600;
+  color: black;
+  font-style: normal;
+  margin-bottom:2vh;
+  justify-self: center;
+  object-fit: cover;
+  width: 79%;
+}
+
+.home-book-title:hover{
+  text-decoration: underline;
+
+}
+
+.home-book-author{
+  font-family: Lato,sans-serif;
+  font-size: 1vw;
+}

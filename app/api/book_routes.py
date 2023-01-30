@@ -54,15 +54,20 @@ def new_book():
 def update_song(book_id):
 
     current_book = Book.query.get(book_id)
+    print('before-------')
     form = BookForm()
+    print('this is the form------', form)
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print('after-------', form)
     if form.validate_on_submit():
 
         form.populate_obj(current_book)
         db.session.add(current_book)
         db.session.commit()
         return current_book.to_dict(), 201
+
+    print('this is the form errors------', form.errors)
+
 
 # delete book by id
 @book_routes.route('/<int:book_id>', methods=['DELETE'])

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {useModal} from '../../context/Modal';
@@ -25,12 +25,20 @@ function EditBookModal(currentBookId) {
     const [cover_art, setCoverArt] = useState(booksObj.cover_art)
     const [pages, setPages] = useState(booksObj.pages)
 
-    const [errors, setErrors] = useState([])
+    const [validationErrors, setValidationErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false);
     const {closeModal} = useModal()
+
+    useEffect(()=> {
+      const errors = [];
+      if (!price_paperback && !price_hardcover && !price_eBook) errors.push('At least one book type must have a price')
+      setValidationErrors(errors);
+    }, [price_paperback, price_hardcover, price_eBook])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setErrors([])
+        setHasSubmitted(true);
+        if (validationErrors.length) return alert(`Cannot Submit`);
 
         const payload = {
           bookId,
@@ -55,7 +63,7 @@ function EditBookModal(currentBookId) {
         .catch(
           async (res) => {
             const data = await res.json()
-            if(data && data.errors) setErrors(data.errors)
+            if(data && data.errors) setValidationErrors(data.errors)
           }
         )
 
@@ -70,16 +78,25 @@ function EditBookModal(currentBookId) {
 
 
       return (
-        <div id="edit-form-container">
-        <form id= 'edit-book-form' onSubmit={handleSubmit}>
+        <>
           <div id='edit-header-div'>
             <h1 className='edit-header-upload'>Update Your Book Here</h1>
             </div>
+
+        <div className="edit-book-form-container-check">
+        {hasSubmitted && validationErrors.length > 0 &&(
+            <div>
+            The following errors were found:
             <ul>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
+              {validationErrors.map(error => (
+                <div key={error}>{error}</div>
               ))}
             </ul>
+     </div>
+        )}
+
+        <form id= 'edit-book-form' onSubmit={handleSubmit}>
+
             <div id='edit-book-form-title-container'>
             <label>
                 Title
@@ -247,6 +264,7 @@ function EditBookModal(currentBookId) {
 
         </form>
         </div>
+        </>
       )
 }
 export default EditBookModal
