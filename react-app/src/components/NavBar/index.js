@@ -17,12 +17,14 @@ const NavBar = ({loaded}) => {
       <nav className='nav'>
         <div className='greenbar-top'>c</div>
         <div className='header-upper-right'>
-            <div className='upload-button'>
+            <div id='upload-book-modal-button-container'>
             <OpenModalButton
+            id='upload-book-modal-button'
             buttonText='Upload'
             modalComponent={<UploadNewBook />}
             />
             </div>
+            <div className= 'line'>|</div>
             <div className='log-out'>
             <LogoutButton />
             </div>
@@ -59,6 +61,7 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
       <>
       <nav className='nav'>
+        <div className='greenbar-top'>c</div>
         <div className='header'>
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
             <div className='homelink-container'>
@@ -67,15 +70,20 @@ const NavBar = ({loaded}) => {
               </div>
             </div>
           </NavLink>
-          <div className='header-center-logged-out'>
+          <div className='header-center'>
+          <div className= 'grey-input'>
+            <div className='grey-container'>t</div>
+            <div className='search-input-container'>
             <input
-              type='text'
-              disabled
-              placeholder='Feature coming soon'
-              className='search-input'>
+            type='text'
+            disabled
+            placeholder='Search coming soon'
+            className='search-input'>
             </input>
+            </div>
+            </div>
             <div className='search-icon'>
-              <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </div>
           <div className='header-right'>
