@@ -31,11 +31,11 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print('outside form validation')
     if form.validate_on_submit():
         new_book = Book()
         form.populate_obj(new_book)
-
+        print('inside form validation')
         db.session.add(new_book)
         db.session.commit()
         return new_book.to_dict(), 201

@@ -14,9 +14,9 @@ function EditBookModal(currentBookId) {
     const [publisher_id, setPublisherId] = useState(booksObj.publisher_id)
     const [title, setTitle] = useState(booksObj.title)
     const [author, setAuthor] = useState(booksObj.author)
-    const [price_paperback, setPricePaperback] = useState(booksObj.price_paperback)
-    const [price_hardcover, setPriceHardcover] = useState(booksObj.price_hardcover)
-    const [price_eBook, setPriceeBook] = useState(booksObj.price_eBook)
+    const [price_paperback, setPricePaperback] = useState(booksObj?.price_paperback)
+    const [price_hardcover, setPriceHardcover] = useState(booksObj?.price_hardcover)
+    const [price_eBook, setPriceeBook] = useState(booksObj?.price_eBook)
     const [genre, setGenre] = useState(booksObj.genre)
     const [overview, setOverview] = useState(booksObj.overview)
     const [editorial_review, setEditorialReview] = useState(booksObj.editorial_review)
@@ -64,6 +64,9 @@ function EditBookModal(currentBookId) {
           (history.push(`/books/${bookId}`))
         }
       }
+
+
+
 
 
       return (
