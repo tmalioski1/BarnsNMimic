@@ -54,6 +54,8 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
         </div>
+        <div className='gold-bar'>c</div>
+        <div className='greenbar-top'>c</div>
       </nav>
      </>
     )
@@ -62,11 +64,24 @@ const NavBar = ({loaded}) => {
       <>
       <nav className='nav'>
         <div className='greenbar-top'>c</div>
+        <div className='header-upper-right'>
+            <div className='login-nav'>
+              <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
+                Login
+              </NavLink>
+            </div>
+            <div className= 'line'>|</div>
+            <div className='sign-up-nav-container'>
+              <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
+                Sign Up
+              </NavLink>
+            </div>
+          </div>
         <div className='header'>
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
             <div className='homelink-container'>
               <div className='homeWord'>
-                <p className='word'>Barnes & Noble</p>
+              <p className='word'>BARNES <span className='gold-and'>&</span> NOBLE</p>
               </div>
             </div>
           </NavLink>
@@ -86,19 +101,9 @@ const NavBar = ({loaded}) => {
             <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </div>
-          <div className='header-right'>
-            <div className='login-nav'>
-              <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-            </div>
-            <div className='sign-up-nav'>
-              <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
-            </div>
-          </div>
         </div>
+        <div className='gold-bar'>c</div>
+        <div className='greenbar-top'>c</div>
       </nav>
       </>
     )

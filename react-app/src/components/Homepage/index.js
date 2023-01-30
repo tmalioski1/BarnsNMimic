@@ -26,7 +26,7 @@ if (!books.length) {
 
 
 return (
-    <section className="HomePage Container">
+    <section className="homePage-container">
         <div id='main-books-container'>
             {
              books.map(book => (
