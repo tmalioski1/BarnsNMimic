@@ -15,27 +15,8 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
      <>
       <nav className='nav'>
-        <div className='greenbar'></div>
-      <div className='header'>
-      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
-          <div className='homelink-container'>
-            <div className='homeWord'>
-              <p className='word'>Barnes & Noble</p>
-            </div>
-          </div>
-        </NavLink>
-        <div className='header-center'>
-            <input
-            type='text'
-            disabled
-            placeholder='Search coming soon'
-            className='search-input'>
-            </input>
-            <div className='search-icon'>
-            <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-          </div>
-          <div className='header-right'>
+        <div className='greenbar-top'>c</div>
+        <div className='header-upper-right'>
             <div className='upload-button'>
             <OpenModalButton
             buttonText='Upload'
@@ -46,6 +27,30 @@ const NavBar = ({loaded}) => {
             <LogoutButton />
             </div>
         </div>
+      <div className='header'>
+      <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
+          <div className='homelink-container'>
+            <div className='homeWord'>
+              <p className='word'>BARNES <span className='gold-and'>&</span> NOBLE</p>
+            </div>
+          </div>
+        </NavLink>
+        <div className='header-center'>
+          <div className= 'grey-input'>
+            <div className='grey-container'>t</div>
+            <div className='search-input-container'>
+            <input
+            type='text'
+            disabled
+            placeholder='Search coming soon'
+            className='search-input'>
+            </input>
+            </div>
+            </div>
+            <div className='search-icon'>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </div>
         </div>
       </nav>
      </>
