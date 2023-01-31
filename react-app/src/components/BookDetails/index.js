@@ -83,6 +83,15 @@ const BookDetails = () => {
             <div className='publication-date-details'><span className="publication-date-key">Publication date:</span>{dateFix(bookData[0].publication_date)}</div>
             <div className='page-number-details'><span className="page-key">Pages:</span>{bookData[0].pages}</div>
           </div>
+          <div className='editorial-review-container'>
+          <h2 className='editorial-review-title'>Editorial Review</h2>
+          <div className='review-text-container'>
+          <div className='review-text'>{bookData[0].editorial_review}</div>
+          </div>
+
+
+
+          </div>
           </div>
     </section>
 

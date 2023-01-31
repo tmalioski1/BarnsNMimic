@@ -66,6 +66,10 @@
   border: .1vw solid grey;
   padding: 1.5vw;
   column-width: 27em;
+  font-family: Lato, sans-serif;
+  font-weight: 100;
+  font-size: 1.1vw
+
 }
 
 
@@ -124,4 +128,46 @@
   font-family: Lato, sans-serif;
   font-size: 1vw;
   margin-bottom: 2vh;
+}
+
+
+.editorial-review-container{
+  background-color: #d7e4e9;
+  margin-left: 2.3vw;
+  margin-right: 2.3vw;
+  margin-bottom: 5vh;
+  padding-top: 2vh;
+  padding-bottom: 5vh;
+  position: relative
+}
+
+.editorial-review-title{
+  text-align: center;
+  font-family: Poynter,Georgia,serif;
+  font-weight: 100;
+
+}
+
+.editorial-review-title:after{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 6.5vh;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 1.5rem;
+  height: 2px;
+  background: #21282d;
+}
+
+.review-text-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 3vh
+}
+
+.review-text{
+  font-family: Lato, sans-serif;
+  font-style: italic
 }
