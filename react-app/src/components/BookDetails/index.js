@@ -15,7 +15,6 @@ const BookDetails = () => {
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
-
   useEffect(() => {
     dispatch(getOneBook(id))
   }, [id, dispatch])

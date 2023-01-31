@@ -1,9 +1,9 @@
 
-const GET_ALL_BOOKS = 'song/GET_ALL_BOOKS'
-const GET_ONE_BOOK = 'song/GET_ONE_BOOK'
-const POST_BOOK = 'song/POST_BOOK'
-const UPDATE_BOOK = 'song/UPDATE_BOOK'
-const DELETE_BOOK = 'song/DELETE_BOOK'
+const GET_ALL_BOOKS = 'book/GET_ALL_BOOKS'
+const GET_ONE_BOOK = 'book/GET_ONE_BOOK'
+const POST_BOOK = 'book/POST_BOOK'
+const UPDATE_BOOK = 'book/UPDATE_BOOK'
+const DELETE_BOOK = 'book/DELETE_BOOK'
 
 const getAll = (books) => ({
     type: GET_ALL_BOOKS,
@@ -63,11 +63,13 @@ export const getAllBooks = () => async (dispatch) => {
   }
 
   export const updateABook = (payload, bookId) => async dispatch => {
+    console.log('this is the payload---', payload)
     const response = await fetch(`/api/books/${bookId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
+    console.log('this is the response----', response)
     if(response.ok) {
       const editedBook = await response.json()
       dispatch(updateBook(editedBook))

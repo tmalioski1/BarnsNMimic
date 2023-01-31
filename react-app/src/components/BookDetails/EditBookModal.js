@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {useModal} from '../../context/Modal';
-import { updateABook } from "../../store/books"
+import {  updateABook } from "../../store/books"
 import './editbookmodal.css'
 
 
@@ -10,7 +10,8 @@ function EditBookModal(currentBookId) {
     const bookId = currentBookId.currentBookId
     const dispatch = useDispatch();
     const history = useHistory();
-    const booksObj = useSelector(state => state.books?.allBooks[bookId])
+    const booksObj = useSelector(state => state.books.singleBook.book)
+    console.log('this is booksObj---', booksObj)
     const [publisher_id, setPublisherId] = useState(booksObj.publisher_id)
     const [title, setTitle] = useState(booksObj.title)
     const [author, setAuthor] = useState(booksObj.author)
@@ -29,16 +30,31 @@ function EditBookModal(currentBookId) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const {closeModal} = useModal()
 
+
     useEffect(()=> {
       const errors = [];
       if (!price_paperback && !price_hardcover && !price_eBook) errors.push('At least one book type must have a price')
       setValidationErrors(errors);
     }, [price_paperback, price_hardcover, price_eBook])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setHasSubmitted(true);
         if (validationErrors.length) return alert(`Cannot Submit`);
+
+        const paperback = ''
+        const hardCover = ''
+        const eBook = ''
+        if (price_paperback === null) {
+          setPricePaperback('')
+        }
+        if (price_hardcover === null) {
+          setPriceHardcover('')
+        }
+        if (price_eBook === null) {
+          setPriceeBook('')
+        }
 
         const payload = {
           bookId,
@@ -57,6 +73,7 @@ function EditBookModal(currentBookId) {
           pages
 
         }
+        console.log('this is the payload with if statements------', payload)
 
 
         const editedBook = await dispatch(updateABook(payload, bookId))
