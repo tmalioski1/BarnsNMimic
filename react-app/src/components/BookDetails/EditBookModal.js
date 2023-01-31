@@ -206,7 +206,7 @@ function EditBookModal(currentBookId) {
             <label>
             Overview
             <input
-             type="text"
+             type="textarea"
              value={overview}
              placeholder= 'Overview'
              onChange={(e) => setOverview(e.target.value)}

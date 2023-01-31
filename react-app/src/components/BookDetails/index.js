@@ -57,9 +57,9 @@ const BookDetails = () => {
     <div className='book-details-and-buttons'>
     <div className='book-details-and-buttons-top'>
     <div className= 'book-details-title'>{bookData[0].title}</div>
-    <div className= 'book-details-author'>by {bookData[0].author}</div>
+    <div className= 'book-details-author'><span className='black-by'>by</span> { bookData[0].author}</div>
     </div>
-    <div>{dateFix(bookData[0].publication_date)}, {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': ''} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': ''} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': ''}</div>
+    <div>{bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': ''} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': ''} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': ''}</div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
@@ -73,8 +73,17 @@ const BookDetails = () => {
           </div>
           </div>
           </div>
+          <div className='overview-container'>
+            <h2 className='overview-title'>Overview</h2>
+            <div className='overview-text'>{bookData[0].overview}</div>
           </div>
-
+          <h2 className='product-details-title'>Product Details</h2>
+          <div className='product-details-container'>
+            <div className='publisher-details'><span className="publisher-key">Publisher:</span>{bookData[0].publisher}</div>
+            <div className='publication-date-details'><span className="publication-date-key">Publication date:</span>{dateFix(bookData[0].publication_date)}</div>
+            <div className='page-number-details'><span className="page-key">Pages:</span>{bookData[0].pages}</div>
+          </div>
+          </div>
     </section>
 
 

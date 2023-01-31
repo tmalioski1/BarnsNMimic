@@ -33,7 +33,7 @@ const NavBar = ({loaded}) => {
       <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
           <div className='homelink-container'>
             <div className='homeWord'>
-              <p className='word'>BARNES <span className='gold-and'>&</span> NOBLE</p>
+              <p className='word'>BARNES <span className='gold-and'>&</span> MIMIC</p>
             </div>
           </div>
         </NavLink>
