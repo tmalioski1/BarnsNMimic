@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: ffdc0a98111c
-Revises:
-Create Date: 2023-01-31 15:13:16.013881
+Revision ID: 81e296026b99
+Revises: 
+Create Date: 2023-01-31 15:48:02.363945
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'ffdc0a98111c'
+revision = '81e296026b99'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,14 +29,11 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('books',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('publisher_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('author', sa.String(length=255), nullable=False),
-    sa.Column('type', sa.String(length=255), nullable=True),
     sa.Column('price_paperback', sa.Float(), nullable=True),
     sa.Column('price_hardcover', sa.Float(), nullable=True),
     sa.Column('price_eBook', sa.Float(), nullable=True),
@@ -51,26 +44,21 @@ def upgrade():
     sa.Column('publisher', sa.String(length=255), nullable=True),
     sa.Column('cover_art', sa.String(length=255), nullable=True),
     sa.Column('pages', sa.Integer(), nullable=True),
-    sa.Column('sales_rank', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['publisher_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('book_id', sa.Integer(), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
-    sa.Column('review_txt', sa.String(length=5000), nullable=True),
-    sa.Column('recommended', sa.Boolean(), nullable=True),
-    sa.Column('spoilers', sa.Boolean(), nullable=True),
+    sa.Column('review_txt', sa.String(length=5000), nullable=False),
+    sa.Column('recommended', sa.Boolean(), nullable=False),
+    sa.Column('spoilers', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['book_id'], ['books.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
