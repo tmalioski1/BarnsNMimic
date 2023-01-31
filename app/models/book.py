@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
 class Book(db.Model):
   __tablename__ = 'books'
 
@@ -10,14 +11,14 @@ class Book(db.Model):
   publisher_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   author = db.Column(db.String(255), nullable=False)
-  type = db.Column(db.String(255), nullable=False)
-  price_paperback = db.Column(db.Numeric, nullable=True)
-  price_hardcover = db.Column(db.Numeric, nullable=True)
-  price_eBook = db.Column(db.Numeric, nullable=True)
+  type = db.Column(db.String(255), nullable=True)
+  price_paperback = db.Column(db.Integer, nullable=True)
+  price_hardcover = db.Column(db.Integer, nullable=True)
+  price_eBook = db.Column(db.Integer, nullable=True)
   genre = db.Column(db.String(255), nullable=True)
   overview = db.Column(db.String(5000), nullable=True)
   editorial_review = db.Column(db.String(5000), nullable=True)
-  publication_date = db.Column(db.Date, nullable=True)
+  publication_date = db.Column(db.String, nullable=True)
   publisher= db.Column(db.String(255), nullable=True)
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
@@ -25,7 +26,6 @@ class Book(db.Model):
 
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
-
 
 
   def to_dict(self):
@@ -46,5 +46,8 @@ class Book(db.Model):
       'cover_art': self.cover_art,
       'pages': self.pages,
       'sales_rank': self.sales_rank
-
   }
+
+  # @property
+  # def formatted_day_month_and_year(self):
+  #   return self.publication_date.strftime("d%/%m/%Y")
