@@ -1,12 +1,16 @@
 """empty message
 
 Revision ID: 99a40c6ccda1
-Revises: 
-Create Date: 2023-01-29 14:09:32.166900
+Revises:
+Create Date: 2023-01-31 15:13:16.013881
 
 """
 from alembic import op
 import sqlalchemy as sa
+
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -29,15 +33,17 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('books',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('publisher_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('author', sa.String(length=255), nullable=False),
     sa.Column('type', sa.String(length=255), nullable=True),
-    sa.Column('price_paperback', sa.Integer(), nullable=True),
-    sa.Column('price_hardcover', sa.Integer(), nullable=True),
-    sa.Column('price_eBook', sa.Integer(), nullable=True),
+    sa.Column('price_paperback', sa.Float(), nullable=True),
+    sa.Column('price_hardcover', sa.Float(), nullable=True),
+    sa.Column('price_eBook', sa.Float(), nullable=True),
     sa.Column('genre', sa.String(length=255), nullable=True),
     sa.Column('overview', sa.String(length=5000), nullable=True),
     sa.Column('editorial_review', sa.String(length=5000), nullable=True),
@@ -49,6 +55,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['publisher_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -61,6 +69,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
