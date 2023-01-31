@@ -29,7 +29,7 @@ const UploadBookModal = () => {
 
   useEffect(()=> {
     const errors = [];
-    if (!price_paperback && !price_hardcover && !price_eBook) errors.push('At least one book type must have a price')
+    if (!price_paperback || !price_hardcover || !price_eBook) errors.push('All book types must have a price')
     setValidationErrors(errors);
   }, [price_paperback, price_hardcover, price_eBook])
 
@@ -125,6 +125,7 @@ const UploadBookModal = () => {
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
+             required
 
             />
             </label>
@@ -140,6 +141,7 @@ const UploadBookModal = () => {
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardCover(e.target.value)}
+             required
             />
             </label>
              </div>
@@ -154,6 +156,7 @@ const UploadBookModal = () => {
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}
+             required
             />
             </label>
              </div>
@@ -178,8 +181,8 @@ const UploadBookModal = () => {
           <div id='upload-form-overview'>
             <label>
             Overview
-            <input
-             type="text"
+            <textarea
+             type="textarea"
              value={overview}
              placeholder= 'Overview'
              onChange={(e) => setOverview(e.target.value)}
@@ -191,12 +194,11 @@ const UploadBookModal = () => {
           <div id='upload-form-editorialReview'>
             <label>
             Editorial Review
-            <input
-             type="text"
+            <textarea
+             type="textarea"
              value={editorial_review}
              placeholder= 'Editorial Review'
              onChange={(e) => setEditorialReview(e.target.value)}
-             required
             />
             </label>
              </div>

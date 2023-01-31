@@ -51,7 +51,7 @@ def new_book():
 # update book by id
 @book_routes.route('/<int:book_id>', methods=['PUT'])
 @login_required
-def update_song(book_id):
+def update_book(book_id):
 
     current_book = Book.query.get(book_id)
     print('before-------')

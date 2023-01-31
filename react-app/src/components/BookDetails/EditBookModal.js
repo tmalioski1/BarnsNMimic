@@ -11,7 +11,6 @@ function EditBookModal(currentBookId) {
     const dispatch = useDispatch();
     const history = useHistory();
     const booksObj = useSelector(state => state.books.singleBook.book)
-    console.log('this is booksObj---', booksObj)
     const [publisher_id, setPublisherId] = useState(booksObj.publisher_id)
     const [title, setTitle] = useState(booksObj.title)
     const [author, setAuthor] = useState(booksObj.author)
@@ -33,7 +32,7 @@ function EditBookModal(currentBookId) {
 
     useEffect(()=> {
       const errors = [];
-      if (!price_paperback && !price_hardcover && !price_eBook) errors.push('At least one book type must have a price')
+      if (!price_paperback || !price_hardcover || !price_eBook) errors.push('All book types must have a price')
       setValidationErrors(errors);
     }, [price_paperback, price_hardcover, price_eBook])
 
@@ -43,18 +42,6 @@ function EditBookModal(currentBookId) {
         setHasSubmitted(true);
         if (validationErrors.length) return alert(`Cannot Submit`);
 
-        const paperback = ''
-        const hardCover = ''
-        const eBook = ''
-        if (price_paperback === null) {
-          setPricePaperback('')
-        }
-        if (price_hardcover === null) {
-          setPriceHardcover('')
-        }
-        if (price_eBook === null) {
-          setPriceeBook('')
-        }
 
         const payload = {
           bookId,
@@ -73,7 +60,6 @@ function EditBookModal(currentBookId) {
           pages
 
         }
-        console.log('this is the payload with if statements------', payload)
 
 
         const editedBook = await dispatch(updateABook(payload, bookId))
@@ -114,7 +100,6 @@ function EditBookModal(currentBookId) {
 
         <form id= 'edit-book-form' onSubmit={handleSubmit}>
 
-            <div id='edit-book-form-title-container'>
             <label>
                 Title
             <input
@@ -124,12 +109,11 @@ function EditBookModal(currentBookId) {
                 placeholder='Title'
                 name='title'
                 id= 'edit-form-book_title'
+                required
               />
             </label>
-             </div>
 
 
-            <div id='edit-book-form-author-container'>
             <label>
             Author
             <input
@@ -139,11 +123,10 @@ function EditBookModal(currentBookId) {
                 placeholder='Author'
                 name='author'
                 id= 'edit-form-book_author'
+                required
               />
             </label>
-             </div>
 
-            <div id='edit-book-form-pricePaperback-container'>
             <label>
             Paperback Price
             <input
@@ -153,12 +136,11 @@ function EditBookModal(currentBookId) {
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
+             required
 
             />
             </label>
-             </div>
 
-            <div id='edit-book-form-priceHardcover-container'>
             <label>
             Hardcover Price
             <input
@@ -168,11 +150,10 @@ function EditBookModal(currentBookId) {
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardcover(e.target.value)}
+             required
             />
             </label>
-             </div>
 
-          <div id='edit-book-form-eBook-container'>
             <label>
             eBook Price
             <input
@@ -182,9 +163,9 @@ function EditBookModal(currentBookId) {
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}
+             required
             />
             </label>
-             </div>
 
             <select
               onChange={(e) => setGenre(e.target.value)}
@@ -202,32 +183,28 @@ function EditBookModal(currentBookId) {
             <option value="Current Events">Current Events</option>
             </select>
 
-            <div id='edit-book-form-overview-container'>
             <label>
             Overview
-            <input
+            <textarea
              type="textarea"
              value={overview}
              placeholder= 'Overview'
              onChange={(e) => setOverview(e.target.value)}
+             required
             />
             </label>
-             </div>
 
-          <div id='edit-book-form-editorial_review-container'>
             <label>
             Editorial Review
-            <input
-             type="text"
+            <textarea
+             type="textarea"
              value={editorial_review}
              placeholder= 'Editorial Review'
              onChange={(e) => setEditorialReview(e.target.value)}
             />
             </label>
-             </div>
 
 
-          <div id='edit-book-form-publication_date-container'>
             <label>
             Publication Date
             <input
@@ -235,12 +212,11 @@ function EditBookModal(currentBookId) {
              value={publication_date}
              placeholder= 'Publication Date'
              onChange={(e) => setPublicationDate(e.target.value)}
+             required
             />
             </label>
-             </div>
 
 
-          <div id='edit-book-form-publisher-container'>
             <label>
             Publisher
             <input
@@ -248,11 +224,10 @@ function EditBookModal(currentBookId) {
              value={publisher}
              placeholder= 'Publisher'
              onChange={(e) => setPublisher(e.target.value)}
+             required
             />
             </label>
-             </div>
 
-          <div id='edit-book-form-cover_art-container'>
             <label>
             Cover Art
             <input
@@ -260,11 +235,10 @@ function EditBookModal(currentBookId) {
              value={cover_art}
              placeholder= 'Cover Art'
              onChange={(e) => setCoverArt(e.target.value)}
+             required
             />
             </label>
-             </div>
 
-          <div id='edit-book-form-pages-container'>
             <label>
             Pages
             <input
@@ -273,9 +247,9 @@ function EditBookModal(currentBookId) {
              value={pages}
              placeholder= 'Pages'
              onChange={(e) => setPages(e.target.value)}
+             required
             />
             </label>
-             </div>
 
               <button className="editBook-button" type='submit'>Update</button>
 

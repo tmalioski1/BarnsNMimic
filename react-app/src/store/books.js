@@ -119,7 +119,7 @@ const booksReducer = (state = initialState, action) => {
         case UPDATE_BOOK: {
           const newState = {...state}
           newState.allBooks[action.book.id] = action.book;
-          newState.singleBook[action.book.id] = action.book;
+          newState.singleBook.book = action.book;
           return newState
         }
 

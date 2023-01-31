@@ -1,27 +1,79 @@
-#edit-form-container{
-    height: 100%
-}
 #edit-book-form{
     display: flex;
-    height: fit-content;
     flex-direction: column;
-    height: fit-content;
-    justify-content: space-between;
 }
 
-#edit-book-form > * {
-    margin-bottom: .1vh;
+#edit-book-form input{
+    margin-bottom: 2.5vh;
+    color: grey;
+    font-family: Poynter,Georgia,serif;
+    padding-top: .7vh;
+    padding-bottom: .7vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-color: grey;
+    font-size: 1vw;
+    border-radius: 7%;
+    outline: none;
 }
+
 
 #edit-header-div{
     display: flex;
     justify-content: center;
-    margin-bottom: .2vh;
+    max-height: 11vh;
+    height: 100%;
+    margin-bottom: 1vh;
 }
 
-#edit-form-book_title-container{
-    display: flex;
-    justify-content: space-between
-
+.edit-header-upload{
+    margin-top: 12%;
+    color: #333;
+    font-size: 1.5vw;
+    font-family: Poynter,Georgia,serif;
+    font-weight: 100;
 
 }
+
+/* #edit-form-book_title{
+    margin-bottom: 2.5vh;
+    color: grey;
+    font-family: Poynter,Georgia,serif;
+    padding-top: .7vh;
+    padding-bottom: .7vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-color: grey;
+    font-size: 1vw;
+    border-radius: 7%;
+    outline: none;
+}
+
+#edit-form-book_author{
+    margin-bottom: 2.5vh;
+    color: grey;
+    font-family: Poynter,Georgia,serif;
+    padding-top: .7vh;
+    padding-bottom: .7vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-color: grey;
+    font-size: 1vw;
+    border-radius: 7%;
+    outline: none;
+}
+
+#edit-book-form-pricePaperback-container{
+    margin-bottom: 2.5vh;
+    color: grey;
+    font-family: Poynter,Georgia,serif;
+    padding-top: .7vh;
+    padding-bottom: .7vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    border-color: grey;
+    font-size: 1vw;
+    border-radius: 7%;
+    outline: none;
+
+} */
