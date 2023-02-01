@@ -2,15 +2,15 @@
 
 Revision ID: ffdc0a98111c
 Revises:
-Create Date: 2023-01-31 15:48:02.363945
+Create Date: 2023-01-31 16:42:06.340723
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = 'ffdc0a98111c'
