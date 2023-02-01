@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook } from '../../store/books';
 import { getAllReviews } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
@@ -14,10 +15,8 @@ const BookDetails = () => {
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
   const reviewsObj = useSelector(state => state.reviews)
-  console.log('this is the reviewsObj----', reviewsObj)
   const reviews = Object.values(reviewsObj)
-  console.log('this is a review in the dispatch---', reviews)
-  console.log('this is the reviews----', reviews)
+
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
@@ -66,7 +65,7 @@ const BookDetails = () => {
   if(!users.length){
     return  null
   }
-
+  
 
   function userNameFinder(id){
     const usersFound = users.filter(user => user.id === id)
@@ -123,7 +122,7 @@ const BookDetails = () => {
                 <>
                 <div className= 'customer-review-username'>{userNameFinder(bookData[0].publisher_id)}</div>
                 <div className= 'customer-review-title'>{review.review_title}</div>
-                <div className= 'customer-review-stars'>{review.stars}</div>
+                <div className= 'customer-review-stars'> <DynamicStar rating={review.stars}/></div>
                 </>
               ))
             }
