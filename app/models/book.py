@@ -11,7 +11,6 @@ class Book(db.Model):
   publisher_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   author = db.Column(db.String(255), nullable=False)
-  type = db.Column(db.String(255), nullable=True)
   price_paperback = db.Column(db.Float, nullable=True)
   price_hardcover = db.Column(db.Float, nullable=True)
   price_eBook = db.Column(db.Float, nullable=True)
@@ -22,7 +21,6 @@ class Book(db.Model):
   publisher= db.Column(db.String(255), nullable=True)
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
-  sales_rank = db.Column(db.Integer, nullable=True)
 
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
