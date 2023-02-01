@@ -54,8 +54,6 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
         </div>
-        <div className='gold-bar'>c</div>
-        <div className='greenbar-top'>c</div>
       </nav>
      </>
     )
@@ -102,8 +100,6 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
         </div>
-        <div className='gold-bar'>c</div>
-        <div className='greenbar-top'>c</div>
       </nav>
       </>
     )

@@ -77,6 +77,7 @@ const BookDetails = () => {
 
   return (
     <section>
+    <div className= 'top-placeholder'>c</div>
     <div className='book-detail-page-container'>
       <div className='book-image-details'>
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
