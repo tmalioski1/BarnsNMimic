@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { getOneBook, deleteABook } from '../../store/books';
+import { getAllReviews } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import './bookdetails.css';
@@ -12,11 +13,17 @@ const BookDetails = () => {
   const { id } = useParams();
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
+  const reviewsObj = useSelector(state => state.reviews)
+  console.log('this is the reviewsObj----', reviewsObj)
+  const reviews = Object.values(reviewsObj)
+  console.log('this is a review in the dispatch---', reviews)
+  console.log('this is the reviews----', reviews)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
   useEffect(() => {
     dispatch(getOneBook(id))
+    dispatch(getAllReviews(id))
   }, [id, dispatch])
 
   if (!bookData.length){
@@ -85,11 +92,17 @@ const BookDetails = () => {
           </div>
           <div className='editorial-review-container'>
           <h2 className='editorial-review-title'>Editorial Review</h2>
-          <div className='review-text-container'>
-          <div className='review-text'>{bookData[0].editorial_review}</div>
+          <div className='editorial-review-text-container'>
+          <div className='editorial-review-text'>{bookData[0].editorial_review}</div>
           </div>
-
-
+          </div>
+          <div className='customer-reviews-container'>
+            <h2 className='customer-reviews-section-title'>Customer Reviews</h2>
+            {
+              reviews.map(review => (
+                <div className= 'customer-review-title'>{review.review_title}</div>
+              ))
+            }
 
           </div>
           </div>

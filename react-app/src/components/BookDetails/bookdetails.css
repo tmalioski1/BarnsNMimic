@@ -161,13 +161,22 @@
   background: #21282d;
 }
 
-.review-text-container{
+.editorial-review-text-container{
   display: flex;
   justify-content: center;
   margin-top: 3vh
 }
 
-.review-text{
+.editorial-review-text{
   font-family: Lato, sans-serif;
   font-style: italic
 }
+
+
+.customer-reviews-section-title{
+    text-align: center;
+    font-family: Poynter,Georgia,serif;
+    font-weight: 100;
+    margin-bottom: 3vh;
+
+  }

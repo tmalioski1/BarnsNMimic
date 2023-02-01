@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 5526c3e02942
-Revises:
-Create Date: 2023-01-31 19:17:32.590119
+Revision ID: 4ff1616f680a
+Revises: 
+Create Date: 2023-01-31 20:55:46.412769
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '5526c3e02942'
+revision = '4ff1616f680a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,8 +29,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('books',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('publisher_id', sa.Integer(), nullable=False),
@@ -52,22 +47,19 @@ def upgrade():
     sa.ForeignKeyConstraint(['publisher_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('book_id', sa.Integer(), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
+    sa.Column('review_title', sa.String(length=100), nullable=False),
     sa.Column('review_txt', sa.String(length=5000), nullable=False),
-    sa.Column('recommended', sa.Boolean(), nullable=False),
-    sa.Column('spoilers', sa.Boolean(), nullable=False),
+    sa.Column('recommended', sa.String(), nullable=True),
+    sa.Column('spoilers', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['book_id'], ['books.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
