@@ -21,9 +21,18 @@ const BookDetails = () => {
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
+  const [users, setUsers] = useState([]);
+
+
   useEffect(() => {
     dispatch(getOneBook(id))
     dispatch(getAllReviews(id))
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
   }, [id, dispatch])
 
   if (!bookData.length){
@@ -54,6 +63,16 @@ const BookDetails = () => {
     return joinedArray
   }
 
+  if(!users.length){
+    return  null
+  }
+
+
+  function userNameFinder(id){
+    const usersFound = users.filter(user => user.id === id)
+    const usernameFound = usersFound[0].username
+    return usernameFound
+  }
 
 
   return (
@@ -100,7 +119,11 @@ const BookDetails = () => {
             <h2 className='customer-reviews-section-title'>Customer Reviews</h2>
             {
               reviews.map(review => (
+                <>
+                <div className= 'customer-review-username'>{userNameFinder(bookData[0].publisher_id)}</div>
                 <div className= 'customer-review-title'>{review.review_title}</div>
+                <div className= 'customer-review-stars'>{review.stars}</div>
+                </>
               ))
             }
 

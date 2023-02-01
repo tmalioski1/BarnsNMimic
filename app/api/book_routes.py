@@ -122,6 +122,7 @@ def delete_book(book_id):
     db.session.commit()
 
     return {"message": 'successfully deleted'}
+    
 
 #delete review by id
 @book_routes.route('/reviews/<int:review_id>', methods=['DELETE'])
