@@ -7,7 +7,7 @@ def seed_books():
   demo_book2 = Book(
     publisher_id = 2, title='Meditations', author= 'Marcus Aurelius',  price_paperback=9.50, price_hardcover=24.00, price_ebook=10.95, genre='Non-Fiction', overview= 'A true masterpiece!', editorial_review= 'Ancient wisdom still relevant for today.', publication_date= '02/10/1996', publisher= 'Penguin Publishing Group', cover_art='https://kbimages1-a.akamaihd.net/233196f9-1586-481b-8e71-f8d08357337b/1200/1200/False/meditations-41.jpg', pages= 304)
   demo_book3 = Book(
-    publisher_id = 3,  title='Do Androids Dream of Electric Sheep?', author= 'Philip K. Dick', price_paperback=15.30, price_hardcover=24.00, price_eBook=13.99, genre='Science Fiction', overview= 'Thrilling!', editorial_review= 'Thought provoking.', publication_date= '04/26/2014', publisher= 'Random House Worlds', cover_art='https://m.media-amazon.com/images/I/41zIEWqtWYL._SX331_BO1,204,203,200_.jpg', pages= 240)
+    publisher_id = 3,  title='Do Androids Dream of Electric Sheep?', author= 'Philip K. Dick', price_paperback=15.30, price_hardcover=24.00, price_ebook=13.99, genre='Science Fiction', overview= 'Thrilling!', editorial_review= 'Thought provoking.', publication_date= '04/26/2014', publisher= 'Random House Worlds', cover_art='https://m.media-amazon.com/images/I/41zIEWqtWYL._SX331_BO1,204,203,200_.jpg', pages= 240)
 
   db.session.add(demo_book)
   db.session.add(demo_book2)
