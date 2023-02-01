@@ -32,7 +32,6 @@ class Book(db.Model):
       'publisher_id': self.publisher_id,
       'title': self.title,
       'author': self.author,
-      'type': self.type,
       'price_paperback': self.price_paperback,
       'price_hardcover': self.price_hardcover,
       'price_eBook': self.price_eBook,
@@ -43,7 +42,6 @@ class Book(db.Model):
       'publisher': self.publisher,
       'cover_art': self.cover_art,
       'pages': self.pages,
-      'sales_rank': self.sales_rank
   }
 
   # @property
