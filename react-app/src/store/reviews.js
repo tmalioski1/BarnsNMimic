@@ -50,10 +50,11 @@ export const getAllReviews = (id) => async (dispatch) => {
         case GET_ALL_REVIEWS: {
 
           const newState = { ...state }
+          const newObject = {}
           action.reviews.reviews.forEach(review => {
-            newState.reviews = review
+            newObject[review.id] = review
           })
-
+         newState.reviews = newObject
          return newState
         }
 
