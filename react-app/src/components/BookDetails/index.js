@@ -80,7 +80,10 @@ const BookDetails = () => {
   })
  let average = sum /reviews.length
 
+const publicationDate = new Date(bookData[0].publication_date)
+const today = new Date()
 
+console.log(today > publicationDate)
 
 
   return (
@@ -91,15 +94,47 @@ const BookDetails = () => {
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
     <div className='book-details-and-buttons'>
     <div className='book-details-and-buttons-top'>
-    <div className= 'book-details-title'>{bookData[0].title}</div>
+    <h1 className= 'book-details-title'>{bookData[0].title}</h1>
     <div className= 'book-details-author'><span className='black-by'>by</span> { bookData[0].author}</div>
+    <div className='star-ratings-info-container'>
     <div className= 'star-average'>
     <DynamicStar
     rating = {average}
+    width={17}
+    height={20}
     />
     </div>
+    <div className='star-average-number'>{average ? average: null}</div>
+    <div className='total-review-number'>{reviews.length ? `(${reviews.length})`: null}</div>
     </div>
-    <div>{bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': 0.0} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': 0.0} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': 0.0}</div>
+    </div>
+    <div className= 'book-details-all-prices'>
+      <div className='book-details-paperback-price'>
+       <div>
+       Paperback
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2): 0.0}
+      </div>
+      </div>
+      <div className='book-details-hardcover-price'>
+       <div>
+       Hardcover
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2): 0.0}
+      </div>
+      </div>
+
+      <div className='book-details-eBook-price'>
+        <div>
+       eBook
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2): 0.0}
+      </div>
+      </div>
+      </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
@@ -130,10 +165,16 @@ const BookDetails = () => {
           </div>
           </div>
           <div className='customer-reviews-container'>
+            <div className='title-with-lines'>
+              <div className= 'line-left'> &nbsp; </div>
+              <div className='customer-reviews-section-title-container'>
             <h2 className='customer-reviews-section-title'>Customer Reviews</h2>
+            </div>
+            <div className= 'line-right'> &nbsp; </div>
+            </div>
             <div className='customer-review-modal-container'>
 
-            {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) &&
+            {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) && publicationDate < today &&
                 <OpenModalButton
                 modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
                 buttonText={'Write a Review'}
@@ -142,9 +183,16 @@ const BookDetails = () => {
             {
               reviews.map(review => (
                 <div className= 'customer-review-container'>
-                <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
+                <div className= 'customer-review-username'>Username: {users.find(user=>user?.id===review?.user_id)?.username}</div>
                 <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
-                <div className= 'customer-review-stars'> <DynamicStar rating={review?.stars}/></div>
+                <div className= 'customer-review-stars'>
+                <DynamicStar
+                rating={review?.stars}
+                width={18}
+                height={18}
+
+                />
+                </div>
                 <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
                 <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
                 <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
