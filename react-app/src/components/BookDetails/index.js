@@ -96,6 +96,8 @@ const BookDetails = () => {
     <div className= 'star-average'>
     <DynamicStar
     rating = {average}
+    width={17}
+    height={20}
     />
     </div>
     </div>
