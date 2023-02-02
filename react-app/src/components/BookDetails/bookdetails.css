@@ -70,6 +70,10 @@
   margin-bottom: 2vh;
 }
 
+.star-average-number{
+  margin-right: .5vw;
+}
+
 .book-details-all-prices{
   display: flex;
   flex-direction: row;
@@ -248,4 +252,14 @@
     width: 100%
     /* margin-bottom: 3vh; */
 
+  }
+
+/* .customer-review-review-spoilers{
+   margin-bottom: 3vh;
+} */
+
+.customer-review-container{
+    border-bottom: 1px solid rgb(197, 195, 195);
+    margin-top: 3vh;
+    padding-bottom: 2vh
   }

@@ -105,7 +105,7 @@ console.log(today > publicationDate)
     />
     </div>
     <div className='star-average-number'>{average ? average: null}</div>
-    <div className='total-review-number'>{reviews.length ? reviews.length: null}</div>
+    <div className='total-review-number'>{reviews.length ? `(${reviews.length})`: null}</div>
     </div>
     </div>
     <div className= 'book-details-all-prices'>
@@ -183,9 +183,16 @@ console.log(today > publicationDate)
             {
               reviews.map(review => (
                 <div className= 'customer-review-container'>
-                <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
+                <div className= 'customer-review-username'>Username: {users.find(user=>user?.id===review?.user_id)?.username}</div>
                 <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
-                <div className= 'customer-review-stars'> <DynamicStar rating={review?.stars}/></div>
+                <div className= 'customer-review-stars'>
+                <DynamicStar
+                rating={review?.stars}
+                width={18}
+                height={18}
+
+                />
+                </div>
                 <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
                 <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
                 <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
