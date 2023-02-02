@@ -1,22 +1,38 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook } from '../../store/books';
+import { getAllReviews, deleteAReview } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
+import ReviewModal from './ReviewModal'
 import './bookdetails.css';
 
 
 const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
+  const reviewsObj = useSelector(state => state.reviews.reviews)
+  const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
+  const [users, setUsers] = useState([]);
+
+
   useEffect(() => {
     dispatch(getOneBook(id))
+    dispatch(getAllReviews(id))
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
   }, [id, dispatch])
 
   if (!bookData.length){
@@ -30,8 +46,15 @@ const BookDetails = () => {
       message = response.message
     }
     history.push(`/`)
-
   }
+
+  const handleReviewDeletion = async (reviewId) => {
+    const response = await dispatch(deleteAReview(reviewId))
+    if (response) {
+      message = response.message
+    }
+  }
+
 
   function dateFix (string) {
     const array = string.split('-')
@@ -47,10 +70,22 @@ const BookDetails = () => {
     return joinedArray
   }
 
+  if(!users.length){
+    return  null
+  }
+
+  let sum = 0
+  reviews.forEach(review => {
+    sum += review.stars
+  })
+ let average = sum /reviews.length
+
+
 
 
   return (
     <section>
+    <div className= 'top-placeholder'>c</div>
     <div className='book-detail-page-container'>
       <div className='book-image-details'>
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
@@ -58,6 +93,11 @@ const BookDetails = () => {
     <div className='book-details-and-buttons-top'>
     <div className= 'book-details-title'>{bookData[0].title}</div>
     <div className= 'book-details-author'><span className='black-by'>by</span> { bookData[0].author}</div>
+    <div className= 'star-average'>
+    <DynamicStar
+    rating = {average}
+    />
+    </div>
     </div>
     <div>{bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': 0.0} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': 0.0} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': 0.0}</div>
     <div className='book-edit-and-delete'>
@@ -85,11 +125,39 @@ const BookDetails = () => {
           </div>
           <div className='editorial-review-container'>
           <h2 className='editorial-review-title'>Editorial Review</h2>
-          <div className='review-text-container'>
-          <div className='review-text'>{bookData[0].editorial_review}</div>
+          <div className='editorial-review-text-container'>
+          <div className='editorial-review-text'>{bookData[0].editorial_review}</div>
           </div>
+          </div>
+          <div className='customer-reviews-container'>
+            <h2 className='customer-reviews-section-title'>Customer Reviews</h2>
+            <div className='customer-review-modal-container'>
 
+            {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) &&
+                <OpenModalButton
+                modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
+                buttonText={'Write a Review'}
+             />}
+            </div>
+            {
+              reviews.map(review => (
+                <div className= 'customer-review-container'>
+                <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
+                <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
+                <div className= 'customer-review-stars'> <DynamicStar rating={review?.stars}/></div>
+                <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
+                <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
+                <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
+                  { <div className= 'customer-review-delete-button-container'>
+                {sessionUser && userObj?.id === review?.user_id &&
+                <button
+                  className='customer-review-delete-button'
+                  onClick={() => handleReviewDeletion(review.id)}>Delete Review</button>}
+                </div>}
+                </div>
 
+              ))
+            }
 
           </div>
           </div>

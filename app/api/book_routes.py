@@ -1,10 +1,17 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Book, db
+from app.models import Book, Review, db
 from ..forms.book_form import BookForm
-
+from ..forms.review_form import ReviewForm
 
 book_routes = Blueprint('books', __name__)
+
+# get all reviews based on bookID for book detials page
+@book_routes.route('/<int:id>/reviews')
+def all_reviews(id):
+    reviews = Review.query.filter(Review.book_id == id)
+
+    return {'reviews' :[review.to_dict() for review in reviews]} , 200
 
 
 # get all books for homepage
@@ -13,6 +20,7 @@ def all_books():
     books = Book.query.all()
 
     return {'books': [book.to_dict() for book in books]}
+
 
 #get a book by ID for book details page
 @book_routes.route('/<int:id>')
@@ -31,11 +39,9 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('outside form validation')
     if form.validate_on_submit():
         new_book = Book()
         form.populate_obj(new_book)
-        print('inside form validation')
         db.session.add(new_book)
         db.session.commit()
         return new_book.to_dict(), 201
@@ -46,6 +52,29 @@ def new_book():
 
         }, 400
 
+#post review
+@book_routes.route('/<int:id>/reviews/new', methods=['POST'])
+@login_required
+def post_review(id):
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+
+        new_review = Review()
+        form.populate_obj(new_review)
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict(), 200
+
+
+    if form.errors:
+        return {
+            "errors": form.errors
+        }, 400
 
 
 # update book by id
@@ -54,11 +83,8 @@ def new_book():
 def update_book(book_id):
 
     current_book = Book.query.get(book_id)
-    print('before-------')
     form = BookForm()
-    print('this is the form------', form)
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('after-------', form)
     if form.validate_on_submit():
 
         form.populate_obj(current_book)
@@ -66,7 +92,25 @@ def update_book(book_id):
         db.session.commit()
         return current_book.to_dict(), 201
 
-    print('this is the form errors------', form.errors)
+
+#update review
+@book_routes.route('/reviews/<int:review_id>', methods=['PUT'])
+@login_required
+def update_review(review_id):
+
+
+    updated_review = Review.query.get(review_id)
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        form.populate_obj(updated_review)
+
+        db.session.add(updated_review)
+        db.session.commit()
+        return updated_review.to_dict(), 201
+    else:
+        return form.errors
 
 
 # delete book by id
@@ -75,6 +119,19 @@ def update_book(book_id):
 def delete_book(book_id):
     deleted_book = Book.query.get(book_id)
     db.session.delete(deleted_book)
+    db.session.commit()
+
+    return {"message": 'successfully deleted'}
+    
+
+#delete review by id
+@book_routes.route('/reviews/<int:review_id>', methods=['DELETE'])
+@login_required
+def delete_review(review_id):
+
+    deleted_review = Review.query.get(review_id)
+
+    db.session.delete(deleted_review)
     db.session.commit()
 
     return {"message": 'successfully deleted'}

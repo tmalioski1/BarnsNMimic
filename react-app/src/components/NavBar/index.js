@@ -54,8 +54,6 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
         </div>
-        <div className='gold-bar'>c</div>
-        <div className='greenbar-top'>c</div>
       </nav>
      </>
     )
@@ -81,7 +79,7 @@ const NavBar = ({loaded}) => {
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
             <div className='homelink-container'>
               <div className='homeWord'>
-              <p className='word'>BARNES <span className='gold-and'>&</span> NOBLE</p>
+              <p className='word'>BARNES <span className='gold-and'>&</span> MIMIC</p>
               </div>
             </div>
           </NavLink>
@@ -102,8 +100,6 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
         </div>
-        <div className='gold-bar'>c</div>
-        <div className='greenbar-top'>c</div>
       </nav>
       </>
     )

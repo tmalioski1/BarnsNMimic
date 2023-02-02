@@ -1,5 +1,12 @@
+.top-placeholder{
+  font-size: .01vw;
+  color: white;
+  margin-top: 5vh;
+  border-bottom: 1px solid rgb(197, 195, 195);
+}
+
 .book-detail-page-container{
-  margin-top: 4.5vh;
+  margin-top: 1.5vh;
   margin-left: 2vw;
   margin-right: 2vw;
 
@@ -11,6 +18,7 @@
 
 .book-image-container{
   margin-left: 11vw;
+  margin-top: 4.5vh;
   width: 25%;
   height: 60%;
 }
@@ -19,6 +27,7 @@
     display: flex;
     margin-left: 7.5vw;
     flex-direction: column;
+    margin-top: 4.5vh
 }
 
 .book-details-title{
@@ -161,13 +170,22 @@
   background: #21282d;
 }
 
-.review-text-container{
+.editorial-review-text-container{
   display: flex;
   justify-content: center;
   margin-top: 3vh
 }
 
-.review-text{
+.editorial-review-text{
   font-family: Lato, sans-serif;
   font-style: italic
 }
+
+
+.customer-reviews-section-title{
+    text-align: center;
+    font-family: Poynter,Georgia,serif;
+    font-weight: 100;
+    margin-bottom: 3vh;
+
+  }
