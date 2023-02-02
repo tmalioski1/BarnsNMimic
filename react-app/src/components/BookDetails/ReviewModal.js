@@ -73,7 +73,6 @@ return (
           </ul>
    </div>
 )}
-
     <form id ='post-review-form' onSubmit={handleSubmit}>
      <div className='review-form-stars'>
     <label>

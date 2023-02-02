@@ -39,6 +39,12 @@
     color: #45494c
 }
 
+.star-ratings-info-container{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2vh;
+}
+
 .black-by{
   color: #45494c
 
@@ -46,7 +52,7 @@
 
 
 .book-details-author{
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
     color: #347d56
 }
 

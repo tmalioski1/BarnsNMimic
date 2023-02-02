@@ -93,6 +93,7 @@ const BookDetails = () => {
     <div className='book-details-and-buttons-top'>
     <div className= 'book-details-title'>{bookData[0].title}</div>
     <div className= 'book-details-author'><span className='black-by'>by</span> { bookData[0].author}</div>
+    <div className='star-ratings-info-container'>
     <div className= 'star-average'>
     <DynamicStar
     rating = {average}
@@ -100,8 +101,13 @@ const BookDetails = () => {
     height={20}
     />
     </div>
+    <div className='star-average-number'>{average ? average: null}</div>
+    <div className='total-review-number'>{reviews.length ? reviews.length: null}</div>
     </div>
-    <div>{bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': 0.0} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': 0.0} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': 0.0}</div>
+    </div>
+    <div className= 'book-details-all-prices'>
+      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': 0.0} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': 0.0} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': 0.0}
+      </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
