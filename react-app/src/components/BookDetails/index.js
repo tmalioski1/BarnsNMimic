@@ -80,7 +80,10 @@ const BookDetails = () => {
   })
  let average = sum /reviews.length
 
+const publicationDate = new Date(bookData[0].publication_date)
+const today = new Date()
 
+console.log(today > publicationDate)
 
 
   return (
@@ -171,7 +174,7 @@ const BookDetails = () => {
             </div>
             <div className='customer-review-modal-container'>
 
-            {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) &&
+            {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) && publicationDate < today &&
                 <OpenModalButton
                 modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
                 buttonText={'Write a Review'}
