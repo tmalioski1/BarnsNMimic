@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook } from '../../store/books';
-import { getAllReviews } from '../../store/reviews';
+import { getAllReviews, deleteAReview } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
@@ -46,8 +46,15 @@ const BookDetails = () => {
       message = response.message
     }
     history.push(`/`)
-
   }
+
+  const handleReviewDeletion = async (reviewId) => {
+    const response = await dispatch(deleteAReview(reviewId))
+    if (response) {
+      message = response.message
+    }
+  }
+
 
   function dateFix (string) {
     const array = string.split('-')
@@ -134,14 +141,21 @@ const BookDetails = () => {
             </div>
             {
               reviews.map(review => (
-                <>
+                <div className= 'customer-review-container'>
                 <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
                 <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
                 <div className= 'customer-review-stars'> <DynamicStar rating={review?.stars}/></div>
                 <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
                 <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
-                <div className= 'customer-review-review-recommended'>Spoilers: {review?.spoilers}</div>
-                </>
+                <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
+                  { <div className= 'customer-review-delete-button-container'>
+                {sessionUser && userObj?.id === review?.user_id &&
+                <button
+                  className='customer-review-delete-button'
+                  onClick={() => handleReviewDeletion(review.id)}>Delete Review</button>}
+                </div>}
+                </div>
+
               ))
             }
 
