@@ -1,5 +1,5 @@
 pipenv run flask db init
-flask db migrate -m "create models"
+flask db migrate
 flask db upgrade
 flask seed all
 
@@ -7,5 +7,11 @@ flask seed all
 Revision ID: 5526c3e02942
 
 
+
+try this order:
+delete db, but not migrations folder
+
+flask db upgrade
+flask seed all
 
 

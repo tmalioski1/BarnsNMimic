@@ -41,9 +41,10 @@
 }
 
 .genre-word{
-  font-family: Poynter,Georgia,serif;
+  font-family: Cormorant Garamond, serif;
   font-style: italic;
   font-weight: 600;
+  font-size: 35px;
   color: rgb(70, 67, 67)
 }
 
@@ -85,11 +86,13 @@
   margin-right: 5vw;
   object-fit: cover;
 }
+
 .home-book-title{
-  font-family: Poynter,Georgia,serif;
+  font-family: Cormorant Garamond, serif;
   font-weight: 600;
-  color: black;
+  color: #21282d;
   font-style: normal;
+  font-size: 20px;
   margin-bottom:2vh;
   align-self: center;
 }
@@ -101,7 +104,9 @@
 
 .home-book-author{
   font-family: Lato,sans-serif;
+  font-weight: 400;
   font-size: 1vw;
   align-self: center;
+  color: #21282d!important
 
 }

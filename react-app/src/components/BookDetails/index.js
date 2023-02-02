@@ -91,7 +91,7 @@ const BookDetails = () => {
     <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
     <div className='book-details-and-buttons'>
     <div className='book-details-and-buttons-top'>
-    <div className= 'book-details-title'>{bookData[0].title}</div>
+    <h1 className= 'book-details-title'>{bookData[0].title}</h1>
     <div className= 'book-details-author'><span className='black-by'>by</span> { bookData[0].author}</div>
     <div className='star-ratings-info-container'>
     <div className= 'star-average'>
@@ -106,7 +106,31 @@ const BookDetails = () => {
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2)+',': 0.0} {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2)+',': 0.0} {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2)+',': 0.0}
+      <div className='book-details-paperback-price'>
+       <div>
+       Paperback
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2): 0.0}
+      </div>
+      </div>
+      <div className='book-details-hardcover-price'>
+       <div>
+       Hardcover
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2): 0.0}
+      </div>
+      </div>
+
+      <div className='book-details-eBook-price'>
+        <div>
+       eBook
+       </div>
+       <div className='price-to-bold'>
+      {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2): 0.0}
+      </div>
+      </div>
       </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
@@ -138,7 +162,13 @@ const BookDetails = () => {
           </div>
           </div>
           <div className='customer-reviews-container'>
+            <div className='title-with-lines'>
+              <div className= 'line-left'> &nbsp; </div>
+              <div className='customer-reviews-section-title-container'>
             <h2 className='customer-reviews-section-title'>Customer Reviews</h2>
+            </div>
+            <div className= 'line-right'> &nbsp; </div>
+            </div>
             <div className='customer-review-modal-container'>
 
             {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) &&

@@ -21,7 +21,7 @@ class Book(db.Model):
   publisher= db.Column(db.String(255), nullable=True)
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
-
+  
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
 
