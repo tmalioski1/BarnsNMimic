@@ -71,12 +71,9 @@ const BookDetails = () => {
   reviews.forEach(review => {
     sum += review.stars
   })
- console.log('this is the sum---', sum)
  let average = sum /reviews.length
 
- console.log('this is the reviews length--', reviews.length)
 
- console.log('this is the average--', average)
 
 
   return (
@@ -139,8 +136,11 @@ const BookDetails = () => {
               reviews.map(review => (
                 <>
                 <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
-                <div className= 'customer-review-title'>{review?.review_title}</div>
+                <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
                 <div className= 'customer-review-stars'> <DynamicStar rating={review?.stars}/></div>
+                <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
+                <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
+                <div className= 'customer-review-review-recommended'>Spoilers: {review?.spoilers}</div>
                 </>
               ))
             }
