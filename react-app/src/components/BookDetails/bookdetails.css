@@ -289,8 +289,6 @@
 .delete-and-edit{
   cursor: pointer;
   background-color: #3d6db5;
-  height: 2.5rem;
-  width: 7rem;
   color: white;
 }
 

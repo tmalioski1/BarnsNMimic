@@ -88,7 +88,10 @@ const SignUpForm = () => {
         <label>User Name</label>
         <input
           type='text'
+          minlength='1'
+          maxlength='30'
           name='username'
+          required
           onChange={updateUsername}
           value={username}
         ></input>

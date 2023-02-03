@@ -196,9 +196,13 @@ console.log(today > publicationDate)
                 </div>
                 <div className= 'customer-review-title'>{review?.review_title}</div>
                 <div className= 'customer-review-review-txt'>{review?.review_txt}</div>
+                {review?.spoilers &&
                 <div className= 'customer-review-review-spoilers'><span className='spoilers-key'>Review Contains Spoilers:</span> <span className='spoiler-ternary'>{review?.spoilers ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.spoilers}</div>
+                }
+                {review?.recommended &&
                 <div className= 'customer-review-review-recommended'><span className='recommended-key'>Recommends this product:</span> <span className='recommended-ternary'>{review?.recommended ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.recommended}</div>
-                  { <div className= 'customer-review-delete-button-container'>
+                }
+                { <div className= 'customer-review-delete-button-container'>
                 {sessionUser && userObj?.id === review?.user_id &&
                 <button
                   className='customer-review-delete-button'
