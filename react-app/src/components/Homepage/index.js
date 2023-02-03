@@ -84,7 +84,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                           <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -112,7 +112,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -140,7 +140,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -168,7 +168,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -196,7 +196,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -224,7 +224,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
@@ -252,7 +252,7 @@ return (
                           key={book.id}
                           style={{ textDecoration: 'none' }}>
                            <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} alt='cover-photo'/>
+                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
                           <div className='home-book-title'>{book.title}</div>
                           <div className='home-book-author'>{book.author}</div>
                           </div>
