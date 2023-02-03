@@ -117,7 +117,7 @@
 .Edit.delete-and-edit {
   margin-right: 1vw;
   cursor: pointer;
-  background-color: #white;
+  background-color: white;
   height: 3rem;
   width: 10rem;
   color: black;
@@ -262,6 +262,10 @@
   border-bottom:1px solid rgb(197, 195, 195);
   margin: auto;
 }
+
+.customer-reviews-container{
+  margin-bottom: 5vh;
+}
 .customer-reviews-section-title-container{
    width: 290px;
 }
@@ -275,7 +279,20 @@
 
   }
 
+.customer-review-modal-container{
+  display: flex;
+  width: 95%;
+  justify-content: flex-end;
+  margin-top: 1vh;
+}
 
+.delete-and-edit{
+  cursor: pointer;
+  background-color: #3d6db5;
+  height: 2.5rem;
+  width: 7rem;
+  color: white;
+}
 
 .customer-review-container{
     display: flex;
@@ -359,4 +376,12 @@
 
 .spoiler-ternary, .recommended-ternary {
   margin-right: 1px
+}
+
+.customer-review-delete-button{
+  cursor: pointer;
+  background-color: #3d6db5;
+  height: 2.5rem;
+  width: 7rem;
+  color: white;
 }
