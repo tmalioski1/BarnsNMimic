@@ -42,6 +42,8 @@ return (
   <div className='greenbar-top'> &nbsp; </div>
     <section className="homePage-container">
         <div id='main-books-container'>
+
+        {books.filter(book => book.genre === 'Fiction').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Fiction</h2>
@@ -69,6 +71,9 @@ return (
             </div>
         </div>
         </div>
+}
+
+    {books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Non-Fiction</h2>
@@ -96,7 +101,9 @@ return (
             </div>
         </div>
         </div>
+}
 
+      {books.filter(book => book.genre === 'Science Fiction').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Science Fiction</h2>
@@ -124,7 +131,9 @@ return (
             </div>
         </div>
         </div>
+}
 
+      {books.filter(book => book.genre === 'True Crime').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>True Crime</h2>
@@ -152,7 +161,10 @@ return (
             </div>
         </div>
         </div>
+}
 
+
+        {books.filter(book => book.genre === 'Romance').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Romance</h2>
@@ -180,7 +192,9 @@ return (
             </div>
         </div>
         </div>
+      }
 
+      {books.filter(book => book.genre === 'Cooking').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Cooking</h2>
@@ -208,7 +222,10 @@ return (
             </div>
         </div>
         </div>
+}
 
+
+      {books.filter(book => book.genre === 'Biography').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Biography</h2>
@@ -236,7 +253,10 @@ return (
             </div>
         </div>
         </div>
+}
 
+
+    {books.filter(book => book.genre === 'Current Events').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Current Events</h2>
@@ -264,7 +284,7 @@ return (
             </div>
         </div>
         </div>
-
+}
         </div>
     </section>
     </>
