@@ -76,6 +76,7 @@
   width: 80%;
 }
 
+
 .will-change-to-img{
   /* border: 1px solid red; */
   object-fit: cover;
@@ -95,7 +96,7 @@
   font-size: 20px;
   margin-bottom:2vh;
   align-self: center;
-  overflow-wrap: break-word;
+
 }
 
 .home-book-title:hover{

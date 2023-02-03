@@ -33,8 +33,8 @@ if (!books.length) {
 
 return (
   <>
-  <div className='gold-bar'>c</div>
-  <div className='greenbar-top'>c</div>
+  <div className='gold-bar'> &nbsp; </div>
+  <div className='greenbar-top'> &nbsp; </div>
     <section className="homePage-container">
         <div id='main-books-container'>
         <div className='genre-container'>
