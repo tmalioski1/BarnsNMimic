@@ -138,12 +138,12 @@ console.log(today > publicationDate)
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
-            className='delete-and-edit'
-            onClick={() => handleDeletion(bookData[0].id)}>Delete</button>}
+            className='delete-book'
+            onClick={() => handleDeletion(bookData[0].id)}>DELETE BOOK</button>}
               {userObj?.id === bookData[0].publisher_id &&
                 <OpenModalButton
                  modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
-                 buttonText={'Edit'}
+                 buttonText={'Edit Book'}
               />}
           </div>
           </div>
@@ -196,8 +196,8 @@ console.log(today > publicationDate)
                 </div>
                 <div className= 'customer-review-title'>{review?.review_title}</div>
                 <div className= 'customer-review-review-txt'>{review?.review_txt}</div>
-                <div className= 'customer-review-review-spoilers'><span className='spoilers-key'>Review Contains Spoilers:</span> {review?.spoilers}</div>
-                <div className= 'customer-review-review-recommended'><span className='recommended-key'>Recommends this product:</span> {review?.recommended}</div>
+                <div className= 'customer-review-review-spoilers'><span className='spoilers-key'>Review Contains Spoilers:</span> <span className='spoiler-ternary'>{review?.spoilers ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.spoilers}</div>
+                <div className= 'customer-review-review-recommended'><span className='recommended-key'>Recommends this product:</span> <span className='recommended-ternary'>{review?.recommended ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.recommended}</div>
                   { <div className= 'customer-review-delete-button-container'>
                 {sessionUser && userObj?.id === review?.user_id &&
                 <button
