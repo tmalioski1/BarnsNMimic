@@ -95,6 +95,7 @@
   font-size: 20px;
   margin-bottom:2vh;
   align-self: center;
+  overflow-wrap: break-word;
 }
 
 .home-book-title:hover{
