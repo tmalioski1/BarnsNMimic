@@ -138,12 +138,12 @@ console.log(today > publicationDate)
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
-            className='delete-and-edit'
-            onClick={() => handleDeletion(bookData[0].id)}>Delete</button>}
+            className='delete-book'
+            onClick={() => handleDeletion(bookData[0].id)}>DELETE BOOK</button>}
               {userObj?.id === bookData[0].publisher_id &&
                 <OpenModalButton
                  modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
-                 buttonText={'Edit'}
+                 buttonText={'Edit Book'}
               />}
           </div>
           </div>
@@ -177,31 +177,34 @@ console.log(today > publicationDate)
             {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) && publicationDate < today &&
                 <OpenModalButton
                 modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
-                buttonText={'Write a Review'}
+                buttonText={'Write A Review'}
              />}
             </div>
             {
               reviews.map(review => (
                 <div className= 'customer-review-container'>
-                <div className= 'customer-review-username'>Username: {users.find(user=>user?.id===review?.user_id)?.username}</div>
-                <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
+                <div className= 'customer-review-container-left'>
+                <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
+                </div>
+                <div className= 'customer-review-container-right'>
                 <div className= 'customer-review-stars'>
                 <DynamicStar
                 rating={review?.stars}
                 width={18}
                 height={18}
-
                 />
                 </div>
-                <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
-                <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
-                <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
+                <div className= 'customer-review-title'>{review?.review_title}</div>
+                <div className= 'customer-review-review-txt'>{review?.review_txt}</div>
+                <div className= 'customer-review-review-spoilers'><span className='spoilers-key'>Review Contains Spoilers:</span> <span className='spoiler-ternary'>{review?.spoilers ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.spoilers}</div>
+                <div className= 'customer-review-review-recommended'><span className='recommended-key'>Recommends this product:</span> <span className='recommended-ternary'>{review?.recommended ==='Yes' ? <i className="fa-solid fa-check"></i> : <i class="fa-solid fa-x"></i>}</span>{review?.recommended}</div>
                   { <div className= 'customer-review-delete-button-container'>
                 {sessionUser && userObj?.id === review?.user_id &&
                 <button
                   className='customer-review-delete-button'
                   onClick={() => handleReviewDeletion(review.id)}>Delete Review</button>}
                 </div>}
+                </div>
                 </div>
 
               ))

@@ -16,6 +16,18 @@ const NavBar = ({loaded}) => {
      <>
       <nav className='nav'>
         <div className='greenbar-top'> &nbsp; </div>
+        <div className='header-upper'>
+        <div className='header-upper-left'>
+        <div className='mylinks-container'>
+              <p>TYLER MALINOSKI</p>
+                <ul className='linkedin-ul'>
+                <a href='https://www.linkedin.com/in/tyler-malinoski/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </ul>
+                <ul className='github-ul'>
+                <a href='https://github.com/tmalioski1' target="_blank"><i class="fa-brands fa-github"></i></a>
+                </ul>
+        </div>
+        </div>
         <div className='header-upper-right'>
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
@@ -28,6 +40,7 @@ const NavBar = ({loaded}) => {
             <div className='log-out'>
             <LogoutButton />
             </div>
+        </div>
         </div>
       <div className='header'>
       <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active' >
@@ -62,6 +75,18 @@ const NavBar = ({loaded}) => {
       <>
       <nav className='nav'>
         <div className='greenbar-top'> &nbsp; </div>
+        <div className='header-upper'>
+        <div className='header-upper-left'>
+        <div className='mylinks-container'>
+              <p>TYLER MALINOSKI</p>
+                <ul className='linkedin-ul'>
+                <a href='https://www.linkedin.com/in/tyler-malinoski/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </ul>
+                <ul className='github-ul'>
+                <a href='https://github.com/tmalioski1' target="_blank"><i class="fa-brands fa-github"></i></a>
+                </ul>
+        </div>
+        </div>
         <div className='header-upper-right'>
             <div className='login-nav'>
               <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
@@ -74,6 +99,7 @@ const NavBar = ({loaded}) => {
                 Sign Up
               </NavLink>
             </div>
+          </div>
           </div>
         <div className='header'>
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
