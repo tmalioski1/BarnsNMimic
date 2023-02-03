@@ -91,7 +91,7 @@ console.log(today > publicationDate)
     <div className= 'top-placeholder'>c</div>
     <div className='book-detail-page-container'>
       <div className='book-image-details'>
-    <img className = 'book-image-container' src={bookData[0].cover_art} alt='bookcoverimage'></img>
+    <img className = 'book-image-container' src={bookData[0].cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='bookcoverimage'></img>
     <div className='book-details-and-buttons'>
     <div className='book-details-and-buttons-top'>
     <h1 className= 'book-details-title'>{bookData[0].title}</h1>

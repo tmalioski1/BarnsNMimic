@@ -15,7 +15,7 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
      <>
       <nav className='nav'>
-        <div className='greenbar-top'>c</div>
+        <div className='greenbar-top'> &nbsp; </div>
         <div className='header-upper-right'>
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
@@ -39,7 +39,7 @@ const NavBar = ({loaded}) => {
         </NavLink>
         <div className='header-center'>
           <div className= 'grey-input'>
-            <div className='grey-container'>t</div>
+            <div className='grey-container'> &nbsp; </div>
             <div className='search-input-container'>
             <input
             type='text'
@@ -61,7 +61,7 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
       <>
       <nav className='nav'>
-        <div className='greenbar-top'>c</div>
+        <div className='greenbar-top'> &nbsp; </div>
         <div className='header-upper-right'>
             <div className='login-nav'>
               <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
@@ -85,7 +85,7 @@ const NavBar = ({loaded}) => {
           </NavLink>
           <div className='header-center'>
           <div className= 'grey-input'>
-            <div className='grey-container'>t</div>
+            <div className='grey-container'> &nbsp; </div>
             <div className='search-input-container'>
             <input
             type='text'

@@ -114,6 +114,7 @@
     background-color: white;
     width: 55vw;
     margin-left: 50px;
+    cursor: not-allowed
 
   }
 
@@ -197,5 +198,3 @@
   .sign-up-nav:hover {
     text-decoration: underline;
   }
-
-
