@@ -183,25 +183,28 @@ console.log(today > publicationDate)
             {
               reviews.map(review => (
                 <div className= 'customer-review-container'>
-                <div className= 'customer-review-username'>Username: {users.find(user=>user?.id===review?.user_id)?.username}</div>
-                <div className= 'customer-review-title'>Review Title: {review?.review_title}</div>
+                <div className= 'customer-review-container-left'>
+                <div className= 'customer-review-username'>{users.find(user=>user?.id===review?.user_id)?.username}</div>
+                </div>
+                <div className= 'customer-review-container-right'>
                 <div className= 'customer-review-stars'>
                 <DynamicStar
                 rating={review?.stars}
                 width={18}
                 height={18}
-
                 />
                 </div>
-                <div className= 'customer-review-review-txt'>Review: {review?.review_txt}</div>
-                <div className= 'customer-review-review-recommended'>Recommended: {review?.recommended}</div>
-                <div className= 'customer-review-review-spoilers'>Spoilers: {review?.spoilers}</div>
+                <div className= 'customer-review-title'>{review?.review_title}</div>
+                <div className= 'customer-review-review-txt'>{review?.review_txt}</div>
+                <div className= 'customer-review-review-spoilers'><span className='spoilers-key'>Review Contains Spoilers:</span> {review?.spoilers}</div>
+                <div className= 'customer-review-review-recommended'><span className='recommended-key'>Recommends this product:</span> {review?.recommended}</div>
                   { <div className= 'customer-review-delete-button-container'>
                 {sessionUser && userObj?.id === review?.user_id &&
                 <button
                   className='customer-review-delete-button'
                   onClick={() => handleReviewDeletion(review.id)}>Delete Review</button>}
                 </div>}
+                </div>
                 </div>
 
               ))
