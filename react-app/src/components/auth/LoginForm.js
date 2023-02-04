@@ -72,7 +72,7 @@ const LoginForm = () => {
     </form>
     <NavLink
     to={`/sign-up`}>
-     <div>Create An Account</div>
+     <div className= 'create-an-account-link'>Create An Account</div>
     </NavLink>
     </>
   );
