@@ -6,7 +6,7 @@
 #edit-book-form input{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -30,7 +30,7 @@
     margin-top: 12%;
     color: #333;
     font-size: 1.5vw;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     font-weight: 100;
 
 }
@@ -38,7 +38,7 @@
 /* #edit-form-book_title{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -52,7 +52,7 @@
 #edit-form-book_author{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -66,7 +66,7 @@
 #edit-book-form-pricePaperback-container{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;

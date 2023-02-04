@@ -20,7 +20,7 @@
     margin-top: 12%;
     color: #333;
     font-size: 1.5vw;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     font-weight: 100;
 
 }
@@ -28,7 +28,7 @@
 #upload-form-title{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -42,7 +42,7 @@
  #upload-form-author{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -56,7 +56,7 @@
  #upload-form-pricePaperback{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -70,7 +70,7 @@
   #upload-form-priceHardcover{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -84,7 +84,7 @@
   #upload-form-eBook{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -98,7 +98,7 @@
  #upload-form > button{
     background-color: rgb(62, 89, 98);
     color: white;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -110,7 +110,7 @@
 
   #upload-form-genre{
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .1vh;
     padding-bottom: .1vh;
     margin-left: 2vw;
@@ -129,7 +129,7 @@
  #upload-form-overview{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -144,7 +144,7 @@
   #upload-form-editorialReview{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -159,7 +159,7 @@
    #upload-form-publicationDate{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -175,7 +175,7 @@
    #upload-form-publisher{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -190,7 +190,7 @@
    #upload-form-coverArt{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -206,7 +206,7 @@
    #upload-form-pages{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
