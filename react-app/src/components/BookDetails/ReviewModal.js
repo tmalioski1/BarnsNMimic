@@ -59,8 +59,15 @@ function ReviewModal(currentBookId) {
 
 return (
     <div className='review-form-container'>
+      <div className='review-form-left-side'>
+         <div className='review-form-cover_art'>
+          <img src={bookData[0].cover_art}/>
+          </div>
+          <div className='review-form-left-side-info'>{bookData[0].publisher} - {bookData[0].title}</div>
+      </div>
+      <div className='review-form-right-side'>
      <div className ='review-form-header-container'>
-     <h1 className='review-form-header'>My Review for {book.title}</h1>
+     <span className='review-form-header'>My Review for {book.title}</span>
      </div>
 
      {hasSubmitted && validationErrors.length > 0 && (
@@ -100,11 +107,13 @@ return (
      Review Title
     <input
     type="text"
+    maxLength={50}
     value={newReviewTitle}
     placeholder= 'Example: Great Read, Highly Recommended!(Maximum of 50 characters)'
     onChange={(e) => setReviewTitle(e.target.value)}
     required
     />
+    <span className={newReviewTitle.length === 50 ? 'title-length-counter-red' : 'title-length-counter-normal'}>{50-newReviewTitle.length} characters remaining</span>
     </label>
     </div>
 
@@ -169,6 +178,7 @@ return (
     <button className='review-submit-button' type="submit">Post Review</button>
 
     </form>
+    </div>
     </div>
 )
 }

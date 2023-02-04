@@ -1,0 +1,23 @@
+
+.sign-in-form-header{
+ font-family: Cormorant Garamond, serif;
+ font-weight: 600;
+ font-style: normal;
+ font-size: 1.875rem;
+ line-height: 1.3;
+ /* margin-left: 570px; */
+ margin-top: 45px;
+ margin-bottom: 15px;
+ text-align: center;
+ color: rgb(33, 40, 45)
+}
+
+.log-in-form-container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border: 1px solid red;
+    width: fit-content;
+    margin: 0 auto;
+    height: 500px;
+}
