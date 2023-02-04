@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
@@ -38,7 +39,9 @@ const LoginForm = () => {
   }
 
   return (
+    <>
     <form onSubmit={onLogin}>
+      <h1 className='sign-in-form-header'>Sign in or Create an Account</h1>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -67,7 +70,13 @@ const LoginForm = () => {
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
       </div>
     </form>
+    <NavLink
+    to={`/sign-up`}>
+     <div>Create An Account</div>
+    </NavLink>
+    </>
   );
+
 };
 
 export default LoginForm;
