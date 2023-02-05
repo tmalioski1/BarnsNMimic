@@ -65,10 +65,6 @@ const UploadBookModal = () => {
 
 
 
-
-
-
-
     return (
       <>
       <div id='header-div'>
@@ -89,8 +85,6 @@ const UploadBookModal = () => {
       <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
 
           <div id='upload-form-title'>
-            <label>
-            Title
             <input
              type="text"
              value={title}
@@ -98,12 +92,9 @@ const UploadBookModal = () => {
              onChange={(e) => setTitle(e.target.value)}
              required
             />
-            </label>
              </div>
 
           <div id='upload-form-author'>
-            <label>
-            Author
             <input
              type="text"
              value={author}
@@ -111,7 +102,6 @@ const UploadBookModal = () => {
              onChange={(e) => setAuthor(e.target.value)}
              required
             />
-            </label>
              </div>
 
 
