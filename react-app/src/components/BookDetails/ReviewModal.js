@@ -67,7 +67,12 @@ return (
       </div>
       <div className='review-form-right-side'>
      <div className ='review-form-header-container'>
+      <div className ='review-form-header-text-container'>
      <span className='review-form-header'>My Review for {book.title}</span>
+     </div>
+     <div className='review-form-required-field-note-container'>
+     <span className='review-form-required-field-note'>Required fields are marked with *</span>
+     </div>
      </div>
 
      {hasSubmitted && validationErrors.length > 0 && (
@@ -83,14 +88,20 @@ return (
     <form id ='post-review-form' onSubmit={handleSubmit}>
      <div className='review-form-stars'>
     <label>
+      <div className='label-and-stars'>
+      <span className='overall-star-rating'>Overall rating*</span>
         <DynamicStar
         rating={newStars}
-        fullStarColor={'black'}
-        width={18}
-        height={30}
+        fullStarColor={'grey'}
+        width={40}
+        height={40}
         outlined={true}
      />
+     </div>
+     <div className='dropdown-with-text'>
+     <span className='choose-to-rate-text'>Select to Rate!</span>
     <input
+     className='choose-to-rate-dropdown'
      type='number'
      min='1'
      max='5'
@@ -98,13 +109,14 @@ return (
      onChange={(e) => setStars(e.target.value)}
      required
     />
+    </div>
     </label>
     </div>
 
-
+    <div className='review-form-beneath-stars'>
     <div className='review-form-title'>
     <label>
-     Review Title
+     Review Title*
     <input
     type="text"
     maxLength={50}
@@ -120,7 +132,7 @@ return (
 
     <div className='review-form-review-txt'>
     <label>
-     Review
+     Review*
     <textarea
     type="textarea"
     value={newReviewTxt}
@@ -176,7 +188,7 @@ return (
     </div>
 
     <button className='review-submit-button' type="submit">Post Review</button>
-
+    </div>
     </form>
     </div>
     </div>
