@@ -1,8 +1,20 @@
 #edit-book-form{
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    align-items: center;
 }
 
+#edit-book-form div {
+    width: 80%;
+    margin-bottom: 15px;
+ }
+
+ #edit-book-form label {
+    margin-left: 10px;
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+ }
 #edit-book-form input{
     margin-bottom: 2.5vh;
     color: grey;
@@ -11,11 +23,24 @@
     padding-bottom: .7vh;
     margin-left: 2vw;
     margin-right: 2vw;
+    background-color: rgb(232, 240, 254);
     border-color: grey;
     font-size: 1vw;
     border-radius: 7%;
     outline: none;
 }
+
+#edit-book-form select {
+    width: 80%;
+    background-color: rgb(232, 240, 254);
+    margin-bottom: 15px;
+ }
+
+ #edit-book-form textarea {
+    width: 80%;
+    background-color: rgb(232, 240, 254);
+    margin-bottom: 15px;
+ }
 
 
 #edit-header-div{
@@ -35,45 +60,33 @@
 
 }
 
-/* #edit-form-book_title{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Cormorant Garamond, serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
+#edit-book-form > button{
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 2vw;
     margin-right: 2vw;
-    border-color: grey;
-    font-size: 1vw;
-    border-radius: 7%;
-    outline: none;
-}
-
-#edit-form-book_author{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Cormorant Garamond, serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1vw;
-    border-radius: 7%;
-    outline: none;
-}
-
-#edit-book-form-pricePaperback-container{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Cormorant Garamond, serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1vw;
-    border-radius: 7%;
-    outline: none;
-
-} */
+    background-color: #3d6db5!important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.2)!important;
+    padding-top: 0.5em!important;
+    padding-right: 1em!important;
+    padding-bottom: 0.5em!important;
+    padding-left: 1em!important;
+    color: white;
+    border-radius: 0!important;
+    border-top-width: 1px!important;
+    border-top-style: none!important;
+    border-top-color: #21282d!important;
+    border-right-width: 1px!important;
+    border-right-style: none!important;
+    border-right-color: #21282d!important;
+    border-bottom-width: 1px!important;
+    border-bottom-style: none!important;
+    border-bottom-color: #21282d!important;
+    border-left-width: 1px!important;
+    border-left-style: none!important;
+    border-left-color: #21282d!important;
+    float: left!important;
+    text-shadow: none!important;
+    cursor: pointer!important;
+    width: 80%
+ }
