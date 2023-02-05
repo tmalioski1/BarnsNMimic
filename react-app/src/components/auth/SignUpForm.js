@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './signupform.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -56,77 +57,92 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <>
+    <h1 className='sign-up-form-header'>Create an Account</h1>
+    <p className='sign-up-form-first-sentence'>Fill in the fields below to create a Barnes & Mimic.com account.</p>
+    <p className='sign-up-form-second-sentence'>If you already have an account, please  <NavLink
+      to={`/login`}>
+     <a className= 'create-an-account-signin-link'>Sign In</a>
+    </NavLink> </p>
+    <form className='log-in-form-container' onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
       <div id='first-name-signup'>
-        <label id='firstname-label-signup'>First Name</label>
         <input
           type='text'
           name='First Name'
           required
+          placeholder='First Name'
           onChange={updateFirstName}
           id='first-name-input-field-login'
           value={first_name}
         ></input>
       </div>
       <div id='last-name-signup'>
-        <label id='lastname-label-signup'>Last Name</label>
         <input
           type='text'
           name='Last Name'
           required
+          placeholder='Last Name'
           onChange={updateLastName}
           id='last-name-input-field-login'
           value={last_name}
         ></input>
       </div>
-      <div>
-        <label>User Name</label>
+      <div id='user-name-signup'>
         <input
           type='text'
           minlength='1'
           maxlength='30'
           name='username'
           required
+          placeholder='User Name'
           onChange={updateUsername}
           value={username}
         ></input>
       </div>
-      <div>
-        <label>Email</label>
+      <div id='email-signup'>
         <input
           type='text'
           name='email'
           required
+          placeholder='Email'
           onChange={updateEmail}
           value={email}
         ></input>
       </div>
-      <div>
-        <label>Password</label>
+      <div id='password-signup'>
         <input
           type='password'
           name='password'
+          placeholder='Password'
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div id='repeat-password-signup'>
         <input
           type='password'
           name='repeat_password'
+          placeholder='Repeat Password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='create-account-button-cancel-link'>
+      <button id='create-account-submit-button' type='submit'>Create Account</button>
+      <NavLink
+      to={`/`}>
+     <a className= 'create-an-account-cancel-link'>Cancel</a>
+    </NavLink>
+      </div>
     </form>
+    </>
   );
 };
 

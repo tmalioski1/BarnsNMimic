@@ -1,11 +1,22 @@
 
-
+.upload-form-container{
+   display: flex;
+   flex-direction: column;
+   width: fit-content;
+   height: 60vh;
+}
 
 #upload-form{
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    align-items: center;
 }
 
+#upload-form div {
+   width: 80%;
+   margin-bottom: 15px;
+}
 
 
  #header-div{
@@ -20,43 +31,45 @@
     margin-top: 12%;
     color: #333;
     font-size: 1.5vw;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     font-weight: 100;
 
 }
 
 #upload-form-title{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1vw;
-    border-radius: 7%;
-    outline: none;
+   background-color: rgb(232, 240, 254);
+   height: 2.20rem;
+   margin-bottom: 9px;
+   outline: none;
+ }
+
+ #upload-form-title input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   border: 1px solid gray
  }
 
  #upload-form-author{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1vw;
-    border-radius: 7%;
-    outline: none;
+   background-color: rgb(232, 240, 254);
+   height: 2.20rem;
+   margin-bottom: 15px;
+   outline: none;
+ }
+
+ #upload-form-author input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   border: 1px solid gray
  }
 
  #upload-form-pricePaperback{
-    margin-bottom: 2.5vh;
+    margin-bottom: 15px;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -67,10 +80,21 @@
     outline: none;
  }
 
+ #upload-form-pricePaperback input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   padding-top:7px;
+   padding-bottom:7px;
+   border: 1px solid gray
+ }
+
+
   #upload-form-priceHardcover{
-    margin-bottom: 2.5vh;
+    margin-bottom: 15px;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -79,12 +103,22 @@
     font-size: 1vw;
     border-radius: 7%;
     outline: none;
+ }
+
+ #upload-form-priceHardcover input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   padding-top:7px;
+   padding-bottom:7px;
+   border: 1px solid gray
  }
 
   #upload-form-eBook{
-    margin-bottom: 2.5vh;
+    margin-bottom: 15px;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: Cormorant Garamond, serif;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
@@ -95,125 +129,156 @@
     outline: none;
  }
 
- #upload-form > button{
-    background-color: rgb(62, 89, 98);
-    color: white;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    font-size: 1.4vw;
-    border-radius: 4%;
+ #upload-form-eBook input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   padding-top:7px;
+   padding-bottom:7px;
+   border: 1px solid gray
  }
+
 
 
   #upload-form-genre{
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .1vh;
-    padding-bottom: .1vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    margin-bottom: 2.5vh;
-    border-color: black;
-    font-size: 1.4vw;
-    border-radius: 4%;
-    border-top-width:thin;
-    outline: none;
-    height: 30px;
-
+   background-color: rgb(232, 240, 254);
+   width: 80%;
+   height: 100%;
+   padding-left: 10px;
+   padding-top:7px;
+   padding-bottom:7px;
+   border: 1px solid gray;
+   margin-bottom: 15px;
  }
 
 
- #upload-form-overview{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1.4vw;
-    border-radius: 7%;
-    outline: none;
+ #upload-form-overview textarea{
+   width: 100%;
+   height: 90px;
+   font-family: "Lato",sans-serif!important;
+   font-size: 12px;
+   padding-top: 5px;
+   padding-left: 5px;
+   margin-bottom: 15px;
+   outline: none;
+   background-color: rgb(232, 240, 254);
+
 
  }
 
-  #upload-form-editorialReview{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1.4vw;
-    border-radius: 7%;
-    outline: none;
+  #upload-form-editorialReview textarea{
+   width: 100%;
+   height: 50px;
+   font-family: "Lato",sans-serif!important;
+   font-size: 12px;
+   padding-top: 5px;
+   padding-left: 5px;
+   margin-bottom: 7px;
+   outline: none;
+   background-color: rgb(232, 240, 254);
+
 
  }
 
    #upload-form-publicationDate{
     margin-bottom: 2.5vh;
     color: grey;
-    font-family: Poynter,Georgia,serif;
+    font-family: "Lato",sans-serif!important;
     padding-top: .7vh;
     padding-bottom: .7vh;
     margin-left: 2vw;
     margin-right: 2vw;
     border-color: grey;
-    font-size: 1.4vw;
+    font-size: 12px;
     border-radius: 7%;
+    width: 100%;
     outline: none;
 
+
  }
+
+ #upload-form-publicationDate input{
+   margin-left: 5px;
+}
+
 
 
    #upload-form-publisher{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1.4vw;
-    border-radius: 7%;
-    outline: none;
+      height: 2.20rem;
+      margin-bottom: 15px;
+      outline: none;
 
  }
+
+ #upload-form-publisher input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   border: 1px solid gray
+ }
+
 
    #upload-form-coverArt{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1.4vw;
-    border-radius: 7%;
-    outline: none;
+      background-color: rgb(232, 240, 254);
+      height: 2.20rem;
+      margin-bottom: 9px;
+      outline: none;
 
  }
 
+ #upload-form-coverArt input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   border: 1px solid gray
+ }
 
    #upload-form-pages{
-    margin-bottom: 2.5vh;
-    color: grey;
-    font-family: Poynter,Georgia,serif;
-    padding-top: .7vh;
-    padding-bottom: .7vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-color: grey;
-    font-size: 1.4vw;
-    border-radius: 7%;
-    outline: none;
-
+      background-color: rgb(232, 240, 254);
+      height: 2.20rem;
+      margin-bottom: 9px;
+      outline: none;
  }
+
+ #upload-form-pages input{
+   background-color: rgb(232, 240, 254);
+   width: 100%;
+   height: 100%;
+   padding-left: 10px;
+   border: 1px solid gray
+ }
+
+
+ #upload-form > button{
+   margin-top: 20px;
+   margin-bottom: 20px;
+   margin-left: 2vw;
+   margin-right: 2vw;
+   background-color: #3d6db5!important;
+   box-shadow: inset 0 1px 0 rgba(255,255,255,.2)!important;
+   padding-top: 0.5em!important;
+   padding-right: 1em!important;
+   padding-bottom: 0.5em!important;
+   padding-left: 1em!important;
+   color: white;
+   border-radius: 0!important;
+   border-top-width: 1px!important;
+   border-top-style: none!important;
+   border-top-color: #21282d!important;
+   border-right-width: 1px!important;
+   border-right-style: none!important;
+   border-right-color: #21282d!important;
+   border-bottom-width: 1px!important;
+   border-bottom-style: none!important;
+   border-bottom-color: #21282d!important;
+   border-left-width: 1px!important;
+   border-left-style: none!important;
+   border-left-color: #21282d!important;
+   float: left!important;
+   text-shadow: none!important;
+   cursor: pointer!important;
+   width: 80%
+}

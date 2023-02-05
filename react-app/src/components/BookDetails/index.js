@@ -176,6 +176,7 @@ console.log(today > publicationDate)
 
             {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) && publicationDate < today &&
                 <OpenModalButton
+                id='write-review-button'
                 modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
                 buttonText={'Write A Review'}
              />}

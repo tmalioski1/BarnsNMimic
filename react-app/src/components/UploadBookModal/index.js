@@ -65,12 +65,8 @@ const UploadBookModal = () => {
 
 
 
-
-
-
-
     return (
-      <>
+      <div className='upload-form-container'>
       <div id='header-div'>
       <h1 className='header-upload'>Upload Book here</h1>
       </div>
@@ -89,8 +85,6 @@ const UploadBookModal = () => {
       <form id= 'upload-form' onSubmit={handleSubmit}  method="post" enctype="multipart/form-data">
 
           <div id='upload-form-title'>
-            <label>
-            Title
             <input
              type="text"
              value={title}
@@ -98,12 +92,9 @@ const UploadBookModal = () => {
              onChange={(e) => setTitle(e.target.value)}
              required
             />
-            </label>
              </div>
 
           <div id='upload-form-author'>
-            <label>
-            Author
             <input
              type="text"
              value={author}
@@ -111,7 +102,6 @@ const UploadBookModal = () => {
              onChange={(e) => setAuthor(e.target.value)}
              required
             />
-            </label>
              </div>
 
 
@@ -179,8 +169,6 @@ const UploadBookModal = () => {
           </select>
 
           <div id='upload-form-overview'>
-            <label>
-            Overview
             <textarea
              type="textarea"
              value={overview}
@@ -188,19 +176,15 @@ const UploadBookModal = () => {
              onChange={(e) => setOverview(e.target.value)}
              required
             />
-            </label>
              </div>
 
           <div id='upload-form-editorialReview'>
-            <label>
-            Editorial Review
             <textarea
              type="textarea"
              value={editorial_review}
              placeholder= 'Editorial Review'
              onChange={(e) => setEditorialReview(e.target.value)}
             />
-            </label>
              </div>
 
 
@@ -219,8 +203,6 @@ const UploadBookModal = () => {
 
 
           <div id='upload-form-publisher'>
-            <label>
-            Publisher
             <input
              type="text"
              value={publisher}
@@ -228,12 +210,9 @@ const UploadBookModal = () => {
              onChange={(e) => setPublisher(e.target.value)}
              required
             />
-            </label>
              </div>
 
           <div id='upload-form-coverArt'>
-            <label>
-            Cover Art
             <input
              type="url"
              value={cover_art}
@@ -241,12 +220,9 @@ const UploadBookModal = () => {
              onChange={(e) => setCoverArt(e.target.value)}
              required
             />
-            </label>
              </div>
 
           <div id='upload-form-pages'>
-            <label>
-            Pages
             <input
              type="number"
              min= '1'
@@ -255,7 +231,6 @@ const UploadBookModal = () => {
              onChange={(e) => setPages(e.target.value)}
              required
             />
-            </label>
              </div>
 
 
@@ -266,7 +241,7 @@ const UploadBookModal = () => {
 
   </div>
 
-  </>
+  </div>
     )
   }
 

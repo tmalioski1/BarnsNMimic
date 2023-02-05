@@ -81,7 +81,7 @@ function EditBookModal(currentBookId) {
 
 
       return (
-        <>
+        <div className='upload-form-container'>
           <div id='edit-header-div'>
             <h1 className='edit-header-upload'>Update Your Book Here</h1>
             </div>
@@ -255,7 +255,7 @@ function EditBookModal(currentBookId) {
 
         </form>
         </div>
-        </>
+        </div>
       )
 }
 export default EditBookModal

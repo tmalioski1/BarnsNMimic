@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './loginform.css'
+
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -9,6 +13,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -38,24 +43,24 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <>
+    <h1 className='sign-in-form-header'>Sign in or Create an Account</h1>
+    <form className='log-in-form-container' onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='email-container'>
         <input
           name='email'
           type='text'
-          placeholder='Email'
+          placeholder='Email Address'
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='password-container'>
         <input
           name='password'
           type='password'
@@ -63,11 +68,15 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        </div>
+        <button id='user-login' type='submit'>Login</button>
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
-      </div>
+        <button id='create-an-account-link' onClick={() => history.push(`/sign-up`)} type='submit'>Create An Account</button>
     </form>
+
+    </>
   );
+
 };
 
 export default LoginForm;

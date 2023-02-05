@@ -59,8 +59,20 @@ function ReviewModal(currentBookId) {
 
 return (
     <div className='review-form-container'>
+      <div className='review-form-left-side'>
+         <div className='review-form-cover_art'>
+          <img src={bookData[0].cover_art}/>
+          </div>
+          <div className='review-form-left-side-info'>{bookData[0].publisher} - {bookData[0].title}</div>
+      </div>
+      <div className='review-form-right-side'>
      <div className ='review-form-header-container'>
-     <h1 className='review-form-header'>My Review for {book.title}</h1>
+      <div className ='review-form-header-text-container'>
+     <span className='review-form-header'>My Review for {book.title}</span>
+     </div>
+     <div className='review-form-required-field-note-container'>
+     <span className='review-form-required-field-note'>Required fields are marked with *</span>
+     </div>
      </div>
 
      {hasSubmitted && validationErrors.length > 0 && (
@@ -76,14 +88,20 @@ return (
     <form id ='post-review-form' onSubmit={handleSubmit}>
      <div className='review-form-stars'>
     <label>
+      <div className='label-and-stars'>
+      <span className='overall-star-rating'>Overall rating*</span>
         <DynamicStar
         rating={newStars}
-        fullStarColor={'black'}
-        width={18}
-        height={30}
+        fullStarColor={'grey'}
+        width={40}
+        height={40}
         outlined={true}
      />
+     </div>
+     <div className='dropdown-with-text'>
+     <span className='choose-to-rate-text'>Select to Rate!</span>
     <input
+     className='choose-to-rate-dropdown'
      type='number'
      min='1'
      max='5'
@@ -91,27 +109,31 @@ return (
      onChange={(e) => setStars(e.target.value)}
      required
     />
+    </div>
     </label>
     </div>
 
-
+    <div className='review-form-beneath-stars'>
     <div className='review-form-title'>
     <label>
-     Review Title
+     Review Title*
     <input
     type="text"
+    maxLength={50}
     value={newReviewTitle}
     placeholder= 'Example: Great Read, Highly Recommended!(Maximum of 50 characters)'
     onChange={(e) => setReviewTitle(e.target.value)}
     required
     />
+    <span className={newReviewTitle.length === 50 ? 'title-length-counter-red' : 'title-length-counter-normal'}>{50-newReviewTitle.length} characters remaining</span>
     </label>
     </div>
 
 
     <div className='review-form-review-txt'>
-    <label>
-     Review
+    <div className='review-form-review-txt-title'>
+     Review*
+     </div>
     <textarea
     type="textarea"
     value={newReviewTxt}
@@ -119,12 +141,13 @@ return (
     onChange={(e) => setReviewTxt(e.target.value)}
     required
     />
-    </label>
     </div>
 
     <div className='review-form-recommended-buttons'>
     <label>
+    <span className='recommended-question'>
     Would you recommend this product to a friend?
+    </span>
     <button
      value={newRecommended}
      onClick={(e) => {
@@ -146,7 +169,9 @@ return (
 
     <div className='review-form-spoilers-buttons'>
     <label>
+      <span className='spoilers-question'>
     Does your review contain spoilers?
+    </span>
     <button
      value={newRecommended}
      onClick={(e) => {
@@ -167,8 +192,9 @@ return (
     </div>
 
     <button className='review-submit-button' type="submit">Post Review</button>
-
+    </div>
     </form>
+    </div>
     </div>
 )
 }

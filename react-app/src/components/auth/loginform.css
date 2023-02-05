@@ -1,0 +1,82 @@
+
+.sign-in-form-header{
+ font-family: Cormorant Garamond, serif;
+ font-weight: 600;
+ font-style: normal;
+ font-size: 1.875rem;
+ line-height: 1.3;
+ /* margin-left: 570px; */
+ margin-top: 45px;
+ margin-bottom: 15px;
+ text-align: center;
+ color: rgb(33, 40, 45)
+}
+
+.log-in-form-container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: fit-content;
+    margin: 0 auto;
+    height: 60vh;
+}
+
+.email-container{
+  background-color: rgb(232, 240, 254);
+  height: 2.50rem;
+  margin-bottom: 18px;
+  outline: none;
+  /* border: 20px solid orange(118, 118, 118); */
+
+}
+
+.email-container input{
+    background-color: rgb(232, 240, 254);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  .password-container{
+    background-color: rgb(232, 240, 254);
+    height: 2.50rem;
+    margin-bottom: 35px;
+    outline: none;
+    border: 20px solid orange(118, 118, 118);
+
+  }
+
+
+  .password-container input{
+      background-color: rgb(232, 240, 254);
+      width: 25vw;
+      height: 100%;
+      padding-left: 10px;
+      border: 1px solid gray
+    }
+
+    #user-login, #demo-user-login {
+        height: 2.50rem;
+        background-color: #346250;
+        color: white;
+        font-family: "Lato",sans-serif;
+        margin-bottom: 18px;
+        cursor: pointer!important;
+
+    }
+
+   #create-an-account-link{
+        height: 2.50rem;
+        background-color: white;
+        color: #346250;
+        font-family: "Lato",sans-serif;
+        margin-bottom: 18px;
+        cursor: pointer!important;
+   }
+
+   #create-an-account-link:hover{
+        background-color: black;
+        color: white;
+
+   }
