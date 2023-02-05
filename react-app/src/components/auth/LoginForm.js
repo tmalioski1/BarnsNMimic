@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './loginform.css'
+
 
 
 const LoginForm = () => {
@@ -12,6 +13,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ const LoginForm = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      <div className='email-container'>
         <input
           name='email'
           type='text'
@@ -58,7 +60,7 @@ const LoginForm = () => {
           onChange={updateEmail}
         />
       </div>
-      <div>
+      <div className='password-container'>
         <input
           name='password'
           type='password'
@@ -67,14 +69,9 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         </div>
-        <button type='submit'>Login</button>
+        <button id='user-login' type='submit'>Login</button>
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
-      <div className='create-an-account-link-container'>
-    <NavLink
-    to={`/sign-up`}>
-     <div className= 'create-an-account-link'>Create An Account</div>
-    </NavLink>
-    </div>
+        <button id='create-an-account-link' onClick={() => history.push(`/sign-up`)} type='submit'>Create An Account</button>
     </form>
 
     </>

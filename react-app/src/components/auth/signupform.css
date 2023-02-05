@@ -1,0 +1,132 @@
+.sign-up-form-header{
+    font-family: Cormorant Garamond, serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.875rem;
+    line-height: 1.3;
+    /* margin-left: 570px; */
+    margin-top: 45px;
+    margin-bottom: 8px;
+    text-align: center;
+    color: rgb(33, 40, 45)
+   }
+
+.sign-up-form-first-sentence, .sign-up-form-second-sentence{
+    margin-left: 615px;
+    font-family: "Lato",sans-serif;
+    font-size: 12px;
+}
+
+.sign-up-form-second-sentence{
+    margin-bottom: 15px;
+}
+
+
+#first-name-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#first-name-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #last-name-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#last-name-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #user-name-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#user-name-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #email-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#email-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #password-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#password-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #repeat-password-signup{
+    background-color: rgb(248, 246, 246);
+    height: 2.50rem;
+    margin-bottom: 18px;
+    outline: none;
+}
+
+#repeat-password-signup input{
+    background-color: rgb(248, 246, 246);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  #create-account-submit-button{
+    background-color: #346250;
+    color: white;
+    border: none;
+    font-family: "Lato",sans-serif;
+    font-weight: 500;
+    font-size: .8rem;
+    padding: 15px 45px;
+    margin-right: 20px;
+    cursor: pointer!important
+  }
+
+  .create-an-account-cancel-link{
+    text-decoration: none;
+    font-size: smaller;
+    color: #346250;
+    cursor: pointer!important
+  }

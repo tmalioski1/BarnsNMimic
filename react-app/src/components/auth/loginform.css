@@ -16,8 +16,67 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    border: 1px solid red;
     width: fit-content;
     margin: 0 auto;
     height: 60vh;
 }
+
+.email-container{
+  background-color: rgb(232, 240, 254);
+  height: 2.50rem;
+  margin-bottom: 18px;
+  outline: none;
+  /* border: 20px solid orange(118, 118, 118); */
+
+}
+
+.email-container input{
+    background-color: rgb(232, 240, 254);
+    width: 25vw;
+    height: 100%;
+    padding-left: 10px;
+    border: 1px solid gray
+  }
+
+  .password-container{
+    background-color: rgb(232, 240, 254);
+    height: 2.50rem;
+    margin-bottom: 35px;
+    outline: none;
+    border: 20px solid orange(118, 118, 118);
+
+  }
+
+
+  .password-container input{
+      background-color: rgb(232, 240, 254);
+      width: 25vw;
+      height: 100%;
+      padding-left: 10px;
+      border: 1px solid gray
+    }
+
+    #user-login, #demo-user-login {
+        height: 2.50rem;
+        background-color: #346250;
+        color: white;
+        font-family: "Lato",sans-serif;
+        margin-bottom: 18px;
+        cursor: pointer!important;
+
+    }
+
+   #create-an-account-link{
+        height: 2.50rem;
+        background-color: white;
+        color: #346250;
+        font-family: "Lato",sans-serif;
+        margin-bottom: 18px;
+        cursor: pointer!important;
+   }
+
+   #create-an-account-link:hover{
+        background-color: black;
+        color: white;
+
+   }
