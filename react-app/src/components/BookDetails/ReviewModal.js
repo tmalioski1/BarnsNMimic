@@ -131,8 +131,9 @@ return (
 
 
     <div className='review-form-review-txt'>
-    <label>
+    <div className='review-form-review-txt-title'>
      Review*
+     </div>
     <textarea
     type="textarea"
     value={newReviewTxt}
@@ -140,12 +141,13 @@ return (
     onChange={(e) => setReviewTxt(e.target.value)}
     required
     />
-    </label>
     </div>
 
     <div className='review-form-recommended-buttons'>
     <label>
+    <span className='recommended-question'>
     Would you recommend this product to a friend?
+    </span>
     <button
      value={newRecommended}
      onClick={(e) => {
@@ -167,7 +169,9 @@ return (
 
     <div className='review-form-spoilers-buttons'>
     <label>
+      <span className='spoilers-question'>
     Does your review contain spoilers?
+    </span>
     <button
      value={newRecommended}
      onClick={(e) => {
