@@ -96,7 +96,7 @@ const SignUpForm = () => {
         <input
           type='text'
           minlength='1'
-          maxlength='30'
+          maxlength='20'
           name='username'
           required
           placeholder='User Name'
