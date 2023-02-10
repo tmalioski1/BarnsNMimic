@@ -1,9 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, FloatField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
 
 
-
+def cover_art_length(form, field):
+    cover_art = field.data
+    if len(cover_art) > 250:
+        raise ValidationError('Maximum url length (250) exceeded')
 
 
 class BookForm(FlaskForm):
@@ -18,5 +21,5 @@ class BookForm(FlaskForm):
   editorial_review = TextAreaField('Editorial Review')
   publication_date = StringField('Publication Date')
   publisher= StringField('Publisher')
-  cover_art  = StringField('Book Cover')
+  cover_art  = StringField('Book Cover', validators=[cover_art_length])
   pages = IntegerField('Pages')
