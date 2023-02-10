@@ -41,10 +41,36 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+    print('made it here')
+
+    if "cover_art" not in request.files:
+         print("request.files", request.files)
+         print('cover photo took an L')
+         return {"errors": "cover"}
+
+    cover_art = request.files['cover_art']
+
+    if not allowed_file(cover_art.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    print('pre validation--------')
+
     if form.validate_on_submit():
+        print('past validation--------')
+        cover_art.filename = get_unique_filename(cover_art.filename)
+        upload = upload_file_to_s3(cover_art)
+        print('upload--------', upload)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+
         new_book = Book()
         form.populate_obj(new_book)
+        new_book.cover_art = url
         db.session.add(new_book)
         db.session.commit()
         return new_book.to_dict(), 201
