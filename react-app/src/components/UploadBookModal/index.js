@@ -78,8 +78,15 @@ const UploadBookModal = () => {
       (closeModal)
       (history.push(`/books/${createdBook.id}`))
 
+    }else{
+      setImageLoading(false);
+      // a real app would probably use more advanced
+      // error handling
+      console.log("error");
     }
   }
+
+  
 
 
 
