@@ -3,6 +3,8 @@ from flask_login import login_required
 from app.models import Book, Review, db
 from ..forms.book_form import BookForm
 from ..forms.review_form import ReviewForm
+from app.aws_functionality import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 book_routes = Blueprint('books', __name__)
 
@@ -39,6 +41,7 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    
     if form.validate_on_submit():
         new_book = Book()
         form.populate_obj(new_book)
@@ -122,7 +125,7 @@ def delete_book(book_id):
     db.session.commit()
 
     return {"message": 'successfully deleted'}
-    
+
 
 #delete review by id
 @book_routes.route('/reviews/<int:review_id>', methods=['DELETE'])
