@@ -42,10 +42,11 @@ def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print('made it here')
+    print('form.data-----', form.data)
+    print('request.files-----', request.files)
 
     if "cover_art" not in request.files:
          print("request.files", request.files)
-         print('cover photo took an L')
          return {"errors": "cover"}
 
     cover_art = request.files['cover_art']

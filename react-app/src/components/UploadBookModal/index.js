@@ -71,7 +71,7 @@ const UploadBookModal = () => {
       'pages': pages
     }
 
-    let createdBook = await dispatch(createBook(newBook))
+    let createdBook = await dispatch(createBook(formData))
 
 
     if(createdBook) {

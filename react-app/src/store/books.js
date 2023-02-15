@@ -51,8 +51,7 @@ export const getAllBooks = () => async (dispatch) => {
   export const createBook = (newBook) => async (dispatch) => {
     const response = await fetch('/api/books/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newBook)
+      body: newBook
     })
     if (response.ok) {
       const createdNewBook = await response.json();
@@ -63,7 +62,6 @@ export const getAllBooks = () => async (dispatch) => {
   }
 
   export const updateABook = (payload, bookId) => async dispatch => {
-    console.log('this is the payload---', payload)
     const response = await fetch(`/api/books/${bookId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
