@@ -52,6 +52,7 @@ export const getAllBooks = () => async (dispatch) => {
     const response = await fetch('/api/books/', {
       method: 'POST',
       body: newBook
+
     })
     if (response.ok) {
       const createdNewBook = await response.json();

@@ -41,12 +41,10 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('made it here')
     print('form.data-----', form.data)
-    print('request.files-----', request.files)
 
     if "cover_art" not in request.files:
-         print("request.files", request.files)
+         print("request.files---", request.files)
          return {"errors": "cover"}
 
     cover_art = request.files['cover_art']
@@ -62,6 +60,7 @@ def new_book():
         upload = upload_file_to_s3(cover_art)
         print('upload--------', upload)
         if "url" not in upload:
+            print('is the url not in upload?---')
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -77,6 +76,7 @@ def new_book():
         return new_book.to_dict(), 201
 
     if form.errors:
+        print('here is an error')
         return {
             "errors": form.errors
 

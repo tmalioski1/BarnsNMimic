@@ -44,6 +44,7 @@ const UploadBookModal = () => {
     const formData = new FormData()
     formData.append('publisher_id', sessionUser.id)
     formData.append('title', title)
+    formData.append('author', author)
     formData.append('price_paperback', price_paperback)
     formData.append('price_hardcover', price_hardcover)
     formData.append('price_eBook', price_eBook)
