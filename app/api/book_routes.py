@@ -3,6 +3,8 @@ from flask_login import login_required
 from app.models import Book, Review, db
 from ..forms.book_form import BookForm
 from ..forms.review_form import ReviewForm
+from app.aws_functionality import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 book_routes = Blueprint('books', __name__)
 
@@ -39,14 +41,42 @@ def book(id):
 def new_book():
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('form.data-----', form.data)
+
+    if "cover_art" not in request.files:
+         print("request.files---", request.files)
+         return {"errors": "cover"}
+
+    cover_art = request.files['cover_art']
+
+    if not allowed_file(cover_art.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    print('pre validation--------')
+
     if form.validate_on_submit():
+        print('past validation--------')
+        cover_art.filename = get_unique_filename(cover_art.filename)
+        upload = upload_file_to_s3(cover_art)
+        print('upload--------', upload)
+        if "url" not in upload:
+            print('is the url not in upload?---')
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+
         new_book = Book()
         form.populate_obj(new_book)
+        new_book.cover_art = url
         db.session.add(new_book)
         db.session.commit()
         return new_book.to_dict(), 201
 
     if form.errors:
+        print('here is an error')
         return {
             "errors": form.errors
 
@@ -122,7 +152,7 @@ def delete_book(book_id):
     db.session.commit()
 
     return {"message": 'successfully deleted'}
-    
+
 
 #delete review by id
 @book_routes.route('/reviews/<int:review_id>', methods=['DELETE'])

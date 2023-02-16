@@ -25,6 +25,8 @@ const UploadBookModal = () => {
   const [pages, setPages] = useState('')
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {closeModal} = useModal();
 
   useEffect(()=> {
@@ -35,8 +37,24 @@ const UploadBookModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setImageLoading(true);
+    setIsLoading(true)
     setHasSubmitted(true);
     if (validationErrors.length) return alert(`Cannot Submit`);
+    const formData = new FormData()
+    formData.append('publisher_id', sessionUser.id)
+    formData.append('title', title)
+    formData.append('author', author)
+    formData.append('price_paperback', price_paperback)
+    formData.append('price_hardcover', price_hardcover)
+    formData.append('price_eBook', price_eBook)
+    formData.append('genre', genre)
+    formData.append('overview', overview)
+    formData.append('editorial_review', editorial_review)
+    formData.append('publication_date', publication_date)
+    formData.append('publisher', publisher)
+    formData.append('cover_art', cover_art)
+    formData.append('pages', pages)
 
     const newBook = {
       'publisher_id': sessionUser.id,
@@ -54,14 +72,22 @@ const UploadBookModal = () => {
       'pages': pages
     }
 
-    let createdBook = await dispatch(createBook(newBook))
+    let createdBook = await dispatch(createBook(formData))
 
 
     if(createdBook) {
       (closeModal)
       (history.push(`/books/${createdBook.id}`))
+
+    }else{
+      setImageLoading(false);
+      // a real app would probably use more advanced
+      // error handling
+      console.log("error");
     }
   }
+
+
 
 
 
@@ -213,12 +239,14 @@ const UploadBookModal = () => {
              </div>
 
           <div id='upload-form-coverArt'>
+             <label id='upload-form-coverArt-label' for="upload-cover-art">Upload Cover Art</label>
             <input
-             type="url"
-             value={cover_art}
+             type="file"
+             accept="image/png, image/jpeg, image/jpg"
              placeholder= 'Cover Art'
-             onChange={(e) => setCoverArt(e.target.value)}
+             onChange={(e) => setCoverArt(e.target.files[0])}
              required
+             name='cover_art'
             />
              </div>
 
@@ -235,10 +263,12 @@ const UploadBookModal = () => {
 
 
 
-          <button className='book-submit-button' type="submit">Upload</button>
+          <button className='book-submit-button' type="submit" disabled={isLoading}>Upload</button>
       </form>
 
-
+        <div className="loading-word">
+        {(imageLoading)&& <p>Loading...</p>}
+    </div>
   </div>
 
   </div>

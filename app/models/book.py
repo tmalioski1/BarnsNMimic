@@ -21,7 +21,7 @@ class Book(db.Model):
   publisher= db.Column(db.String(255), nullable=True)
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
-  
+
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
 
@@ -44,6 +44,3 @@ class Book(db.Model):
       'pages': self.pages,
   }
 
-  # @property
-  # def formatted_day_month_and_year(self):
-  #   return self.publication_date.strftime("d%/%m/%Y")
