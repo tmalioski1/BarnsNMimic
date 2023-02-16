@@ -57,6 +57,7 @@ def new_book():
     if form.validate_on_submit():
         print('past validation--------')
         cover_art.filename = get_unique_filename(cover_art.filename)
+        print('this is the coverart--------', cover_art)
         upload = upload_file_to_s3(cover_art)
         print('upload--------', upload)
         if "url" not in upload:
