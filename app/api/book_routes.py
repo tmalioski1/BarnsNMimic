@@ -113,15 +113,43 @@ def post_review(id):
 @login_required
 def update_book(book_id):
 
-    current_book = Book.query.get(book_id)
+
     form = BookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
 
+    if "cover_art" not in request.files:
+         print("request.files---", request.files)
+         return {"errors": "cover"}
+
+    cover_art = request.files['cover_art']
+
+    if not allowed_file(cover_art.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    if form.validate_on_submit():
+        print('edit past validation--------')
+        cover_art.filename = get_unique_filename(cover_art.filename)
+        print('edit this is the coverart--------', cover_art)
+        upload = upload_file_to_s3(cover_art)
+        print('edit upload--------', upload)
+        if "url" not in upload:
+            print('edit is the url not in upload?---')
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+
+
+        current_book = Book.query.get(book_id)
         form.populate_obj(current_book)
+        current_book.cover_art = url
         db.session.add(current_book)
         db.session.commit()
         return current_book.to_dict(), 201
+
+
 
 
 #update review
