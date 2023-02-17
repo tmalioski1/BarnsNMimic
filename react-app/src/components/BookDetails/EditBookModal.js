@@ -7,6 +7,7 @@ import './editbookmodal.css'
 
 
 function EditBookModal(currentBookId) {
+    const sessionUser = useSelector(state => state.session.user);
     const bookId = currentBookId.currentBookId
     const dispatch = useDispatch();
     const history = useHistory();
