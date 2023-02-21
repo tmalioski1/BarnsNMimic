@@ -12,7 +12,7 @@ class Cart(db.Model):
     total_price = db.Column(db.Float, default=0)
 
     user = db.relationship('User', back_populates='cart')
-    order = db.relationship('Order', back_populates='cart')
+    order = db.relationship('Order', uselist= False, back_populates='cart')
     cart_item = db.relationship(
         'Cart_Item', back_populates='cart', cascade='all, delete-orphan')
 
