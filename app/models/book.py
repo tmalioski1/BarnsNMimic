@@ -22,6 +22,8 @@ class Book(db.Model):
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
 
+
+  cart_item = db.relationship("Cart_Item", uselist=False, back_populates="book")
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
 
@@ -43,4 +45,3 @@ class Book(db.Model):
       'cover_art': self.cover_art,
       'pages': self.pages,
   }
-

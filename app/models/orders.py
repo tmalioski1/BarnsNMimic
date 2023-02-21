@@ -10,15 +10,14 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'),  nullable=False)
     cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')),  nullable=False)
 
-
-    cart = db.relationship('Book', back_populates='orders')
-    user = db.relationship('User', back_populates='orders')
+    cart = db.relationship('Cart', back_populates='order')
+    user = db.relationship('User', back_populates='order')
+    cart_item = db.relationship('Cart_Item', back_populates='order')
 
     def to_dict(self):
         return{
             "id": self.id,
             "user_id": self.user_id,
             "cart_id": self.cart_id,
-
 
         }
