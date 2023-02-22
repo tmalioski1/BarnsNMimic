@@ -12,7 +12,6 @@ class Order(db.Model):
 
     cart = db.relationship('Cart', back_populates='order')
     user = db.relationship('User', back_populates='order')
-    cart_item = db.relationship('Cart_Item', back_populates='order')
 
     def to_dict(self):
         return{
