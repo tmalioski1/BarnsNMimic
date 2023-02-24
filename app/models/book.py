@@ -11,6 +11,7 @@ class Book(db.Model):
   publisher_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   author = db.Column(db.String(255), nullable=False)
+  selected_price = db.Column(db.Float, nullable=True)
   price_paperback = db.Column(db.Float, nullable=True)
   price_hardcover = db.Column(db.Float, nullable=True)
   price_eBook = db.Column(db.Float, nullable=True)
@@ -34,6 +35,7 @@ class Book(db.Model):
       'publisher_id': self.publisher_id,
       'title': self.title,
       'author': self.author,
+      "selected_price": self.selected_price,
       'price_paperback': self.price_paperback,
       'price_hardcover': self.price_hardcover,
       'price_eBook': self.price_eBook,

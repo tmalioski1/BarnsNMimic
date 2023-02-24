@@ -13,7 +13,7 @@ class Cart(db.Model):
 
     user = db.relationship('User', back_populates='cart')
     order = db.relationship('Order', uselist= False, back_populates='cart')
-    cart_item = db.relationship(
+    cart_items = db.relationship(
         'Cart_Item', back_populates='cart', cascade='all, delete-orphan')
 
     def to_dict(self):

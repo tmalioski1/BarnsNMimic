@@ -15,7 +15,6 @@ class Cart_Item(db.Model):
 
     book = db.relationship('Book', back_populates='cart_item')
     cart = db.relationship('Cart', back_populates='cart_items')
-    order = db.relationship('Order', back_populates='cart_items')
 
     def to_dict(self):
         return{
@@ -23,7 +22,7 @@ class Cart_Item(db.Model):
             "cart_id": self.cart_id,
             "book_id": self.book_id,
             "quantity": self.quantity,
-            "price": self.price, 
+            "price": self.price,
             "total_item_price": self.total_item_price
 
         }
