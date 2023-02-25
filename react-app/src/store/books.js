@@ -3,6 +3,7 @@ const GET_ALL_BOOKS = 'book/GET_ALL_BOOKS'
 const GET_ONE_BOOK = 'book/GET_ONE_BOOK'
 const POST_BOOK = 'book/POST_BOOK'
 const UPDATE_BOOK = 'book/UPDATE_BOOK'
+const UPDATE_PRICE = 'book/UPDATE_PRICE'
 const DELETE_BOOK = 'book/DELETE_BOOK'
 
 const getAll = (books) => ({
@@ -21,6 +22,11 @@ const postBook = (book) => ({
 
 const updateBook = (book) => ({
   type: UPDATE_BOOK,
+  book
+})
+
+const updatePrice = (book) => ({
+  type: UPDATE_PRICE,
   book
 })
 
@@ -76,6 +82,21 @@ export const getAllBooks = () => async (dispatch) => {
     }
   }
 
+  export const updateBookPrice = (book) => async dispatch => {
+    console.log('this is the book---', book.id)
+    const response = await fetch(`/api/books/selected_price/${book.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book)
+    })
+    console.log('this is the response----', response)
+    if(response.ok) {
+      const updatedBook = await response.json()
+      dispatch(updatePrice(updatedBook))
+    return updatedBook
+    }
+  }
+
   export const deleteABook = (bookId) => async(dispatch) => {
     const response = await fetch(`/api/books/${bookId}`, {
      method: 'DELETE',
@@ -116,6 +137,13 @@ const booksReducer = (state = initialState, action) => {
         }
 
         case UPDATE_BOOK: {
+          const newState = {...state}
+          newState.allBooks[action.book.id] = action.book;
+          newState.singleBook.book = action.book;
+          return newState
+        }
+
+        case UPDATE_PRICE: {
           const newState = {...state}
           newState.allBooks[action.book.id] = action.book;
           newState.singleBook.book = action.book;

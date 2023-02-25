@@ -45,7 +45,7 @@ def add_cart(id):
             total_item_price=book.selected_price
 
         )
-        current_cart.total_price += current_cart.price
+        current_cart.total_price += book.selected_price
         db.session.add(add_item)
         db.session.commit()
         return add_item.to_dict()

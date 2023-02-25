@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
-import { getOneBook, deleteABook } from '../../store/books';
+import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
@@ -65,6 +65,10 @@ const BookDetails = () => {
   }
 
 
+  const selectBookPrice = async(book) => {
+    await dispatch(updateBookPrice(book))
+  }
+
   function dateFix (string) {
     const array = string.split('-')
     const newArray = []
@@ -117,7 +121,7 @@ const today = new Date()
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-      <button className='book-details-paperback-price' onClick={book.selected_price === book.price_paperback}>
+      <button className='book-details-paperback-price' onClick={() => selectBookPrice(book)}>
        <div>
        Paperback
        </div>
@@ -126,7 +130,7 @@ const today = new Date()
       </div>
 
       </button>
-      <button className='book-details-hardcover-price' onClick={book.selected_price === book.price_hardcover}>
+      <button className='book-details-hardcover-price' onClick={() => selectBookPrice(book)}>
        <div>
        Hardcover
        </div>
@@ -135,7 +139,7 @@ const today = new Date()
       </div>
       </button>
 
-      <button className='book-details-eBook-price' onClick={book.selected_price === book.price_hardcover}>
+      <button className='book-details-eBook-price' onClick={() => selectBookPrice(book)}>
         <div>
        eBook
        </div>

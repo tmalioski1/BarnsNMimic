@@ -194,3 +194,47 @@ def delete_review(review_id):
     db.session.commit()
 
     return {"message": 'successfully deleted'}
+
+
+
+
+@book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
+
+def book_price(id):
+    book = Book.query.get(id)
+    if not book:
+         return jsonify({'error': 'Book not found'}), 404
+
+
+    request_data = request.get_json()
+    selected_format = request_data.get('selected_format')
+
+    if selected_format == 'paperback':
+        selected_price = book.paperback_price
+    elif selected_format == 'hardcover':
+        selected_price = book.hardcover_price
+    elif selected_format == 'eBook':
+         selected_price = book.eBook_price
+    else:
+        # Return 400 Bad Request response if user selection is invalid
+        return jsonify({'error': 'Invalid book format'}), 400
+
+    # Update book data with selected price and return updated book as response
+    book.selected_price = selected_price
+    return jsonify({
+        'id': book.id,
+        'title': book.title,
+        'author': book.author,
+        'paperback_price': book.paperback_price,
+        'hardcover_price': book.hardcover_price,
+        'eBook_price': book.eBook_price,
+        'genre': book.genre,
+        'overview': book.overview,
+        'editorial_review': book.editorial_review,
+        'publication_date': book.publication_date,
+        'publisher': book.publisher,
+        'cover_art': book.cover_art,
+        'pages': book.pages,
+        'selected_format': selected_format,
+        'selected_price': book.selected_price
+    })
