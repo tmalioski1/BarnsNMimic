@@ -200,8 +200,12 @@ def delete_review(review_id):
 
 @book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
 
-def book_price(id):
-    book = Book.query.get(id)
+def book_price(book_id):
+    book = Book.query.get(book_id)
+    # print('this is the book in the backend route-----', book)
+    # print('this is the book_id in the backend route-----', book_id)
+    print('this is the request for updating price----', request.get_json())
+
     if not book:
          return jsonify({'error': 'Book not found'}), 404
 
@@ -210,24 +214,25 @@ def book_price(id):
     selected_format = request_data.get('selected_format')
 
     if selected_format == 'paperback':
-        selected_price = book.paperback_price
+        selected_price = book.price_paperback
     elif selected_format == 'hardcover':
-        selected_price = book.hardcover_price
+        selected_price = book.price_hardcover
     elif selected_format == 'eBook':
-         selected_price = book.eBook_price
+         selected_price = book.price_eBook
     else:
         # Return 400 Bad Request response if user selection is invalid
         return jsonify({'error': 'Invalid book format'}), 400
 
     # Update book data with selected price and return updated book as response
     book.selected_price = selected_price
+    db.session.commit()
     return jsonify({
         'id': book.id,
         'title': book.title,
         'author': book.author,
-        'paperback_price': book.paperback_price,
-        'hardcover_price': book.hardcover_price,
-        'eBook_price': book.eBook_price,
+        'paperback_price': book.price_paperback,
+        'hardcover_price': book.price_hardcover,
+        'eBook_price': book.price_eBook,
         'genre': book.genre,
         'overview': book.overview,
         'editorial_review': book.editorial_review,

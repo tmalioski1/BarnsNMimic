@@ -83,7 +83,7 @@ export const getAllBooks = () => async (dispatch) => {
   }
 
   export const updateBookPrice = (book) => async dispatch => {
-    console.log('this is the book---', book.id)
+    console.log('this is the book selected format---', book.selected_format)
     const response = await fetch(`/api/books/selected_price/${book.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

@@ -121,7 +121,10 @@ const today = new Date()
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-      <button className='book-details-paperback-price' onClick={() => selectBookPrice(book)}>
+      <button className='book-details-paperback-price' onClick={() => {
+        book['selected_format'] = 'paperback'
+        selectBookPrice(book)}
+        }>
        <div>
        Paperback
        </div>
@@ -130,7 +133,10 @@ const today = new Date()
       </div>
 
       </button>
-      <button className='book-details-hardcover-price' onClick={() => selectBookPrice(book)}>
+      <button className='book-details-hardcover-price' onClick={() => {
+        book['selected_format'] = 'hardcover'
+        selectBookPrice(book)}
+        }>
        <div>
        Hardcover
        </div>
@@ -139,7 +145,10 @@ const today = new Date()
       </div>
       </button>
 
-      <button className='book-details-eBook-price' onClick={() => selectBookPrice(book)}>
+      <button className='book-details-eBook-price' onClick={() => {
+        book['selected_format'] = 'eBook'
+        selectBookPrice(book)}
+        }>
         <div>
        eBook
        </div>

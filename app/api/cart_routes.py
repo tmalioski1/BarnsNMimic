@@ -35,7 +35,7 @@ def add_cart(id):
 
     book = Book.query.get(id)
     add_item = Cart_Item.query.filter(Cart_Item.book_id == book.id).first()
-
+   
     if not add_item:
         add_item = Cart_Item(
             book_id=book.id,
@@ -45,6 +45,8 @@ def add_cart(id):
             total_item_price=book.selected_price
 
         )
+        print("this is the cart's total price", current_cart.total_price)
+        print("this is the book's selected price", book.selected_price)
         current_cart.total_price += book.selected_price
         db.session.add(add_item)
         db.session.commit()
