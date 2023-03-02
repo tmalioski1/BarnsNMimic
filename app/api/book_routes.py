@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Book, Review, db
+from app.models import Book, Price, book_prices, Review, db
 from ..forms.book_form import BookForm
+from ..forms.price_form import PriceForm
 from ..forms.review_form import ReviewForm
 from app.aws_functionality import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -20,8 +21,7 @@ def all_reviews(id):
 @book_routes.route('/')
 def all_books():
     books = Book.query.all()
-
-    return {'books': [book.to_dict() for book in books]}
+    return jsonify({'books': [book.to_dict() for book in books]})
 
 
 #get a book by ID for book details page
@@ -39,9 +39,12 @@ def book(id):
 @book_routes.route('/', methods = ['POST'])
 @login_required
 def new_book():
-    form = BookForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data-----', form.data)
+    book_form = BookForm()
+    book_form['csrf_token'].data = request.cookies['csrf_token']
+    price_form = PriceForm()
+    price_form['csrf_token'].data = request.cookies['csrf_token']
+    print('book_form.data-----',  book_form.data)
+    print('price_form.data-----',  price_form.data)
 
     if "cover_art" not in request.files:
          print("request.files---", request.files)
@@ -54,7 +57,7 @@ def new_book():
 
     print('pre validation--------')
 
-    if form.validate_on_submit():
+    if  book_form.validate_on_submit() and price_form.validate_on_submit():
         print('past validation--------')
         cover_art.filename = get_unique_filename(cover_art.filename)
         print('this is the coverart--------', cover_art)
@@ -68,18 +71,21 @@ def new_book():
             return upload, 400
 
         url = upload["url"]
-
+        new_price= Price()
+        price_form.populate_obj(new_price)
         new_book = Book()
-        form.populate_obj(new_book)
+        book_form.populate_obj(new_book)
+        new_book.prices=[new_price]
         new_book.cover_art = url
+        db.session.add(new_price)
         db.session.add(new_book)
         db.session.commit()
         return new_book.to_dict(), 201
 
-    if form.errors:
+    if  book_form.errors:
         print('here is an error')
         return {
-            "errors": form.errors
+            "errors":  book_form.errors
 
         }, 400
 
@@ -109,13 +115,15 @@ def post_review(id):
 
 
 # update book by id
-@book_routes.route('/<int:book_id>', methods=['PUT'])
+@book_routes.route('/<int:book_id>', methods=['PATCH'])
 @login_required
 def update_book(book_id):
 
 
-    form = BookForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    book_form = BookForm()
+    book_form['csrf_token'].data = request.cookies['csrf_token']
+    price_form = PriceForm()
+    price_form['csrf_token'].data = request.cookies['csrf_token']
 
     if "cover_art" not in request.files:
          print("request.files---", request.files)
@@ -126,7 +134,7 @@ def update_book(book_id):
     if not allowed_file(cover_art.filename):
         return {"errors": "file type not permitted"}, 400
 
-    if form.validate_on_submit():
+    if book_form.validate_on_submit() and price_form.validate_on_submit():
         print('edit past validation--------')
         cover_art.filename = get_unique_filename(cover_art.filename)
         print('edit this is the coverart--------', cover_art)
@@ -141,10 +149,13 @@ def update_book(book_id):
 
         url = upload["url"]
 
-
+        new_price= Price()
+        price_form.populate_obj(new_price)
         current_book = Book.query.get(book_id)
-        form.populate_obj(current_book)
+        book_form.populate_obj(current_book)
+        current_book.prices = [new_price]
         current_book.cover_art = url
+        db.session.add(new_price)
         db.session.add(current_book)
         db.session.commit()
         return current_book.to_dict(), 201
@@ -198,48 +209,48 @@ def delete_review(review_id):
 
 
 
-@book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
+# @book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
 
-def book_price(book_id):
-    book = Book.query.get(book_id)
-    # print('this is the book in the backend route-----', book)
-    # print('this is the book_id in the backend route-----', book_id)
-    print('this is the request for updating price----', request.get_json())
+# def book_price(book_id):
+#     book = Book.query.get(book_id)
+#     # print('this is the book in the backend route-----', book)
+#     # print('this is the book_id in the backend route-----', book_id)
+#     print('this is the request for updating price----', request.get_json())
 
-    if not book:
-         return jsonify({'error': 'Book not found'}), 404
+#     if not book:
+#          return jsonify({'error': 'Book not found'}), 404
 
 
-    request_data = request.get_json()
-    selected_format = request_data.get('selected_format')
+#     request_data = request.get_json()
+#     selected_format = request_data.get('selected_format')
 
-    if selected_format == 'paperback':
-        selected_price = book.price_paperback
-    elif selected_format == 'hardcover':
-        selected_price = book.price_hardcover
-    elif selected_format == 'eBook':
-         selected_price = book.price_eBook
-    else:
-        # Return 400 Bad Request response if user selection is invalid
-        return jsonify({'error': 'Invalid book format'}), 400
+#     if selected_format == 'paperback':
+#         selected_price = book.price_paperback
+#     elif selected_format == 'hardcover':
+#         selected_price = book.price_hardcover
+#     elif selected_format == 'eBook':
+#          selected_price = book.price_eBook
+#     else:
+#         # Return 400 Bad Request response if user selection is invalid
+#         return jsonify({'error': 'Invalid book format'}), 400
 
-    # Update book data with selected price and return updated book as response
-    book.selected_price = selected_price
-    db.session.commit()
-    return jsonify({
-        'id': book.id,
-        'title': book.title,
-        'author': book.author,
-        'paperback_price': book.price_paperback,
-        'hardcover_price': book.price_hardcover,
-        'eBook_price': book.price_eBook,
-        'genre': book.genre,
-        'overview': book.overview,
-        'editorial_review': book.editorial_review,
-        'publication_date': book.publication_date,
-        'publisher': book.publisher,
-        'cover_art': book.cover_art,
-        'pages': book.pages,
-        'selected_format': selected_format,
-        'selected_price': book.selected_price
-    })
+#     # Update book data with selected price and return updated book as response
+#     book.selected_price = selected_price
+#     db.session.commit()
+#     return jsonify({
+#         'id': book.id,
+#         'title': book.title,
+#         'author': book.author,
+#         'paperback_price': book.price_paperback,
+#         'hardcover_price': book.price_hardcover,
+#         'eBook_price': book.price_eBook,
+#         'genre': book.genre,
+#         'overview': book.overview,
+#         'editorial_review': book.editorial_review,
+#         'publication_date': book.publication_date,
+#         'publisher': book.publisher,
+#         'cover_art': book.cover_art,
+#         'pages': book.pages,
+#         'selected_format': selected_format,
+#         'selected_price': book.selected_price
+#     })

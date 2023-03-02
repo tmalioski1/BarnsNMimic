@@ -7,6 +7,7 @@ import './editbookmodal.css'
 
 
 function EditBookModal(currentBookId) {
+    const sessionUser = useSelector(state => state.session.user);
     const bookId = currentBookId.currentBookId
     const dispatch = useDispatch();
     const history = useHistory();
@@ -27,12 +28,14 @@ function EditBookModal(currentBookId) {
 
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [imageLoading, setImageLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const {closeModal} = useModal()
 
 
     useEffect(()=> {
       const errors = [];
-      if (!price_paperback || !price_hardcover || !price_eBook) errors.push('All book types must have a price')
+      if (!price_paperback && !price_hardcover && !price_eBook) errors.push('Book must have at least one price')
       setValidationErrors(errors);
     }, [price_paperback, price_hardcover, price_eBook])
 
@@ -41,7 +44,20 @@ function EditBookModal(currentBookId) {
         e.preventDefault()
         setHasSubmitted(true);
         if (validationErrors.length) return alert(`Cannot Submit`);
-
+        const formData = new FormData()
+        formData.append('publisher_id', sessionUser.id)
+        formData.append('title', title)
+        formData.append('author', author)
+        formData.append('price_paperback', price_paperback)
+        formData.append('price_hardcover', price_hardcover)
+        formData.append('price_eBook', price_eBook)
+        formData.append('genre', genre)
+        formData.append('overview', overview)
+        formData.append('editorial_review', editorial_review)
+        formData.append('publication_date', publication_date)
+        formData.append('publisher', publisher)
+        formData.append('cover_art', cover_art)
+        formData.append('pages', pages)
 
         const payload = {
           bookId,
@@ -62,7 +78,7 @@ function EditBookModal(currentBookId) {
         }
 
 
-        const editedBook = await dispatch(updateABook(payload, bookId))
+        const editedBook = await dispatch(updateABook(formData, bookId))
         .catch(
           async (res) => {
             const data = await res.json()
@@ -73,8 +89,13 @@ function EditBookModal(currentBookId) {
         if(editedBook) {
           (closeModal)
           (history.push(`/books/${bookId}`))
+        }else{
+          setImageLoading(false);
+          // a real app would probably use more advanced
+          // error handling
+          console.log("error");
         }
-      }
+    }
 
 
 
@@ -136,7 +157,6 @@ function EditBookModal(currentBookId) {
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
-             required
 
             />
             </label>
@@ -150,7 +170,6 @@ function EditBookModal(currentBookId) {
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardcover(e.target.value)}
-             required
             />
             </label>
 
@@ -163,7 +182,6 @@ function EditBookModal(currentBookId) {
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}
-             required
             />
             </label>
 
@@ -228,16 +246,17 @@ function EditBookModal(currentBookId) {
             />
             </label>
 
-            <label>
-            Cover Art
+            <div id='upload-form-coverArt'>
+             <label id='upload-form-coverArt-label' for="upload-cover-art">Upload Cover Art</label>
             <input
-             type="url"
-             value={cover_art}
+             type="file"
+             accept="image/png, image/jpeg, image/jpg"
              placeholder= 'Cover Art'
-             onChange={(e) => setCoverArt(e.target.value)}
+             onChange={(e) => setCoverArt(e.target.files[0])}
              required
+             name='cover_art'
             />
-            </label>
+             </div>
 
             <label>
             Pages
