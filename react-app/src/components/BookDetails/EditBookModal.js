@@ -157,7 +157,7 @@ function EditBookModal(currentBookId) {
              value={price_paperback}
              placeholder= '$'
              onChange={(e) => setPricePaperback(e.target.value)}
-
+             required
             />
             </label>
 
@@ -170,6 +170,7 @@ function EditBookModal(currentBookId) {
              value={price_hardcover}
              placeholder= '$'
              onChange={(e) => setPriceHardcover(e.target.value)}
+             required
             />
             </label>
 
@@ -182,6 +183,7 @@ function EditBookModal(currentBookId) {
              value={price_eBook}
              placeholder= '$'
              onChange={(e) => setPriceeBook(e.target.value)}
+             required
             />
             </label>
 

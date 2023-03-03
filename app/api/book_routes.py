@@ -160,6 +160,7 @@ def update_book(book_id):
         db.session.commit()
         return current_book.to_dict(), 201
 
+    return 'hello'
 
 
 
