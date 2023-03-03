@@ -70,7 +70,7 @@ export const getAllBooks = () => async (dispatch) => {
 
   export const updateABook = (payload, bookId) => async dispatch => {
     const response = await fetch(`/api/books/${bookId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })

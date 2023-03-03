@@ -158,6 +158,7 @@ def update_book(book_id):
         db.session.add(new_price)
         db.session.add(current_book)
         db.session.commit()
+        print(current_book.to_dict())
         return current_book.to_dict(), 201
 
     return 'hello'
