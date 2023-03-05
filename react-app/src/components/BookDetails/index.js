@@ -171,7 +171,7 @@ const today = new Date()
             onClick={() => handleDeletion(bookData[0].id)}>DELETE BOOK</button>}
               {userObj?.id === bookData[0].publisher_id &&
                 <OpenModalButton
-                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
+                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` }  />}
                  buttonText={'Edit Book'}
               />}
           </div>

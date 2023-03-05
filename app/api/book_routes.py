@@ -115,7 +115,7 @@ def post_review(id):
 
 
 # update book by id
-@book_routes.route('/<int:book_id>', methods=['PATCH'])
+@book_routes.route('/<int:book_id>', methods=['PUT'])
 @login_required
 def update_book(book_id):
 
@@ -150,6 +150,7 @@ def update_book(book_id):
         url = upload["url"]
 
         new_price= Price()
+        print('this is the new_price---', new_price)
         price_form.populate_obj(new_price)
         current_book = Book.query.get(book_id)
         book_form.populate_obj(current_book)

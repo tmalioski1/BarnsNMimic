@@ -12,18 +12,20 @@ function EditBookModal(currentBookId) {
     const dispatch = useDispatch();
     const history = useHistory();
     const booksObj = useSelector(state => state.books.singleBook.book)
+    const bookPrices = booksObj?.prices[0]
     const [publisher_id, setPublisherId] = useState(booksObj.publisher_id)
     const [title, setTitle] = useState(booksObj.title)
     const [author, setAuthor] = useState(booksObj.author)
-    const [price_paperback, setPricePaperback] = useState(booksObj?.price_paperback)
-    const [price_hardcover, setPriceHardcover] = useState(booksObj?.price_hardcover)
-    const [price_eBook, setPriceeBook] = useState(booksObj?.price_eBook)
+    const [price_paperback, setPricePaperback] = useState(bookPrices?.price_paperback)
+    const [price_hardcover, setPriceHardcover] = useState(bookPrices?.price_hardcover)
+    const [price_eBook, setPriceeBook] = useState(bookPrices?.price_eBook)
     const [genre, setGenre] = useState(booksObj.genre)
     const [overview, setOverview] = useState(booksObj.overview)
     const [editorial_review, setEditorialReview] = useState(booksObj.editorial_review)
     const [publication_date, setPublicationDate] = useState(booksObj.publication_date)
     const [publisher, setPublisher] = useState(booksObj.publisher)
-    const [cover_art, setCoverArt] = useState(booksObj.cover_art)
+    const [cover_art, setCoverArt] = useState(booksObj?.cover_art)
+    console.log('this is the cover art---', booksObj?.cover_art)
     const [pages, setPages] = useState(booksObj.pages)
 
     const [validationErrors, setValidationErrors] = useState([])
@@ -79,12 +81,7 @@ function EditBookModal(currentBookId) {
 
 
         const editedBook = await dispatch(updateABook(formData, bookId))
-        .catch(
-          async (res) => {
-            const data = await res.json()
-            if(data && data.errors) setValidationErrors(data.errors)
-          }
-        )
+
 
         if(editedBook) {
           (closeModal)
