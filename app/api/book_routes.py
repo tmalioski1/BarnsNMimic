@@ -119,6 +119,9 @@ def post_review(id):
 @login_required
 def update_book(book_id):
 
+    book = Book.query.get(book_id)
+    if not book:
+        return {"errors": "Book not found"}, 404
 
     book_form = BookForm()
     book_form['csrf_token'].data = request.cookies['csrf_token']
@@ -134,33 +137,39 @@ def update_book(book_id):
     if not allowed_file(cover_art.filename):
         return {"errors": "file type not permitted"}, 400
 
-    if book_form.validate_on_submit() and price_form.validate_on_submit():
-        print('edit past validation--------')
-        cover_art.filename = get_unique_filename(cover_art.filename)
-        print('edit this is the coverart--------', cover_art)
-        upload = upload_file_to_s3(cover_art)
-        print('edit upload--------', upload)
-        if "url" not in upload:
-            print('edit is the url not in upload?---')
+    if not book_form.validate_on_submit() or not price_form.validate_on_submit():
+        return {"errors": book_form.errors}, 400
+
+
+    cover_art.filename = get_unique_filename(cover_art.filename)
+    upload = upload_file_to_s3(cover_art)
+    if "url" not in upload:
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
             return upload, 400
 
-        url = upload["url"]
+    url = upload["url"]
 
-        # new_price= Price()
-        # print('this is the new_price---', new_price)
-        # price_form.populate_obj(new_price)
-        current_book = Book.query.get(book_id)
-        book_form.populate_obj(current_book)
-        # current_book.prices = [new_price]
-        current_book.cover_art = url
-        # db.session.add(new_price)
-        db.session.add(current_book)
-        db.session.commit()
-        print(current_book.to_dict())
-        return current_book.to_dict(), 201
+    # Update Book details
+    book_form.populate_obj(book)
+    book.cover_art = url
+    db.session.add(book)
+
+    # Update Price
+    new_price = Price()
+    price_form.populate_obj(new_price)
+    db.session.add(new_price)
+    db.session.flush()
+
+    # Update join table entry
+    book_price = book_prices.update().where(
+        book_prices.c.book_id == book_id).values(price_id=new_price.id)
+    db.session.execute(book_price)
+
+    db.session.commit()
+    return book.to_dict(), 200
+
 
 
 
