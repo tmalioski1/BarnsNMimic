@@ -149,20 +149,19 @@ def update_book(book_id):
 
         url = upload["url"]
 
-        new_price= Price()
-        print('this is the new_price---', new_price)
-        price_form.populate_obj(new_price)
+        # new_price= Price()
+        # print('this is the new_price---', new_price)
+        # price_form.populate_obj(new_price)
         current_book = Book.query.get(book_id)
         book_form.populate_obj(current_book)
-        current_book.prices = [new_price]
+        # current_book.prices = [new_price]
         current_book.cover_art = url
-        db.session.add(new_price)
+        # db.session.add(new_price)
         db.session.add(current_book)
         db.session.commit()
         print(current_book.to_dict())
         return current_book.to_dict(), 201
 
-    return 'hello'
 
 
 
