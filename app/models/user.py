@@ -18,6 +18,10 @@ class User(db.Model, UserMixin):
 
     reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='user')
     books = db.relationship("Book", back_populates='user')
+    cart = db.relationship('Cart', back_populates='user',
+                           cascade='all, delete-orphan')
+    order = db.relationship('Order', back_populates='user',
+                            cascade='all, delete-orphan')
 
 
     @property

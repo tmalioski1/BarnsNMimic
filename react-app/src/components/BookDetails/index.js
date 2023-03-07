@@ -2,12 +2,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
-import { getOneBook, deleteABook } from '../../store/books';
+import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
+import CartModal from './CartModal'
 import './bookdetails.css';
+import { addItemToCart } from '../../store/carts';
 
 
 const BookDetails = () => {
@@ -16,6 +18,8 @@ const BookDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
+  const book = bookData[0]
+  const [isCartOpen, setIsCartOpen] = useState(true);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
@@ -55,6 +59,15 @@ const BookDetails = () => {
     }
   }
 
+  const handleAdditiontoCart = async (e, book) => {
+    e.preventDefault();
+    await dispatch(addItemToCart(book))
+  }
+
+
+  const selectBookPrice = async(book) => {
+    await dispatch(updateBookPrice(book))
+  }
 
   function dateFix (string) {
     const array = string.split('-')
@@ -83,7 +96,6 @@ const BookDetails = () => {
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
 
-console.log(today > publicationDate)
 
 
   return (
@@ -109,31 +121,48 @@ console.log(today > publicationDate)
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-      <div className='book-details-paperback-price'>
+    {bookData[0]?.prices[0]?.price_paperback !== null &&
+      <button className='book-details-paperback-price' onClick={() => {
+        book['selected_format'] = 'paperback'
+        selectBookPrice(book)}
+        }>
        <div>
        Paperback
        </div>
        <div className='price-to-bold'>
-      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2): 0.0}
+
+      {'$' +bookData[0]?.prices[0]?.price_paperback.toFixed(2)}
       </div>
-      </div>
-      <div className='book-details-hardcover-price'>
+
+      </button>
+}
+    {bookData[0]?.prices[0]?.price_hardcover !== null &&
+      <button className='book-details-hardcover-price' onClick={() => {
+        book['selected_format'] = 'hardcover'
+        selectBookPrice(book)}
+        }>
        <div>
        Hardcover
        </div>
        <div className='price-to-bold'>
-      {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2): 0.0}
+      {'$' +bookData[0]?.prices[0]?.price_hardcover.toFixed(2)}
       </div>
-      </div>
-
-      <div className='book-details-eBook-price'>
+      </button>
+}
+      {bookData[0]?.prices[0]?.price_eBook !== null &&
+      <button className='book-details-eBook-price' onClick={() => {
+        book['selected_format'] = 'eBook'
+        selectBookPrice(book)}
+        }>
         <div>
        eBook
        </div>
        <div className='price-to-bold'>
-      {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2): 0.0}
+
+      {'$' +bookData[0]?.prices[0]?.price_eBook.toFixed(2)}
       </div>
-      </div>
+      </button>
+}
       </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
@@ -142,9 +171,21 @@ console.log(today > publicationDate)
             onClick={() => handleDeletion(bookData[0].id)}>DELETE BOOK</button>}
               {userObj?.id === bookData[0].publisher_id &&
                 <OpenModalButton
-                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
+                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` }  />}
                  buttonText={'Edit Book'}
               />}
+          </div>
+          <div className='book-add-to-cart'>
+
+              {userObj?.id !== bookData[0].publisher_id &&
+              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(e, book).then(() => setIsCartOpen(true))}>
+                <OpenModalButton
+                 buttonText={'ADD TO CART'}
+                 onButtonClick={() => setIsCartOpen(true)}
+                 modalComponent={<CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } />}
+
+              />
+              </button>}
           </div>
           </div>
           </div>

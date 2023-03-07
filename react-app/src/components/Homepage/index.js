@@ -11,8 +11,7 @@ const Homepage = () => {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
-
-
+    console.log('this is books---', books)
     const fictionBooks = books.filter(book => book.genre === 'Fiction')
     const nonFictionBooks = books.filter(book => book.genre === 'Non-Fiction')
     const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')

@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .book_price import book_prices
+
 
 
 class Book(db.Model):
@@ -11,9 +13,6 @@ class Book(db.Model):
   publisher_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(255), nullable=False)
   author = db.Column(db.String(255), nullable=False)
-  price_paperback = db.Column(db.Float, nullable=True)
-  price_hardcover = db.Column(db.Float, nullable=True)
-  price_eBook = db.Column(db.Float, nullable=True)
   genre = db.Column(db.String(255), nullable=True)
   overview = db.Column(db.String(5000), nullable=True)
   editorial_review = db.Column(db.String(5000), nullable=True)
@@ -22,8 +21,11 @@ class Book(db.Model):
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
 
+  prices = db.relationship('Price', secondary=book_prices, backref='books')
+  cart_item = db.relationship("Cart_Item", uselist=False, back_populates="book")
   reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
+
 
 
   def to_dict(self):
@@ -32,9 +34,6 @@ class Book(db.Model):
       'publisher_id': self.publisher_id,
       'title': self.title,
       'author': self.author,
-      'price_paperback': self.price_paperback,
-      'price_hardcover': self.price_hardcover,
-      'price_eBook': self.price_eBook,
       'genre': self.genre,
       'overview': self.overview,
       'editorial_review': self.editorial_review,
@@ -42,5 +41,5 @@ class Book(db.Model):
       'publisher': self.publisher,
       'cover_art': self.cover_art,
       'pages': self.pages,
+      'prices': [price.to_dict() for price in self.prices]
   }
-
