@@ -1,13 +1,12 @@
 """empty message
 
-Revision ID: 2a33857df694
+Revision ID: 5526c3e02942
 Revises:
-Create Date: 2023-03-01 16:46:37.864510
+Create Date: 2023-03-06 21:12:02.769458
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
@@ -30,6 +29,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE prices SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=50), nullable=False),
@@ -82,7 +82,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE book_prices SET SCHEMA {SCHEMA};")
-        
+
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('cart_id', sa.Integer(), nullable=False),
