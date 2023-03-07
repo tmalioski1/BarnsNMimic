@@ -25,7 +25,6 @@ function EditBookModal(currentBookId) {
     const [publication_date, setPublicationDate] = useState(booksObj.publication_date)
     const [publisher, setPublisher] = useState(booksObj.publisher)
     const [cover_art, setCoverArt] = useState(booksObj?.cover_art)
-    console.log('this is the cover art---', booksObj?.cover_art)
     const [pages, setPages] = useState(booksObj.pages)
 
     const [validationErrors, setValidationErrors] = useState([])

@@ -32,7 +32,7 @@ def book(id):
     if not book:
         return {"errors": "Book not found"}, 404
 
-    return {'book': book.to_dict()} , 200
+    return {'book': book.to_dict()}, 200
 
 
 #post a book
