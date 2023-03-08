@@ -220,48 +220,48 @@ def delete_review(review_id):
 
 
 
-@book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
+# @book_routes.route('/selected_price/<int:book_id>', methods = ['PUT'])
 
-def book_price(book_id):
-    book = Book.query.get(book_id)
-    # print('this is the book in the backend route-----', book)
-    # print('this is the book_id in the backend route-----', book_id)
-    print('this is the request for updating price----', request.get_json())
+# def book_price(book_id):
+#     book = Book.query.get(book_id)
+#     # print('this is the book in the backend route-----', book)
+#     # print('this is the book_id in the backend route-----', book_id)
+#     print('this is the request for updating price----', request.get_json())
 
-    if not book:
-         return jsonify({'error': 'Book not found'}), 404
+#     if not book:
+#          return jsonify({'error': 'Book not found'}), 404
 
 
-    request_data = request.get_json()
-    selected_format = request_data.get('selected_format')
+#     request_data = request.get_json()
+#     selected_format = request_data.get('selected_format')
 
-    if selected_format == 'paperback':
-        selected_price = book.price_paperback
-    elif selected_format == 'hardcover':
-        selected_price = book.price_hardcover
-    elif selected_format == 'eBook':
-         selected_price = book.price_eBook
-    else:
-        # Return 400 Bad Request response if user selection is invalid
-        return jsonify({'error': 'Invalid book format'}), 400
+#     if selected_format == 'paperback':
+#         selected_price = book.price_paperback
+#     elif selected_format == 'hardcover':
+#         selected_price = book.price_hardcover
+#     elif selected_format == 'eBook':
+#          selected_price = book.price_eBook
+#     else:
+#         # Return 400 Bad Request response if user selection is invalid
+#         return jsonify({'error': 'Invalid book format'}), 400
 
-    # Update book data with selected price and return updated book as response
-    book.selected_price = selected_price
-    db.session.commit()
-    return jsonify({
-        'id': book.id,
-        'title': book.title,
-        'author': book.author,
-        'paperback_price': book.price_paperback,
-        'hardcover_price': book.price_hardcover,
-        'eBook_price': book.price_eBook,
-        'genre': book.genre,
-        'overview': book.overview,
-        'editorial_review': book.editorial_review,
-        'publication_date': book.publication_date,
-        'publisher': book.publisher,
-        'cover_art': book.cover_art,
-        'pages': book.pages,
-        'selected_format': selected_format,
-        'selected_price': book.selected_price
-    })
+#     # Update book data with selected price and return updated book as response
+#     book.selected_price = selected_price
+#     db.session.commit()
+#     return jsonify({
+#         'id': book.id,
+#         'title': book.title,
+#         'author': book.author,
+#         'paperback_price': book.price_paperback,
+#         'hardcover_price': book.price_hardcover,
+#         'eBook_price': book.price_eBook,
+#         'genre': book.genre,
+#         'overview': book.overview,
+#         'editorial_review': book.editorial_review,
+#         'publication_date': book.publication_date,
+#         'publisher': book.publisher,
+#         'cover_art': book.cover_art,
+#         'pages': book.pages,
+#         'selected_format': selected_format,
+#         'selected_price': book.selected_price
+#     })

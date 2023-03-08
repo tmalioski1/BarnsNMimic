@@ -66,7 +66,7 @@ const BookDetails = () => {
 
 
   const selectBookPrice = async(book) => {
-    await dispatch(updateBookPrice(book))
+    await dispatch(addItemToCart(book))
   }
 
   function dateFix (string) {

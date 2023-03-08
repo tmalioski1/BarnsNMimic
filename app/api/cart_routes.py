@@ -1,5 +1,5 @@
 
-from flask import Blueprint, session
+from flask import Blueprint, session, request
 from flask_login import login_required, current_user
 from app.models import db, Cart, Book, Cart_Item, Order
 from sqlalchemy.orm import joinedload
@@ -33,33 +33,37 @@ def add_cart(id):
             db.session.add(current_cart)
             db.session.commit()
 
+    data = request.json
     book = Book.query.get(id)
-    add_item = Cart_Item.query.filter(Cart_Item.book_id == book.id).first()
-   
-    if not add_item:
-        add_item = Cart_Item(
-            book_id=book.id,
-            cart_id=current_cart.id,
-            quantity=1,
-            price = book.selected_price,
-            total_item_price=book.selected_price
+    price_format = data.get('price_format')
 
-        )
-        print("this is the cart's total price", current_cart.total_price)
-        print("this is the book's selected price", book.selected_price)
-        current_cart.total_price += book.selected_price
-        db.session.add(add_item)
-        db.session.commit()
-        return add_item.to_dict()
-
-
+    if price_format == 'price_paperback':
+        price = book.prices[0].price_paperback
+    elif price_format == 'price_hardcover':
+        price = book.prices[0].price_hardcover
+    elif price_format == 'price_eBook':
+        price = book.prices[0].price_eBook
     else:
-        add_item.quantity += 1
-        add_item.total_item_price += book.selected_price
-        current_cart.total_price += book.selected_price
-        db.session.add(add_item)
-        db.session.commit()
-        return add_item.to_dict()
+        return {'error': 'Invalid price format'}
+
+    cart_item = Cart_Item(
+        book_id=id,
+        quantity=1,
+        price=price,
+        total_item_price=price
+    )
+
+    current_cart.cart_items.append(cart_item)
+    current_cart.cart.total_price += price
+    db.session.add(cart_item)
+    db.session.commit()
+
+    return current_cart.to_dict(), 201
+
+
+
+
+
 
 
 @cart_routes.route('/addItem/<int:id>', methods=['POST'])
