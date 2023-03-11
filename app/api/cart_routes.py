@@ -9,11 +9,6 @@ from sqlalchemy.orm import joinedload
 cart_routes = Blueprint('cart', __name__)
 
 
-@cart_routes.route('/')
-def get_cart():
-    cart_items = Cart_Item.query.all()
-    return {'cartItems': [cart_items.to_dict() for cart_items in cart_items]}, 200
-
 
 @cart_routes.route('/newItem/<int:id>', methods = ['POST'])
 def add_cart(id):
@@ -59,6 +54,7 @@ def add_cart(id):
     db.session.commit()
 
     return current_cart.to_dict(), 201
+
 
 
 
