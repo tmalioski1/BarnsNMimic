@@ -8,15 +8,18 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'),  nullable=False)
-    cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')),  nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id')),  nullable=False)
+    order_number = db.Column(db.String, nullable=False)
+    date_time = db.Column(db.String(255), nullable=False)
 
-    cart = db.relationship('Cart', back_populates='order')
-    user = db.relationship('User', back_populates='order')
+    books = db.relationship('Cart', back_populates='order')
+    user = db.relationship('User', back_populates='orders')
 
     def to_dict(self):
         return{
             "id": self.id,
             "user_id": self.user_id,
-            "cart_id": self.cart_id,
-
+            "book_id": self.book_id,
+            'orderNumber': self.order_number,
+            'dateTime': self.date_time,
         }

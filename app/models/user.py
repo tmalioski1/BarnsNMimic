@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
                            cascade='all, delete-orphan')
     order = db.relationship('Order', back_populates='user',
                             cascade='all, delete-orphan')
+    user_wishlists = db.relationship('Wishlist', back_populates='user')
 
 
     @property

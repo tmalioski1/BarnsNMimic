@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Book, Price, book_prices, Review, db
+from app.models import Book, Review, db
 from ..forms.book_form import BookForm
-from ..forms.price_form import PriceForm
 from ..forms.review_form import ReviewForm
 from app.aws_functionality import (
     upload_file_to_s3, allowed_file, get_unique_filename)
