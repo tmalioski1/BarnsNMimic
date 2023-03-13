@@ -121,7 +121,7 @@ const today = new Date()
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-    {bookData[0]?.prices[0]?.price_paperback !== null &&
+    {bookData[0]?.price_paperback !== null &&
       <button className='book-details-paperback-price' onClick={() => {
         book['selected_format'] = 'paperback'
         selectBookPrice(book)}
@@ -131,12 +131,12 @@ const today = new Date()
        </div>
        <div className='price-to-bold'>
 
-      {'$' +bookData[0]?.prices[0]?.price_paperback.toFixed(2)}
+      {'$' +bookData[0]?.price_paperback.toFixed(2)}
       </div>
 
       </button>
 }
-    {bookData[0]?.prices[0]?.price_hardcover !== null &&
+    {bookData[0]?.price_hardcover !== null &&
       <button className='book-details-hardcover-price' onClick={() => {
         book['selected_format'] = 'hardcover'
         selectBookPrice(book)}
@@ -145,11 +145,11 @@ const today = new Date()
        Hardcover
        </div>
        <div className='price-to-bold'>
-      {'$' +bookData[0]?.prices[0]?.price_hardcover.toFixed(2)}
+      {'$' +bookData[0]?.price_hardcover.toFixed(2)}
       </div>
       </button>
 }
-      {bookData[0]?.prices[0]?.price_eBook !== null &&
+      {bookData[0]?.price_eBook !== null &&
       <button className='book-details-eBook-price' onClick={() => {
         book['selected_format'] = 'eBook'
         selectBookPrice(book)}
@@ -159,7 +159,7 @@ const today = new Date()
        </div>
        <div className='price-to-bold'>
 
-      {'$' +bookData[0]?.prices[0]?.price_eBook.toFixed(2)}
+      {'$' +bookData[0]?.price_eBook.toFixed(2)}
       </div>
       </button>
 }

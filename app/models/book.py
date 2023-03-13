@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .wishlist import wishlists
 
 
 
@@ -24,10 +25,9 @@ class Book(db.Model):
   pages = db.Column(db.Integer, nullable=True)
 
   cart = db.relationship("Cart", back_populates="books")
-  order = db.relationship("Order", back_populates="books")
   reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
-  wishlist = db.relationship('Wishlist', back_populates='books')
+  book_wishlists = db.relationship('User', secondary=wishlists, back_populates='user_wishlists')
 
 
   def to_dict(self):
