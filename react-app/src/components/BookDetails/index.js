@@ -20,6 +20,7 @@ const BookDetails = () => {
   const bookData = Object.values(bookObj)
   const book = bookData[0]
   const [isCartOpen, setIsCartOpen] = useState(true);
+  const [priceFormat, setPriceFormat] = useState("");
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
@@ -65,9 +66,9 @@ const BookDetails = () => {
   }
 
 
-  const selectBookPrice = async(book) => {
-    await dispatch(updateBookPrice(book))
-  }
+  // const selectBookPrice = async(book) => {
+  //   await dispatch(updateBookPrice(book))
+  // }
 
   function dateFix (string) {
     const array = string.split('-')
@@ -122,10 +123,9 @@ const today = new Date()
     </div>
     <div className= 'book-details-all-prices'>
     {bookData[0]?.price_paperback !== null &&
-      <button className='book-details-paperback-price' onClick={() => {
-        book['selected_format'] = 'paperback'
-        selectBookPrice(book)}
-        }>
+      <button className='book-details-paperback-price' onClick={() =>
+        setPriceFormat("Paperback")
+      }>
        <div>
        Paperback
        </div>
@@ -137,9 +137,7 @@ const today = new Date()
       </button>
 }
     {bookData[0]?.price_hardcover !== null &&
-      <button className='book-details-hardcover-price' onClick={() => {
-        book['selected_format'] = 'hardcover'
-        selectBookPrice(book)}
+      <button className='book-details-hardcover-price' onClick={() => setPriceFormat("Hardcover")
         }>
        <div>
        Hardcover
@@ -150,9 +148,7 @@ const today = new Date()
       </button>
 }
       {bookData[0]?.price_eBook !== null &&
-      <button className='book-details-eBook-price' onClick={() => {
-        book['selected_format'] = 'eBook'
-        selectBookPrice(book)}
+      <button className='book-details-eBook-price' onClick={() => setPriceFormat("eBook")
         }>
         <div>
        eBook
@@ -182,7 +178,7 @@ const today = new Date()
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
-                 modalComponent={<CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } />}
+                 modalComponent={<CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } currentBookId={book.id}/>}
 
               />
               </button>}
