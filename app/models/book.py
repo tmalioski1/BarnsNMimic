@@ -25,7 +25,7 @@ class Book(db.Model):
   pages = db.Column(db.Integer, nullable=True)
 
 
-  cart_item = db.relationship("Cart_Item", back_populates="book",  uselist=False, cascade="all, delete-orphan")
+  cart_item = db.relationship("CartItem", back_populates="book",  uselist=False, cascade="all, delete-orphan")
   reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
   book_wishlists = db.relationship('User', secondary=wishlists, back_populates='user_wishlists')
