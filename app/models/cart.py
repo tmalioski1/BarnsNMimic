@@ -9,7 +9,7 @@ class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), nullable=True, unique=True)
-    total_price = db.Column(db.Float, default=0)
+    total_price = db.Column(db.Float)
 
     user = db.relationship('User', back_populates='cart')
     order = db.relationship('Order', uselist= False, back_populates='cart')
