@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .wishlist import wishlists
 
 
 class User(db.Model, UserMixin):
@@ -18,10 +19,11 @@ class User(db.Model, UserMixin):
 
     reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='user')
     books = db.relationship("Book", back_populates='user')
-    cart = db.relationship('Cart', back_populates='user',
+    cart = db.relationship('Cart', back_populates='user', uselist=False,
                            cascade='all, delete-orphan')
     order = db.relationship('Order', back_populates='user',
                             cascade='all, delete-orphan')
+    user_wishlists = db.relationship('Book', secondary=wishlists, back_populates='book_wishlists')
 
 
     @property

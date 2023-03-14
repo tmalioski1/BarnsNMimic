@@ -6,19 +6,24 @@ class Cart(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
+    book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id')),  nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), nullable=True, unique=True)
-    total_price = db.Column(db.Float)
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    total_item_price = db.Column(db.Integer, nullable=False)
 
     user = db.relationship('User', back_populates='cart')
-    order = db.relationship('Order', uselist= False, back_populates='cart')
-    cart_items = db.relationship(
-        'Cart_Item', back_populates='cart', cascade='all, delete-orphan')
+    books = db.relationship('Book', back_populates='cart')
+    order = db.relationship('Order',  uselist=False, back_populates='cart')
 
     def to_dict(self):
-        return {
-            'id': self.id,
+        return{
+            "id": self.id,
+            "book_id": self.book_id,
             'user_id': self.user_id,
-            'total_price': self.total_price,
+            "quantity": self.quantity,
+            "price": self.price,
+            "total_item_price": self.total_item_price
         }
