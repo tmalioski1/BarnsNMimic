@@ -24,7 +24,8 @@ class Book(db.Model):
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
 
-  cart = db.relationship("Cart", back_populates="books")
+
+  cart_item = db.relationship("Cart_Item", back_populates="book",  uselist=False, cascade="all, delete-orphan")
   reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='book')
   user = db.relationship('User', back_populates='books')
   book_wishlists = db.relationship('User', secondary=wishlists, back_populates='user_wishlists')
@@ -47,3 +48,6 @@ class Book(db.Model):
       'price_eBook': self.price_eBook,
       'pages': self.pages,
   }
+
+  def __repr__(self):
+      return f"<Book {self.id}: {self.title}>"

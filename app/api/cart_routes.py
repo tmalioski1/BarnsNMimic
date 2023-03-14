@@ -1,7 +1,7 @@
 
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Cart, Book, Order
+from app.models import db, Cart, Book, CartItem
 from sqlalchemy.orm import joinedload
 
 
@@ -11,7 +11,7 @@ cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/')
 def get_cart():
-    # cart_items = Cart_Item.query.all()
+    cart_items = CartItem.query.all()
     return {'cartItems': [cart_items.to_dict() for cart_items in cart_items]}, 200
 
 

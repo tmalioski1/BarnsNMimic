@@ -21,8 +21,6 @@ class User(db.Model, UserMixin):
     books = db.relationship("Book", back_populates='user')
     cart = db.relationship('Cart', back_populates='user', uselist=False,
                            cascade='all, delete-orphan')
-    order = db.relationship('Order', back_populates='user',
-                            cascade='all, delete-orphan')
     user_wishlists = db.relationship('Book', secondary=wishlists, back_populates='book_wishlists')
 
 

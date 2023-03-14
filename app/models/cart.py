@@ -7,23 +7,27 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id')),  nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('users.id')), nullable=True, unique=True)
-    quantity = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
-    total_item_price = db.Column(db.Integer, nullable=False)
+        add_prefix_for_prod('users.id')), nullable=True)
+    total_price = db.Column(db.Float, nullable=False)
+    purchased = db.Column(db.Boolean, default=False)
+    order_number = db.Column(db.String, nullable=False)
 
+    cart_items = db.relationship("CartItem", back_populates="item_cart")
     user = db.relationship('User', back_populates='cart')
-    books = db.relationship('Book', back_populates='cart')
-    order = db.relationship('Order',  uselist=False, back_populates='cart')
 
     def to_dict(self):
         return{
             "id": self.id,
-            "book_id": self.book_id,
             'user_id': self.user_id,
-            "quantity": self.quantity,
-            "price": self.price,
-            "total_item_price": self.total_item_price
+            "total_price": self.total_price,
+            "purchased": self.purchased,
+            "order_number": self.order_number,
+            "cartItems": {item.to_dict()["id"]: item.to_dict() for item in self.cart_items},
         }
+
+    def __repr__(self):
+        return f"<Cart: {self.id}, User ID: {self.user_id}>"
+
+
+
