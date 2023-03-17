@@ -4,12 +4,12 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
+import { postCartItem } from "../../store/cart_items";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
 import CartModal from './CartModal'
 import './bookdetails.css';
-import { addItemToCart } from '../../store/carts';
 
 
 const BookDetails = () => {
@@ -60,9 +60,8 @@ const BookDetails = () => {
     }
   }
 
-  const handleAdditiontoCart = async (e, book) => {
-    e.preventDefault();
-    await dispatch(addItemToCart(book))
+  const handleAdditiontoCart = async (id) => {
+    await dispatch(postCartItem(id))
   }
 
 
@@ -124,7 +123,7 @@ const today = new Date()
     <div className= 'book-details-all-prices'>
     {bookData[0]?.price_paperback !== null &&
       <button className='book-details-paperback-price' onClick={() =>
-        setPriceFormat("Paperback")
+        setPriceFormat("price_paperback")
       }>
        <div>
        Paperback
@@ -137,7 +136,7 @@ const today = new Date()
       </button>
 }
     {bookData[0]?.price_hardcover !== null &&
-      <button className='book-details-hardcover-price' onClick={() => setPriceFormat("Hardcover")
+      <button className='book-details-hardcover-price' onClick={() => setPriceFormat("price_hardcover")
         }>
        <div>
        Hardcover
@@ -148,7 +147,7 @@ const today = new Date()
       </button>
 }
       {bookData[0]?.price_eBook !== null &&
-      <button className='book-details-eBook-price' onClick={() => setPriceFormat("eBook")
+      <button className='book-details-eBook-price' onClick={() => setPriceFormat("price_eBook")
         }>
         <div>
        eBook
@@ -174,7 +173,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(e, book).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}

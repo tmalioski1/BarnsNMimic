@@ -24,10 +24,8 @@ class Cart(db.Model):
             "purchased": self.purchased,
             "order_number": self.order_number,
             "cartItems": {item.to_dict()["id"]: item.to_dict() for item in self.cart_items},
+            "cartUser": self.cart_user.to_dict()
         }
 
     def __repr__(self):
         return f"<Cart: {self.id}, User ID: {self.user_id}>"
-
-
-
