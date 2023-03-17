@@ -61,7 +61,7 @@ const BookDetails = () => {
   }
 
   const handleAdditiontoCart = async (id) => {
-    await dispatch(postCartItem(id))
+    await dispatch(postCartItem(priceFormat, id))
   }
 
 
@@ -173,14 +173,15 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
-                 modalComponent={<CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } currentBookId={book.id}/>}
+                 modalComponent={<CartModal priceFormat={priceFormat} isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } currentBookId={book.id}/>}
 
               />
               </button>}
+
           </div>
           </div>
           </div>
