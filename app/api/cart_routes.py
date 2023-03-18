@@ -17,6 +17,7 @@ def get_cart():
 
 
 @cart_routes.route('/<format>', methods = ['POST'])
+
 def add_cart(format):
     """
     A user can send a post request to add a product to their currently active cart.
@@ -25,6 +26,7 @@ def add_cart(format):
     #     user_id = current_user.get_id()
     # else:
     #     user_id = None
+
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
@@ -36,8 +38,8 @@ def add_cart(format):
             .filter(Cart.purchased == False).one()
 
     else:
-        # order_number = (f'FS{random.randint(10000, 100000)}')
-        order_number= user_id
+        order_number = (f'FS{random.randint(10000, 100000)}')
+        # order_number= user_id
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
 

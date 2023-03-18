@@ -19,7 +19,7 @@ const BookDetails = () => {
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
   const book = bookData[0]
-  const [isCartOpen, setIsCartOpen] = useState(true);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [priceFormat, setPriceFormat] = useState("");
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
@@ -177,10 +177,18 @@ const today = new Date()
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
-                 modalComponent={<CartModal priceFormat={priceFormat} isOpen={isCartOpen} onClose={() => setIsCartOpen(false) } currentBookId={book.id}/>}
+                 modalComponent={<CartModal
+                  currentBookId={id}
+                  isOpen={isCartOpen}
+                  priceFormat={priceFormat}
+                  setIsCartOpen={setIsCartOpen}
+                  isCartOpen={isCartOpen}
+                  onClose={() => setIsCartOpen(false)}
+                />}
 
               />
               </button>}
+
 
           </div>
           </div>
