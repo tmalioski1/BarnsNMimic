@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton';
@@ -9,6 +9,19 @@ import './navbar.css'
 
 const NavBar = ({loaded}) => {
   const sessionUser = useSelector(state => state.session.user);
+  const cart = useSelector((state) => state.cart);
+  console.log('this is the cart---', cart)
+  const cartItemObject = useSelector((state) => state.cartItems);
+  console.log('this is the cart items---', cartItemObject)
+  const cartItemData = Object.values(cartItemObject);
+  console.log('this is cartItemData---', cartItemData.length)
+  const history = useHistory();
+
+  // let cartItemCount;
+  // if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
+  let cartItemCount;
+  if (cartItemData) cartItemCount = cartItemData.length
+  console.log('this is the cartItemCount', cartItemCount)
   let sessionLinks;
 
   if(sessionUser) {
@@ -63,8 +76,14 @@ const NavBar = ({loaded}) => {
             </div>
             </div>
             <div className='search-icon'>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
             </div>
+          </div>
+          <div className='header-right'>
+          <div className='shopping-cart-icon'>
+            <i className="fa-solid fa-cart-shopping" onClick={() => history.push(`/checkout`)}></i>
+            </div>
+            {sessionUser ? (cartItemCount ? <span className="cart-item-count-splash">{cartItemCount}</span> : "") : ""}
           </div>
         </div>
       </nav>

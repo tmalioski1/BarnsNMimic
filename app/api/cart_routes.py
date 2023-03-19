@@ -10,15 +10,40 @@ import random
 cart_routes = Blueprint('cart', __name__)
 
 
-@cart_routes.route('/')
+@cart_routes.route("")
+@login_required
 def get_cart():
-    cart_items = CartItem.query.all()
-    return {'cartItems': [cart_items.to_dict() for cart_items in cart_items]}, 200
+    """
+    Query for logged-in user's active cart and returns it as a dictionary.
+    """
+    has_active_cart = Cart.query \
+        .filter(Cart.user_id == current_user.get_id()) \
+        .filter(Cart.purchased == False).count()
+
+    if has_active_cart:
+        cart = Cart.query \
+            .filter(Cart.user_id == current_user.get_id()) \
+            .filter(Cart.purchased == False).one()
+
+        return cart.to_dict()
+
+    else:
+        cart = Cart(
+            user_id = current_user.get_id(),
+            total_price = 0,
+            purchased = False
+        )
+        db.session.add(cart)
+        db.session.commit()
+
+        return cart.to_dict()
 
 
 @cart_routes.route('/<format>', methods = ['POST'])
-
+@login_required
 def add_cart(format):
+
+
     """
     A user can send a post request to add a product to their currently active cart.
     """
