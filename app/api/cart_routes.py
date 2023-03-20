@@ -119,7 +119,9 @@ def delete_cart_item(id):
     Query for a single cart item by id and delete the cart item from the current user's active cart.
     """
     cart_item = CartItem.query.get(id)
+    print('cart_item')
     db.session.delete(cart_item)
+    print('cart_item')
     db.session.commit()
     return {
         'message': 'Successfully deleted',
