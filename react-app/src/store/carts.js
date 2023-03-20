@@ -1,6 +1,7 @@
 const LOAD_CART = 'cart/LOAD';
 const PURCHASE_CART = 'cart/PURCHASE';
 const LOAD_HISTORY = 'cart/HISTORY';
+const CLEAR_CART = 'cart/CLEAR'
 
 export const loadCart = (cart) => {
   return {
@@ -20,6 +21,12 @@ export const purchaseCartAction = (cart) => {
   return {
     type: PURCHASE_CART,
     cart
+  }
+}
+
+export const clearCartSuccess = () => {
+  return {
+    type: CLEAR_CART
   }
 }
 
@@ -57,6 +64,15 @@ export const purchaseCart = (total) => async dispatch => {
   }
 }
 
+export const clearCart = () => async (dispatch) => {
+  const res = await fetch(`/api/cart/clear`, {
+    method: 'DELETE',
+  });
+
+  if (res.ok) {
+    dispatch(clearCartSuccess());
+  }
+};
 export const getCartById = (id) => (state) => state.cart[id];
 
 const initialState = {};
@@ -69,6 +85,8 @@ const cartReducer = (state = initialState, action) => {
       return { [action.cart.id]: action.cart };
     case LOAD_HISTORY:
       return { ...state, 'orderHistory': action.carts.OrderHistory };
+    case CLEAR_CART:
+      return initialState;
     default:
       return state;
   };

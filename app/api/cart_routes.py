@@ -1,5 +1,5 @@
 
-from flask import Blueprint, session, jsonify, request
+from flask import Blueprint, session, jsonify, request, abort
 from flask_login import login_required, current_user
 from app.models import db, Cart, Book, CartItem
 from sqlalchemy.orm import joinedload
@@ -145,3 +145,22 @@ def add_cart(format):
 #     [db.session.delete(item) for item in cart_items]
 #     db.session.commit()
 #     return cart_items.to_dict()
+
+@cart_routes.route("/clear")
+@login_required
+def clear_cart():
+    # check authentication, e.g. using Flask-Login or JWT
+
+    # get the current user's cart
+    cart = Cart.query.filter_by(user_id=current_user.id).first()
+
+    if cart:
+        # delete all cart items
+        db.session.query(CartItem).filter_by(cart_id=cart.id).delete()
+        db.session.commit()
+
+        # return success response
+        return jsonify({'message': 'Cart cleared.'}), 200
+    else:
+        # return error response if no cart found
+        return abort(404, description='Cart not found.')

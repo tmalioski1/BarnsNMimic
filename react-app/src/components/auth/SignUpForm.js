@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import { getCart } from '../../store/carts';
+import { clearCart } from '../../store/carts';
 import './signupform.css'
 
 const SignUpForm = () => {
@@ -22,6 +22,8 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(first_name, last_name, username, email, password));
       if (data) {
         setErrors(data)
+      }else {
+        await dispatch(clearCart());
       }
     } else {
       setErrors(['Passwords must match.'])
