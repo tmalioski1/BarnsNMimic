@@ -9,7 +9,6 @@ import './checkout.css'
 const Checkout = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const cartItems = Object.values(cart?.cartItems);
   const history = useHistory()
 
   useEffect(() => {
@@ -28,7 +27,7 @@ const Checkout = () => {
      <h1>My Shopping Cart</h1>
      </div>
      <div className="cart-item-container">
-      {cartItems.map(item => (
+      {Object.values(cart?.cartItems).map(item => (
       <div className="one-cart-item" key={item.id}>
       <NavLink to={`/books/${item.book.id}`}>
         <img className='cart-item-image'
@@ -44,8 +43,7 @@ const Checkout = () => {
         <div className='cart-item-remove'>
               <button
                 className="cart-remove-button"
-                onClick={async () => {
-                  console.log('this is the item.id---', item.id)
+                onClick={async (e) => {
                   await dispatch(removeCartItem(item.id));
                   dispatch(getCart());
                 }}
