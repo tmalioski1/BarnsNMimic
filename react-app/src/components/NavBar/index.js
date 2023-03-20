@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
 import LogoutButton from '../auth/LogoutButton';
 import UploadNewBook from '../UploadBookModal'
+import { getCart } from "../../store/carts";
 
 import './navbar.css'
 
 const NavBar = ({loaded}) => {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  console.log('this is the sessionUser---', sessionUser);
   const cart = useSelector((state) => state.cart);
   console.log('this is the cart---', cart)
   const cartItemObject = useSelector((state) => state.cartItems);
@@ -17,11 +20,15 @@ const NavBar = ({loaded}) => {
   console.log('this is cartItemData---', cartItemData.length)
   const history = useHistory();
 
-  // let cartItemCount;
-  // if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
   let cartItemCount;
-  if (cartItemData) cartItemCount = cartItemData.length
+  if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
+  // if (cartItemData) cartItemCount = cartItemData.length
   console.log('this is the cartItemCount', cartItemCount)
+
+  useEffect(() => {
+    if (sessionUser) dispatch(getCart());
+  }, [dispatch, sessionUser]);
+
   let sessionLinks;
 
   if(sessionUser) {

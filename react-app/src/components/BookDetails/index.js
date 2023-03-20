@@ -9,6 +9,7 @@ import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
 import CartModal from './CartModal'
+import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
@@ -17,10 +18,11 @@ const BookDetails = () => {
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
+  const cart = useSelector((state) => state.cart);
   const bookData = Object.values(bookObj)
   const book = bookData[0]
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [priceFormat, setPriceFormat] = useState("");
+  const [priceFormat, setPriceFormat] = useState("price_paperback");
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
@@ -28,6 +30,8 @@ const BookDetails = () => {
 
   const [users, setUsers] = useState([]);
 
+  let cartItemCount;
+  if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -62,6 +66,7 @@ const BookDetails = () => {
 
   const handleAdditiontoCart = async (id) => {
     await dispatch(postCartItem(priceFormat, id))
+    dispatch(getCart())
   }
 
 
