@@ -30,8 +30,6 @@ const BookDetails = () => {
 
   const [users, setUsers] = useState([]);
 
-  let cartItemCount;
-  if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
 
   useEffect(() => {
     dispatch(getOneBook(id))

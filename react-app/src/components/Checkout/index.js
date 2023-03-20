@@ -55,8 +55,13 @@ const Checkout = () => {
             <NavLink to={`/`}>
               Save for Later
             </NavLink>
-
           </div>
+         <div className="cart-quantity-and-price">
+              <div className="cart-price">
+                ${usDollar.format(item.product.price * item.quantity)}
+                {(totalPrice += item.product.price * item.quantity) && false}
+              </div>
+            </div>
         </div>
       </div>
       ))}
