@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
-import SelectField from "../SelectField/SelectField";
+// import SelectField from "../SelectField/SelectField";
 import './checkout.css'
 
 const Checkout = () => {
