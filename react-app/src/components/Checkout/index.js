@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
-// import SelectField from "../SelectField/SelectField";
 import './checkout.css'
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  console.log('this is the cartId', cart.id)
   const cartItems = Object.values(cart?.cartItems);
 
   useEffect(() => {
@@ -43,7 +44,6 @@ const Checkout = () => {
               <button
                 className="cart-remove-button"
                 onClick={async () => {
-                  console.log('this is the item.id---', item.id)
                   await dispatch(removeCartItem(item.id));
                   dispatch(getCart());
                 }}

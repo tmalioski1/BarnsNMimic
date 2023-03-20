@@ -23,11 +23,11 @@ export const deleteCartItem = (cartItemId) => {
     };
 };
 
-export const postCartItem = (product_id) => async (dispatch) => {
-    const response = await fetch("/api/cart", {
+export const postCartItem = (format, book_id) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${format}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product_id: product_id }),
+        body: JSON.stringify({ book_id: book_id}),
     });
 
     if (response.ok) {

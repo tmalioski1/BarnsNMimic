@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useModal } from '../../context/Modal'
+import {  useHistory } from 'react-router-dom';
+
 import './cartmodal.css'
 
 function CartModal({ currentBookId, isOpen, priceFormat, setIsCartOpen }) {
@@ -12,6 +14,7 @@ function CartModal({ currentBookId, isOpen, priceFormat, setIsCartOpen }) {
     const currentCartItem = cartItemData[cartItemData.length - 1];
     const { closeModal } = useModal();
     console.log('this is the currentCartItem', currentCartItem);
+    const history = useHistory()
 
     let price;
     if (priceFormat === 'price_paperback') {
@@ -33,7 +36,7 @@ function CartModal({ currentBookId, isOpen, priceFormat, setIsCartOpen }) {
         <div>{priceFormat}</div>
         <div>${price?.toFixed(2)}</div>
         <div>Qty: {currentCartItem?.quantity}</div>
-        <button onClick={() => window.location.href = '/checkout'}>View Shopping Cart</button>
+        <button onClick={() => {closeModal(); history.push('/checkout')}}>View Shopping Cart</button>
         <button  onClick={() => closeModal()}>Continue Shopping</button>
       </>
     );
