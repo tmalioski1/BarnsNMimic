@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllBooks } from '../../store/books'
+import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
 import './homepage.css'
 
@@ -10,6 +11,8 @@ import './homepage.css'
 const Homepage = () => {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
+    const user = useSelector((state) => state.session.user);
+    console.log('this is the user---', user)
     const books = Object.values(booksObj)
     console.log('this is books---', books)
     const fictionBooks = books.filter(book => book.genre === 'Fiction')
@@ -23,7 +26,8 @@ const Homepage = () => {
 
     useEffect(() => {
         dispatch(getAllBooks())
-      }, [dispatch])
+        if (user) dispatch(getCart())
+      }, [dispatch, user])
 
 
 

@@ -31,7 +31,8 @@ def get_cart():
         cart = Cart(
             user_id = current_user.get_id(),
             total_price = 0,
-            purchased = False
+            purchased = False,
+            order_number= (f'FS{random.randint(10000, 100000)}')
         )
         db.session.add(cart)
         db.session.commit()
