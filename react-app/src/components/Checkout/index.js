@@ -6,7 +6,7 @@ const Checkout = () => {
 
 
     return (
-     <h1>Hello</h1>
+     <h1>My Shopping Cart</h1>
     );
   }
 

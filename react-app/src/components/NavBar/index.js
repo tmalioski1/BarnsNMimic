@@ -11,19 +11,12 @@ import './navbar.css'
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  console.log('this is the sessionUser---', sessionUser);
   const cart = useSelector((state) => state.cart);
-  console.log('this is the cart---', cart)
-  const cartItemObject = useSelector((state) => state.cartItems);
-  console.log('this is the cart items---', cartItemObject)
-  const cartItemData = Object.values(cartItemObject);
-  console.log('this is cartItemData---', cartItemData.length)
   const history = useHistory();
 
   let cartItemCount;
   if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
-  // if (cartItemData) cartItemCount = cartItemData.length
-  console.log('this is the cartItemCount', cartItemCount)
+
 
   useEffect(() => {
     if (sessionUser) dispatch(getCart());
