@@ -1,21 +1,20 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart } from "../../store/carts";
-import { NavLink, useHistory } from "react-router-dom";
 import { removeCartItem } from "../../store/cart_items";
-import CheckoutSelectField from "../CheckoutSelectField/CheckoutSelectField";
+import SelectField from "../SelectField/SelectField";
 import './checkout.css'
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const history = useHistory()
+  const cartItems = Object.values(cart?.cartItems);
 
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
 
-  const dollar = Intl.NumberFormat("en-US");
+  const usDollar = Intl.NumberFormat("en-US");
   let totalPrice = 0;
 
 
@@ -27,7 +26,7 @@ const Checkout = () => {
      <h1>My Shopping Cart</h1>
      </div>
      <div className="cart-item-container">
-      {Object.values(cart?.cartItems).map(item => (
+      {cartItems.map(item => (
       <div className="one-cart-item" key={item.id}>
       <NavLink to={`/books/${item.book.id}`}>
         <img className='cart-item-image'
@@ -43,7 +42,8 @@ const Checkout = () => {
         <div className='cart-item-remove'>
               <button
                 className="cart-remove-button"
-                onClick={async (e) => {
+                onClick={async () => {
+                  console.log('this is the item.id---', item.id)
                   await dispatch(removeCartItem(item.id));
                   dispatch(getCart());
                 }}
