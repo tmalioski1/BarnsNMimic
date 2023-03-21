@@ -5,15 +5,29 @@ import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
 import './checkout.css'
 
-const Checkout = () => {
+const Checkout = ({setPriceFormat, priceFormat}) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  console.log('this is the cartId', cart.id)
-  const cartItems = Object.values(cart?.cartItems);
+  // const book = useSelector((state) => state.cart?.cartItems?.book)
+  // console.log('this is the book', book)
+  const cartItems = Object.values(cart.cartItems);
+  console.log('these are the cartItems---', cartItems)
+
 
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
+
+
+  // let price;
+  // if (priceFormat === 'price_paperback') {
+  //   price = item.book.price_paperback;
+  // } else if (priceFormat === 'price_hardcover') {
+  //   price = item.book.price_hardcover;
+  // } else if (priceFormat === 'price_eBook') {
+  //   price = item.book.price_eBook;
+  // }
+
 
   const usDollar = Intl.NumberFormat("en-US");
   let totalPrice = 0;
@@ -58,8 +72,8 @@ const Checkout = () => {
           </div>
          <div className="cart-quantity-and-price">
               <div className="cart-price">
-                ${usDollar.format(item.product.price * item.quantity)}
-                {(totalPrice += item.product.price * item.quantity) && false}
+              { priceFormat === "price_paperback" ? usDollar.format(item.book.price_paperback * item.quantity) : priceFormat === "price_hardcover" ? usDollar.format(item.book.price_hardcover * item.quantity) : priceFormat === "price_eBook" ? usDollar.format(item.book.price_eBook * item.quantity) : ""}
+                {priceFormat === "price_paperback" ? (totalPrice += item.book.price_paperback * item.quantity) && false : priceFormat === "price_hardcover" ? (totalPrice += item.book.price_hardcover * item.quantity) && false : priceFormat === "price_eBook" ? (totalPrice += item.book.price_eBook * item.quantity) && false : ""}
               </div>
             </div>
         </div>

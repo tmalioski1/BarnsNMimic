@@ -12,6 +12,7 @@ class CartItem(db.Model):
         cart_id = db.Column(db.Integer, db.ForeignKey(("carts.id")), nullable=False)
         book_id = db.Column(db.Integer, db.ForeignKey(("books.id")), nullable=False)
         quantity = db.Column(db.Integer, nullable=False)
+        # price = db.Column(db.Float, nullable=False)
 
     # RELATIONSHIPS:
     # item_cart <--> cart_items
@@ -26,6 +27,7 @@ class CartItem(db.Model):
                 "cart_id": self.cart_id,
                 "book_id": self.book_id,
                 "quantity": self.quantity,
+                # "price": self.price,
                 "book": self.book.to_dict()
             }
 

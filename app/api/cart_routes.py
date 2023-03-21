@@ -87,6 +87,7 @@ def add_cart(format):
         cart_id=cart.to_dict()["id"],
         book_id=request.json['book_id'],
         quantity=1,
+        # price= price
     )
 
     cart.total_price += price

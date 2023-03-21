@@ -4,7 +4,7 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
-import { postCartItem } from "../../store/cart_items";
+import { postCartItem, editCartItem } from "../../store/cart_items";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
@@ -13,7 +13,7 @@ import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
-const BookDetails = () => {
+const BookDetails = ({setPriceFormat, priceFormat}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -22,13 +22,19 @@ const BookDetails = () => {
   const bookData = Object.values(bookObj)
   const book = bookData[0]
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [priceFormat, setPriceFormat] = useState("price_paperback");
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
+
+  let thisCartItem;
+  for (let item in cart.cartItems) {
+    if (+cart.cartItems[item].book_id === +id)
+      thisCartItem = cart.cartItems[item];
+  }
+
 
 
   useEffect(() => {
@@ -63,7 +69,11 @@ const BookDetails = () => {
   }
 
   const handleAdditiontoCart = async (id) => {
-    await dispatch(postCartItem(priceFormat, id))
+    if (thisCartItem && thisCartItem.quantity < 10) {
+      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
+    } else {
+      await dispatch(postCartItem(priceFormat, id));
+    }
     dispatch(getCart())
   }
 

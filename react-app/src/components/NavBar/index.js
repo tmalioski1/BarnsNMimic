@@ -17,7 +17,6 @@ const NavBar = ({loaded}) => {
   let cartItemCount;
   if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
 
-
   useEffect(() => {
     if (sessionUser) dispatch(getCart());
   }, [dispatch, sessionUser]);

@@ -15,6 +15,8 @@ import { authenticate } from './store/session';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [priceFormat, setPriceFormat] = useState("price_paperback");
+
 
   useEffect(() => {
     (async() => {
@@ -44,10 +46,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/checkout' exact={true} >
-        <Checkout />
+        <Checkout priceFormat={priceFormat} setPriceFormat={setPriceFormat}/>
         </Route>
         <Route path='/books/:id' exact = {true}>
-        <BookDetails />
+        <BookDetails priceFormat={priceFormat} setPriceFormat={setPriceFormat} />
         </Route>
         <Route path='/' exact={true} >
         <Homepage />

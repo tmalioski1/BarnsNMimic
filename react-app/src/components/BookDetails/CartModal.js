@@ -1,5 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal'
 import {  useHistory } from 'react-router-dom';
 
@@ -29,13 +28,13 @@ function CartModal({ currentBookId, isOpen, priceFormat, setIsCartOpen }) {
     return (
       <>
         <div>Item Successfully Added To Your Cart</div>
-        <img src={book.cover_art}></img>
+        <img src={book.cover_art} alt="book-cover-art"></img>
         <div>{book.title}</div>
         <div>{book.author}</div>
         <div>${price?.toFixed(2)}</div>
         <div>{priceFormat}</div>
         <div>${price?.toFixed(2)}</div>
-        <div>Qty: {currentCartItem?.quantity}</div>
+        <div>Qty: 1</div>
         <button onClick={() => {closeModal(); history.push('/checkout')}}>View Shopping Cart</button>
         <button  onClick={() => closeModal()}>Continue Shopping</button>
       </>
