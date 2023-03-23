@@ -40,9 +40,9 @@ def get_cart():
         return cart.to_dict()
 
 
-@cart_routes.route('/<format>', methods = ['POST'])
+@cart_routes.route('', methods = ['POST'])
 @login_required
-def add_cart(format):
+def add_cart():
 
 
     """
@@ -74,11 +74,11 @@ def add_cart(format):
     # Get the book based on the _id
     book = Book.query.get(request.json['book_id'])
 
-    # Determine the price based on the selected format
+    # Determine the item price based on the selected price format
     price = book.price_paperback
-    if format == 'price_hardcover':
+    if price == 'price_hardcover':
         price = book.price_hardcover
-    elif format == 'price_eBook':
+    elif price == 'price_eBook':
         price = book.price_eBook
 
     # Create the new cart item with the correct price

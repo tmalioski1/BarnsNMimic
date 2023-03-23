@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
-import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
+import { getOneBook, deleteABook } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
 import { postCartItem, editCartItem } from "../../store/cart_items";
 import OpenModalButton from '../OpenModalButton';
@@ -13,7 +13,7 @@ import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
-const BookDetails = ({setPriceFormat, priceFormat}) => {
+const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -29,9 +29,9 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
   console.log('this is cartItemsArray---', cartItemsArray)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
+  const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
-  const [itemPrice, setItemPrice] = useState()
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
@@ -42,12 +42,18 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
       thisCartItem = cart.cartItems[item];
   }
 
-    // let thisCartItem;
+  //   let thisCartItem;
   // for (let item of cartItemsArray) {
   //   if (item.book_id === +id && item?.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
   //     thisCartItem = item;
   //     break;
   //   }
+  // }
+
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item].book_id === +id && item.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
+  //         thisCartItem = item;
   // }
 
 
@@ -83,11 +89,15 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
     }
   }
 
+
+
+
+
   const handleAdditiontoCart = async (e, id) => {
     if (thisCartItem && thisCartItem.quantity < 10) {
       await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
     } else {
-      await dispatch(postCartItem(priceFormat, id));
+      await dispatch(postCartItem(id));
     }
     dispatch(getCart())
   }
@@ -124,7 +134,6 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
 
-console.log('this is the priceFormat---', priceFormat)
 
   return (
     <section>
@@ -151,7 +160,7 @@ console.log('this is the priceFormat---', priceFormat)
     <div className= 'book-details-all-prices'>
     {bookData[0]?.price_paperback !== null &&
       <button className='book-details-paperback-price' onClick={() =>
-        setPriceFormat("price_paperback")
+        setItemPrice(book.price_paperback)
       }>
        <div>
        Paperback
@@ -164,7 +173,7 @@ console.log('this is the priceFormat---', priceFormat)
       </button>
 }
     {bookData[0]?.price_hardcover !== null &&
-      <button className='book-details-hardcover-price' onClick={() => setPriceFormat("price_hardcover")
+      <button className='book-details-hardcover-price' onClick={() => setItemPrice(book.price_hardcover)
         }>
        <div>
        Hardcover
@@ -175,7 +184,7 @@ console.log('this is the priceFormat---', priceFormat)
       </button>
 }
       {bookData[0]?.price_eBook !== null &&
-      <button className='book-details-eBook-price' onClick={() => setPriceFormat("price_eBook")
+      <button className='book-details-eBook-price' onClick={() => setItemPrice(book.price_eBook)
         }>
         <div>
        eBook
@@ -201,14 +210,14 @@ console.log('this is the priceFormat---', priceFormat)
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(e, book.id).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
                  modalComponent={<CartModal
                   currentBookId={id}
                   isOpen={isCartOpen}
-                  priceFormat={priceFormat}
+                  itemPrice={itemPrice}
                   setIsCartOpen={setIsCartOpen}
                   isCartOpen={isCartOpen}
                   onClose={() => setIsCartOpen(false)}
