@@ -87,10 +87,9 @@ def add_cart(format):
         cart_id=cart.to_dict()["id"],
         book_id=request.json['book_id'],
         quantity=1,
-        # price= price
+        price= price
     )
 
-    cart.total_price += price
     db.session.add(new_cart_item)
 
     # Update the cart total price to include the price of the new cart item
@@ -101,7 +100,7 @@ def add_cart(format):
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def update_cart_item(id):
+def update_cart_item(format, id):
     """
     Query for a single cart item by id from the current user's active cart and update the quantity.
     """

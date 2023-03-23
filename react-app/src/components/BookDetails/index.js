@@ -18,13 +18,20 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
+  console.log('this is the bookObj---', bookObj)
   const cart = useSelector((state) => state.cart);
   const bookData = Object.values(bookObj)
+  console.log('this is the bookData---', bookData)
   const book = bookData[0]
+  const cartItems = useSelector(state=> state.cartItems)
+  console.log('this is cartItems---', cartItems)
+  const cartItemsArray= Object.values(cartItems)
+  console.log('this is cartItemsArray---', cartItemsArray)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
+  const [itemPrice, setItemPrice] = useState()
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
@@ -68,7 +75,7 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
     }
   }
 
-  const handleAdditiontoCart = async (id) => {
+  const handleAdditiontoCart = async (e, id) => {
     if (thisCartItem && thisCartItem.quantity < 10) {
       await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
     } else {
@@ -109,7 +116,7 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
 
-
+console.log('this is the priceFormat---', priceFormat)
 
   return (
     <section>
@@ -186,7 +193,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(e, book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
