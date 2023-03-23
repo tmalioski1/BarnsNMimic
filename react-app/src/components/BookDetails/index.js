@@ -42,6 +42,14 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
       thisCartItem = cart.cartItems[item];
   }
 
+    // let thisCartItem;
+  // for (let item of cartItemsArray) {
+  //   if (item.book_id === +id && item?.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
+  //     thisCartItem = item;
+  //     break;
+  //   }
+  // }
+
 
 
   useEffect(() => {
