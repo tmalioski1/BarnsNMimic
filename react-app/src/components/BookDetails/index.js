@@ -36,11 +36,11 @@ const BookDetails = () => {
 
   const [users, setUsers] = useState([]);
 
-  let thisCartItem;
-  for (let item in cart.cartItems) {
-    if (+cart.cartItems[item].book_id === +id)
-      thisCartItem = cart.cartItems[item];
-  }
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item].book_id === +id)
+  //     thisCartItem = cart.cartItems[item];
+  // }
 
   //   let thisCartItem;
   // for (let item of cartItemsArray) {
