@@ -5,7 +5,7 @@ import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
 import './checkout.css'
 
-const Checkout = ({setPriceFormat, priceFormat}) => {
+const Checkout = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   // const book = useSelector((state) => state.cart?.cartItems?.book)
@@ -72,8 +72,8 @@ const Checkout = ({setPriceFormat, priceFormat}) => {
           </div>
          <div className="cart-quantity-and-price">
               <div className="cart-price">
-              { priceFormat === "price_paperback" ? usDollar.format(item.book.price_paperback * item.quantity) : priceFormat === "price_hardcover" ? usDollar.format(item.book.price_hardcover * item.quantity) : priceFormat === "price_eBook" ? usDollar.format(item.book.price_eBook * item.quantity) : ""}
-                {priceFormat === "price_paperback" ? (totalPrice += item.book.price_paperback * item.quantity) && false : priceFormat === "price_hardcover" ? (totalPrice += item.book.price_hardcover * item.quantity) && false : priceFormat === "price_eBook" ? (totalPrice += item.book.price_eBook * item.quantity) && false : ""}
+              ${usDollar.format(item.price * item.quantity)}
+              {(totalPrice += item.price * item.quantity) && false}
               </div>
             </div>
         </div>
