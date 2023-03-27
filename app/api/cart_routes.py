@@ -100,7 +100,7 @@ def add_cart():
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def update_cart_item(format, id):
+def update_cart_item(id):
     """
     Query for a single cart item by id from the current user's active cart and update the quantity.
     """

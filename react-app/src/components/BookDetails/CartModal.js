@@ -12,7 +12,6 @@ function CartModal({ currentBookId, isOpen, itemPrice, setIsCartOpen }) {
     const cartItemData = Object.values(cartItemObject);
     const currentCartItem = cartItemData[cartItemData.length - 1];
     const { closeModal } = useModal();
-    console.log('this is the currentCartItem', currentCartItem);
     const history = useHistory()
 
     if (itemPrice === 0) {

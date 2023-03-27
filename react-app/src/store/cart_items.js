@@ -37,7 +37,7 @@ export const postCartItem = (book_id) => async (dispatch) => {
     }
 };
 
-export const editCartItem = (format, cartItem, quantity) => async dispatch => {
+export const editCartItem = (cartItem, quantity) => async dispatch => {
     const response = await fetch(`/api/cart/${cartItem.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
