@@ -17,7 +17,6 @@ const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const singleBook = useSelector((state) => state.books.allBooks[id]);
-  console.log('this is the singleBook---', singleBook)
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
   const cart = useSelector((state) => state.cart);
@@ -25,9 +24,7 @@ const BookDetails = () => {
   const book = bookData[0]
   const cartItems = useSelector(state=> state.cartItems)
   const cartItemsArray= Object.values(cartItems)
-  console.log('this is the cartItemsArray---', cartItemsArray)
   let cartItemBook = cartItemsArray[cartItems.length]
-  console.log('this is the cartItemBook---', cartItemBook)
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
