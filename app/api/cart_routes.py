@@ -44,9 +44,6 @@ def get_cart():
 @cart_routes.route('', methods=['POST'])
 @login_required
 def add_cart():
-    """
-    A user can send a post request to add a product to their currently active cart.
-    """
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
@@ -56,37 +53,35 @@ def add_cart():
         cart = Cart.query \
             .filter((Cart.user_id == user_id)) \
             .filter(Cart.purchased == False).one()
-
     else:
         order_number = (f'FS{random.randint(10000, 100000)}')
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
 
-    book = Book.query.get(request.json['book_id'])
+    book_id = request.json.get('book_id')
+    book_format = request.json.get('format')
 
-    price = book.price_paperback
-    if price == 'price_hardcover':
-        price = book.price_hardcover
-    elif price == 'price_eBook':
-        price = book.price_eBook
+    book = Book.query.get(book_id)
 
-    form = CartItemForm(request.form)
-    if form.validate():
-        new_cart_item = CartItem(
-            cart_id=cart.to_dict()["id"],
-            book_id=request.json['book_id'],
-            quantity=form.quantity.data,
-            price=price
-        )
+    if book is None:
+        return jsonify({"message": "Book not found."}), 404
 
-        db.session.add(new_cart_item)
+    price = book.get_price(book_format)
 
-        cart.total_price += price * form.quantity.data
-        db.session.commit()
+    if price is None:
+        return jsonify({"message": "Invalid format."}), 400
 
-        return new_cart_item.to_dict()
+    cart_item = CartItem(
+        cart_id=cart.id,
+        book_id=book.id,
+        quantity=1,
+        price=price
+    )
 
-    return jsonify({'error': 'invalid form data'})
+    db.session.add(cart_item)
+    db.session.commit()
+
+    return jsonify(cart_item.to_dict()), 201
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
@@ -94,18 +89,26 @@ def update_cart_item(id):
     """
     Query for a single cart item by id from the current user's active cart and update the quantity.
     """
+    user_id = current_user.get_id()
+    cart = Cart.query.filter_by(user_id=user_id, purchased=False).first()
+
+    if not cart:
+        return jsonify({'error': 'no active cart found'})
+
     cart_item = CartItem.query.get(id)
 
-    if not cart_item:
+    if not cart_item or cart_item.cart_id != cart.id:
         return jsonify({'error': 'invalid cart item id'})
 
-    form = CartItemForm(request.form)
-    if form.validate():
-        cart_item.quantity = form.quantity.data
-        db.session.commit()
-        return cart_item.to_dict()
+    quantity = request.json.get('quantity', None)
 
-    return jsonify({'error': 'invalid form data'})
+    if not quantity:
+        return jsonify({'error': 'quantity is required'})
+
+    cart_item.quantity = quantity
+    db.session.commit()
+
+    return cart_item.to_dict()
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])

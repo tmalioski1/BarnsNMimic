@@ -26,8 +26,6 @@ const BookDetails = () => {
   const cartItems = useSelector(state=> state.cartItems)
   const cartItemsArray= Object.values(cartItems)
   console.log('this is the cartItemsArray---', cartItemsArray)
-  let cartItemBook = cartItemsArray[cartItems.length]
-  console.log('this is the cartItemBook---', cartItemBook)
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
@@ -37,30 +35,6 @@ const BookDetails = () => {
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
-
-  // let thisCartItem;
-  // for (let item in cart.cartItems) {
-  //   if (+cart.cartItems[item].book_id === +id)
-  //     thisCartItem = cart.cartItems[item];
-  // }
-
-  // let thisCartItem;
-  // for (let item of cartItemsArray) {
-  //   if (item.book_id === +id && item?.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem?.price === item?.price)?.price) {
-  //     thisCartItem = item;
-  //     break;
-  //   }
-  // }
-
-  // let thisCartItem;
-  // for (let item in cart.cartItems) {
-  //   if (+cart.cartItems[item]?.book_id === book?.title && cart.cartItems[item]?.price === cartItemsArray.find(otherItem => otherItem !== cart.cartItems[item] && otherItem?.price === cart.cartItems[item]?.price)?.price) {
-  //         thisCartItem = cart.cartItems[item];
-  //         break
-  // }
-
-  // }
-  // console.log('thisCartItem----', thisCartItem)
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -93,18 +67,15 @@ const BookDetails = () => {
     }
   }
 
-
-
   const handleAdditiontoCart = async (id) => {
-
-      await dispatch(postCartItem(id));
-
-    dispatch(getCart())
+    let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
+    if (!foundItem) {
+      await dispatch(postCartItem({ book_id: id, price: itemPrice }));
+    } else {
+      await dispatch(editCartItem({ id: foundItem.id, quantity: foundItem.quantity + 1 }));
+    }
+    dispatch(getCart());
   }
-
-
-
-
 
   function dateFix (string) {
     const array = string.split('-')
@@ -123,7 +94,6 @@ const BookDetails = () => {
   if(!users.length){
     return  null
   }
-
   let sum = 0
   reviews.forEach(review => {
     sum += review.stars
@@ -209,7 +179,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id, cartItemBook).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}

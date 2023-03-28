@@ -51,3 +51,13 @@ class Book(db.Model):
 
   def __repr__(self):
       return f"<Book {self.id}: {self.title}>"
+
+  def get_price(self, format):
+        if format == 'paperback':
+            return self.price_paperback
+        elif format == 'hardcover':
+            return self.price_hardcover
+        elif format == 'eBook':
+            return self.price_eBook
+        else:
+            return None
