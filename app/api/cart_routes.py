@@ -2,6 +2,7 @@
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Cart, Book, CartItem
+from ..forms.cart_item_form import CartItemForm
 from sqlalchemy.orm import joinedload
 import random
 
@@ -40,19 +41,12 @@ def get_cart():
         return cart.to_dict()
 
 
-@cart_routes.route('', methods = ['POST'])
+@cart_routes.route('', methods=['POST'])
 @login_required
 def add_cart():
-
-
     """
     A user can send a post request to add a product to their currently active cart.
     """
-    # if current_user.is_authenticated:
-    #     user_id = current_user.get_id()
-    # else:
-    #     user_id = None
-
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
@@ -65,38 +59,34 @@ def add_cart():
 
     else:
         order_number = (f'FS{random.randint(10000, 100000)}')
-        # order_number= user_id
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
 
-
-
-    # Get the book based on the _id
     book = Book.query.get(request.json['book_id'])
 
-    # Determine the item price based on the selected price format
     price = book.price_paperback
     if price == 'price_hardcover':
         price = book.price_hardcover
     elif price == 'price_eBook':
         price = book.price_eBook
 
-    # Create the new cart item with the correct price
+    form = CartItemForm(request.form)
+    if form.validate():
+        new_cart_item = CartItem(
+            cart_id=cart.to_dict()["id"],
+            book_id=request.json['book_id'],
+            quantity=form.quantity.data,
+            price=price
+        )
 
-    new_cart_item = CartItem(
-        cart_id=cart.to_dict()["id"],
-        book_id=request.json['book_id'],
-        quantity=1,
-        price= price
-    )
+        db.session.add(new_cart_item)
 
-    db.session.add(new_cart_item)
+        cart.total_price += price * form.quantity.data
+        db.session.commit()
 
-    # Update the cart total price to include the price of the new cart item
+        return new_cart_item.to_dict()
 
-    db.session.commit()
-
-    return new_cart_item.to_dict()
+    return jsonify({'error': 'invalid form data'})
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
@@ -106,9 +96,16 @@ def update_cart_item(id):
     """
     cart_item = CartItem.query.get(id)
 
-    setattr(cart_item, "quantity", request.json['quantity'])
-    db.session.commit()
-    return cart_item.to_dict()
+    if not cart_item:
+        return jsonify({'error': 'invalid cart item id'})
+
+    form = CartItemForm(request.form)
+    if form.validate():
+        cart_item.quantity = form.quantity.data
+        db.session.commit()
+        return cart_item.to_dict()
+
+    return jsonify({'error': 'invalid form data'})
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])

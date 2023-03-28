@@ -52,15 +52,15 @@ const BookDetails = () => {
   //   }
   // }
 
-  let thisCartItem;
-  for (let item in cart.cartItems) {
-    if (+cart.cartItems[item]?.book_id === book?.title && cart.cartItems[item]?.price === cartItemsArray.find(otherItem => otherItem !== cart.cartItems[item] && otherItem?.price === cart.cartItems[item]?.price)?.price) {
-          thisCartItem = cart.cartItems[item];
-          break
-  }
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item]?.book_id === book?.title && cart.cartItems[item]?.price === cartItemsArray.find(otherItem => otherItem !== cart.cartItems[item] && otherItem?.price === cart.cartItems[item]?.price)?.price) {
+  //         thisCartItem = cart.cartItems[item];
+  //         break
+  // }
 
-  }
-  console.log('thisCartItem----', thisCartItem)
+  // }
+  // console.log('thisCartItem----', thisCartItem)
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -96,11 +96,9 @@ const BookDetails = () => {
 
 
   const handleAdditiontoCart = async (id) => {
-    if (thisCartItem && thisCartItem.quantity < 10) {
-      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
-    } else {
+
       await dispatch(postCartItem(id));
-    }
+
     dispatch(getCart())
   }
 
