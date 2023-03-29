@@ -72,7 +72,7 @@ const BookDetails = () => {
     if (!foundItem) {
       await dispatch(postCartItem({ book_id: id, price: itemPrice }));
     } else {
-      await dispatch(editCartItem({ id: foundItem.id, quantity: foundItem.quantity + 1 }));
+      await dispatch(editCartItem({ id: foundItem, quantity: foundItem.quantity + 1 }));
     }
     dispatch(getCart());
   }

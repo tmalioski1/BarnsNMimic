@@ -59,29 +59,32 @@ def add_cart():
         db.session.add(cart)
 
     book_id = request.json.get('book_id')
-    book_format = request.json.get('format')
+
 
     book = Book.query.get(book_id)
 
     if book is None:
         return jsonify({"message": "Book not found."}), 404
 
-    price = book.get_price(book_format)
 
-    if price is None:
-        return jsonify({"message": "Invalid format."}), 400
 
-    cart_item = CartItem(
-        cart_id=cart.id,
-        book_id=book.id,
-        quantity=1,
-        price=price
-    )
+    form = CartItemForm(request.form)
 
-    db.session.add(cart_item)
-    db.session.commit()
+    if form.validate_on_submit():
+        cart_item = CartItem(
+            cart_id=cart.id,
+            book_id=book.id,
+            quantity=form.quantity.data,
+            price=form.price.data
+        )
 
-    return jsonify(cart_item.to_dict()), 201
+        db.session.add(cart_item)
+        db.session.commit()
+
+        return jsonify(cart_item.to_dict()), 201
+
+    return jsonify({"message": "Invalid data."}), 400
+
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
@@ -100,15 +103,16 @@ def update_cart_item(id):
     if not cart_item or cart_item.cart_id != cart.id:
         return jsonify({'error': 'invalid cart item id'})
 
-    quantity = request.json.get('quantity', None)
+    form = CartItemForm(request.form)
 
-    if not quantity:
-        return jsonify({'error': 'quantity is required'})
+    if form.validate_on_submit():
+        cart_item.quantity = form.quantity.data
+        cart_item.price = form.price.data
+        db.session.commit()
 
-    cart_item.quantity = quantity
-    db.session.commit()
+        return cart_item.to_dict()
 
-    return cart_item.to_dict()
+    return jsonify({"message": "Invalid data."}), 400
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])
