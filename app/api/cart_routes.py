@@ -45,6 +45,7 @@ def get_cart():
 @login_required
 def add_cart():
     user_id = current_user.get_id()
+    print('this is the user_id---', user_id)
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
         .filter(Cart.purchased == False).count()
@@ -55,13 +56,15 @@ def add_cart():
             .filter(Cart.purchased == False).one()
     else:
         order_number = (f'FS{random.randint(10000, 100000)}')
+        print('order_number---', order_number)
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
-
+    print('this is the cart---', cart)
     book_id = request.json.get('book_id')
 
 
     book = Book.query.get(book_id)
+    print('this is the book---', book)
 
     if book is None:
         return jsonify({"message": "Book not found."}), 404
@@ -69,15 +72,11 @@ def add_cart():
 
 
     form = CartItemForm(request.form)
-
+    print('this is the form---', form)
     if form.validate_on_submit():
-        cart_item = CartItem(
-            cart_id=cart.id,
-            book_id=book.id,
-            quantity=form.quantity.data,
-            price=form.price.data
-        )
-
+        print('successfull validation')
+        cart_item = CartItem()
+        form.populate_obj(cart_item)
         db.session.add(cart_item)
         db.session.commit()
 
@@ -99,6 +98,7 @@ def update_cart_item(id):
         return jsonify({'error': 'no active cart found'})
 
     cart_item = CartItem.query.get(id)
+    print('this is the cart_item---', cart_item)
 
     if not cart_item or cart_item.cart_id != cart.id:
         return jsonify({'error': 'invalid cart item id'})
@@ -106,6 +106,7 @@ def update_cart_item(id):
     form = CartItemForm(request.form)
 
     if form.validate_on_submit():
+        print('successfully validated')
         cart_item.quantity = form.quantity.data
         cart_item.price = form.price.data
         db.session.commit()

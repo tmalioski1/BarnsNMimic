@@ -70,7 +70,7 @@ const BookDetails = () => {
   const handleAdditiontoCart = async (id) => {
     let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
     if (!foundItem) {
-      await dispatch(postCartItem({ book_id: id, price: itemPrice }));
+      await dispatch(postCartItem(id));
     } else {
       await dispatch(editCartItem({ id: foundItem, quantity: foundItem.quantity + 1 }));
     }
