@@ -30,6 +30,7 @@ const BookDetails = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
+  console.log('itemPrice---', itemPrice)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
@@ -67,14 +68,20 @@ const BookDetails = () => {
     }
   }
 
+  // const handleAdditiontoCart = async (id) => {
+  //   let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
+  //   if (!foundItem) {
+  //     await dispatch(postCartItem(id));
+  //   } else {
+  //     await dispatch(editCartItem(foundItem, foundItem.quantity + 1 ));
+  //   }
+  //   dispatch(getCart());
+  // }
+
   const handleAdditiontoCart = async (id) => {
-    let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
-    if (!foundItem) {
-      await dispatch(postCartItem(id));
-    } else {
-      await dispatch(editCartItem({ id: foundItem, quantity: foundItem.quantity + 1 }));
-    }
-    dispatch(getCart());
+    await dispatch(postCartItem(id))
+
+    dispatch(getCart())
   }
 
   function dateFix (string) {

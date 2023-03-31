@@ -73,7 +73,6 @@ export const getAllBooks = () => async (dispatch) => {
       method: 'PUT',
       body: payload
     })
-    console.log('this is the response----', response)
     if(response.ok) {
       const editedBook = await response.json()
       dispatch(updateBook(editedBook))
@@ -81,20 +80,19 @@ export const getAllBooks = () => async (dispatch) => {
     }
   }
 
-  export const updateBookPrice = (book) => async dispatch => {
-    console.log('this is the book selected format---', book.selected_format)
-    const response = await fetch(`/api/books/selected_price/${book.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(book)
-    })
-    console.log('this is the response----', response)
-    if(response.ok) {
-      const updatedBook = await response.json()
-      dispatch(updatePrice(updatedBook))
-    return updatedBook
-    }
-  }
+  // export const updateBookPrice = (book) => async dispatch => {
+  //   const response = await fetch(`/api/books/selected_price/${book.id}`, {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(book)
+  //   })
+  //   console.log('this is the response----', response)
+  //   if(response.ok) {
+  //     const updatedBook = await response.json()
+  //     dispatch(updatePrice(updatedBook))
+  //   return updatedBook
+  //   }
+  // }
 
   export const deleteABook = (bookId) => async(dispatch) => {
     const response = await fetch(`/api/books/${bookId}`, {

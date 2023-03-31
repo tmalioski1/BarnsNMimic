@@ -40,12 +40,14 @@ def get_cart():
 
         return cart.to_dict()
 
-
 @cart_routes.route('', methods=['POST'])
 @login_required
 def add_cart():
     user_id = current_user.get_id()
-    print('this is the user_id---', user_id)
+    form = CartItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('form.data-----', form.data)
+
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
         .filter(Cart.purchased == False).count()
@@ -54,35 +56,56 @@ def add_cart():
         cart = Cart.query \
             .filter((Cart.user_id == user_id)) \
             .filter(Cart.purchased == False).one()
-    else:
-        order_number = (f'FS{random.randint(10000, 100000)}')
-        print('order_number---', order_number)
-        cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
-        db.session.add(cart)
-    print('this is the cart---', cart)
-    book_id = request.json.get('book_id')
+
+        #Get the book based on the _id
+        book = Book.query.get(request.json['book_id'])
+
+        # Determine the item price based on the selected price format
+        price = book.price_paperback
+        if price == 'price_hardcover':
+            price = book.price_hardcover
+        elif price == 'price_eBook':
+            price = book.price_eBook
 
 
-    book = Book.query.get(book_id)
-    print('this is the book---', book)
-
-    if book is None:
-        return jsonify({"message": "Book not found."}), 404
-
-
-
-    form = CartItemForm(request.form)
-    print('this is the form---', form)
-    if form.validate_on_submit():
-        print('successfull validation')
-        cart_item = CartItem()
-        form.populate_obj(cart_item)
-        db.session.add(cart_item)
-        db.session.commit()
+        if form.validate_on_submit():
+            print('successfull validation')
+            cart_item = CartItem()
+            form.populate_obj(cart_item)
+            db.session.add(cart_item)
+            db.session.commit()
 
         return jsonify(cart_item.to_dict()), 201
 
-    return jsonify({"message": "Invalid data."}), 400
+    else:
+        order_number = (f'FS{random.randint(10000, 100000)}')
+        cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
+        db.session.add(cart)
+        db.session.commit()
+
+
+         #Get the book based on the _id
+        book = Book.query.get(request.json['book_id'])
+
+        # Determine the item price based on the selected price format
+        price = book.price_paperback
+        if price == 'price_hardcover':
+            price = book.price_hardcover
+        elif price == 'price_eBook':
+            price = book.price_eBook
+
+
+
+        if form.validate_on_submit():
+            cart_item = CartItem()
+            form.populate_obj(cart_item)
+            db.session.add(cart_item)
+            db.session.commit()
+
+            return jsonify(cart_item.to_dict()), 201
+
+        return jsonify({"message": "Invalid data."}), 400
+
 
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
