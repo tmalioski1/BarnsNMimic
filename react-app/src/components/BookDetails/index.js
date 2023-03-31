@@ -78,7 +78,11 @@ const BookDetails = () => {
   //   dispatch(getCart());
   // }
 
-  const handleAdditiontoCart = async (id) => {
+  const handleAdditiontoCart = async (id, e) => {
+    e.preventDefault()
+    const payload = {
+      'cart_id'= 
+    }
     await dispatch(postCartItem(id))
 
     dispatch(getCart())

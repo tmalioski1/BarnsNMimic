@@ -43,70 +43,52 @@ def get_cart():
 @cart_routes.route('', methods=['POST'])
 @login_required
 def add_cart():
+    """
+    A user can send a post request to add a product to their currently active cart.
+    """
     user_id = current_user.get_id()
-    form = CartItemForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data-----', form.data)
-
     has_active_cart = Cart.query \
-        .filter((Cart.user_id == user_id)) \
+        .filter(Cart.user_id == user_id) \
         .filter(Cart.purchased == False).count()
 
     if has_active_cart:
         cart = Cart.query \
-            .filter((Cart.user_id == user_id)) \
+            .filter(Cart.user_id == user_id) \
             .filter(Cart.purchased == False).one()
 
-        #Get the book based on the _id
-        book = Book.query.get(request.json['book_id'])
-
-        # Determine the item price based on the selected price format
-        price = book.price_paperback
-        if price == 'price_hardcover':
-            price = book.price_hardcover
-        elif price == 'price_eBook':
-            price = book.price_eBook
-
-
-        if form.validate_on_submit():
-            print('successfull validation')
-            cart_item = CartItem()
-            form.populate_obj(cart_item)
-            db.session.add(cart_item)
-            db.session.commit()
-
-        return jsonify(cart_item.to_dict()), 201
-
     else:
-        order_number = (f'FS{random.randint(10000, 100000)}')
+        order_number = f'FS{random.randint(10000, 100000)}'
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
+
+    print('this is the request.json---', request.json)
+    book = Book.query.get(request.json['book_id'])
+    price = book.price_paperback
+    if price == 'price_hardcover':
+        price = book.price_hardcover
+    elif price == 'price_eBook':
+        price = book.price_eBook
+    print('this is the price----', price)
+    form = CartItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('formdata---', form.data)
+    if form.validate_on_submit():
+        print('validated-----')
+        new_cart_item = CartItem(
+            cart_id=cart.to_dict()["id"],
+            book_id=request.json['book_id'],
+            quantity=1,
+            price=price
+        )
+        print('new_cart_item---', new_cart_item)
+
+        cart.total_price += new_cart_item.price * new_cart_item.quantity
+        db.session.add(new_cart_item)
         db.session.commit()
 
+        return new_cart_item.to_dict()
 
-         #Get the book based on the _id
-        book = Book.query.get(request.json['book_id'])
-
-        # Determine the item price based on the selected price format
-        price = book.price_paperback
-        if price == 'price_hardcover':
-            price = book.price_hardcover
-        elif price == 'price_eBook':
-            price = book.price_eBook
-
-
-
-        if form.validate_on_submit():
-            cart_item = CartItem()
-            form.populate_obj(cart_item)
-            db.session.add(cart_item)
-            db.session.commit()
-
-            return jsonify(cart_item.to_dict()), 201
-
-        return jsonify({"message": "Invalid data."}), 400
-
-
+    return {'errors': form.errors}, 400
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
@@ -114,29 +96,16 @@ def update_cart_item(id):
     """
     Query for a single cart item by id from the current user's active cart and update the quantity.
     """
-    user_id = current_user.get_id()
-    cart = Cart.query.filter_by(user_id=user_id, purchased=False).first()
-
-    if not cart:
-        return jsonify({'error': 'no active cart found'})
-
     cart_item = CartItem.query.get(id)
-    print('this is the cart_item---', cart_item)
-
-    if not cart_item or cart_item.cart_id != cart.id:
-        return jsonify({'error': 'invalid cart item id'})
 
     form = CartItemForm(request.form)
-
     if form.validate_on_submit():
-        print('successfully validated')
-        cart_item.quantity = form.quantity.data
-        cart_item.price = form.price.data
+        setattr(cart_item, "quantity", form.quantity.data)
         db.session.commit()
 
         return cart_item.to_dict()
 
-    return jsonify({"message": "Invalid data."}), 400
+    return {'errors': form.errors}, 400
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])
