@@ -2,6 +2,7 @@
 from flask import Blueprint, session, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Cart, Book, CartItem
+from app.forms.cart_item_form import CartItemForm
 from sqlalchemy.orm import joinedload
 import random
 
@@ -40,63 +41,54 @@ def get_cart():
         return cart.to_dict()
 
 
-@cart_routes.route('', methods = ['POST'])
+@cart_routes.route('', methods=['POST'])
 @login_required
 def add_cart():
-
-
     """
     A user can send a post request to add a product to their currently active cart.
     """
-    # if current_user.is_authenticated:
-    #     user_id = current_user.get_id()
-    # else:
-    #     user_id = None
-
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
-        .filter((Cart.user_id == user_id)) \
+        .filter(Cart.user_id == user_id) \
         .filter(Cart.purchased == False).count()
 
     if has_active_cart:
         cart = Cart.query \
-            .filter((Cart.user_id == user_id)) \
+            .filter(Cart.user_id == user_id) \
             .filter(Cart.purchased == False).one()
 
     else:
-        order_number = (f'FS{random.randint(10000, 100000)}')
-        # order_number= user_id
+        order_number = f'FS{random.randint(10000, 100000)}'
         cart = Cart(user_id=user_id, total_price=0, purchased=False, order_number=order_number)
         db.session.add(cart)
 
-
-
-    # Get the book based on the _id
     book = Book.query.get(request.json['book_id'])
-
-    # Determine the item price based on the selected price format
     price = book.price_paperback
     if price == 'price_hardcover':
         price = book.price_hardcover
     elif price == 'price_eBook':
         price = book.price_eBook
 
-    # Create the new cart item with the correct price
+    form = CartItemForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('formdata---', form.data)
+    if form.validate_on_submit():
+        print('validated')
+        new_cart_item = CartItem(
+            cart_id=cart.to_dict()["id"],
+            book_id=request.json['book_id'],
+            quantity=1,
+            price=price
+        )
+        print('new_cart_item---', new_cart_item)
 
-    new_cart_item = CartItem(
-        cart_id=cart.to_dict()["id"],
-        book_id=request.json['book_id'],
-        quantity=1,
-        price= price
-    )
+        cart.total_price += new_cart_item.price * new_cart_item.quantity
+        db.session.add(new_cart_item)
+        db.session.commit()
 
-    db.session.add(new_cart_item)
+        return new_cart_item.to_dict()
 
-    # Update the cart total price to include the price of the new cart item
-
-    db.session.commit()
-
-    return new_cart_item.to_dict()
+    return {'errors': form.errors}, 400
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
@@ -106,9 +98,14 @@ def update_cart_item(id):
     """
     cart_item = CartItem.query.get(id)
 
-    setattr(cart_item, "quantity", request.json['quantity'])
-    db.session.commit()
-    return cart_item.to_dict()
+    form = CartItemForm(request.form)
+    if form.validate_on_submit():
+        setattr(cart_item, "quantity", form.quantity.data)
+        db.session.commit()
+
+        return cart_item.to_dict()
+
+    return {'errors': form.errors}, 400
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])

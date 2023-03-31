@@ -24,8 +24,6 @@ const BookDetails = () => {
   const book = bookData[0]
   const cartItems = useSelector(state=> state.cartItems)
   const cartItemsArray= Object.values(cartItems)
-  let cartItemBook = cartItemsArray[cartItems.length]
-
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
@@ -208,7 +206,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id, cartItemBook).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
