@@ -1,3 +1,5 @@
+
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
@@ -16,26 +18,57 @@ import './bookdetails.css';
 const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const singleBook = useSelector((state) => state.books.allBooks[id]);
-  console.log('this is the singleBook---', singleBook)
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
+  console.log('this is the bookObj---', bookObj)
   const cart = useSelector((state) => state.cart);
   const bookData = Object.values(bookObj)
+  console.log('this is the bookData---', bookData)
   const book = bookData[0]
   const cartItems = useSelector(state=> state.cartItems)
+  console.log('this is cartItems---', cartItems)
   const cartItemsArray= Object.values(cartItems)
-  console.log('this is the cartItemsArray---', cartItemsArray)
-
+  console.log('this is cartItemsArray---', cartItemsArray)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
-  console.log('itemPrice---', itemPrice)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
+
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item].book_id === +id)
+  //     thisCartItem = cart.cartItems[item];
+  // }
+
+  //   let thisCartItem;
+  // for (let item of cartItemsArray) {
+  //   if (item.book_id === +id && item?.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
+  //     thisCartItem = item;
+  //     break;
+  //   }
+  // }
+
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item].book_id === +id && item.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
+  //         thisCartItem = item;
+  // }
+
+  let thisCartItem;
+  for (let item in cart.cartItems) {
+    if (+cart.cartItems[item]?.book_id === +id && cart.cartItems[item]?.price === cartItemsArray.find(otherItem => otherItem !== cart.cartItems[item] && otherItem?.price === cart.cartItems[item]?.price)?.price) {
+          thisCartItem = cart.cartItems[item];
+          break
+  }
+
+  }
+  console.log('thisCartItem----', thisCartItem)
+
+
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -68,25 +101,25 @@ const BookDetails = () => {
     }
   }
 
-  // const handleAdditiontoCart = async (id) => {
-  //   let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
-  //   if (!foundItem) {
-  //     await dispatch(postCartItem(id));
-  //   } else {
-  //     await dispatch(editCartItem(foundItem, foundItem.quantity + 1 ));
-  //   }
-  //   dispatch(getCart());
-  // }
 
-  const handleAdditiontoCart = async (id, e) => {
-    e.preventDefault()
-    const payload = {
-      'cart_id'= 
+
+
+
+  const handleAdditiontoCart = async (id) => {
+
+    if (thisCartItem && thisCartItem.quantity < 10) {
+      thisCartItem.price = itemPrice
+      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
+    } else {
+      await dispatch(postCartItem(id));
     }
-    await dispatch(postCartItem(id))
-
     dispatch(getCart())
   }
+
+
+  // const selectBookPrice = async(book) => {
+  //   await dispatch(updateBookPrice(book))
+  // }
 
   function dateFix (string) {
     const array = string.split('-')
@@ -105,6 +138,7 @@ const BookDetails = () => {
   if(!users.length){
     return  null
   }
+
   let sum = 0
   reviews.forEach(review => {
     sum += review.stars
@@ -205,7 +239,6 @@ const today = new Date()
 
               />
               </button>}
-
 
 
           </div>
