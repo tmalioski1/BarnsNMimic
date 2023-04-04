@@ -5,7 +5,7 @@ import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
 import './checkout.css'
 
-const Checkout = ({itemPrice}) => {
+const Checkout = ({itemPrice, setItemPrice}) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   // const book = useSelector((state) => state.cart?.cartItems?.book)

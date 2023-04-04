@@ -15,7 +15,7 @@ import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
-const BookDetails = () => {
+const BookDetails = ({itemPrice, setItemPrice}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -31,7 +31,6 @@ const BookDetails = () => {
   console.log('this is cartItemsArray---', cartItemsArray)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
-  const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
