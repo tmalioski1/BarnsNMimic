@@ -105,15 +105,20 @@ const BookDetails = () => {
 
 
 
-  const handleAdditiontoCart = async (id) => {
+  // const handleAdditiontoCart = async (id) => {
 
-    if (thisCartItem && thisCartItem.quantity < 10) {
-      thisCartItem.price = itemPrice
-      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
-    } else {
-      await dispatch(postCartItem(id));
-    }
-    dispatch(getCart())
+  //   if (thisCartItem && thisCartItem.quantity < 10) {
+  //     thisCartItem.price = itemPrice
+  //     await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
+  //   } else {
+  //     await dispatch(postCartItem(id));
+  //   }
+  //   dispatch(getCart())
+  // }
+  console.log('this is the item price--', itemPrice)
+  const handleAdditiontoCart = async (id) => {
+    await dispatch(postCartItem(id, itemPrice));
+    dispatch(getCart());
   }
 
 
