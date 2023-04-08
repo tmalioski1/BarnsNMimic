@@ -72,9 +72,8 @@ const Checkout = ({itemPrice, setItemPrice}) => {
           </div>
          <div className="cart-quantity-and-price">
               <div className="cart-price">
-              {/* ${usDollar.format(item.price * item.quantity)}
-              {(totalPrice += item.price * item.quantity) && false} */}
-              ${usDollar.format(itemPrice)}
+              ${usDollar.format(itemPrice * item.quantity)}
+              {/* {(totalPrice += itemPrice * item.quantity)} */}
               </div>
             </div>
         </div>

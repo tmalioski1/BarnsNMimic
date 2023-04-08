@@ -52,7 +52,7 @@ def add_cart():
     #     user_id = current_user.get_id()
     # else:
     #     user_id = None
-
+    print('hi, this is post')
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
@@ -73,6 +73,7 @@ def add_cart():
 
     # Get the book based on the _id
     book = Book.query.get(request.json['book_id'])
+    print('this is the book---', book)
 
     # Determine the item price based on the selected price format
     price = book.price_paperback
@@ -89,10 +90,9 @@ def add_cart():
         quantity=1,
         price= price
     )
-
+    print('this is the new_cart_item---', new_cart_item)
     db.session.add(new_cart_item)
 
-    # Update the cart total price to include the price of the new cart item
 
     db.session.commit()
 
@@ -100,13 +100,16 @@ def add_cart():
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def update_cart_item(format, id):
+def update_cart_item(id):
     """
     Query for a single cart item by id from the current user's active cart and update the quantity.
     """
+    print('hi, this is PUT')
     cart_item = CartItem.query.get(id)
+    print('this is the cart_item---', cart_item)
 
     setattr(cart_item, "quantity", request.json['quantity'])
+    print('this is the quantity---', cart_item.quantity)
     db.session.commit()
     return cart_item.to_dict()
 

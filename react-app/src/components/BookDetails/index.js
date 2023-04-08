@@ -65,7 +65,8 @@ const BookDetails = ({itemPrice, setItemPrice}) => {
   }
 
   }
-  console.log('thisCartItem----', thisCartItem)
+
+  console.log('thiscartItem-------------------------------------', thisCartItem)
 
 
 
@@ -104,21 +105,21 @@ const BookDetails = ({itemPrice, setItemPrice}) => {
 
 
 
-  // const handleAdditiontoCart = async (id) => {
-
-  //   if (thisCartItem && thisCartItem.quantity < 10) {
-  //     thisCartItem.price = itemPrice
-  //     await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
-  //   } else {
-  //     await dispatch(postCartItem(id));
-  //   }
-  //   dispatch(getCart())
-  // }
-  console.log('this is the item price--', itemPrice)
   const handleAdditiontoCart = async (id) => {
-    await dispatch(postCartItem(id, itemPrice));
-    dispatch(getCart());
+    console.log('this is the itemPrice---', itemPrice)
+    if (thisCartItem && thisCartItem.quantity < 10) {
+      thisCartItem.price = itemPrice
+      console.log('itemprice---', thisCartItem.price)
+      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
+    } else {
+      await dispatch(postCartItem(id, itemPrice));
+    }
+    dispatch(getCart())
   }
+  // const handleAdditiontoCart = async (id) => {
+  //   await dispatch(postCartItem(id, itemPrice));
+  //   dispatch(getCart());
+  // }
 
 
   // const selectBookPrice = async(book) => {
@@ -228,7 +229,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
               {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
+              <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id, thisCartItem).then(() => setIsCartOpen(true))}>
                 <OpenModalButton
                  buttonText={'ADD TO CART'}
                  onButtonClick={() => setIsCartOpen(true)}
