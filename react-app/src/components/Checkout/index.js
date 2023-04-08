@@ -5,7 +5,8 @@ import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
 import './checkout.css'
 
-const Checkout = ({itemPrice, setItemPrice}) => {
+const Checkout = (itemPrice) => {
+  
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   // const book = useSelector((state) => state.cart?.cartItems?.book)
@@ -73,7 +74,7 @@ const Checkout = ({itemPrice, setItemPrice}) => {
          <div className="cart-quantity-and-price">
               <div className="cart-price">
               ${usDollar.format(itemPrice * item.quantity)}
-              {/* {(totalPrice += itemPrice * item.quantity)} */}
+              {(totalPrice += itemPrice * item.quantity)}
               </div>
             </div>
         </div>

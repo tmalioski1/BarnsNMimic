@@ -15,7 +15,7 @@ import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
-const BookDetails = ({itemPrice, setItemPrice}) => {
+const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
@@ -31,6 +31,7 @@ const BookDetails = ({itemPrice, setItemPrice}) => {
   console.log('this is cartItemsArray---', cartItemsArray)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
+  const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const history = useHistory()
@@ -66,7 +67,6 @@ const BookDetails = ({itemPrice, setItemPrice}) => {
 
   }
 
-  console.log('thiscartItem-------------------------------------', thisCartItem)
 
 
 
@@ -152,6 +152,9 @@ const BookDetails = ({itemPrice, setItemPrice}) => {
 
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
+
+console.log('this is the itemPrice in the book details page-------', itemPrice)
+
 
 
   return (

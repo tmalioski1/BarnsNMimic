@@ -18,6 +18,7 @@ function CartModal({ currentBookId, isOpen, itemPrice, setIsCartOpen }) {
       itemPrice = book.price_paperback;
     }
 
+    console.log('this is the itemPrice in the cart modal-------', itemPrice)
 
 
 
