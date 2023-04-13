@@ -76,8 +76,9 @@ def add_cart():
     print('this is the book---', book)
 
     # Determine the item price based on the selected price format
-    price = book.price_paperback
-    if price == 'price_hardcover':
+    if price == book.price_paperback:
+        price = book.price_paperback
+    elif price == 'price_hardcover':
         price = book.price_hardcover
     elif price == 'price_eBook':
         price = book.price_eBook
