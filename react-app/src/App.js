@@ -13,11 +13,9 @@ import Checkout from "./components/Checkout";
 import { authenticate } from './store/session';
 
 function App() {
-  const bookObj = useSelector(state => state.books.singleBook);
-  const bookData = Object.values(bookObj)
-  const book = bookData[0]
+
   const [loaded, setLoaded] = useState(false);
-  const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
+  const [priceFormat, setPriceFormat] = useState("price_paperback");
   const dispatch = useDispatch();
 
 
@@ -49,10 +47,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/checkout' exact={true}  >
-        <Checkout itemPrice={itemPrice} setItemPrice={setItemPrice}/>
+        <Checkout priceFormat={priceFormat} setPriceFormat={setPriceFormat}/>
         </Route>
         <Route path='/books/:id' exact = {true}>
-        <BookDetails itemPrice={itemPrice} setItemPrice={setItemPrice}/>
+        <BookDetails priceFormat={priceFormat} setPriceFormat={setPriceFormat}/>
         </Route>
         <Route path='/' exact={true} >
         <Homepage />

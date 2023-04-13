@@ -40,9 +40,9 @@ def get_cart():
 
         return cart.to_dict()
 
-@cart_routes.route('', methods = ['POST'])
+@cart_routes.route('/<format>', methods = ['POST'])
 @login_required
-def add_cart():
+def add_cart(format):
 
 
     """
@@ -52,7 +52,7 @@ def add_cart():
     #     user_id = current_user.get_id()
     # else:
     #     user_id = None
-    print('hi, this is post')
+
     user_id = current_user.get_id()
     has_active_cart = Cart.query \
         .filter((Cart.user_id == user_id)) \
@@ -73,13 +73,12 @@ def add_cart():
 
     # Get the book based on the _id
     book = Book.query.get(request.json['book_id'])
-    print('this is the book---', book)
 
-    # Determine the item price based on the selected price format
+    # Determine the price based on the selected format
     price = book.price_paperback
-    if price == 'price_hardcover':
+    if format == 'price_hardcover':
         price = book.price_hardcover
-    elif price == 'price_eBook':
+    elif format == 'price_eBook':
         price = book.price_eBook
 
     # Create the new cart item with the correct price
@@ -90,9 +89,10 @@ def add_cart():
         quantity=1,
         price= price
     )
-    print('this is the new_cart_item---', new_cart_item)
+
     db.session.add(new_cart_item)
 
+    # Update the cart total price to include the price of the new cart item
 
     db.session.commit()
 

@@ -23,20 +23,17 @@ export const deleteCartItem = (cartItemId) => {
   };
 };
 
-export const postCartItem = (bookId, price) => async (dispatch) => {
-  const response = await fetch(`/api/cart`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      book_id: bookId,
-      price: price,
-    }),
+export const postCartItem = (format, book_id) => async (dispatch) => {
+  const response = await fetch(`/api/cart/${format}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ book_id: book_id}),
   });
+
   if (response.ok) {
-    const cartItem = await response.json();
-    dispatch(createCartItem(cartItem));
+      const cartItem = await response.json();
+      dispatch(createCartItem(cartItem));
+      return cartItem;
   }
 };
 
