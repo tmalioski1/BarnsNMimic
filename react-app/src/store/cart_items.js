@@ -23,11 +23,11 @@ export const deleteCartItem = (cartItemId) => {
   };
 };
 
-export const postCartItem = (format, book_id) => async (dispatch) => {
-  const response = await fetch(`/api/cart/${format}`, {
+export const postCartItem = (book_id) => async (dispatch) => {
+  const response = await fetch("/api/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ book_id: book_id}),
+      body: JSON.stringify({ book_id: book_id }),
   });
 
   if (response.ok) {
@@ -37,20 +37,19 @@ export const postCartItem = (format, book_id) => async (dispatch) => {
   }
 };
 
-export const editCartItem = (cartItem, quantity) => async (dispatch) => {
-  const response = await fetch(`/api/cart/${cartItem.id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ quantity: quantity }),
+export const editCartItem = (cartItem, quantity) => async dispatch => {
+  const response = await fetch(`/api/carts/${cartItem.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 'quantity': quantity })
   });
 
   if (response.ok) {
-    const updatedCartItem = await response.json();
-    dispatch(updateCartItem(updatedCartItem));
-    return updatedCartItem;
-  }
+      const updatedCartItem = await response.json();
+      dispatch(updateCartItem(updatedCartItem));
+      return updatedCartItem;
+  };
 };
-
 export const removeCartItem = (cartItemId) => async (dispatch) => {
   const response = await fetch(`/api/cart/${cartItemId}`, {
     method: "DELETE",
