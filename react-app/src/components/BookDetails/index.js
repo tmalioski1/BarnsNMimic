@@ -36,11 +36,11 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
 
   const [users, setUsers] = useState([]);
 
-  let thisCartItem;
-  for (let item in cart.cartItems) {
-    if (+cart.cartItems[item].book_id === +id)
-      thisCartItem = cart.cartItems[item];
-  }
+  // let thisCartItem;
+  // for (let item in cart.cartItems) {
+  //   if (+cart.cartItems[item].book_id === +id)
+  //     thisCartItem = cart.cartItems[item];
+  // }
 
     // let thisCartItem;
   // for (let item of cartItemsArray) {
@@ -83,12 +83,20 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
     }
   }
 
+  // const handleAdditiontoCart = async (e, id) => {
+  //   if (thisCartItem && thisCartItem.quantity < 10) {
+  //     await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
+  //   } else {
+  //     await dispatch(postCartItem(priceFormat, id));
+  //   }
+  //   dispatch(getCart())
+  // }
+
+
   const handleAdditiontoCart = async (e, id) => {
-    if (thisCartItem && thisCartItem.quantity < 10) {
-      await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
-    } else {
+
       await dispatch(postCartItem(priceFormat, id));
-    }
+
     dispatch(getCart())
   }
 
