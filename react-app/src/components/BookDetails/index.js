@@ -2,54 +2,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
-import { getOneBook, deleteABook, updateBookPrice } from '../../store/books';
+import { getOneBook, deleteABook } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
-import { postCartItem, editCartItem } from "../../store/cart_items";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
-import CartModal from './CartModal'
-import { getCart } from "../../store/carts";
 import './bookdetails.css';
 
 
-const BookDetails = ({setPriceFormat, priceFormat}) => {
+const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
-  console.log('this is the bookObj---', bookObj)
-  const cart = useSelector((state) => state.cart);
   const bookData = Object.values(bookObj)
-  console.log('this is the bookData---', bookData)
-  const book = bookData[0]
-  const cartItems = useSelector(state=> state.cartItems)
-  console.log('this is cartItems---', cartItems)
-  const cartItemsArray= Object.values(cartItems)
-  console.log('this is cartItemsArray---', cartItemsArray)
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
-  const [itemPrice, setItemPrice] = useState()
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
-
-  // let thisCartItem;
-  // for (let item in cart.cartItems) {
-  //   if (+cart.cartItems[item].book_id === +id)
-  //     thisCartItem = cart.cartItems[item];
-  // }
-
-    // let thisCartItem;
-  // for (let item of cartItemsArray) {
-  //   if (item.book_id === +id && item?.price === cartItemsArray.find(otherItem => otherItem !== item && otherItem.price === item?.price).price) {
-  //     thisCartItem = item;
-  //     break;
-  //   }
-  // }
-
 
 
   useEffect(() => {
@@ -83,27 +55,6 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
     }
   }
 
-  // const handleAdditiontoCart = async (e, id) => {
-  //   if (thisCartItem && thisCartItem.quantity < 10) {
-  //     await dispatch(editCartItem(thisCartItem, thisCartItem.quantity + 1));
-  //   } else {
-  //     await dispatch(postCartItem(priceFormat, id));
-  //   }
-  //   dispatch(getCart())
-  // }
-
-
-  const handleAdditiontoCart = async (e, id) => {
-
-      await dispatch(postCartItem(priceFormat, id));
-
-    dispatch(getCart())
-  }
-
-
-  // const selectBookPrice = async(book) => {
-  //   await dispatch(updateBookPrice(book))
-  // }
 
   function dateFix (string) {
     const array = string.split('-')
@@ -132,7 +83,7 @@ const BookDetails = ({setPriceFormat, priceFormat}) => {
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
 
-console.log('this is the priceFormat---', priceFormat)
+
 
   return (
     <section>
@@ -157,43 +108,31 @@ console.log('this is the priceFormat---', priceFormat)
     </div>
     </div>
     <div className= 'book-details-all-prices'>
-    {bookData[0]?.price_paperback !== null &&
-      <button className='book-details-paperback-price' onClick={() =>
-        setPriceFormat("price_paperback")
-      }>
+      <div className='book-details-paperback-price'>
        <div>
        Paperback
        </div>
        <div className='price-to-bold'>
-
-      {'$' +bookData[0]?.price_paperback.toFixed(2)}
+      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2): 0.0}
       </div>
-
-      </button>
-}
-    {bookData[0]?.price_hardcover !== null &&
-      <button className='book-details-hardcover-price' onClick={() => setPriceFormat("price_hardcover")
-        }>
+      </div>
+      <div className='book-details-hardcover-price'>
        <div>
        Hardcover
        </div>
        <div className='price-to-bold'>
-      {'$' +bookData[0]?.price_hardcover.toFixed(2)}
+      {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2): 0.0}
       </div>
-      </button>
-}
-      {bookData[0]?.price_eBook !== null &&
-      <button className='book-details-eBook-price' onClick={() => setPriceFormat("price_eBook")
-        }>
+      </div>
+
+      <div className='book-details-eBook-price'>
         <div>
        eBook
        </div>
        <div className='price-to-bold'>
-
-      {'$' +bookData[0]?.price_eBook.toFixed(2)}
+      {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2): 0.0}
       </div>
-      </button>
-}
+      </div>
       </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
@@ -202,30 +141,9 @@ console.log('this is the priceFormat---', priceFormat)
             onClick={() => handleDeletion(bookData[0].id)}>DELETE BOOK</button>}
               {userObj?.id === bookData[0].publisher_id &&
                 <OpenModalButton
-                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` }  />}
+                 modalComponent={<EditBookModal currentBookId={ `${bookData[0].id}` } />}
                  buttonText={'Edit Book'}
               />}
-          </div>
-          <div className='book-add-to-cart'>
-
-              {userObj?.id !== bookData[0].publisher_id &&
-              <button className='book-add-to-cart-button' onClick={(e) => handleAdditiontoCart(e, book.id).then(() => setIsCartOpen(true))}>
-                <OpenModalButton
-                 buttonText={'ADD TO CART'}
-                 onButtonClick={() => setIsCartOpen(true)}
-                 modalComponent={<CartModal
-                  currentBookId={id}
-                  isOpen={isCartOpen}
-                  priceFormat={priceFormat}
-                  setIsCartOpen={setIsCartOpen}
-                  isCartOpen={isCartOpen}
-                  onClose={() => setIsCartOpen(false)}
-                />}
-
-              />
-              </button>}
-
-
           </div>
           </div>
           </div>
