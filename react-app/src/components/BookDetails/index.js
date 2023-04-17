@@ -19,9 +19,18 @@ const BookDetails = () => {
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
+  const cart = useSelector((state) => state.cart)
+  console.log('this is the cart---', cart)
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
+  let thisCartItem;
+  for (let item in cart.cartItems) {
+    if (+cart.cartItems[item]?.book_id === +id)
+      thisCartItem = cart.cartItems[item];
+  }
+
+  const usDollar = Intl.NumberFormat("en-US");
 
 
   useEffect(() => {
@@ -54,6 +63,21 @@ const BookDetails = () => {
       message = response.message
     }
   }
+
+
+  const handleAdditiontoCart = async (e) => {
+    e.preventDefault();
+    if (thisCartItem) {
+      if (thisCartItem.quantity < 10) {
+        await dispatch(
+          editCartItem(thisCartItem, thisCartItem.quantity + 1)
+        );
+      }
+    } else {
+      await dispatch(postCartItem(book.id));
+    }
+    await dispatch(getCart());
+  }}
 
 
   function dateFix (string) {
@@ -145,6 +169,7 @@ const today = new Date()
                  buttonText={'Edit Book'}
               />}
           </div>
+          
           </div>
           </div>
           <div className='overview-container'>
