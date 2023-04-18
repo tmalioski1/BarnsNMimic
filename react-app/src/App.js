@@ -15,7 +15,6 @@ import { authenticate } from './store/session';
 function App() {
 
   const [loaded, setLoaded] = useState(false);
-  const [priceFormat, setPriceFormat] = useState("price_paperback");
   const dispatch = useDispatch();
 
 
@@ -47,10 +46,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/checkout' exact={true}  >
-        <Checkout priceFormat={priceFormat} setPriceFormat={setPriceFormat}/>
+        <Checkout/>
         </Route>
         <Route path='/books/:id' exact = {true}>
-        <BookDetails priceFormat={priceFormat} setPriceFormat={setPriceFormat}/>
+        <BookDetails/>
         </Route>
         <Route path='/' exact={true} >
         <Homepage />

@@ -4,6 +4,9 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { DynamicStar } from 'react-dynamic-star';
 import { getOneBook, deleteABook } from '../../store/books';
 import { getAllReviews, deleteAReview } from '../../store/reviews';
+import { postCartItem, editCartItem } from "../../store/cart_items";
+import CartModal from './CartModal'
+import { getCart } from "../../store/carts";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
@@ -16,11 +19,13 @@ const BookDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
   const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
+  const book = bookData[0]
   const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const cart = useSelector((state) => state.cart)
   console.log('this is the cart---', cart)
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
@@ -65,8 +70,7 @@ const BookDetails = () => {
   }
 
 
-  const handleAdditiontoCart = async (e) => {
-    e.preventDefault();
+  const handleAdditiontoCart = async (book_id) => {
     if (thisCartItem) {
       if (thisCartItem.quantity < 10) {
         await dispatch(
@@ -76,8 +80,8 @@ const BookDetails = () => {
     } else {
       await dispatch(postCartItem(book.id));
     }
-    await dispatch(getCart());
-  }}
+    await dispatch(getCart())
+  }
 
 
   function dateFix (string) {
@@ -94,9 +98,10 @@ const BookDetails = () => {
     return joinedArray
   }
 
-  if(!users.length){
-    return  null
-  }
+
+if(!users.length){
+  return null
+}
 
   let sum = 0
   reviews.forEach(review => {
@@ -106,6 +111,8 @@ const BookDetails = () => {
 
 const publicationDate = new Date(bookData[0].publication_date)
 const today = new Date()
+
+
 
 
 
@@ -169,7 +176,26 @@ const today = new Date()
                  buttonText={'Edit Book'}
               />}
           </div>
-          
+          <div className='book-add-to-cart'>
+
+          {userObj?.id !== bookData[0].publisher_id &&
+          <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
+            <OpenModalButton
+            buttonText={'ADD TO CART'}
+            onButtonClick={() => setIsCartOpen(true)}
+            modalComponent={<CartModal
+              currentBookId={id}
+              isOpen={isCartOpen}
+              setIsCartOpen={setIsCartOpen}
+              isCartOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+            />}
+
+          />
+          </button>}
+
+
+          </div>
           </div>
           </div>
           <div className='overview-container'>
