@@ -70,7 +70,8 @@ const BookDetails = () => {
   }
 
 
-  const handleAdditiontoCart = async (book_id) => {
+  const handleAdditiontoCart = async () => {
+
     if (thisCartItem) {
       if (thisCartItem.quantity < 10) {
         await dispatch(
@@ -97,6 +98,7 @@ const BookDetails = () => {
     }
     return joinedArray
   }
+
 
 
 if(!users.length){
@@ -138,33 +140,32 @@ const today = new Date()
     <div className='total-review-number'>{reviews.length ? `(${reviews.length})`: null}</div>
     </div>
     </div>
-    <div className= 'book-details-all-prices'>
-      <div className='book-details-paperback-price'>
-       <div>
-       Paperback
-       </div>
-       <div className='price-to-bold'>
-      {bookData[0].price_paperback ? '$' +bookData[0]?.price_paperback.toFixed(2): 0.0}
-      </div>
-      </div>
-      <div className='book-details-hardcover-price'>
-       <div>
-       Hardcover
-       </div>
-       <div className='price-to-bold'>
-      {bookData[0].price_hardcover ? '$' +bookData[0]?.price_hardcover.toFixed(2): 0.0}
-      </div>
-      </div>
-
-      <div className='book-details-eBook-price'>
+    <div class="book-details-all-prices">
+      <button class="book-details-paperback-price" onclick="toggleMessage(this)">
         <div>
-       eBook
-       </div>
-       <div className='price-to-bold'>
-      {bookData[0].price_eBook ? '$' +bookData[0]?.price_eBook.toFixed(2): 0.0}
-      </div>
-      </div>
-      </div>
+          Paperback
+        </div>
+        <div class="price-to-bold">
+          ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
+        </div>
+      </button>
+      <button class="book-details-hardcover-price" onclick="toggleMessage(this)">
+        <div>
+          Hardcover
+        </div>
+        <div class="price-to-bold">
+          ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
+        </div>
+      </button>
+      <button class="book-details-eBook-price" onclick="toggleMessage(this)">
+        <div>
+          eBook
+        </div>
+        <div class="price-to-bold">
+          ${bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
+        </div>
+      </button>
+    </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
           <button
@@ -185,9 +186,6 @@ const today = new Date()
             onButtonClick={() => setIsCartOpen(true)}
             modalComponent={<CartModal
               currentBookId={id}
-              isOpen={isCartOpen}
-              setIsCartOpen={setIsCartOpen}
-              isCartOpen={isCartOpen}
               onClose={() => setIsCartOpen(false)}
             />}
 

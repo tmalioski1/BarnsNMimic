@@ -55,10 +55,14 @@ def add_cart_item():
         .filter(Cart.user_id == current_user.get_id()) \
         .filter(Cart.purchased == False).one()
 
+        book = Book.query.get(request.json['book_id'])
+        price = book.price_paperback
         new_cart_item = CartItem(
             cart_id = cart.to_dict()["id"],
             book_id = request.json['book_id'],
-            quantity = 1
+            quantity = 1,
+            price= price
+
         )
 
         db.session.add(new_cart_item)
@@ -81,7 +85,7 @@ def add_cart_item():
         price = book.price_paperback
         new_cart_item = CartItem(
             cart_id = cart.to_dict()["id"],
-            product_id = request.json['product_id'],
+            book_id = request.json['book_id'],
             quantity = 1,
             price=price
         )
