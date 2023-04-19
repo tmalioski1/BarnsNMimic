@@ -141,7 +141,7 @@ const today = new Date()
     </div>
     </div>
     <div class="book-details-all-prices">
-      <button class="book-details-paperback-price" onclick="toggleMessage(this)">
+      <button class="book-details-paperback-price">
         <div>
           Paperback
         </div>
@@ -149,7 +149,7 @@ const today = new Date()
           ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
         </div>
       </button>
-      <button class="book-details-hardcover-price" onclick="toggleMessage(this)">
+      <button class="book-details-hardcover-price">
         <div>
           Hardcover
         </div>
@@ -157,7 +157,7 @@ const today = new Date()
           ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
         </div>
       </button>
-      <button class="book-details-eBook-price" onclick="toggleMessage(this)">
+      <button class="book-details-eBook-price">
         <div>
           eBook
         </div>
