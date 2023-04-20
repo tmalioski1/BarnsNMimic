@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
+import SelectField from "./SelectField"
 import './checkout.css'
 
 const Checkout = () => {
@@ -36,6 +37,9 @@ const Checkout = () => {
       <div className="cart-item-title">{item.book.title}</div>
       <div className="cart-item-author">{`by ${item.book.author}`}</div>
       </div>
+      <div className="cart-quantity-container">
+                <SelectField currentItem={item} />
+              </div>
       <div className="cart-item-remove-or-homepage">
         <div className='cart-item-remove'>
               <button

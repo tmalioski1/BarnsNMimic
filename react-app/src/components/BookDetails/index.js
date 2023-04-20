@@ -10,6 +10,8 @@ import { getCart } from "../../store/carts";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
+import NotAvailableModal from './NotAvailableModal'
+
 import './bookdetails.css';
 
 
@@ -24,7 +26,6 @@ const BookDetails = () => {
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const cart = useSelector((state) => state.cart)
-  console.log('this is the cart---', cart)
   const [isCartOpen, setIsCartOpen] = useState(false);
   const history = useHistory()
 
@@ -35,7 +36,7 @@ const BookDetails = () => {
       thisCartItem = cart.cartItems[item];
   }
 
-  const usDollar = Intl.NumberFormat("en-US");
+
 
 
   useEffect(() => {
@@ -140,29 +141,29 @@ const today = new Date()
     <div className='total-review-number'>{reviews.length ? `(${reviews.length})`: null}</div>
     </div>
     </div>
-    <div class="book-details-all-prices">
-      <button class="book-details-paperback-price">
+    <div className="book-details-all-prices">
+    <button className="book-details-paperback-price" onClick={() => window.location.reload()}>
         <div>
           Paperback
         </div>
-        <div class="price-to-bold">
-          ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
+        <div className="price-to-bold">
+          {bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
         </div>
       </button>
-      <button class="book-details-hardcover-price">
+      <button className="book-details-hardcover-price" >
         <div>
           Hardcover
         </div>
-        <div class="price-to-bold">
-          ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
+        <div className="price-to-bold">
+          {bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
         </div>
       </button>
-      <button class="book-details-eBook-price">
+      <button className="book-details-eBook-price">
         <div>
           eBook
         </div>
-        <div class="price-to-bold">
-          ${bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
+        <div className="price-to-bold">
+          {bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
         </div>
       </button>
     </div>
