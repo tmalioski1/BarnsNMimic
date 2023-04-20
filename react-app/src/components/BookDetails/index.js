@@ -10,7 +10,7 @@ import { getCart } from "../../store/carts";
 import OpenModalButton from '../OpenModalButton';
 import EditBookModal from './EditBookModal'
 import ReviewModal from './ReviewModal'
-import NotAvailableModal from './NotAvailableModal'
+import NotAvailableModal from "../NotAvailableModal"
 
 import './bookdetails.css';
 
@@ -150,20 +150,16 @@ const today = new Date()
           {bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
         </div>
       </button>
+
       <button className="book-details-hardcover-price" >
         <div>
-          Hardcover
+        <NotAvailableModal buttonTxt="Hardcover" bookData={bookData}/>
         </div>
-        <div className="price-to-bold">
-          {bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
-        </div>
+
       </button>
       <button className="book-details-eBook-price">
-        <div>
-          eBook
-        </div>
-        <div className="price-to-bold">
-          {bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
+      <div>
+        <NotAvailableModal buttonTxt="eBook" bookData={bookData}/>
         </div>
       </button>
     </div>
