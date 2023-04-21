@@ -36,9 +36,9 @@ export function SecondModal({ onClose, children,className }) {
 
   return ReactDOM.createPortal(
 
-    <div id="modal">
+    <div id="second-modal">
 
-      <div id="modal-background" onClick={onClose} />
+      <div id="second-modal-background" onClick={onClose} />
 
       <div className={className}>
 

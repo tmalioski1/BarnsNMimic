@@ -11,11 +11,17 @@ import './navbar.css'
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const cart = useSelector((state) => state.cart);
+  const cartItems= useSelector((state) => state?.cart?.cartItems);
+  const cartItemsArray= Object.values(cartItems)
   const history = useHistory();
 
-  let cartItemCount;
-  if (cart && cart.cartItems) cartItemCount = Object.keys(cart.cartItems).length
+  const cartItemCount = (array) => {
+    let sum = 0
+    array.forEach(object => {
+      sum += object.quantity
+    })
+    return sum
+  }
 
   useEffect(() => {
     if (sessionUser) dispatch(getCart());
@@ -82,7 +88,7 @@ const NavBar = ({loaded}) => {
           <div className='shopping-cart-icon'>
             <i className="fa-solid fa-cart-shopping" onClick={() => history.push(`/checkout`)}></i>
             </div>
-            {sessionUser ? (cartItemCount ? <span className="cart-item-count-splash">{cartItemCount}</span> : "") : ""}
+            {sessionUser && cartItemCount && cartItemCount(cartItemsArray) !== 0 ? <span className="cart-item-count-splash">{cartItemCount(cartItemsArray)}</span> : ""}
           </div>
         </div>
       </nav>
