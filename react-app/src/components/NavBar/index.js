@@ -12,7 +12,10 @@ const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const cartItems= useSelector((state) => state?.cart?.cartItems);
-  const cartItemsArray= Object.values(cartItems)
+  let cartItemsArray = [];
+  if (cartItems && Object.keys(cartItems).length > 0) {
+    cartItemsArray = Object.values(cartItems);
+  }
   const history = useHistory();
 
   const cartItemCount = (array) => {
