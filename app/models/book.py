@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .book_price import book_prices
+from .wishlist import wishlists
 
 
 
@@ -18,14 +18,17 @@ class Book(db.Model):
   editorial_review = db.Column(db.String(5000), nullable=True)
   publication_date = db.Column(db.String, nullable=True)
   publisher= db.Column(db.String(255), nullable=True)
+  price_paperback = db.Column(db.Float, nullable=True)
+  price_hardcover = db.Column(db.Float, nullable=True)
+  price_eBook = db.Column(db.Float, nullable=True)
   cover_art = db.Column(db.String(255), nullable=True)
   pages = db.Column(db.Integer, nullable=True)
 
-  prices = db.relationship('Price', secondary=book_prices, backref='books')
-  cart_item = db.relationship("Cart_Item", uselist=False, back_populates="book")
-  reviews = db.relationship("Review",cascade='all, delete-orphan', back_populates='book')
-  user = db.relationship('User', back_populates='books')
 
+  cart_item = db.relationship("CartItem", back_populates="book", cascade="all, delete-orphan")
+  reviews = db.relationship("Review", cascade='all, delete-orphan', back_populates='book')
+  user = db.relationship('User', back_populates='books')
+  book_wishlists = db.relationship('User', secondary=wishlists, back_populates='user_wishlists')
 
 
   def to_dict(self):
@@ -40,6 +43,11 @@ class Book(db.Model):
       'publication_date': self.publication_date,
       'publisher': self.publisher,
       'cover_art': self.cover_art,
+      'price_paperback': self.price_paperback,
+      'price_hardcover': self.price_hardcover,
+      'price_eBook': self.price_eBook,
       'pages': self.pages,
-      'prices': [price.to_dict() for price in self.prices]
   }
+
+  def __repr__(self):
+      return f"<Book {self.id}: {self.title}>"

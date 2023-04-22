@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -10,11 +10,14 @@ import User from './components/User';
 import BookDetails from "./components/BookDetails";
 import Homepage from "./components/Homepage";
 import Checkout from "./components/Checkout";
+import ThankYou from "./components/ThankYou";
 import { authenticate } from './store/session';
 
 function App() {
+
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     (async() => {
@@ -43,11 +46,14 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/checkout' exact={true} >
-        <Checkout />
+        <Route path='/thank-you' exact={true}  >
+        <ThankYou/>
+        </Route>
+        <Route path='/checkout' exact={true}  >
+        <Checkout/>
         </Route>
         <Route path='/books/:id' exact = {true}>
-        <BookDetails />
+        <BookDetails/>
         </Route>
         <Route path='/' exact={true} >
         <Homepage />

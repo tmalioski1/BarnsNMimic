@@ -1,0 +1,27 @@
+#second-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#second-modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(235, 228, 47, 0.7);
+}
+
+#second-modal-content {
+  position: absolute;
+  background-color:white;
+  overflow: scroll;
+
+}

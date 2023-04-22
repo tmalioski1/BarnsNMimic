@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { getCart } from '../../store/carts';
 import './signupform.css'
 
 const SignUpForm = () => {
@@ -51,6 +52,7 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
 
   if (user) {
     return <Redirect to='/' />;
