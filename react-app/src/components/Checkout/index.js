@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getCart } from "../../store/carts";
 import { removeCartItem } from "../../store/cart_items";
+import { purchaseCart } from '../../store/carts';
 import SelectField from "./SelectField"
 import './checkout.css'
 
 const Checkout = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cart = useSelector((state) => state.cart);
   const cartItems = Object.values(cart.cartItems);
 
@@ -81,13 +83,25 @@ const Checkout = () => {
         </div>
 
      </div>
-      <div className="checkout-submit">
-        <NavLink to={{
+      <div className="checkout-submit-button-container">
+      <button
+          className='checkout-submit-button'
+          onClick={() => {
+            dispatch(purchaseCart(totalPrice));
+            history.push({
+              pathname: '/thank-you',
+              state: { totalPrice: totalPrice }
+            });
+          }}
+        >
+          Submit Order
+        </button>
+        {/* <NavLink to={{
           pathname: '/thank-you',
           state: { totalPrice: totalPrice }
         }}>
           Submit Order
-        </NavLink>
+        </NavLink> */}
       </div>
      </>
     );

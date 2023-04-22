@@ -19,7 +19,7 @@ const ThankYou = () => {
     </div>
     <div className='thank-you-total'>
         <div>Order Total:</div>
-        <div>{totalPrice}</div>
+        <div>${totalPrice.toFixed(2)}</div>
     </div>
 
     </>
