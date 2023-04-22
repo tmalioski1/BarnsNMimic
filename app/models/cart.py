@@ -9,7 +9,6 @@ class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), nullable=True)
-    total_price = db.Column(db.Float, nullable=False)
     purchased = db.Column(db.Boolean, default=False)
     order_number = db.Column(db.String, nullable=False)
 
@@ -20,7 +19,6 @@ class Cart(db.Model):
         return{
             "id": self.id,
             'user_id': self.user_id,
-            "total_price": self.total_price,
             "purchased": self.purchased,
             "order_number": self.order_number,
             "cartItems": {item.to_dict()["id"]: item.to_dict() for item in self.cart_items},

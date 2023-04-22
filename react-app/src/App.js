@@ -10,6 +10,7 @@ import User from './components/User';
 import BookDetails from "./components/BookDetails";
 import Homepage from "./components/Homepage";
 import Checkout from "./components/Checkout";
+import ThankYou from "./components/ThankYou";
 import { authenticate } from './store/session';
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/thank-you' exact={true}  >
+        <ThankYou/>
+        </Route>
         <Route path='/checkout' exact={true}  >
         <Checkout/>
         </Route>

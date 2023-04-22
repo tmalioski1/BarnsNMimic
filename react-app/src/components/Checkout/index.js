@@ -24,7 +24,7 @@ const Checkout = () => {
     <div className='cart-header'>
      <h1>My Shopping Cart</h1>
      </div>
-     <div className="cart-item-container">
+     <div className="cart-items-container">
       {cartItems.map(item => (
       <div className="one-cart-item" key={item.id}>
       <NavLink to={`/books/${item.book.id}`}>
@@ -70,18 +70,25 @@ const Checkout = () => {
               </div>
             </div>
         </div>
+      </div>
+      ))}
+
         <div className="cart-total-container">
-          <span className="cart-total-text">TOTAL</span>
+          <span className="cart-total-text">Order Total:</span>
           <span className="cart-total-price">
             ${totalPrice.toFixed(2)}
           </span>
         </div>
-      </div>
-      ))}
-
-
 
      </div>
+      <div className="checkout-submit">
+        <NavLink to={{
+          pathname: '/thank-you',
+          state: { totalPrice: totalPrice }
+        }}>
+          Submit Order
+        </NavLink>
+      </div>
      </>
     );
   }
