@@ -16,7 +16,7 @@ const Checkout = () => {
     dispatch(getCart());
   }, [dispatch]);
 
-
+  let totalPrice = 0;
   if (!cart || !cart.cartItems) return null;
 
     return (
@@ -66,8 +66,15 @@ const Checkout = () => {
             </div>
             <div className="cart-item-checkout-price-total">
                  ${(item.book.price_paperback * item.quantity).toFixed(2)}
+                 {(totalPrice += item.book.price_paperback * item.quantity) && false}
               </div>
             </div>
+        </div>
+        <div className="cart-total-container">
+          <span className="cart-total-text">TOTAL</span>
+          <span className="cart-total-price">
+            ${totalPrice.toFixed(2)}
+          </span>
         </div>
       </div>
       ))}
