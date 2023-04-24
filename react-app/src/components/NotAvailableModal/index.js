@@ -14,7 +14,7 @@ function NotAvailableModal({buttonTxt, bookData}) {
     <>
 
     <div className='notavailablebutton' onClick={() =>setShowModal(true)}>{buttonTxt}  <div className="price-to-bold">
-          {bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
+          ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
         </div></div>
       {showModal && (
         <SecondModal className={"notavailablemodal"} onClose={() => setShowModal(false)}>
