@@ -11,7 +11,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector((state) => state.cart);
-  const cartItems = Object.values(cart?.cartItems);
+  const cartItems = cart?.cartItems ? Object.values(cart.cartItems) : [];
 
   useEffect(() => {
     dispatch(getCart());
@@ -19,7 +19,7 @@ const Checkout = () => {
 
   let totalPrice = 0;
 
-  if (!cartItems.length) {
+  if (cartItems.length === 0) {
     return (
       <div className='cart-header'>
         <h1>My Shopping Cart</h1>

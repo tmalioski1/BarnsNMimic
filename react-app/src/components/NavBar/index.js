@@ -40,7 +40,8 @@ const NavBar = ({loaded}) => {
         <div className='header-upper'>
         <div className='header-upper-left'>
         <div className='mylinks-container'>
-              <p>TYLER MALINOSKI</p>
+        <a href="https://tmalioski1.github.io/" style={{ textDecoration: 'none' }}>TYLER MALINOSKI</a>
+
                 <ul className='linkedin-ul'>
                 <a href='https://www.linkedin.com/in/tyler-malinoski/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
@@ -105,7 +106,8 @@ const NavBar = ({loaded}) => {
         <div className='header-upper'>
         <div className='header-upper-left'>
         <div className='mylinks-container'>
-              <p>TYLER MALINOSKI</p>
+        <a href="https://tmalioski1.github.io/" style={{ textDecoration: 'none' }}>TYLER MALINOSKI</a>
+
                 <ul className='linkedin-ul'>
                 <a href='https://www.linkedin.com/in/tyler-malinoski/' target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 </ul>
