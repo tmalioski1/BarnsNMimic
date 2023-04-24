@@ -142,26 +142,69 @@ const today = new Date()
     </div>
     </div>
     <div className="book-details-all-prices">
-    <button className="book-details-paperback-price" onClick={() => window.location.reload()}>
+    {sessionUser &&
+    <button className="book-details-paperback-price"
+     onClick={() => window.location.reload()}>
         <div>
           Paperback
         </div>
         <div className="price-to-bold">
-          {bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
+          ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
         </div>
-      </button>
+      </button> }
 
+      {!sessionUser &&
+          <NavLink to={`/login`}>
+          <button className="book-details-paperback-price">
+             <div>
+               Paperback
+             </div>
+             <div className="price-to-bold">
+               ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
+             </div>
+           </button>
+           </NavLink>
+      }
+
+      {sessionUser &&
       <button className="book-details-hardcover-price" >
         <div>
         <NotAvailableModal buttonTxt="Hardcover" bookData={bookData}/>
         </div>
 
-      </button>
+      </button>}
+      {!sessionUser &&
+         <NavLink to={`/login`}>
+         <button className="book-details-hardcover-price">
+            <div>
+              Hardcover
+            </div>
+            <div className="price-to-bold">
+              ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
+            </div>
+          </button>
+          </NavLink>
+      }
+      {sessionUser &&
       <button className="book-details-eBook-price">
       <div>
         <NotAvailableModal buttonTxt="eBook" bookData={bookData}/>
         </div>
-      </button>
+      </button>}
+
+      {!sessionUser &&
+         <NavLink to={`/login`}>
+         <button className="book-details-eBook-price">
+            <div>
+              eBook
+            </div>
+            <div className="price-to-bold">
+              ${bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
+            </div>
+          </button>
+          </NavLink>
+      }
+
     </div>
     <div className='book-edit-and-delete'>
           {userObj?.id === bookData[0].publisher_id &&
@@ -176,7 +219,7 @@ const today = new Date()
           </div>
           <div className='book-add-to-cart'>
 
-          {userObj?.id !== bookData[0].publisher_id &&
+          {sessionUser && userObj?.id !== bookData[0].publisher_id &&
           <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
             <OpenModalButton
             buttonText={'ADD TO CART'}
@@ -188,6 +231,12 @@ const today = new Date()
 
           />
           </button>}
+
+          {!sessionUser && userObj?.id !== bookData[0].publisher_id &&
+          <NavLink to={`/login`}>
+          <button className='book-add-to-cart-button'>ADD TO CART
+          </button>
+          </NavLink>}
 
 
           </div>
