@@ -2,12 +2,11 @@
 
 Revision ID: 40ae19bde57e
 Revises:
-Create Date: 2023-04-24 11:39:36.843073
+Create Date: 2023-04-24 12:21:36.192035
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
