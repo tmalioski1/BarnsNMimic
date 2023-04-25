@@ -11,7 +11,6 @@ const ThankYou = () => {
     <>
     <div>Thanks for shopping at bn.com</div>
     <div>We'll get started on your order right away.</div>
-    <div>We'll send you an email confirming the details of your order shortly.</div>
 
     <div className='order-number-container'>
         <div>Your Order Number:</div>
