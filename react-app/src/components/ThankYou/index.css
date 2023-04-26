@@ -1,0 +1,54 @@
+.thank-you-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    }
+
+.thank-you-page-first-line {
+   font-size: 40px;
+   font-family: Cormorant Garamond, serif;
+   margin-bottom: 8px;
+}
+
+.thank-you-page-second-line {
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 80px;
+ }
+
+ .order-thank-you-message {
+    display: flex;
+    width: 250px
+ }
+
+ .order-thank-you-message-gray-line {
+    border-left: 1px solid gray;
+ }
+
+ .order-number-container {
+    margin-right: 15px;
+ }
+
+ .thank-you-total {
+    margin-left: 15px;
+ }
+
+ .order-number-container-message, .thank-you-total-message {
+    font-family: Cormorant Garamond, serif;
+ }
+
+ .order-number-container-price, .thank-you-total-price {
+    color: rgb(62, 89, 98);
+    font-size: 17px;
+ }
+
+ .order-number-container-price {
+    margin-left: 28px;
+ }
+
+ .thank-you-total-price {
+    margin-left: 15px;
+
+ }

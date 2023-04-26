@@ -120,8 +120,10 @@ const today = new Date()
 
 
   return (
+    <>
+    <div className='gold-bar'> &nbsp; </div>
+    <div className='greenbar-top'> &nbsp; </div>
     <section>
-    <div className= 'top-placeholder'>c</div>
     <div className='book-detail-page-container'>
       <div className='book-image-details'>
     <img className = 'book-image-container' src={bookData[0].cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='bookcoverimage'></img>
@@ -312,6 +314,7 @@ const today = new Date()
           </div>
           </div>
     </section>
+    </>
 
 
 
