@@ -93,6 +93,15 @@
  margin-right: 1vw;
  font-size: .8rem
 }
+.book-details-all-prices button {
+   box-sizing: border-box;
+   width: 30%;
+   padding-left: 5%;
+   padding-right: 5%;
+   padding-top: 2.5%;
+   padding-bottom: 2.5%;
+
+}
 
 .price-to-bold {
   font-weight: bold;
@@ -115,11 +124,33 @@
   margin-right: 1vw;
   cursor: pointer;
   background-color: white;
-  height: 3rem;
-  width: 10rem;
+  height: 48px;
+  width: 160px;
   color: black;
 }
 
+.book-add-to-cart-button,
+.ADD.TO.CART.delete-and-edit {
+  position: relative;
+  z-index: 1;
+  height: 48px;
+  width: 160px;
+  margin-right: -80px;
+}
+
+.ADD.TO.CART.delete-and-edit {
+  margin-right: 1vw;
+  cursor: pointer;
+  background-color: #3d6db5;
+  color: white;
+}
+
+.book-add-to-cart-button {
+  cursor: pointer;
+  background-color: #3d6db5;
+  color: white;
+  border: none;
+}
 
 .overview-container{
   margin-left: 2.5vw;

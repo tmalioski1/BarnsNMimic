@@ -21,6 +21,9 @@ const Checkout = () => {
 
   if (cartItems.length === 0) {
     return (
+      <>
+      <div className='gold-bar'> &nbsp; </div>
+      <div className='greenbar-top'> &nbsp; </div>
       <div className='cart-header'>
         <h1>My Shopping Cart</h1>
         <div>Your shopping cart is currently empty.</div>
@@ -28,11 +31,14 @@ const Checkout = () => {
   Shop Now
 </button>
       </div>
+      </>
     )
   }
 
   return (
     <>
+    <div className='gold-bar'> &nbsp; </div>
+    <div className='greenbar-top'> &nbsp; </div>
       <div className='cart-header'>
         <h1>My Shopping Cart</h1>
       </div>
@@ -106,12 +112,6 @@ const Checkout = () => {
         >
           Submit Order
         </button>
-        {/* <NavLink to={{
-          pathname: '/thank-you',
-          state: { totalPrice: totalPrice }
-        }}>
-          Submit Order
-        </NavLink> */}
       </div>
      </>
     );
