@@ -1,11 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useLocation } from 'react-router-dom';
+import { getCart } from "../../store/carts";
+
 import './index.css'
 
 const ThankYou = () => {
+    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
+    const cartOrderNumber = cart?.order_number
     const location = useLocation();
     const totalPrice = location.state.totalPrice;
+
+    useEffect(() => {
+        dispatch(getCart(cart));
+      });
+
 
     return (
     <>
@@ -17,7 +27,7 @@ const ThankYou = () => {
     <div className='order-thank-you-message'>
     <div className='order-number-container'>
         <div className='order-number-container-message'>Your Order Number:</div>
-        <div className='order-number-container-price'>{cart.order_number}</div>
+        <div className='order-number-container-price'>{cartOrderNumber}</div>
     </div>
     <div className='order-thank-you-message-gray-line'> &nbsp; </div>
     <div className='thank-you-total'>

@@ -112,12 +112,6 @@ const Checkout = () => {
         >
           Submit Order
         </button>
-        {/* <NavLink to={{
-          pathname: '/thank-you',
-          state: { totalPrice: totalPrice }
-        }}>
-          Submit Order
-        </NavLink> */}
       </div>
      </>
     );
