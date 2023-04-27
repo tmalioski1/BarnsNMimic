@@ -8,13 +8,15 @@ import './index.css'
 const ThankYou = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
+    console.log('this is the cart--------', cart)
     const cartOrderNumber = cart?.order_number
+    console.log('this is the cart order number--------', cartOrderNumber)
     const location = useLocation();
     const totalPrice = location.state.totalPrice;
 
     useEffect(() => {
         dispatch(getCart(cart));
-      });
+      }, [dispatch]);
 
 
     return (
