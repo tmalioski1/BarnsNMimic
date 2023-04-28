@@ -172,8 +172,9 @@
   padding: 1.5vw;
   column-width: 27em;
   font-family: Lato, sans-serif;
-  font-weight: 300;
-  font-size: .9vw
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(139, 134, 134)
 
 }
 
@@ -269,12 +270,12 @@
 .editorial-review-text-container{
   display: flex;
   justify-content: center;
-  margin-top: 3vh
+  margin-top: 32.4px;
 }
 
 .editorial-review-text{
   font-family: Lato, sans-serif;
-  font-style: italic
+  font-style: italic;
 }
 
 .title-with-lines{

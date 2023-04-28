@@ -246,7 +246,7 @@ const today = new Date()
           </div>
           <div className='overview-container'>
             <h2 className='overview-title'>Overview</h2>
-            <div className='overview-text'>{bookData[0].overview}</div>
+            <div style={{whiteSpace: 'pre-wrap'}} className='overview-text'>{bookData[0].overview}</div>
           </div>
           <h2 className='product-details-title'>Product Details</h2>
           <div className='product-details-container'>
