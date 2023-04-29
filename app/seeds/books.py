@@ -114,11 +114,75 @@ Habit 7: Sharpen the Saw
 
 This beloved classic presents a principle-centered approach for solving both personal and professional problems. With penetrating insights and practical anecdotes, Stephen R. Covey reveals a step-by-step pathway for living with fairness, integrity, honesty, and human dignity—principles that give us the security to adapt to change and the wisdom and power to take advantage of the opportunities that change creates.""", editorial_review= '[Thirty] years after it first appeared, the wisdom of The 7 Habits is more relevant than ever. On an individual level people are burning out, and on a collective level we are burning up the planet. So Dr. Covey’s emphasis on self-renewal and his understanding that leadership and creativity require us to tap into our own physical, mental, and spiritual resources are exactly what we need now.”—Arianna Huffington', publication_date= '05/19/2020', publisher= 'Simon & Schuster', cover_art='https://m.media-amazon.com/images/I/412HbKRpXjL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg', pages= 464)
 
+  demo_book18 = Book(
+    publisher_id = 3,  title='House of Flame and Shadow (Crescent City Series #3)', author= 'Sarah J. Maas', price_paperback=15.99, price_hardcover=25.50, price_eBook=11.99, genre='Fiction', overview= """The stunning third book in the sexy, action-packed Crescent City series, following the global bestsellers House of Earth and Blood and House of Sky and Breath.
+
+Bryce Quinlan never expected to see a world other than Midgard, but now that she has, all she wants is to get back. Everything she loves is in Midgard: her family, her friends, her mate. Stranded in a strange new world, she's going to need all her wits about her to get home again. And that's no easy feat when she has no idea who to trust.
+
+Hunt Athalar has found himself in some deep holes in his life, but this one might be the deepest of all. After a few brief months with everything he ever wanted, he's in the Asteri's dungeons again, stripped of his freedom and without a clue as to Bryce's fate. He's desperate to help her, but until he can escape the Asteri's leash, his hands are quite literally tied.
+
+In this sexy, breathtaking sequel to the #1 bestsellers House of Earth and Blood and House of Sky and Breath, Sarah J. Maas's Crescent City series reaches new heights as Bryce and Hunt's world is brought to the brink of collapse-with its future resting on their shoulders.""", editorial_review= '“A dizzying, suspenseful whirl that surprises at every turn.” —Entertainment Weekly (House of Earth and Blood)', publication_date= '01/30/2023', publisher= 'Bloomsbury USA', cover_art='https://prodimage.images-bn.com/pimages/9781635574104_p0_v5_s1200x630.jpg', pages= 816)
+
+  demo_book19 = Book(
+    publisher_id = 3,  title='Identity: A Novel', author= 'Nora Roberts', price_paperback=15.99, price_hardcover=21.00, price_eBook=14.99, genre='Fiction', overview= """The #1 New York Times-bestselling author's terrifying new thriller about one man's ice-cold malice, and one woman's fight to reclaim her life.
+
+Former Army brat Morgan Albright has finally planted roots in a friendly neighborhood near Baltimore. Her friend and roommate Nina helps her make the mortgage payments, as does Morgan's job as a bartender. But after she and Nina host their first dinner party—attended by Luke, the flirtatious IT guy who'd been chatting her up at the bar—her carefully built world is shattered. The back door glass is broken, cash and jewelry are missing, her car is gone, and Nina lies dead on the floor.
+
+Soon, a horrific truth emerges: It was Morgan who let the monster in. "Luke" is actually a cold-hearted con artist named Gavin who targets a particular type of woman, steals her assets and identity, and then commits his ultimate goal: murder.
+
+What the FBI tells Morgan is beyond chilling. Nina wasn't his type. Morgan is. Nina was simply in the wrong place at the wrong time. And Morgan's nightmare is just beginning. Soon she has no choice but to flee to her mother's home in Vermont. While she struggles to build something new, she meets another man, Miles Jameson. He isn't flashy or flirtatious, and his family business has deep roots in town. But Gavin is still out there hunting new victims, and he hasn't forgotten the one who got away.""", editorial_review= '“Bestseller Roberts (Nightwork) gives readers another strong protagonist to root for in this otherwise rote standalone thriller.” —Publishers Weekly', publication_date= '04/23/2023', publisher= 'Bloomsbury USA', cover_art='https://m.media-amazon.com/images/I/91TCHkU6UrL._AC_UF1000,1000_QL80_.jpg', pages= 816)
 
 
+  demo_book20 = Book(
+    publisher_id = 3,  title='The Guncle', author= 'Steven Rowley', price_paperback=17.00, price_hardcover=23.99, price_eBook=1.99, genre='Fiction', overview= """From the bestselling author of Lily and the Octopus and The Editor comes a warm and deeply funny novel about a once-famous gay sitcom star whose unexpected family tragedy leaves him with his niece and nephew for the summer.
 
+Patrick, or Gay Uncle Patrick (GUP, for short), has always loved his niece, Maisie, and nephew, Grant. That is, he loves spending time with them when they come out to Palm Springs for weeklong visits, or when he heads home to Connecticut for the holidays. But in terms of caretaking and relating to two children, no matter how adorable, Patrick is, honestly, overwhelmed.
 
+So when tragedy strikes and Maisie and Grant lose their mother and Patrick's brother has a health crisis of his own, Patrick finds himself suddenly taking on the role of primary guardian. Despite having a set of "Guncle Rules" ready to go, Patrick has no idea what to expect, having spent years barely holding on after the loss of his great love, a somewhat-stalled acting career, and a lifestyle not-so-suited to a six- and a nine-year-old. Quickly realizing that parenting--even if temporary--isn't solved with treats and jokes, Patrick's eyes are opened to a new sense of responsibility, and the realization that, sometimes, even being larger than life means you're unfailingly human.
 
+With the humor and heart we've come to expect from bestselling author Steven Rowley, The Guncle is a moving tribute to the power of love, patience, and family in even the most trying of times.""", editorial_review= 'Readers will find this delightful and illuminating. —Publishers Weekly', publication_date= '05/25/2021', publisher= 'Penguin Publishing Group', cover_art='https://img1.od-cdn.com/ImageType-400/1191-1/880/531/F5/%7B880531F5-BE0A-4C97-B128-016939828703%7DImg400.jpg', pages= 336)
+
+  demo_book21 = Book(
+    publisher_id = 3,  title='Lessons in Chemistry', author= 'Bonnie Garmus', price_paperback=23.99, price_hardcover=23.99, price_eBook=14.99, genre='Fiction', overview= """NEW YORK TIMES BESTSELLER • GOOD MORNING AMERICA BOOK CLUB PICK • A must-read debut! Meet Elizabeth Zott: a “formidable, unapologetic and inspiring” (PARADE) scientist in 1960s California whose career takes a detour when she becomes the unlikely star of a beloved TV cooking show in this novel that is “irresistible, satisfying and full of fuel. It reminds you that change takes time and always requires heat” (The New York Times Book Review).
+
+"A unique heroine ... you'll find yourself wishing she wasn’t fictional." —Seattle Times
+
+Chemist Elizabeth Zott is not your average woman. In fact, Elizabeth Zott would be the first to point out that there is no such thing as an average woman. But it’s the early 1960s and her all-male team at Hastings Research Institute takes a very unscientific view of equality. Except for one: Calvin Evans; the lonely, brilliant, Nobel–prize nominated grudge-holder who falls in love with—of all things—her mind. True chemistry results.
+
+But like science, life is unpredictable. Which is why a few years later Elizabeth Zott finds herself not only a single mother, but the reluctant star of America’s most beloved cooking show Supper at Six. Elizabeth’s unusual approach to cooking (“combine one tablespoon acetic acid with a pinch of sodium chloride”) proves revolutionary. But as her following grows, not everyone is happy. Because as it turns out, Elizabeth Zott isn’t just teaching women to cook. She’s daring them to change the status quo.
+
+Laugh-out-loud funny, shrewdly observant, and studded with a dazzling cast of supporting characters, Lessons in Chemistry is as original and vibrant as its protagonist.""", editorial_review= 'The author has a great voice, but contemporary readers will be left wondering who this is for. —Publishers Weekly', publication_date= '04/05/2022', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/71yNgTMEcpL._AC_UF1000,1000_QL80_.jpg', pages= 400)
+
+  demo_book22 = Book(
+    publisher_id = 3,  title='Love, Theoretically', author= 'Ali Hazelwood', price_paperback=15.30, price_hardcover=23.99, price_eBook=14.99, genre='Fiction', overview= """The many lives of theoretical physicist Elsie Hannaway have finally caught up with her. By day, she’s an adjunct professor, toiling away at grading labs and teaching thermodynamics in the hopes of landing tenure. By other day, Elsie makes up for her non-existent paycheck by offering her services as a fake girlfriend, tapping into her expertly honed people-pleasing skills to embody whichever version of herself the client needs.
+
+Honestly, it’s a pretty sweet gig—until her carefully constructed Elsie-verse comes crashing down. Because Jack Smith, the annoyingly attractive and arrogant older brother of her favorite client, turns out to be the cold-hearted experimental physicist who ruined her mentor’s career and undermined the reputation of theorists everywhere. And he’s the same Jack Smith who rules over the physics department at MIT, standing right between Elsie and her dream job.
+
+Elsie is prepared for an all-out war of scholarly sabotage but…those long, penetrating looks? Not having to be anything other than her true self when she’s with him? Will falling into an experimentalist’s orbit finally tempt her to put her most guarded theories on love into practice?""", editorial_review= '“Gloriously nerdy and sexy, with on-point commentary about women in STEM.”—New York Times bestselling author Helen Hoang on Love on the Brain', publication_date= '06/13/2022', publisher= 'Penguin Publishing Group', cover_art='https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1666812990i/61326735.jpg', pages= 400)
+
+  demo_book23 = Book(
+    publisher_id = 3,  title='The Marriage Portrait', author= "Maggie O'Farrell", price_paperback=14.79, price_hardcover=24.99, price_eBook=14.99, genre='Fiction', overview= """REESE’S BOOK CLUB DECEMBER PICK • NEW YORK TIMES BEST SELLER • The author of award-winning Hamnet brings the world of Renaissance Italy to jewel-bright life in this unforgettable fictional portrait of the captivating young duchess Lucrezia de' Medici as she makes her way in a troubled court.
+
+“I could not stop reading this incredible true story.” —Reese Witherspoon (Reese’s Book Club December ’22 Pick)
+
+"O’Farrell pulls out little threads of historical detail to weave this story of a precocious girl sensitive to the contradictions of her station ... You may know the history, and you may think you know what’s coming, but don’t be so sure." —The Washington Post
+
+Florence, the 1550s. Lucrezia, third daughter of the grand duke, is comfortable with her obscure place in the palazzo: free to wonder at its treasures, observe its clandestine workings, and devote herself to her own artistic pursuits. But when her older sister dies on the eve of her wedding to the ruler of Ferrara, Modena and Reggio, Lucrezia is thrust unwittingly into the limelight: the duke is quick to request her hand in marriage, and her father just as quick to accept on her behalf.
+
+Having barely left girlhood behind, Lucrezia must now enter an unfamiliar court whose customs are opaque and where her arrival is not universally welcomed. Perhaps most mystifying of all is her new husband himself, Alfonso. Is he the playful sophisticate he appeared to be before their wedding, the aesthete happiest in the company of artists and musicians, or the ruthless politician before whom even his formidable sisters seem to tremble?
+
+As Lucrezia sits in constricting finery for a painting intended to preserve her image for centuries to come, one thing becomes worryingly clear. In the court’s eyes, she has one duty: to provide the heir who will shore up the future of the Ferranese dynasty. Until then, for all of her rank and nobility, the new duchess’s future hangs entirely in the balance.
+
+Full of the beauty and emotion with which she illuminated the Shakespearean canvas of Hamnet, Maggie O’Farrell turns her talents to Renaissance Italy in an extraordinary portrait of a resilient young woman’s battle for her very survival.""", editorial_review= '“Gloriously nerdy and sexy, with on-point commentary about women in STEM.”—New York Times bestselling author Helen Hoang on Love on the Brain', publication_date= '09/6/2022', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/91SjtdfXdIL._AC_UF1000,1000_QL80_.jpg', pages= 352)
+
+  demo_book24 = Book(
+    publisher_id = 3,  title='Sea Change', author= 'Gina Chung', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Fiction', overview= """A NEW YORK TIMES MOST ANTICIPATED BOOK • An enchanting novel about Ro, a woman tossed overboard by heartbreak and loss, who has to find her way back to stable shores with the help of a giant Pacific octopus at the mall aquarium where she works.
+
+“Immersively beautiful.... A kaleidoscope of originality." —Weike Wang, acclaimed author of Joan is Okay
+
+Ro is stuck. She's just entered her thirties, she's estranged from her mother, and her boyfriend has just left her to join a mission to Mars. Her days are spent dragging herself to her menial job at the aquarium, and her nights are spent drinking sharktinis (Mountain Dew and copious amounts of gin, plus a hint of jalapeño). With her best friend pulling away to focus on her upcoming wedding, Ro's only companion is Dolores, a giant Pacific octopus who also happens to be Ro's last remaining link to her father, a marine biologist who disappeared while on an expedition when Ro was a teenager.
+
+When Dolores is sold to a wealthy investor intent on moving her to a private aquarium, Ro finds herself on the precipice of self-destruction. Wading through memories of her youth, Ro realizes she can either lose herself in the undertow of reminiscence, or finally come to terms with her childhood trauma, recommit to those around her, and find her place in an ever-changing world.""", editorial_review= '“Gloriously nerdy and sexy, with on-point commentary about women in STEM.”—New York Times bestselling author Helen Hoang on Love on the Brain', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/81sAOxbZLVL._AC_UF1000,1000_QL80_.jpg', pages= 288)
 
   db.session.add(demo_book)
   db.session.add(demo_book2)
@@ -137,6 +201,14 @@ This beloved classic presents a principle-centered approach for solving both per
   db.session.add(demo_book15)
   db.session.add(demo_book16)
   db.session.add(demo_book17)
+  db.session.add(demo_book18)
+  db.session.add(demo_book19)
+  db.session.add(demo_book20)
+  db.session.add(demo_book21)
+  db.session.add(demo_book22)
+  db.session.add(demo_book23)
+  db.session.add(demo_book24)
+
   db.session.commit()
 
 
