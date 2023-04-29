@@ -11,6 +11,7 @@ import BookDetails from "./components/BookDetails";
 import Homepage from "./components/Homepage";
 import Checkout from "./components/Checkout";
 import ThankYou from "./components/ThankYou";
+import Fiction from "./components/Fiction";
 import { authenticate } from './store/session';
 
 function App() {
@@ -54,6 +55,9 @@ function App() {
         </Route>
         <Route path='/books/:id' exact = {true}>
         <BookDetails/>
+        </Route>
+        <Route path='/books/fiction' exact = {true}>
+        <Fiction/>
         </Route>
         <Route path='/' exact={true} >
         <Homepage />

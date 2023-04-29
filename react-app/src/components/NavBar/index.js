@@ -95,6 +95,12 @@ const NavBar = ({loaded}) => {
             {sessionUser && cartItemCount && cartItemCount(cartItemsArray) !== 0 ? <span className="cart-item-count-splash">{cartItemCount(cartItemsArray)}</span> : ""}
           </div>
         </div>
+        <div className="catagories-container">
+        <NavLink to='/books/fiction' exact={true} activeClassName='active'>
+         Fiction
+        </NavLink>
+
+        </div>
       </nav>
      </>
     )
@@ -154,6 +160,9 @@ const NavBar = ({loaded}) => {
             <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </div>
+        </div>
+        <div className="catagories-container">
+
         </div>
       </nav>
       </>
