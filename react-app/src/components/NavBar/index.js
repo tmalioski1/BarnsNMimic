@@ -99,7 +99,27 @@ const NavBar = ({loaded}) => {
         <NavLink to='/books/fiction' exact={true} activeClassName='active'>
          Fiction
         </NavLink>
-
+        <NavLink to='/books/non-fiction' exact={true} activeClassName='active'>
+         Non-Fiction
+        </NavLink>
+        <NavLink to='/books/science-fiction' exact={true} activeClassName='active'>
+         Science Fiction
+        </NavLink>
+        <NavLink to='/books/true-crime' exact={true} activeClassName='active'>
+         True Crime
+        </NavLink>
+        <NavLink to='/books/romance' exact={true} activeClassName='active'>
+         Romance
+        </NavLink>
+        <NavLink to='/books/cooking' exact={true} activeClassName='active'>
+         Cooking
+        </NavLink>
+        <NavLink to='/books/biography' exact={true} activeClassName='active'>
+         Biography
+        </NavLink>
+        <NavLink to='/books/current-events' exact={true} activeClassName='active'>
+         Current Events
+        </NavLink>
         </div>
       </nav>
      </>
@@ -162,7 +182,30 @@ const NavBar = ({loaded}) => {
           </div>
         </div>
         <div className="catagories-container">
-
+        <NavLink to='/books/fiction' exact={true} activeClassName='active'>
+         Fiction
+        </NavLink>
+        <NavLink to='/books/non-fiction' exact={true} activeClassName='active'>
+         Non-Fiction
+        </NavLink>
+        <NavLink to='/books/science-fiction' exact={true} activeClassName='active'>
+         Science Fiction
+        </NavLink>
+        <NavLink to='/books/true-crime' exact={true} activeClassName='active'>
+         True Crime
+        </NavLink>
+        <NavLink to='/books/romance' exact={true} activeClassName='active'>
+         Romance
+        </NavLink>
+        <NavLink to='/books/cooking' exact={true} activeClassName='active'>
+         Cooking
+        </NavLink>
+        <NavLink to='/books/biography' exact={true} activeClassName='active'>
+         Biography
+        </NavLink>
+        <NavLink to='/books/current-events' exact={true} activeClassName='active'>
+         Current Events
+        </NavLink>
         </div>
       </nav>
       </>

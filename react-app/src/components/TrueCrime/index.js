@@ -6,11 +6,11 @@ import { getAllBooks } from '../../store/books'
 
 
 
-function Fiction() {
+function TrueCrime() {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
 
     useEffect(() => {
         dispatch(getAllBooks())
@@ -26,7 +26,7 @@ function Fiction() {
     <div className='greenbar-top'> &nbsp; </div>
     <div className='catagories-page-container'>
                    {
-                  fictionBooks.map(book => (
+                  trueCrimeBooks.map(book => (
                       <div className='slider-eachbook'>
                         <NavLink
                           to={`/books/${book.id}`}
@@ -48,4 +48,4 @@ function Fiction() {
   );
 }
 
-export default Fiction;
+export default TrueCrime;
