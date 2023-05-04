@@ -86,7 +86,6 @@
 .will-change-to-img{
   /* border: 1px solid red; */
   object-fit: cover;
-  width: 100%;
   height: 415px;
   margin-top: 25px;
   margin-bottom: 2vh;

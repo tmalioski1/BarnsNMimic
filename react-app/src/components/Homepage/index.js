@@ -50,7 +50,7 @@ return (
             <h2 className='genre-word'>Fiction</h2>
           </div>
 
-          <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative'>
+          <div className='max-w-[1000px] h-[100px] w-full m-auto py-16 px-4 relative'>
   <div className='slider-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90%', margin: '0 auto' }}>
     <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollLeft -= 500 }}>
       <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left">
