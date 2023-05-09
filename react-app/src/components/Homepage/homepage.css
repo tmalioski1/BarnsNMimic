@@ -25,8 +25,8 @@
 
 
 .homePage-container{
-  margin-left: 4vw;
-  margin-right: 4vw;
+  margin-left: 2%;
+  margin-right: 2%;
   margin-top: 3vh;
 
 }
@@ -37,6 +37,7 @@
   /* border: 1px solid #333; */
   margin-bottom: 6.5vh;
   display: block;
+  width: 100%
 
 }
 
@@ -49,19 +50,17 @@
 }
 
 
-.slider-panel{
+/* .slider-container{
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90%;
   flex-wrap: nowrap;
-  overflow-x: scroll;
-  scroll-margin: 200px;
-  margin-bottom: 8vh;
+  margin-top: .01%;
+  margin-bottom: 5%;
   overflow-x: hidden;
-  margin-left: 2vw;
-}
+} */
 
-.slider-panel:hover{
-  overflow-x: scroll;
-}
 
 .slider-eachbook {
   /* flex: 0 0 auto; */
@@ -85,10 +84,10 @@
 
 .will-change-to-img{
   /* border: 1px solid red; */
-  object-fit: cover;
-  height: 415px;
-  margin-top: 25px;
-  margin-bottom: 2vh;
+  object-fit: contain;
+  height: 100%;
+  margin-top: 5%;
+  margin-bottom: 3%;
 
 
 }
@@ -99,7 +98,7 @@
   color: #21282d;
   font-style: normal;
   font-size: 20px;
-  margin-bottom:2vh;
+  margin-bottom:4%;
   align-self: center;
   text-align: center;
   overflow: hidden;

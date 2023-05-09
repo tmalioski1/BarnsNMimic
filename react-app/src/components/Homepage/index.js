@@ -49,41 +49,39 @@ return (
         <div>
             <h2 className='genre-word'>Fiction</h2>
           </div>
-
-          <div className='max-w-[1000px] h-[100px] w-full m-auto py-16 px-4 relative'>
-  <div className='slider-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '90%', margin: '0 auto' }}>
-    <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollLeft -= 500 }}>
-      <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-    </button>
-    <div className='slider-books-container' style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', scrollBehavior: 'smooth', maxWidth: '100%', margin: '0 auto' }}>
-      {
-        fictionBooks.map(book => (
-            <div className='slider-eachbook'>
-              <NavLink
-                to={`/books/${book.id}`}
-                key={book.id}
-                style={{ textDecoration: 'none' }}>
-                 <div className='homepage-book-container-info'>
-                <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                <div className='home-book-title'>{book.title}</div>
-                <div className='home-book-author'>{book.author}</div>
-                </div>
-              </NavLink>
-            </div>
-        ))
-      }
-    </div>
-    <button style={{ padding: '0', border: 'none', background: 'none', marginLeft: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollLeft += 500 }}>
-      <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
+          <div className='slider-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '95%', margin: '0 auto' }}>
+  <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: -385, behavior: 'smooth' }) }}>
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <div className='slider-books-container' style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', scrollBehavior: 'smooth', maxWidth: '100%', margin: '0 auto', scrollSnapType: 'x mandatory', scrollPadding: '0 20vw' }}>
+    {
+      fictionBooks.map(book => (
+          <div className='slider-eachbook' style={{ flex: '0 0 auto', justifyContent: 'center', alignItems: 'center', marginRight: '2%', width: '15%', height: '400px'}}>
+            <NavLink
+              to={`/books/${book.id}`}
+              key={book.id}
+              style={{ textDecoration: 'none', display: 'block', maxWidth: '300px', overflow: 'hidden', wordBreak: 'break-word' }}>
+               <div className='homepage-book-container-info' style={{height: '100%'}}>
+              <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
+              <div className='home-book-title'>{book.title}</div>
+              <div className='home-book-author'>{book.author}</div>
+              </div>
+            </NavLink>
+          </div>
+      ))
+    }
+  </div>
+  <button style={{ padding: '0', border: 'none', background: 'none', marginLeft: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: 385, behavior: 'smooth' }) }}>
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
     </button>
   </div>
-</div>
 
-        </div>
+
+</div>
 }
 
     {books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&
