@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getAllBooks } from '../../store/books'
 import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
+
 import './homepage.css'
 
 
@@ -13,7 +14,7 @@ const Homepage = () => {
     const booksObj = useSelector(state => state.books.allBooks);
     const user = useSelector((state) => state.session.user);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    let fictionBooks = books.filter(book => book.genre === 'Fiction')
     const nonFictionBooks = books.filter(book => book.genre === 'Non-Fiction')
     const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')
     const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
@@ -21,6 +22,7 @@ const Homepage = () => {
     const cookBooks = books.filter(book => book.genre === 'Cooking')
     const biographyBooks = books.filter(book => book.genre === 'Biography')
     const currentEventBooks = books.filter(book => book.genre === 'Current Events')
+    const sliderRef = useRef(null);
 
     useEffect(() => {
         dispatch(getAllBooks())
@@ -30,12 +32,26 @@ const Homepage = () => {
 
 
 
+
+
+const leftScroll = function (books) {
+  console.log('this is books------', books)
+  let firstClick = books.splice(0, 3)
+  let scrollBooks = [...books, ...firstClick]
+  fictionBooks = scrollBooks
+  console.log('this is fiction books', fictionBooks)
+}
+
+useEffect(()=> {
+}, [fictionBooks])
+
+const rightScroll = function (books) {
+
+}
+
 if (!books.length) {
   return null
 }
-
-
-
 
 return (
   <>
@@ -50,7 +66,7 @@ return (
             <h2 className='genre-word'>Fiction</h2>
           </div>
           <div className='slider-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '95%', margin: '0 auto' }}>
-  <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: -385, behavior: 'smooth' }) }}>
+  <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick ={ () => leftScroll(fictionBooks)} >
     <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left">
       <path d="M15 18l-6-6 6-6"/>
     </svg>
@@ -73,7 +89,7 @@ return (
       ))
     }
   </div>
-  <button style={{ padding: '0', border: 'none', background: 'none', marginLeft: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: 385, behavior: 'smooth' }) }}>
+  <button style={{ padding: '0', border: 'none', background: 'none', marginLeft: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: 600, behavior: 'smooth' })}}>
     <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right">
       <path d="M9 18l6-6-6-6"/>
     </svg>
