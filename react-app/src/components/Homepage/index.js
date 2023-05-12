@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from 'react';
 import { getAllBooks } from '../../store/books'
 import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
-
 import './homepage.css'
 
 

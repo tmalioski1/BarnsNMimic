@@ -95,32 +95,23 @@ const NavBar = ({loaded}) => {
             {sessionUser && cartItemCount && cartItemCount(cartItemsArray) !== 0 ? <span className="cart-item-count-splash">{cartItemCount(cartItemsArray)}</span> : ""}
           </div>
         </div>
-        <div className="catagories-container">
-        <NavLink to='/books/fiction' exact={true} activeClassName='active'>
-         Fiction
-        </NavLink>
-        <NavLink to='/books/non-fiction' exact={true} activeClassName='active'>
-         Non-Fiction
-        </NavLink>
-        <NavLink to='/books/science-fiction' exact={true} activeClassName='active'>
-         Science Fiction
-        </NavLink>
-        <NavLink to='/books/true-crime' exact={true} activeClassName='active'>
-         True Crime
-        </NavLink>
-        <NavLink to='/books/romance' exact={true} activeClassName='active'>
-         Romance
-        </NavLink>
-        <NavLink to='/books/cooking' exact={true} activeClassName='active'>
-         Cooking
-        </NavLink>
-        <NavLink to='/books/biography' exact={true} activeClassName='active'>
-         Biography
-        </NavLink>
-        <NavLink to='/books/current-events' exact={true} activeClassName='active'>
-         Current Events
-        </NavLink>
-        </div>
+        <div class="categories-container">
+        <NavLink to='/books/fiction' exact={true} activeClassName='active'>Fiction</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/non-fiction' exact={true} activeClassName='active'>Non-Fiction</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/science-fiction' exact={true} activeClassName='active'>Science Fiction</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/true-crime' exact={true} activeClassName='active'>True Crime</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/romance' exact={true} activeClassName='active'>Romance</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/cooking' exact={true} activeClassName='active'>Cooking</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/biography' exact={true} activeClassName='active'>Biography</NavLink>
+        <div class="categories-line-seperator"></div>
+        <NavLink to='/books/current-events' exact={true} activeClassName='active'>Current Events</NavLink>
+      </div>
       </nav>
      </>
     )
