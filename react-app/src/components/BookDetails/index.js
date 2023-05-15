@@ -157,7 +157,7 @@ const today = new Date()
 
       {!sessionUser &&
           <NavLink to={`/login`}>
-          <button className="book-details-paperback-price-loggedout">
+          <button className="book-details-paperback-price">
              <div>
                Paperback
              </div>

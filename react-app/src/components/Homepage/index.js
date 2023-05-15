@@ -3,9 +3,14 @@ import { useEffect, useState, useRef } from 'react';
 import { getAllBooks } from '../../store/books'
 import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
+import Glide, { Controls } from '@glidejs/glide/dist/glide.modular.esm'
+
+import '@glidejs/glide/dist/css/glide.core.min.css';
+import '@glidejs/glide/dist/css/glide.theme.min.css';
 import './homepage.css'
 
-
+// import React, { useEffect, useRef } from 'react';
+// import Glide from '@glidejs/glide';
 
 
 const Homepage = () => {
@@ -21,15 +26,22 @@ const Homepage = () => {
     const cookBooks = books.filter(book => book.genre === 'Cooking')
     const biographyBooks = books.filter(book => book.genre === 'Biography')
     const currentEventBooks = books.filter(book => book.genre === 'Current Events')
-    const sliderRef = useRef(null);
-
+    const sliderRef = useRef()
     useEffect(() => {
         dispatch(getAllBooks())
         if (user) dispatch(getCart())
       }, [dispatch, user])
 
+    useEffect(() => {
+    const glide = new Glide(sliderRef.current, {
+      type: 'carousel',
+      startAt: 0,
+      perView: 6,
+    }).mount({Controls})
+    }, [])
 
 
+   
 
 if (!books.length) {
   return null
@@ -50,36 +62,33 @@ return (
         <div>
             <h2 className='genre-word'>Fiction</h2>
           </div>
-          <div className='slider-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '95%', margin: '0 auto' }}>
-  <button style={{ padding: '0', border: 'none', background: 'none', marginRight: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: -385, behavior: 'smooth' }) }}>
-    <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left">
-      <path d="M15 18l-6-6 6-6"/>
-    </svg>
-  </button>
-  <div className='slider-books-container' style={{ display: 'flex', flexDirection: 'row', overflowX: 'scroll', scrollBehavior: 'smooth', maxWidth: '100%', margin: '0 auto', scrollSnapType: 'x mandatory', scrollPadding: '0 20vw' }}>
-    {
-      fictionBooks.map(book => (
-          <div className='slider-eachbook' style={{ flex: '0 0 auto', justifyContent: 'center', alignItems: 'center', marginRight: '2%', width: '15%', height: '400px'}}>
-            <NavLink
-              to={`/books/${book.id}`}
-              key={book.id}
-              style={{ textDecoration: 'none', display: 'block', maxWidth: '300px', overflow: 'hidden', wordBreak: 'break-word' }}>
-               <div className='homepage-book-container-info' style={{height: '100%'}}>
-              <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-              <div className='home-book-title'>{book.title}</div>
-              <div className='home-book-author'>{book.author}</div>
-              </div>
-            </NavLink>
-          </div>
-      ))
-    }
+          <div class='slider-container'>
+
+  <div class='glide' ref={sliderRef}>
+    <div class='glide__track' data-glide-el='track'>
+      <ul class='glide__slides'>
+        {fictionBooks.map(book => (
+          <li class='glide__slide'>
+              <NavLink
+                to={`/books/${book.id}`}
+                key={book.id}
+                style={{ textDecoration: 'none', display: 'block', maxWidth: '300px', overflow: 'hidden', wordBreak: 'break-word' }}>
+                 <div className='homepage-book-container-info' style={{height: '100%'}}>
+                <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
+                <div className='home-book-title'>{book.title}</div>
+                <div className='home-book-author'>{book.author}</div>
+                </div>
+              </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class='glide__arrows' data-glide-el='controls'>
+      <button class='glide__arrow glide__arrow--left' data-glide-dir='<'>&lt;</button>
+      <button class='glide__arrow glide__arrow--right' data-glide-dir='>'>&gt;</button>
+    </div>
   </div>
-  <button style={{ padding: '0', border: 'none', background: 'none', marginLeft: '2%' }} onClick={() => { document.querySelector('.slider-books-container').scrollBy({ left: 385, behavior: 'smooth' }) }}>
-    <svg viewBox="0 0 24 24" width="24" height="24" stroke="#000000" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right">
-      <path d="M9 18l6-6-6-6"/>
-    </svg>
-    </button>
-  </div>
+</div>
 
 
 </div>
