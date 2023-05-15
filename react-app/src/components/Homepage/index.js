@@ -33,15 +33,17 @@ const Homepage = () => {
       }, [dispatch, user])
 
     useEffect(() => {
-    const glide = new Glide(sliderRef.current, {
-      type: 'carousel',
+
+    new Glide(sliderRef.current, {
+      type: 'carasoul',
       startAt: 0,
       perView: 6,
+
     }).mount({Controls})
     }, [])
 
 
-   
+
 
 if (!books.length) {
   return null
