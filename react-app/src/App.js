@@ -11,6 +11,14 @@ import BookDetails from "./components/BookDetails";
 import Homepage from "./components/Homepage";
 import Checkout from "./components/Checkout";
 import ThankYou from "./components/ThankYou";
+import Fiction from "./components/Fiction";
+import NonFiction from "./components/NonFiction";
+import ScienceFiction from "./components/ScienceFiction";
+import TrueCrime from "./components/TrueCrime";
+import Romance from "./components/Romance";
+import Cooking from "./components/Cooking";
+import Biography from "./components/Biography";
+import CurrentEvents from "./components/CurrentEvents";
 import { authenticate } from './store/session';
 
 function App() {
@@ -51,6 +59,30 @@ function App() {
         </Route>
         <Route path='/checkout' exact={true}  >
         <Checkout/>
+        </Route>
+        <Route path='/books/fiction' exact = {true}>
+        <Fiction/>
+        </Route>
+        <Route path='/books/non-fiction' exact = {true}>
+        <NonFiction/>
+        </Route>
+        <Route path='/books/science-fiction' exact = {true}>
+        <ScienceFiction/>
+        </Route>
+        <Route path='/books/true-crime' exact = {true}>
+        <TrueCrime/>
+        </Route>
+        <Route path='/books/romance' exact = {true}>
+        <Romance/>
+        </Route>
+        <Route path='/books/cooking' exact = {true}>
+        <Cooking/>
+        </Route>
+        <Route path='/books/biography' exact = {true}>
+        <Biography/>
+        </Route>
+        <Route path='/books/current-events' exact = {true}>
+        <CurrentEvents/>
         </Route>
         <Route path='/books/:id' exact = {true}>
         <BookDetails/>

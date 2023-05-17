@@ -117,7 +117,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 2vh 6vw 3vh 6vw;
+    margin: 2% 6% 2% 6%;
 
   }
 
@@ -206,6 +206,46 @@
     padding-right: 1.5vw;
   }
 
+  .fa-cart-shopping {
+    margin-left: 300%;
+  }
+
+.categories-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5.4%;
+  margin-right: 7%;
+  margin-bottom: 1.5%;
+}
+
+.categories-container a {
+  font-family: Poynter;
+  text-decoration: none;
+  color: #000;
+}
+
+.categories-container a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(156, 149, 18);
+  color: #347d56
+}
+
+
+.categories-line-seperator {
+  width: 1px;
+  margin: 0 10px; /* optional: add some margin to the left and right of the separator */
+  border-right: 1px solid #ccc;
+}
+
+/* Add some padding and styles to the NavLink elements */
+.categories-container > * {
+  padding: 0 10px; /* optional: add some padding to the left and right of the NavLink */
+}
+
+/* Style the active NavLink */
+.active {
+  font-weight: bold;
+}
 
   .login-nav{
     background-color: transparent;

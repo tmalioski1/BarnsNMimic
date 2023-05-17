@@ -1,11 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getAllBooks } from '../../store/books'
 import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
 import './homepage.css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper.min.css';
+import SwiperCore, { Navigation } from 'swiper';
+import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 
 
+
+SwiperCore.use([Navigation]);
 
 
 const Homepage = () => {
@@ -13,7 +19,7 @@ const Homepage = () => {
     const booksObj = useSelector(state => state.books.allBooks);
     const user = useSelector((state) => state.session.user);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
     const nonFictionBooks = books.filter(book => book.genre === 'Non-Fiction')
     const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')
     const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
@@ -49,29 +55,28 @@ return (
         <div>
             <h2 className='genre-word'>Fiction</h2>
           </div>
-          <div className='book-gallary-container'>
-            <div className='book-gallary'>
-              <div className='slider-panel'>
-                {
-                  fictionBooks.map(book => (
-                      <div className='slider-eachbook'>
-                        <NavLink
-                          to={`/books/${book.id}`}
-                          key={book.id}
-                          style={{ textDecoration: 'none' }}>
-                           <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                          <div className='home-book-title'>{book.title}</div>
-                          <div className='home-book-author'>{book.author}</div>
-                          </div>
-                        </NavLink>
-                      </div>
-                  ))
-                }
-              </div>
-            </div>
-        </div>
-        </div>
+      <Swiper
+        navigation
+        slidesPerView={7}
+        spaceBetween={25}
+        loop={true}
+        slidesPerGroup={3}
+        className="swiper-container"
+      >
+        {fictionBooks.map(book => (
+          <SwiperSlide key={book.id}>
+              <NavLink to={`/books/${book.id}`}>
+                <div className='homepage-book-container-info' style={{ height: '100%' }}>
+                  <img className='will-change-to-img' src={book.cover_art} onError={e => { e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg' }} alt='cover-photo' />
+                  <div className='home-book-title'>{book.title}</div>
+                  <div className='home-book-author'>{book.author}</div>
+                </div>
+              </NavLink>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+</div>
 }
 
     {books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&

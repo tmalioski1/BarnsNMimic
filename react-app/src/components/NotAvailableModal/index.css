@@ -1,4 +1,12 @@
 .notavailablemodal{
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35rem;
+    height: 12rem;
+}
 
+.not-available-message{
+    margin-left: 20px;
+    margin-right: 20px;
 }

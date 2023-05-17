@@ -27,7 +27,7 @@ export function SecondModalProvider({ children }) {
 }
 
 
-export function SecondModal({ onClose, children,className }) {
+export function SecondModal({ onClose, children, secondModalContent, className }) {
 
 
   const modalNode = useContext(ModalContext);
@@ -39,7 +39,9 @@ export function SecondModal({ onClose, children,className }) {
     <div id="second-modal">
 
       <div id="second-modal-background" onClick={onClose} />
-
+         <div id="second-modal-content">
+        {secondModalContent}
+      </div>
       <div className={className}>
 
         {children}
