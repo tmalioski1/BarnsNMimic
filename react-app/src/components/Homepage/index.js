@@ -3,14 +3,15 @@ import { useEffect, useState, useRef } from 'react';
 import { getAllBooks } from '../../store/books'
 import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
-import Glide, { Controls } from '@glidejs/glide/dist/glide.modular.esm'
-
-import '@glidejs/glide/dist/css/glide.core.min.css';
-import '@glidejs/glide/dist/css/glide.theme.min.css';
 import './homepage.css'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper.min.css';
+import SwiperCore, { Navigation } from 'swiper';
+import 'swiper/modules/navigation/navigation.scss'; // Navigation module
 
-// import React, { useEffect, useRef } from 'react';
-// import Glide from '@glidejs/glide';
+
+
+SwiperCore.use([Navigation]);
 
 
 const Homepage = () => {
@@ -18,7 +19,7 @@ const Homepage = () => {
     const booksObj = useSelector(state => state.books.allBooks);
     const user = useSelector((state) => state.session.user);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
     const nonFictionBooks = books.filter(book => book.genre === 'Non-Fiction')
     const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')
     const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
@@ -26,21 +27,11 @@ const Homepage = () => {
     const cookBooks = books.filter(book => book.genre === 'Cooking')
     const biographyBooks = books.filter(book => book.genre === 'Biography')
     const currentEventBooks = books.filter(book => book.genre === 'Current Events')
-    const sliderRef = useRef()
+
     useEffect(() => {
         dispatch(getAllBooks())
         if (user) dispatch(getCart())
       }, [dispatch, user])
-
-    useEffect(() => {
-
-    new Glide(sliderRef.current, {
-      type: 'carasoul',
-      startAt: 0,
-      perView: 6,
-
-    }).mount({Controls})
-    }, [])
 
 
 
@@ -64,34 +55,26 @@ return (
         <div>
             <h2 className='genre-word'>Fiction</h2>
           </div>
-          <div class='slider-container'>
-
-  <div class='glide' ref={sliderRef}>
-    <div class='glide__track' data-glide-el='track'>
-      <ul class='glide__slides'>
+      <Swiper
+        navigation
+        slidesPerView={7}
+        spaceBetween={25}
+        loop={true}
+        slidesPerGroup={3}
+        className="swiper-container"
+      >
         {fictionBooks.map(book => (
-          <li class='glide__slide'>
-              <NavLink
-                to={`/books/${book.id}`}
-                key={book.id}
-                style={{ textDecoration: 'none', display: 'block', maxWidth: '300px', overflow: 'hidden', wordBreak: 'break-word' }}>
-                 <div className='homepage-book-container-info' style={{height: '100%'}}>
-                <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                <div className='home-book-title'>{book.title}</div>
-                <div className='home-book-author'>{book.author}</div>
+          <SwiperSlide key={book.id}>
+              <NavLink to={`/books/${book.id}`}>
+                <div className='homepage-book-container-info' style={{ height: '100%' }}>
+                  <img className='will-change-to-img' src={book.cover_art} onError={e => { e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg' }} alt='cover-photo' />
+                  <div className='home-book-title'>{book.title}</div>
+                  <div className='home-book-author'>{book.author}</div>
                 </div>
               </NavLink>
-          </li>
+          </SwiperSlide>
         ))}
-      </ul>
-    </div>
-    <div class='glide__arrows' data-glide-el='controls'>
-      <button class='glide__arrow glide__arrow--left' data-glide-dir='<'>&lt;</button>
-      <button class='glide__arrow glide__arrow--right' data-glide-dir='>'>&gt;</button>
-    </div>
-  </div>
-</div>
-
+      </Swiper>
 
 </div>
 }
