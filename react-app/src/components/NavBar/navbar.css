@@ -207,7 +207,12 @@
   }
 
   .fa-cart-shopping {
-    margin-left: 300%;
+    margin-left: 50px;
+  }
+
+  .cart-item-count-splash{
+    margin-left: 54px;
+
   }
 
 .categories-container {
