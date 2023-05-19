@@ -15,6 +15,7 @@ import SwiperCore, { Navigation } from 'swiper';
 SwiperCore.use([Navigation]);
 
 
+
 const Homepage = () => {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
