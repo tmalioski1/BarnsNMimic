@@ -5,9 +5,10 @@ import { getCart } from '../../store/carts';
 import { NavLink } from 'react-router-dom';
 import './homepage.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper.min.css';
+import 'swiper/swiper-bundle.css';
 import SwiperCore, { Navigation } from 'swiper';
-import 'swiper/modules/navigation/navigation.scss'; // Navigation module
+// import 'swiper/swiper.min.css';
+// import 'swiper/modules/navigation/navigation.scss';
 
 
 
@@ -32,7 +33,6 @@ const Homepage = () => {
         dispatch(getAllBooks())
         if (user) dispatch(getCart())
       }, [dispatch, user])
-
 
 
 
@@ -61,12 +61,15 @@ return (
         spaceBetween={25}
         loop={true}
         slidesPerGroup={3}
+        style={{
+          "--swiper-navigation-size": "25px",
+        }}
         className="swiper-container"
       >
         {fictionBooks.map(book => (
           <SwiperSlide key={book.id}>
-              <NavLink to={`/books/${book.id}`}>
-                <div className='homepage-book-container-info' style={{ height: '100%' }}>
+              <NavLink to={`/books/${book.id}`} className="swiper-slide-link">
+                <div className='homepage-book-container-info'>
                   <img className='will-change-to-img' src={book.cover_art} onError={e => { e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg' }} alt='cover-photo' />
                   <div className='home-book-title'>{book.title}</div>
                   <div className='home-book-author'>{book.author}</div>
@@ -75,6 +78,7 @@ return (
           </SwiperSlide>
         ))}
       </Swiper>
+
 
 </div>
 }

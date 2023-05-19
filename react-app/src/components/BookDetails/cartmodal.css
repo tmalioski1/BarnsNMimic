@@ -1,1 +1,32 @@
 
+.cart-modal-container{
+    width: 645px;
+    height: 300px;
+}
+
+.cart-modal-header{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #efd1bc;
+    height: 35px;
+    width:  100%
+}
+
+.cart-header-x {
+    padding-right: 15px;
+    background-color: #efd1bc;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+  }
+
+  .cart-header-x:hover {
+   color: rgb(3, 94, 3)
+  }
+
+  .item-added-message{
+    margin-left: 30px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+
+  }

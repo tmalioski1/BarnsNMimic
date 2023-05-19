@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal'
+
 import {  useHistory } from 'react-router-dom';
 
 import './cartmodal.css'
@@ -14,8 +15,16 @@ function CartModal() {
 
 
     return (
-      <>
-        <div>Item Successfully Added To Your Cart</div>
+      <div className='cart-modal-container'>
+        <div className="cart-modal-header">
+        <button
+          className="cart-header-x"
+          onClick={() => closeModal()}
+        >
+          <i className="fa-sharp fa-solid fa-xmark"></i>
+        </button>
+        </div>
+        <div className='item-added-message'>Item Successfully Added To Your Cart</div>
         <img src={book.cover_art} alt="book-cover-art"></img>
         <div>{book.title}</div>
         <div>{book.author}</div>
@@ -25,7 +34,8 @@ function CartModal() {
         <div>Qty: 1</div>
         <button onClick={() => {closeModal(); history.push('/checkout')}}>View Shopping Cart</button>
         <button  onClick={() => closeModal()}>Continue Shopping</button>
-      </>
+        </div>
+
     );
   }
 

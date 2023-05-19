@@ -39,19 +39,28 @@
 }
 
 .swiper-container {
-  width: 95%
+  width: 92%
 }
+
+
 
 .swiper-button-next,
 .swiper-button-prev {
-  transform: translateY(-50%);
+  transform: translateY(-150%);
   cursor: pointer;
 }
 
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: black; /* Change the arrow color to black */
+  color: black;
+  height: 22px;
+  width: 22px
+}
+
+
+.swiper-container .swiper-slide-link {
+  text-decoration: none !important;
 }
 
 .homepage-book-container-info{
@@ -101,6 +110,5 @@
   font-size: 1vw;
   align-self: center;
   text-align: center;
-  color: #21282d!important
-
+  color: #21282d!important;
 }
