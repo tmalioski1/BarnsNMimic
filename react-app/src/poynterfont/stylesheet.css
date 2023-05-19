@@ -1,0 +1,227 @@
+@font-face {
+    font-family: 'Poynter Oldstyle Display Narrow';
+    src: url('PoynterOldstyleDisplay-NarRoman.eot');
+    src: local('Poynter Oldstyle Display Narrow Roman'), local('PoynterOldstyleDisplay-NarRoman'),
+        url('PoynterOldstyleDisplay-NarRoman.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-NarRoman.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-NarRoman.woff') format('woff'),
+        url('PoynterOldstyleDisplay-NarRoman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display SemiBd';
+    src: url('PoynterOldstyleDisplay-SemiBdIt.eot');
+    src: local('Poynter Oldstyle Display SemiBold Italic'), local('PoynterOldstyleDisplay-SemiBdIt'),
+        url('PoynterOldstyleDisplay-SemiBdIt.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-SemiBdIt.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-SemiBdIt.woff') format('woff'),
+        url('PoynterOldstyleDisplay-SemiBdIt.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display';
+    src: url('PoynterOldstyleDisplay-Bold.eot');
+    src: local('Poynter Oldstyle Display Bold'), local('PoynterOldstyleDisplay-Bold'),
+        url('PoynterOldstyleDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-Bold.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-Bold.woff') format('woff'),
+        url('PoynterOldstyleDisplay-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Serif Reading Edge';
+    src: url('PoynterSerifReadingEdge-Bold.eot');
+    src: local('Poynter Serif Reading Edge Bold'), local('PoynterSerifReadingEdge-Bold'),
+        url('PoynterSerifReadingEdge-Bold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterSerifReadingEdge-Bold.woff2') format('woff2'),
+        url('PoynterSerifReadingEdge-Bold.woff') format('woff'),
+        url('PoynterSerifReadingEdge-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display Cond';
+    src: url('PoynterOldstyleDisplay-CondRoman.eot');
+    src: local('Poynter Oldstyle Display Condensed Roman'), local('PoynterOldstyleDisplay-CondRoman'),
+        url('PoynterOldstyleDisplay-CondRoman.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-CondRoman.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-CondRoman.woff') format('woff'),
+        url('PoynterOldstyleDisplay-CondRoman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Text';
+    src: url('PoynterOldstyleText-Italic.eot');
+    src: local('Poynter Oldstyle Text Italic'), local('PoynterOldstyleText-Italic'),
+        url('PoynterOldstyleText-Italic.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleText-Italic.woff2') format('woff2'),
+        url('PoynterOldstyleText-Italic.woff') format('woff'),
+        url('PoynterOldstyleText-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Text';
+    src: url('PoynterOldstyleText-Bold.eot');
+    src: local('Poynter Oldstyle Text Bold'), local('PoynterOldstyleText-Bold'),
+        url('PoynterOldstyleText-Bold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleText-Bold.woff2') format('woff2'),
+        url('PoynterOldstyleText-Bold.woff') format('woff'),
+        url('PoynterOldstyleText-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Text';
+    src: url('PoynterOldstyleText-Roman.eot');
+    src: local('Poynter Oldstyle Text Roman'), local('PoynterOldstyleText-Roman'),
+        url('PoynterOldstyleText-Roman.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleText-Roman.woff2') format('woff2'),
+        url('PoynterOldstyleText-Roman.woff') format('woff'),
+        url('PoynterOldstyleText-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display Cond';
+    src: url('PoynterOldstyleDisplay-CondBold.eot');
+    src: local('Poynter Oldstyle Display Condensed Bold'), local('PoynterOldstyleDisplay-CondBold'),
+        url('PoynterOldstyleDisplay-CondBold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-CondBold.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-CondBold.woff') format('woff'),
+        url('PoynterOldstyleDisplay-CondBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display SemiBd';
+    src: url('PoynterOldstyleDisplay-SemiBold.eot');
+    src: local('Poynter Oldstyle Display SemiBold'), local('PoynterOldstyleDisplay-SemiBold'),
+        url('PoynterOldstyleDisplay-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-SemiBold.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-SemiBold.woff') format('woff'),
+        url('PoynterOldstyleDisplay-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display NarSB';
+    src: url('PoynterOldstyleDisplay-NarSemiBd.eot');
+    src: local('Poynter Oldstyle Display Narrow SemiBold'), local('PoynterOldstyleDisplay-NarSemiBd'),
+        url('PoynterOldstyleDisplay-NarSemiBd.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-NarSemiBd.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-NarSemiBd.woff') format('woff'),
+        url('PoynterOldstyleDisplay-NarSemiBd.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Serif Reading Edge';
+    src: url('PoynterSerifReadingEdge-BoldIt.eot');
+    src: local('Poynter Serif Reading Edge Bold Italic'), local('PoynterSerifReadingEdge-BoldIt'),
+        url('PoynterSerifReadingEdge-BoldIt.eot?#iefix') format('embedded-opentype'),
+        url('PoynterSerifReadingEdge-BoldIt.woff2') format('woff2'),
+        url('PoynterSerifReadingEdge-BoldIt.woff') format('woff'),
+        url('PoynterSerifReadingEdge-BoldIt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Serif Reading Edge';
+    src: url('PoynterSerifReadingEdge-Italic.eot');
+    src: local('Poynter Serif Reading Edge Italic'), local('PoynterSerifReadingEdge-Italic'),
+        url('PoynterSerifReadingEdge-Italic.eot?#iefix') format('embedded-opentype'),
+        url('PoynterSerifReadingEdge-Italic.woff2') format('woff2'),
+        url('PoynterSerifReadingEdge-Italic.woff') format('woff'),
+        url('PoynterSerifReadingEdge-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display';
+    src: url('PoynterOldstyleDisplay-Italic.eot');
+    src: local('Poynter Oldstyle Display Italic'), local('PoynterOldstyleDisplay-Italic'),
+        url('PoynterOldstyleDisplay-Italic.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-Italic.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-Italic.woff') format('woff'),
+        url('PoynterOldstyleDisplay-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display CondSB';
+    src: url('PoynterOldstyleDisplay-CondSB.eot');
+    src: local('Poynter Oldstyle Display Condensed SemiBold'), local('PoynterOldstyleDisplay-CondSB'),
+        url('PoynterOldstyleDisplay-CondSB.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-CondSB.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-CondSB.woff') format('woff'),
+        url('PoynterOldstyleDisplay-CondSB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display Narrow';
+    src: url('PoynterOldstyleDisplay-NarBold.eot');
+    src: local('Poynter Oldstyle Display Narrow Bold'), local('PoynterOldstyleDisplay-NarBold'),
+        url('PoynterOldstyleDisplay-NarBold.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-NarBold.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-NarBold.woff') format('woff'),
+        url('PoynterOldstyleDisplay-NarBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display';
+    src: url('PoynterOldstyleDisplay-BoldIt.eot');
+    src: local('Poynter Oldstyle Display Bold Italic'), local('PoynterOldstyleDisplay-BoldIt'),
+        url('PoynterOldstyleDisplay-BoldIt.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-BoldIt.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-BoldIt.woff') format('woff'),
+        url('PoynterOldstyleDisplay-BoldIt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Poynter Serif Reading Edge';
+    src: url('PoynterSerifReadingEdge-Roman.eot');
+    src: local('Poynter Serif Reading Edge Roman'), local('PoynterSerifReadingEdge-Roman'),
+        url('PoynterSerifReadingEdge-Roman.eot?#iefix') format('embedded-opentype'),
+        url('PoynterSerifReadingEdge-Roman.woff2') format('woff2'),
+        url('PoynterSerifReadingEdge-Roman.woff') format('woff'),
+        url('PoynterSerifReadingEdge-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poynter Oldstyle Display';
+    src: url('PoynterOldstyleDisplay-Roman.eot');
+    src: local('Poynter Oldstyle Display Roman'), local('PoynterOldstyleDisplay-Roman'),
+        url('PoynterOldstyleDisplay-Roman.eot?#iefix') format('embedded-opentype'),
+        url('PoynterOldstyleDisplay-Roman.woff2') format('woff2'),
+        url('PoynterOldstyleDisplay-Roman.woff') format('woff'),
+        url('PoynterOldstyleDisplay-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
