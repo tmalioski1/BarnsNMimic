@@ -6,9 +6,10 @@ import { NavLink } from 'react-router-dom';
 import './homepage.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css';
+
 import SwiperCore, { Navigation } from 'swiper';
 // import 'swiper/swiper.min.css';
-// import 'swiper/modules/navigation/navigation.scss';
+import 'swiper/modules/navigation/navigation.scss';
 
 
 
@@ -29,6 +30,8 @@ const Homepage = () => {
     const cookBooks = books.filter(book => book.genre === 'Cooking')
     const biographyBooks = books.filter(book => book.genre === 'Biography')
     const currentEventBooks = books.filter(book => book.genre === 'Current Events')
+    const swiperRef = useRef(null);
+
 
     useEffect(() => {
         dispatch(getAllBooks())
@@ -41,7 +44,17 @@ if (!books.length) {
   return null
 }
 
+const handleSlidePrev = () => {
+  if (swiperRef.current && swiperRef.current.swiper) {
+    swiperRef.current.swiper.slidePrev();
+  }
+};
 
+const handleSlideNext = () => {
+  if (swiperRef.current && swiperRef.current.swiper) {
+    swiperRef.current.swiper.slideNext();
+  }
+};
 
 
 return (
@@ -57,16 +70,20 @@ return (
             <h2 className='genre-word'>Fiction</h2>
           </div>
       <Swiper
-        navigation
-        slidesPerView={7}
-        spaceBetween={25}
-        loop={true}
-        slidesPerGroup={3}
-        style={{
-          "--swiper-navigation-size": "25px",
-        }}
-        className="swiper-container"
-      >
+          slidesPerView={7}
+          spaceBetween={25}
+          loop={true}
+          slidesPerGroup={3}
+          className='swiper-container'
+          onSwiper={swiper => {
+            swiperRef.current = swiper;
+          }}
+
+          navigation={{
+            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next'
+          }}
+        >
         {fictionBooks.map(book => (
           <SwiperSlide key={book.id}>
               <NavLink to={`/books/${book.id}`} className="swiper-slide-link">
@@ -79,7 +96,15 @@ return (
           </SwiperSlide>
         ))}
       </Swiper>
-
+        <div className='swiper-navigation'    style={{
+          "--swiper-navigation-size": "20px",
+          "font-weight": "bold"
+        }}>
+                <button className='swiper-button-prev' onClick={handleSlidePrev}>
+                </button>
+                <button className='swiper-button-next' onClick={handleSlideNext}>
+                </button>
+              </div>
 
 </div>
 }

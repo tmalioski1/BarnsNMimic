@@ -43,20 +43,29 @@
 }
 
 
-
-.swiper-button-next,
-.swiper-button-prev {
-  transform: translateY(-150%);
-  cursor: pointer;
-}
-
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.swiper-navigation button {
   color: black;
-  height: 22px;
-  width: 22px
+  background-color: white;
+  border: none;
+  margin-top: 85px;
 }
+
+.swiper-button-prev{
+  margin-left: 50px;
+}
+
+.swiper-button-next{
+  margin-right: 50px;
+}
+
+
+.swiper-navigation button ::after {
+  color: black;
+  background-color: white;
+  border: none;
+}
+
+
 
 
 .swiper-container .swiper-slide-link {
