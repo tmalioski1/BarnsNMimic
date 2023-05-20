@@ -18,48 +18,49 @@ SwiperCore.use([Navigation]);
 
 
 const Homepage = () => {
-    const dispatch = useDispatch();
-    const booksObj = useSelector(state => state.books.allBooks);
-    const user = useSelector((state) => state.session.user);
-    const books = Object.values(booksObj)
-    const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
-    const nonFictionBooks = books.filter(book => book.genre === 'Non-Fiction')
-    const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')
-    const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
-    const romanceBooks = books.filter(book => book.genre === 'Romance')
-    const cookBooks = books.filter(book => book.genre === 'Cooking')
-    const biographyBooks = books.filter(book => book.genre === 'Biography')
-    const currentEventBooks = books.filter(book => book.genre === 'Current Events')
-    const swiperRef = useRef(null);
+  const dispatch = useDispatch();
+  const booksObj = useSelector(state => state.books.allBooks);
+  const user = useSelector((state) => state.session.user);
+  const books = Object.values(booksObj)
+  const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
+  const nonFictionBooks = [...books.filter(book => book.genre === 'Non-Fiction'), ...books.filter(book => book.genre === 'Non-Fiction')];
+  const scienceFictionBooks = books.filter(book => book.genre === 'Science Fiction')
+  const trueCrimeBooks = books.filter(book => book.genre === 'True Crime')
+  const romanceBooks = books.filter(book => book.genre === 'Romance')
+  const cookBooks = books.filter(book => book.genre === 'Cooking')
+  const biographyBooks = books.filter(book => book.genre === 'Biography')
+  const currentEventBooks = books.filter(book => book.genre === 'Current Events')
+  const swiperRef = useRef(null);
 
 
-    useEffect(() => {
-        dispatch(getAllBooks())
-        if (user) dispatch(getCart())
-      }, [dispatch, user])
+  useEffect(() => {
+      dispatch(getAllBooks())
+      if (user) dispatch(getCart())
+    }, [dispatch, user])
 
 
 
 if (!books.length) {
-  return null
+return null
 }
 
 const handleSlidePrev = () => {
-  if (swiperRef.current && swiperRef.current.swiper) {
-    swiperRef.current.swiper.slidePrev();
-  }
+if (swiperRef.current && swiperRef.current.swiper) {
+  swiperRef.current.swiper.slidePrev();
+}
 };
 
 const handleSlideNext = () => {
-  if (swiperRef.current && swiperRef.current.swiper) {
-    swiperRef.current.swiper.slideNext();
-  }
+if (swiperRef.current && swiperRef.current.swiper) {
+  swiperRef.current.swiper.slideNext();
+}
 };
+
 
 
 return (
   <>
-  <div className='gold-bar'> &nbsp; </div>
+   <div className='gold-bar'> &nbsp; </div>
   <div className='greenbar-top'> &nbsp; </div>
     <section className="homePage-container">
         <div id='main-books-container'>
@@ -109,7 +110,8 @@ return (
 </div>
 }
 
-    {books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&
+
+{books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&
         <div className='genre-container'>
         <div>
             <h2 className='genre-word'>Non-Fiction</h2>
