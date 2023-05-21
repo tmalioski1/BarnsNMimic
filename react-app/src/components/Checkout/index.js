@@ -6,12 +6,15 @@ import { removeCartItem } from "../../store/cart_items";
 import { purchaseCart } from '../../store/carts';
 import SelectField from "./SelectField"
 import './checkout.css'
+import { cartItemsArray } from '../NavBar/index.js';
+
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector((state) => state.cart);
   const cartItems = cart?.cartItems ? Object.values(cart.cartItems) : [];
+  const differentItemsCount = cartItems.length
 
   useEffect(() => {
     dispatch(getCart());
@@ -40,9 +43,10 @@ const Checkout = () => {
     <div className='greenbar-top'> &nbsp; </div>
     <div className='checkout-main-container'>
       <div className='checkout-details'>
-      <div className='cart-header'>
-        <h1>My Shopping Cart</h1>
-      </div>
+        <h1 className='cart-checkout-header'>My Shopping Cart</h1>
+        <div className='different-item-count-container'>
+          <h2>({differentItemsCount}) Items from Barnes & Noble</h2>
+        </div>
       <div className="cart-items-container">
         {cartItems.map(item => (
           <div className="one-cart-item" key={item.id}>
@@ -114,7 +118,7 @@ const Checkout = () => {
             });
           }}
         >
-          Submit Order
+          CHECKOUT
         </button>
       </div>
       </div>
