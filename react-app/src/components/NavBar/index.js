@@ -6,6 +6,7 @@ import LogoutButton from '../auth/LogoutButton';
 import UploadNewBook from '../UploadBookModal'
 import { getCart } from "../../store/carts";
 
+
 import './navbar.css'
 
 const NavBar = ({loaded}) => {
