@@ -208,6 +208,8 @@
 
   .fa-cart-shopping {
     margin-left: 50px;
+    margin-top: 5px;
+    cursor: pointer;
   }
 
   .cart-item-count-splash{

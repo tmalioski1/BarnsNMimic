@@ -24,6 +24,11 @@ function ScienceFiction() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Science Fiction Books</h1>
+    <h2 className='catagories-sentence-below-header'>Explore a diverse selection of science fiction books, delving into futuristic worlds, mind-bending technologies, and thrilling adventures that push the boundaries of imagination.</h2>
     <div className='catagories-page-container'>
                    {
                   scienceFictionBooks.map(book => (

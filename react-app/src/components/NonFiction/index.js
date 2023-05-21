@@ -6,7 +6,7 @@ import { getAllBooks } from '../../store/books'
 
 
 
-function Fiction() {
+function NonFiction() {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
@@ -24,6 +24,11 @@ function Fiction() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Nonfiction Books</h1>
+    <h2 className='catagories-sentence-below-header'>Discover the best selection of nonfiction books from memoirs and biographies to history books, business books, and more.</h2>
     <div className='catagories-page-container'>
                    {
                   nonFictionBooks.map(book => (
@@ -48,4 +53,4 @@ function Fiction() {
   );
 }
 
-export default Fiction;
+export default NonFiction;

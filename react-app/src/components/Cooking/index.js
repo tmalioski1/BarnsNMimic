@@ -24,6 +24,11 @@ function Cooking() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Cooking Books</h1>
+    <h2 className='catagories-sentence-below-header'>Embark on a flavorful journey with our diverse collection of cooking books, unlocking the secrets of culinary arts, tantalizing recipes, and culinary adventures that will inspire your inner chef and elevate your gastronomic skills.</h2>
     <div className='catagories-page-container'>
                    {
                   cookBooks.map(book => (

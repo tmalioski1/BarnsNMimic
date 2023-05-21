@@ -24,13 +24,12 @@ const Checkout = () => {
       <>
       <div className='gold-bar'> &nbsp; </div>
       <div className='greenbar-top'> &nbsp; </div>
-      <div className='cart-header'>
-        <h1>My Shopping Cart</h1>
-        <div>Your shopping cart is currently empty.</div>
-        <button className="shop-now-button" onClick={() => history.push('/')}>
-  Shop Now
+        <h1 className='checkout-cart-empty-message'>Your cart is empty</h1>
+        <div className="checkout-shop-now-button-container">
+        <button className="checkout-shop-now-button" onClick={() => history.push('/')}>
+  SHOP NOW
 </button>
-      </div>
+</div>
       </>
     )
   }
@@ -39,6 +38,8 @@ const Checkout = () => {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='checkout-main-container'>
+      <div className='checkout-details'>
       <div className='cart-header'>
         <h1>My Shopping Cart</h1>
       </div>
@@ -91,15 +92,18 @@ const Checkout = () => {
           </div>
         ))}
 
+     </div>
+
+      </div>
+      <div className='checkout-order-summary'>
+        <h1 className='checkout-order-summary-header'>Order Summary</h1>
         <div className="cart-total-container">
           <span className="cart-total-text">Order Total:</span>
           <span className="cart-total-price">
             ${totalPrice.toFixed(2)}
           </span>
         </div>
-
-     </div>
-      <div className="checkout-submit-button-container">
+        <div className="checkout-submit-button-container">
       <button
           className='checkout-submit-button'
           onClick={() => {
@@ -112,6 +116,8 @@ const Checkout = () => {
         >
           Submit Order
         </button>
+      </div>
+      </div>
       </div>
      </>
     );

@@ -116,28 +116,42 @@ return (
         <div>
             <h2 className='genre-word'>Non-Fiction</h2>
           </div>
-          <div className='book-gallary-container'>
-            <div className='book-gallary'>
-              <div className='slider-panel'>
-                {
-                  nonFictionBooks.map(book => (
-                      <div className='slider-eachbook'>
-                        <NavLink
-                          to={`/books/${book.id}`}
-                          key={book.id}
-                          style={{ textDecoration: 'none' }}>
-                          <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                          <div className='home-book-title'>{book.title}</div>
-                          <div className='home-book-author'>{book.author}</div>
-                          </div>
-                        </NavLink>
-                      </div>
-                  ))
-                }
+          <Swiper
+          slidesPerView={7}
+          spaceBetween={25}
+          loop={true}
+          slidesPerGroup={3}
+          className='swiper-container'
+          onSwiper={swiper => {
+            swiperRef.current = swiper;
+          }}
+
+          navigation={{
+            prevEl: '.swiper-button-prev',
+            nextEl: '.swiper-button-next'
+          }}
+        >
+        {nonFictionBooks.map(book => (
+          <SwiperSlide key={book.id}>
+              <NavLink to={`/books/${book.id}`} className="swiper-slide-link">
+                <div className='homepage-book-container-info'>
+                  <img className='will-change-to-img' src={book.cover_art} onError={e => { e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg' }} alt='cover-photo' />
+                  <div className='home-book-title'>{book.title}</div>
+                  <div className='home-book-author'>{book.author}</div>
+                </div>
+              </NavLink>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+        <div className='swiper-navigation'    style={{
+          "--swiper-navigation-size": "20px",
+          "font-weight": "bold"
+        }}>
+                <button className='swiper-button-prev' onClick={handleSlidePrev}>
+                </button>
+                <button className='swiper-button-next' onClick={handleSlideNext}>
+                </button>
               </div>
-            </div>
-        </div>
         </div>
 }
 
