@@ -6,7 +6,6 @@ import { removeCartItem } from "../../store/cart_items";
 import { purchaseCart } from '../../store/carts';
 import SelectField from "./SelectField"
 import './checkout.css'
-import { cartItemsArray } from '../NavBar/index.js';
 
 
 const Checkout = () => {
@@ -20,7 +19,15 @@ const Checkout = () => {
     dispatch(getCart());
   }, [dispatch]);
 
-  let totalPrice = 0;
+  let subTotalPrice = 0;
+
+  const cartItemCount = (array) => {
+    let sum = 0
+    array.forEach(object => {
+      sum += object.quantity
+    })
+    return sum
+  }
 
   if (cartItems.length === 0) {
     return (
@@ -89,7 +96,7 @@ const Checkout = () => {
                 </div>
                 <div className="cart-item-checkout-price-total">
                   ${(item.book.price_paperback * item.quantity).toFixed(2)}
-                  {(totalPrice += item.book.price_paperback * item.quantity) && false}
+                  {(subTotalPrice += item.book.price_paperback * item.quantity) && false}
                 </div>
               </div>
             </div>
@@ -101,20 +108,27 @@ const Checkout = () => {
       </div>
       <div className='checkout-order-summary'>
         <h1 className='checkout-order-summary-header'>Order Summary</h1>
+        <div className="cart-subtotal-container">
+        <span className="cart-subtotal-text">Subtotal</span>
+        <span className="cart-subtotal-item-count">  ({cartItemCount(cartItems)} {cartItemCount(cartItems) === 1 ? 'item' : 'items'})</span>
+
+          <span className="cart-subtotal-price">
+            ${subTotalPrice.toFixed(2)}
+          </span>
+        </div>
+        <hr class="checkout-order-summary-line"></hr>
         <div className="cart-total-container">
           <span className="cart-total-text">Order Total:</span>
-          <span className="cart-total-price">
-            ${totalPrice.toFixed(2)}
-          </span>
+          <span className="cart-total-price">${(subTotalPrice * 1.15).toFixed(2)}</span>
         </div>
         <div className="checkout-submit-button-container">
       <button
           className='checkout-submit-button'
           onClick={() => {
-            dispatch(purchaseCart(totalPrice));
+            dispatch(purchaseCart(subTotalPrice));
             history.push({
               pathname: '/thank-you',
-              state: { totalPrice: totalPrice }
+              state: { subTotalPrice: subTotalPrice }
             });
           }}
         >
