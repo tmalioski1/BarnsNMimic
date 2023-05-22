@@ -183,6 +183,64 @@ Ro is stuck. She's just entered her thirties, she's estranged from her mother, a
 
 When Dolores is sold to a wealthy investor intent on moving her to a private aquarium, Ro finds herself on the precipice of self-destruction. Wading through memories of her youth, Ro realizes she can either lose herself in the undertow of reminiscence, or finally come to terms with her childhood trauma, recommit to those around her, and find her place in an ever-changing world.""", editorial_review= '“Gloriously nerdy and sexy, with on-point commentary about women in STEM.”—New York Times bestselling author Helen Hoang on Love on the Brain', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/81sAOxbZLVL._AC_UF1000,1000_QL80_.jpg', pages= 288)
 
+  demo_book25 = Book(
+    publisher_id = 3,  title='2001: A Space Odyssey', author= 'Arthur C. Clarke', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/81vrBR1m8EL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book26 = Book(
+    publisher_id = 3,  title='Star Trek: Federation', author= 'Judith & Garfield Reeves-Stevens', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/51yxTSvD0oL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book27 = Book(
+    publisher_id = 3,  title='Star Trek: The Return', author= 'William Shatner', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/51axHqvZV4L._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book28 = Book(
+    publisher_id = 3,  title='Star Trek: The Motion Picture', author= 'Gene Roddenberry', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/81zNhNcLngL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book29 = Book(
+    publisher_id = 3,  title='Star Trek The Next Generation: Strike Zone', author= 'Peter David', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/61RKlsKQMFL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book30 = Book(
+    publisher_id = 3,  title='Star Trek: Elusive Salvation', author= 'Dayton Ward', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/81FbM0kYPbL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book31 = Book(
+    publisher_id = 3,  title='Star Trek: Rules of Engagement', author= 'Peter Morwood', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/61AeHldME+L._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+  demo_book32 = Book(
+    publisher_id = 3,  title='Star Trek: Memory Prime', author= 'Gar and Judith Reeves-Stevens', price_paperback=13.60, price_hardcover=23.99, price_eBook=11.99, genre='Science Fiction', overview= """In an electrifying addition to a captivating science fiction series, the riveting narrative unfolds in its third installment. The main character, Bryce Quinlan, finds herself thrust into an unfamiliar world, yearning for the familiarity of her home, Midgard. Separated from her loved ones and soulmate, Bryce must navigate this enigmatic realm, cautiously determining who she can trust in her quest to return.
+
+Meanwhile, the resilient Hunt Athalar, no stranger to adversity, faces his most challenging predicament yet. Stripped of his freedom and confined within the depths of an oppressive institution, Hunt remains oblivious to Bryce's fate. Desperate to aid her, he struggles against the constraints imposed upon him, desperately seeking a way to break free.
+
+As tension mounts, this enthralling sequel to previous acclaimed works propels the Crescent City series to new heights. The narrative explores themes of desire and peril, thrusting Bryce and Hunt's world to the edge of collapse. Their choices hold the weight of the realm's future, as they grapple with the impending destiny that lies before them.""", editorial_review= '"A thrilling addition to an acclaimed science fiction series, this gripping installment takes readers on a captivating journey through unfamiliar realms, testing the boundaries of trust, love, and the fate of a world." —New York Times', publication_date= '03/28/2023', publisher= 'Knopf Doubleday Publishing Group', cover_art='https://m.media-amazon.com/images/I/61+yAsNWqeL._AC_UF1000,1000_QL80_.jpg', pages= 288)
+
+
+
   db.session.add(demo_book)
   db.session.add(demo_book2)
   db.session.add(demo_book3)
@@ -207,6 +265,14 @@ When Dolores is sold to a wealthy investor intent on moving her to a private aqu
   db.session.add(demo_book22)
   db.session.add(demo_book23)
   db.session.add(demo_book24)
+  db.session.add(demo_book25)
+  db.session.add(demo_book26)
+  db.session.add(demo_book27)
+  db.session.add(demo_book28)
+  db.session.add(demo_book29)
+  db.session.add(demo_book30)
+  db.session.add(demo_book31)
+  db.session.add(demo_book32)
 
   db.session.commit()
 
