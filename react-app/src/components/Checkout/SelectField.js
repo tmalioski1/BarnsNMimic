@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCart } from '../../store/carts';
 import { editCartItem } from '../../store/cart_items';
+import './selectfield.css'
+
 
 const SelectField = ({ currentItem }) => {
   const dispatch = useDispatch();
