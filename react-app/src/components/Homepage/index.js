@@ -61,10 +61,11 @@ return (
 
 
 {books.filter(book => book.genre === 'Non-Fiction').length !== 0 &&
-        <div className='genre-container'>
-          <h2 className='genre-word'>Non-Fiction</h2>
-          <Carousel books={nonFictionBooks} carouselId="non-fiction"/>
-          </div>
+    <div className="genre-container">
+    <h2 className="genre-word">Non-
+    Fiction</h2>
+    <Carousel books={nonFictionBooks} carouselId="nonfiction" />
+  </div>
 
 }
 

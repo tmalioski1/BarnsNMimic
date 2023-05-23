@@ -18,9 +18,13 @@ function NotAvailableModal({buttonTxt, bookData}) {
         </div></div>
       {showModal && (
         <SecondModal className={"notavailablemodal"} onClose={() => setShowModal(false)}>
+              <button
+          className="cart-header-y"
+          onClick={() =>setShowModal(false)}
+        >
+          <i className="fa-sharp fa-solid fa-xmark"></i>
+        </button>
 <div className="not-available-message">Sorry, this book is not yet available in your selected format.  Check back again soon, or select a different format.</div>
-
-
 
         </SecondModal>
       )}

@@ -70,26 +70,21 @@
   text-decoration: none !important;
 }
 
-.homepage-book-container-info{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 300px;
-  overflow: hidden;
-  word-break: break-word;
 
+
+.image-div {
+  height:auto;
+  width: 170px;
+  margin-top: 15px;
 }
 
-/* .image-div {
-} */
 
 .will-change-to-img{
-  object-fit: contain;
+  object-fit: fill;
   height: 100%;
-  margin-top: 15px;
-  margin-bottom: 3%;
-
+  width: 170px;
 }
+
 
 .home-book-title{
   font-family: Cormorant Garamond, serif;

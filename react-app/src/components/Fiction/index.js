@@ -9,6 +9,8 @@ import SwiperCore, { Navigation } from 'swiper';
 // import 'swiper/swiper.min.css';
 import 'swiper/modules/navigation/navigation.scss';
 import './index.css'
+import Carousel from '../Carousel';
+import '../Homepage/homepage.css'
 
 
 
@@ -56,42 +58,7 @@ function Fiction() {
 </h2>
 
 
-        <Swiper
-          slidesPerView={7}
-          spaceBetween={25}
-          loop={true}
-          slidesPerGroup={3}
-          className='swiper-container'
-          onSwiper={swiper => {
-            swiperRef.current = swiper;
-          }}
-
-          navigation={{
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next'
-          }}
-        >
-        {fictionBooks.map(book => (
-          <SwiperSlide key={book.id}>
-              <NavLink to={`/books/${book.id}`} className="swiper-slide-link">
-                <div className='homepage-book-container-info'>
-                  <img className='will-change-to-img' src={book.cover_art} onError={e => { e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg' }} alt='cover-photo' />
-                  <div className='home-book-title'>{book.title}</div>
-                  <div className='home-book-author'>{book.author}</div>
-                </div>
-              </NavLink>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-        <div className='swiper-navigation'    style={{
-          "--swiper-navigation-size": "20px",
-          "font-weight": "bold"
-        }}>
-                <button className='swiper-button-prev' onClick={handleSlidePrev}>
-                </button>
-                <button className='swiper-button-next' onClick={handleSlideNext}>
-                </button>
-              </div>
+<Carousel books={fictionBooks} carouselId="fiction-page" />
 
 
               </>
