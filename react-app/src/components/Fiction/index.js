@@ -22,7 +22,7 @@ function Fiction() {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
     const swiperRef = useRef(null);
 
     useEffect(() => {

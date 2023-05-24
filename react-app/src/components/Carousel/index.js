@@ -1,10 +1,10 @@
-import {  useRef } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css';
 import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/modules/navigation/navigation.scss';
+import './index.css'
 
 
 SwiperCore.use([Navigation]);
@@ -12,70 +12,40 @@ SwiperCore.use([Navigation]);
 
 export default function Carousel({books, carouselId}) {
 
-const swiperRef = useRef(null);
-
-const handleSlidePrev = () => {
-if (swiperRef.current && swiperRef.current.swiper) {
-  swiperRef.current.swiper.slidePrev();
-}
-};
-
-const handleSlideNext = () => {
-if (swiperRef.current && swiperRef.current.swiper) {
-  swiperRef.current.swiper.slideNext();
-}
-};
-
     return (
-      <div className="carousel-component">
+      <>
+
+<style>
+      {`
+        .swiper-container {
+          --swiper-navigation-size: 22px;
+        }
+      `}
+    </style>
+
          <Swiper
           slidesPerView={7}
           spaceBetween={25}
+          key={`${carouselId}`}
           loop={true}
           slidesPerGroup={3}
           className='swiper-container'
-          onSwiper={swiper => {
-            swiperRef.current = swiper;
-          }}
-
-          navigation={{
-            prevEl: `#swiper-button-prev-${carouselId}`,
-            nextEl: `#swiper-button-next-${carouselId}`,
-          }}
+          navigation={true}
         >
-        <div className="carousel-slides">
+        <div className='books-carousel'>
         {
                   books.map(book => (
-                      <SwiperSlide>
+                      <SwiperSlide key={book.id}>
                         <NavLink
                           to={`/books/${book.id}`}
-                          key={book.id}
                           style={{ textDecoration: 'none' }}>
-                            <div className='image-div'>
                           <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                          </div>
                         </NavLink>
                         </SwiperSlide>
                   ))
                 }
-          </div>
+                </div>
         </Swiper>
-
-            <div className='swiper-navigation'    style={{
-          "--swiper-navigation-size": "20px",
-          "font-weight": "bold"
-        }}>
-          <button
-          id={`swiper-button-prev-${carouselId}`}
-          className="swiper-button-prev"
-          onClick={handleSlidePrev}
-        ></button>
-        <button
-          id={`swiper-button-next-${carouselId}`}
-          className="swiper-button-next"
-          onClick={handleSlideNext}
-        ></button>
-              </div>
-              </div>
+              </>
     )
 }
