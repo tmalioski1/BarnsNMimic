@@ -2,8 +2,8 @@
 
 .swiper-container {
     width: 92%;
-    /* position: relative;
-    overflow: visible !important; */
+    position: relative;
+    overflow: visible !important;
   }
 
 
@@ -25,12 +25,12 @@
   }
 
   .swiper-button-prev{
-   /* left: -20px; */
+   left: -20px;
     color: black;
   }
 
   .swiper-button-next{
-    /* right: -20px; */
+    right: -20px;
     color: black;
   }
 
