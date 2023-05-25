@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getAllBooks } from '../../store/books'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css';
 import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/modules/navigation/navigation.scss';
