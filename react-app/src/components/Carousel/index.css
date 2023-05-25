@@ -1,0 +1,43 @@
+
+
+.swiper-container {
+    width: 92%;
+    position: relative;
+    overflow: clip;
+    overflow-clip-margin: 24px;
+  }
+
+
+  .swiper-navigation button::after {
+    color: black;
+    background-color: white;
+    border: none;
+  }
+
+
+  .swiper-container .swiper-slide-link {
+    text-decoration: none !important;
+  }
+  .swiper-navigation button {
+    color: black;
+    background-color: white;
+    border: none;
+    margin-top: 90px;
+  }
+
+  .swiper-button-prev{
+   left: -24px;
+    color: black;
+  }
+
+  .swiper-button-next{
+    right: -24px;
+    color: black;
+  }
+
+  .will-change-to-img{
+    object-fit: cover;
+    height: auto;
+    width: 170px;
+    margin-top: 15px;
+  }

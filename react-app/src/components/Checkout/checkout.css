@@ -1,0 +1,341 @@
+.checkout-cart-empty-message{
+    text-align: center;
+    margin-top: 140px;
+    font-family: "Poynter Oldstyle Display", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(33, 40, 45);
+    line-height: 1.25;
+    margin-bottom: 30px;
+}
+
+.checkout-shop-now-button-container{
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-shop-now-button {
+    background-color: rgb(52, 98, 80);
+    color: white;
+    max-width: 165px;
+    width: 100%;
+    height: 50px;
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+}
+
+.checkout-shop-now-button:hover {
+    cursor: pointer;
+    background-color: rgb(32, 61, 50);
+
+}
+
+.checkout-main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.checkout-details{
+    margin-right: 20px;
+    margin-top: 128px;
+    width: 38%
+}
+
+.checkout-details-header-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%
+}
+
+  .checkout-details-header-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+    margin: 0;
+  }
+  .cart-checkout-header {
+    font-size: 24px;
+    font-family:"Poynter Oldstyle Display SemiBd", sans-serif;
+    line-height: 1.25;
+    margin: 0px 10px 0px 10px;
+    padding: 0;
+  }
+
+  .checkout-details-box{
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 25px;
+  }
+
+  .different-item-count-container{
+    background-color: #f2f2f1;
+    margin-bottom: 40px;
+  }
+
+  .different-item-count-container h2{
+   font-size: 19px;
+   font-family: "Poynter Oldstyle Display SemiBd", serif;
+   line-height: 1.15;
+   margin-left: 22px;
+   padding-top: 25px;
+   padding-bottom: 25px;
+  }
+
+  .one-cart-item {
+    border-bottom: 1px solid #ccc;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+  }
+
+  .cart-item-title-and-author{
+    display: flex;
+    flex-direction: column;
+    margin-left: 6px;
+  }
+
+  .cart-item-title{
+    text-decoration: none;
+    color: #21282d;
+    width: 85%;
+    font-family: "Poynter Oldstyle Display SemiBd", serif;
+    font-size: 15.5px;
+    margin-bottom: 9px;
+  }
+
+  .cart-item-title:hover{
+    text-decoration: underline;
+  }
+
+  .cart-item-author{
+    color: rgb(33, 40, 45);
+    box-sizing: border-box;
+    display:block;
+    font-size: 12.185px;
+    font-family: "Lato", sans-serif;
+  }
+
+  .cart-item-image-price-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 22px;
+  }
+
+  .cart-item-image{
+    width: 87.73px;
+    height: 101.06px;
+  }
+
+  .cart-item-format{
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+    margin-left: 2px;
+  }
+
+
+  .cart-quantity-and-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 36%;
+  }
+
+  .cart-item-checkout-price{
+    margin-top: 15px;
+    font-family: "Lato", sans-serif;
+    font-size: 10px;
+  }
+
+  .cart-item-checkout-price-total{
+    margin-top: 15px;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+
+  }
+
+.cart-item-remove-or-homepage{
+    margin-bottom: 55px;
+    margin-top: 35px;
+    margin-left: 120px;
+    display: flex;
+    flex-direction: row;
+}
+
+.cart-remove-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 8px;
+    font-family: "Lato",sans-serif;
+    font-size: 12px;
+    color: #347d56;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .cart-remove-button:hover {
+    text-decoration: underline;
+  }
+
+  .checkout-divider{
+    color: rgb(14, 13, 13);
+    font-weight: lighter;
+  }
+
+  .cart-item-homepage a{
+    color: #347d56;
+    font-family: "Lato",sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: normal;
+    margin-left: 8px;
+  }
+
+  .cart-item-homepage a:hover{
+    text-decoration: underline;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.checkout-order-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 90px;
+    border: 1px solid #ccc;
+    padding: 23px 20px 0px 20px;
+    max-width: 300px;
+    width: 100%;
+    height: 270px
+  }
+
+.checkout-order-summary-header{
+   text-align: left;
+   font-family: "Poynter Oldstyle Display SemiBd", serif;
+   font-size: 25px;
+   margin-bottom: 13px;
+}
+
+.cart-subtotal-container{
+    display: flex;
+    align-items: center;
+    margin-left: 2px;
+    margin-bottom: 25px;
+    width: 97%
+}
+
+.cart-subtotal-text{
+    margin-right: 2px;
+    font-family: "Lato",sans-serif;
+    font-size: 14px;
+
+}
+
+.cart-subtotal-item-count{
+    font-family: "Lato",sans-serif;
+    font-size: 14px;
+
+}
+
+.cart-subtotal-price{
+    margin-left: auto;
+    font-family: "Lato",sans-serif;
+    font-size: 14.5px;
+
+
+}
+
+.checkout-order-summary-line{
+    box-sizing: border-box;
+    height: 1px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+.cart-total-container{
+    margin-left: 1px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    width: 97%
+}
+
+.cart-total-text{
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.cart-total-price{
+    margin-left: auto;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.checkout-submit-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%
+  }
+
+  .checkout-submit-button{
+    width:100%;
+    height: 50px;
+    background-color: rgb(52, 98, 80);
+    color: white;
+    font-size: 18px;
+  }
+
+  .checkout-submit-button:hover{
+    background-color: rgb(40, 74, 61);
+    cursor: pointer;
+
+  }

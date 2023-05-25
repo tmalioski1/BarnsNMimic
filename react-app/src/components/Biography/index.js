@@ -24,6 +24,11 @@ function Biography() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Biography Books</h1>
+    <h2 className='catagories-sentence-below-header'>Step into the lives of remarkable individuals with our captivating collection of biographies, uncovering inspiring true stories, extraordinary achievements, and the compelling journeys of individuals who have left an indelible mark on history.</h2>
     <div className='catagories-page-container'>
                    {
                   biographyBooks.map(book => (

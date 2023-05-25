@@ -1,6 +1,7 @@
 
 .cart-modal-container{
     width: 645px;
+    max-width: 900px;
     height: 300px;
 }
 
@@ -8,7 +9,7 @@
     display: flex;
     justify-content: flex-end;
     background-color: #efd1bc;
-    height: 35px;
+    height: 40px;
     width:  100%
 }
 
@@ -25,8 +26,128 @@
   }
 
   .item-added-message{
-    margin-left: 30px;
-    margin-top: 15px;
-    padding-bottom: 15px;
-
+    margin-left: 35px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-family:  "Lato", sans-serif;
+    font-size: 14.5px;
+    font-weight: bold;
   }
+
+
+.cart-modal-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-modal-row-right{
+  max-width: 380px;
+  width: 100%;
+}
+.cart-modal-row-right > *{
+  margin-left: 35px;
+}
+
+
+.cart-modal-book-cover-art{
+  max-width: 110px;
+  width: 100%;
+  max-height: 165px;
+  height: 100%;
+  margin-top: 25px;
+  margin-left: 45px;
+}
+
+.cart-modal-line{
+  box-sizing: border-box;
+  height: 1px;
+  max-width: 360px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-modal-title-price{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: baseline;
+max-width: 360px;
+width: 100%;
+margin-top: 15px;
+margin-bottom: 15px;
+}
+
+.cart-modal-title{
+  font-family: "Poynter Oldstyle Display", serif;
+  font-size: 19px;
+  }
+
+  .cart-modal-title-price-one{
+    font-family: "Lato", sans-serif;
+  }
+
+  .cart-modal-author{
+    margin-bottom: 13px;
+    font-family: "Lato", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size:15.5968px;
+    line-height: 23.3952px;
+    color: rgb(33, 40, 45)
+    }
+
+    .cart-modal-format-price-quantity{
+      display: flex;
+      width: 50%;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .cart-modal-format-price-quantity > div{
+     font-family: "Lato", sans-serif;
+     font-size: 14.2971px;
+    }
+
+    .cart-modal-format-price-quantity-line{
+      font-size: 110%;
+      color: #151515
+    }
+
+    .cart-modal-buttons{
+      max-width: 380px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .cart-modal-buttons button{
+      max-width: 185px;
+      width: 100%;
+      height: 40px;
+      font-family: "Lato", sans-serif;
+      font-size: 14px;
+    }
+
+    .cart-modal-view-shopping-cart-button{
+      background-color: rgb(52, 98, 80);
+      color: white;
+    }
+
+    .cart-modal-view-shopping-cart-button:hover{
+      background-color: rgb(32, 61, 50);
+      cursor: pointer;
+    }
+
+    .cart-modal-view-continue-shopping-button{
+      background-color: white;
+      color: black
+    }
+
+    .cart-modal-view-continue-shopping-button:hover{
+        background-color: black;
+        color: white;
+        cursor: pointer;
+    }

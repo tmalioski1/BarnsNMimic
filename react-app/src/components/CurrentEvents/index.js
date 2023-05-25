@@ -24,6 +24,11 @@ function CurrentEvents() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Current Events Books</h1>
+    <h2 className='catagories-sentence-below-header'>Stay informed and engaged with our collection of current events, offering insightful perspectives, up-to-date analysis, and thought-provoking coverage of the latest happenings shaping our world today.</h2>
     <div className='catagories-page-container'>
                    {
                   currentEventBooks.map(book => (

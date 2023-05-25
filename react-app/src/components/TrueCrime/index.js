@@ -24,6 +24,11 @@ function TrueCrime() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>True Crime Books</h1>
+    <h2 className='catagories-sentence-below-header'>Discover a compelling collection of true crime books, delving into real-life mysteries, gripping investigations, and captivating accounts of criminal cases that will leave you on the edge of your seat.</h2>
     <div className='catagories-page-container'>
                    {
                   trueCrimeBooks.map(book => (

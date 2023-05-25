@@ -37,7 +37,7 @@ const BookDetails = () => {
   }
 
 
-
+console.log('this is the bookid----', book?.id)
 
   useEffect(() => {
     dispatch(getOneBook(id))

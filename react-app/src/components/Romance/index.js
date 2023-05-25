@@ -24,6 +24,11 @@ function Romance() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Romance Books</h1>
+    <h2 className='catagories-sentence-below-header'>Immerse yourself in a captivating collection of romance novels, where love blossoms, hearts flutter, and unforgettable connections are forged amidst enchanting settings, passionate embraces, and heartwarming journeys of the heart.</h2>
     <div className='catagories-page-container'>
                    {
                   romanceBooks.map(book => (

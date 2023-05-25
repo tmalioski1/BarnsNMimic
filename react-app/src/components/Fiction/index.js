@@ -1,8 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getAllBooks } from '../../store/books'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/swiper-bundle.css';
+import SwiperCore, { Navigation } from 'swiper';
+import 'swiper/modules/navigation/navigation.scss';
+import './index.css'
+import Carousel from '../Carousel';
 
+
+
+SwiperCore.use([Navigation]);
 
 
 
@@ -10,7 +19,7 @@ function Fiction() {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
-    const fictionBooks = books.filter(book => book.genre === 'Fiction')
+    const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
 
     useEffect(() => {
         dispatch(getAllBooks())
@@ -20,28 +29,22 @@ function Fiction() {
         return null
       }
 
+
+
   return (
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
-    <div className='catagories-page-container'>
-                   {
-                  fictionBooks.map(book => (
-                      <div className='slider-eachbook'>
-                        <NavLink
-                          to={`/books/${book.id}`}
-                          key={book.id}
-                          style={{ textDecoration: 'none' }}>
-                           <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                          <div className='home-book-title'>{book.title}</div>
-                          <div className='home-book-author'>{book.author}</div>
-                          </div>
-                        </NavLink>
-                      </div>
-                  ))
-                }
-              </div>
+    <div className='catagories-home-link-container'>
+    <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
+    </div>
+    <h1 className='catagories-genre-header'>Fiction Books</h1>
+    <h2 className='catagories-sentence-below-header'>Browse a variety of fiction genres including general fiction, literature, romance and many more.
+
+</h2>
+
+
+<Carousel books={fictionBooks} carouselId="fiction-page" />
 
 
               </>

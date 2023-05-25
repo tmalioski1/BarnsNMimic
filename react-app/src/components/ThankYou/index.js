@@ -8,11 +8,9 @@ import './index.css'
 const ThankYou = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
-    console.log('this is the cart--------', cart)
     const cartOrderNumber = cart?.order_number
-    console.log('this is the cart order number--------', cartOrderNumber)
     const location = useLocation();
-    const totalPrice = location.state.totalPrice;
+    const subTotalPrice = location.state.subTotalPrice;
 
     useEffect(() => {
         dispatch(getCart(cart));
@@ -34,7 +32,7 @@ const ThankYou = () => {
     <div className='order-thank-you-message-gray-line'> &nbsp; </div>
     <div className='thank-you-total'>
         <div className='thank-you-total-message'>Order Total:</div>
-        <div className='thank-you-total-price'>${totalPrice.toFixed(2)}</div>
+        <div className='thank-you-total-price'>${(subTotalPrice * 1.15).toFixed(2)}</div>
     </div>
     </div>
     </div>
