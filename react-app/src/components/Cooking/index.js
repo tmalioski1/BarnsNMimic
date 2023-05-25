@@ -2,15 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getAllBooks } from '../../store/books'
-
-
-
+import 'swiper/swiper-bundle.css';
+import 'swiper/modules/navigation/navigation.scss';
+import '../Fiction/index.css'
+import Carousel from '../Carousel';
 
 function Cooking() {
     const dispatch = useDispatch();
     const booksObj = useSelector(state => state.books.allBooks);
     const books = Object.values(booksObj)
-    const cookBooks = books.filter(book => book.genre === 'Cooking')
+    const cookBooks = [...books.filter(book => book.genre === 'Cooking'), ...books.filter(book => book.genre === 'Cooking')]
 
     useEffect(() => {
         dispatch(getAllBooks())
@@ -29,25 +30,7 @@ function Cooking() {
     </div>
     <h1 className='catagories-genre-header'>Cooking Books</h1>
     <h2 className='catagories-sentence-below-header'>Embark on a flavorful journey with our diverse collection of cooking books, unlocking the secrets of culinary arts, tantalizing recipes, and culinary adventures that will inspire your inner chef and elevate your gastronomic skills.</h2>
-    <div className='catagories-page-container'>
-                   {
-                  cookBooks.map(book => (
-                      <div className='slider-eachbook'>
-                        <NavLink
-                          to={`/books/${book.id}`}
-                          key={book.id}
-                          style={{ textDecoration: 'none' }}>
-                           <div className='homepage-book-container-info'>
-                          <img className='will-change-to-img' src={book.cover_art} onError={e => {e.target.src = 'https://librarygenesis.net/wp-content/uploads/2018/11/library-genesis.jpg'}} alt='cover-photo'/>
-                          <div className='home-book-title'>{book.title}</div>
-                          <div className='home-book-author'>{book.author}</div>
-                          </div>
-                        </NavLink>
-                      </div>
-                  ))
-                }
-              </div>
-
+    <Carousel books={cookBooks} carouselId="cookbooks-page" />
 
               </>
   );
