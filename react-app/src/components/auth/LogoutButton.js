@@ -10,12 +10,12 @@ const LogoutButton = () => {
   const location = useLocation();
   const sessionUser = useSelector(state => state.session.user);
   const isCheckoutPage = location.pathname === '/checkout';
+  const isThankYouPage = location.pathname === '/thank-you';
 
   const onLogout = async (e) => {
     await dispatch(logout());
 
-    if (sessionUser && isCheckoutPage) {
-      // Redirect to the homepage
+    if (sessionUser && isCheckoutPage || sessionUser && isThankYouPage) {
       history.push('/');
     }
   };
