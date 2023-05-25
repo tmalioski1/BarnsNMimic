@@ -3,7 +3,8 @@
 .swiper-container {
     width: 92%;
     position: relative;
-    overflow: visible !important;
+    overflow: clip;
+    overflow-clip-margin: 20px;
   }
 
 
