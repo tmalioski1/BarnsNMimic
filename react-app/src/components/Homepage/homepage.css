@@ -20,6 +20,7 @@
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 3vh;
+  padding-bottom: 1vh;
 }
 
 .genre-container {
@@ -35,8 +36,3 @@
   font-size: 35px;
   color: rgb(70, 67, 67);
 }
-
-
-
-
-

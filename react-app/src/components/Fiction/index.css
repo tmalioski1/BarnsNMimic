@@ -1,8 +1,11 @@
+
+
 .catagories-home-link-container{
   text-align: center;
-  margin-top: 35px;
+  margin-top: 8vh;
   margin-bottom: 2px;
 }
+
 
 .catagories-home-link{
   display: inline-block;
@@ -35,5 +38,6 @@
     font-family: "Lato", serif;
     font-size: 13px;
     display: block;
-    font-weight: 400
+    font-weight: 400;
+    margin-bottom: 3vh;
 }
