@@ -60,6 +60,9 @@ const SignUpForm = () => {
 
   return (
     <>
+    <div className='gold-bar'> &nbsp; </div>
+    <div className='greenbar-top'> &nbsp; </div>
+    <div className='sign-up-form-container'>
     <h1 className='sign-up-form-header'>Create an Account</h1>
     <p className='sign-up-form-first-sentence'>Fill in the fields below to create a Barnes & Mimic.com account.</p>
     <p className='sign-up-form-second-sentence'>If you already have an account, please  <NavLink
@@ -144,6 +147,7 @@ const SignUpForm = () => {
     </NavLink>
       </div>
     </form>
+    </div>
     </>
   );
 };
