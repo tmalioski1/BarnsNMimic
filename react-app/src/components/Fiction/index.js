@@ -34,7 +34,6 @@ function Fiction() {
     <>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
-    <div className='genre-page-container'>
     <div className='catagories-home-link-container'>
     <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
     </div>
@@ -42,6 +41,7 @@ function Fiction() {
     <h2 className='catagories-sentence-below-header'>Browse a variety of fiction genres including general fiction, literature, romance and many more.
 
 </h2>
+    <div className='genre-page-container'>
 
 
 <Carousel books={fictionBooks} carouselId="fiction-page" id='fiction-page-attempt' />
