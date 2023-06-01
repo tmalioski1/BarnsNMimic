@@ -28,8 +28,6 @@ function Fiction() {
         return null
       }
 
-
-
   return (
     <>
     <div className='gold-bar'> &nbsp; </div>
@@ -38,15 +36,11 @@ function Fiction() {
     <NavLink to={`/`} className='catagories-home-link'>Home</NavLink>
     </div>
     <h1 className='catagories-genre-header'>Fiction Books</h1>
-    <h2 className='catagories-sentence-below-header'>Browse a variety of fiction genres including general fiction, literature, romance and many more.
-
-</h2>
-
-
-<Carousel books={fictionBooks} carouselId="fiction-page" />
-
-
-              </>
+    <h2 className='catagories-sentence-below-header'>Browse a variety of fiction genres including general fiction, literature, romance and many more.</h2>
+    <div className='genre-page-container'>
+<Carousel books={fictionBooks} carouselId="fiction-page" id='fiction-page-attempt' />
+</div>
+</>
   );
 }
 

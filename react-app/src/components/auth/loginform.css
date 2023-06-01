@@ -12,6 +12,15 @@
  color: rgb(33, 40, 45)
 }
 
+.log-in-page-container {
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+}
+
 .log-in-form-container{
     display: flex;
     flex-direction: column;

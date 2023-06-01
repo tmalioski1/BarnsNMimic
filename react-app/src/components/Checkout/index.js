@@ -45,7 +45,7 @@ const Checkout = () => {
   }
 
   return (
-    <>
+    <div className='checkout-page-container'>
     <div className='gold-bar'> &nbsp; </div>
     <div className='greenbar-top'> &nbsp; </div>
     <div className='checkout-main-container'>
@@ -148,7 +148,7 @@ const Checkout = () => {
       </div>
       </div>
       </div>
-     </>
+      </div>
     );
   }
 

@@ -34,7 +34,9 @@ function ScienceFiction() {
     </div>
     <h1 className='catagories-genre-header'>Science Fiction Books</h1>
     <h2 className='catagories-sentence-below-header'>Explore a diverse selection of science fiction books, delving into futuristic worlds, mind-bending technologies, and thrilling adventures that push the boundaries of imagination.</h2>
+    <div className='genre-page-container'>
     <Carousel books={scienceFictionBooks} carouselId="sciencefiction-page" />
+    </div>
 
 
               </>

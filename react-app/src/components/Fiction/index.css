@@ -1,6 +1,8 @@
+
+
 .catagories-home-link-container{
   text-align: center;
-  margin-top: 35px;
+  margin-top: 6vh;
   margin-bottom: 2px;
 }
 
@@ -36,4 +38,13 @@
     font-size: 13px;
     display: block;
     font-weight: 400
+}
+
+.genre-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 55%;
+  margin-top: -5%;
 }

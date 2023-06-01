@@ -1,3 +1,11 @@
+.sign-up-form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+}
+
 .sign-up-form-header{
     font-family: Cormorant Garamond, serif;
     font-weight: 600;
@@ -12,7 +20,7 @@
    }
 
 .sign-up-form-first-sentence, .sign-up-form-second-sentence{
-    margin-left: 615px;
+
     font-family: "Lato",sans-serif;
     font-size: 12px;
 }
@@ -120,7 +128,7 @@
     font-weight: 500;
     font-size: .8rem;
     padding: 15px 45px;
-    margin-right: 20px;
+    margin-right: 1.5vw;
     cursor: pointer!important
   }
 

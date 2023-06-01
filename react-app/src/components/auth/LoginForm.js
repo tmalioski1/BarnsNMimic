@@ -44,6 +44,9 @@ const LoginForm = () => {
 
   return (
     <>
+      <div className='gold-bar'> &nbsp; </div>
+    <div className='greenbar-top'> &nbsp; </div>
+    <div className='log-in-page-container'>
     <h1 className='sign-in-form-header'>Sign in or Create an Account</h1>
     <form className='log-in-form-container' onSubmit={onLogin}>
       <div>
@@ -73,7 +76,7 @@ const LoginForm = () => {
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
         <button id='create-an-account-link' onClick={() => history.push(`/sign-up`)} type='submit'>Create An Account</button>
     </form>
-
+    </div>
     </>
   );
 

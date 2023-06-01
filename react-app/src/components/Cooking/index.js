@@ -30,9 +30,10 @@ function Cooking() {
     </div>
     <h1 className='catagories-genre-header'>Cooking Books</h1>
     <h2 className='catagories-sentence-below-header'>Embark on a flavorful journey with our diverse collection of cooking books, unlocking the secrets of culinary arts, tantalizing recipes, and culinary adventures that will inspire your inner chef and elevate your gastronomic skills.</h2>
+    <div className='genre-page-container'>
     <Carousel books={cookBooks} carouselId="cookbooks-page" />
-
-              </>
+    </div>
+   </>
   );
 }
 

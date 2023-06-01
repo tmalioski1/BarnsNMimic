@@ -24,7 +24,6 @@ const Homepage = () => {
   const biographyBooks = [...books.filter(book => book.genre === 'Biography'), ...books.filter(book => book.genre === 'Biography')];
   const currentEventBooks = [...books.filter(book => book.genre === 'Current Events'), ...books.filter(book => book.genre === 'Current Events')];
 
-  // const currentEventBooks = books.filter(book => book.genre === 'Current Events')
 
 
 

@@ -1,3 +1,7 @@
+.checkout-page-container{
+  padding-bottom: 10px;
+}
+
 .checkout-cart-empty-message{
     text-align: center;
     margin-top: 140px;
