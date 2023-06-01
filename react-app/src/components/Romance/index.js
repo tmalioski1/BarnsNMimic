@@ -32,7 +32,9 @@ function Romance() {
     </div>
     <h1 className='catagories-genre-header'>Romance Books</h1>
     <h2 className='catagories-sentence-below-header'>Immerse yourself in a captivating collection of romance novels, where love blossoms, hearts flutter, and unforgettable connections are forged amidst enchanting settings, passionate embraces, and heartwarming journeys of the heart.</h2>
+    <div className='genre-page-container'>
     <Carousel books={romanceBooks} carouselId="romance-page" />
+    </div>
     </>
   );
 }

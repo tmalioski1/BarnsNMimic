@@ -32,8 +32,10 @@ function CurrentEvents() {
     </div>
     <h1 className='catagories-genre-header'>Current Events Books</h1>
     <h2 className='catagories-sentence-below-header'>Stay informed and engaged with our collection of current events, offering insightful perspectives, up-to-date analysis, and thought-provoking coverage of the latest happenings shaping our world today.</h2>
+    <div className='genre-page-container'>
     <Carousel books={currentEventBooks} carouselId="currentevents-page" />
-              </>
+    </div>
+    </>
   );
 }
 

@@ -33,8 +33,10 @@ function Biography() {
     </div>
     <h1 className='catagories-genre-header'>Biography Books</h1>
     <h2 className='catagories-sentence-below-header'>Step into the lives of remarkable individuals with our captivating collection of biographies, uncovering inspiring true stories, extraordinary achievements, and the compelling journeys of individuals who have left an indelible mark on history.</h2>
+    <div className='genre-page-container'>
     <Carousel books={biographyBooks} carouselId="biography-page" />
-              </>
+    </div>
+    </>
   );
 }
 

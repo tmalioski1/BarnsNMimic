@@ -35,8 +35,9 @@ function NonFiction() {
     </div>
     <h1 className='catagories-genre-header'>Nonfiction Books</h1>
     <h2 className='catagories-sentence-below-header'>Discover the best selection of nonfiction books from memoirs and biographies to history books, business books, and more.</h2>
-
+    <div className='genre-page-container'>
 <Carousel books={nonFictionBooks} carouselId="nonfiction-page" />
+</div>
 
 
               </>

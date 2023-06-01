@@ -33,7 +33,9 @@ function TrueCrime() {
     </div>
     <h1 className='catagories-genre-header'>True Crime Books</h1>
     <h2 className='catagories-sentence-below-header'>Discover a compelling collection of true crime books, delving into real-life mysteries, gripping investigations, and captivating accounts of criminal cases that will leave you on the edge of your seat.</h2>
+    <div className='genre-page-container'>
     <Carousel books={trueCrimeBooks} carouselId="truecrime-page" />
+    </div>
               </>
   );
 }
