@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
@@ -11,6 +11,8 @@ import './navbar.css'
 
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isArrowUp, setIsArrowUp] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const cartItems= useSelector((state) => state?.cart?.cartItems);
   let cartItemsArray = [];
@@ -26,6 +28,23 @@ const NavBar = ({loaded}) => {
     })
     return sum
   }
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+    setIsArrowUp(!isArrowUp);
+
+  };
+
+  const handleDropdownClose = () => {
+    setIsDropdownOpen(false);
+    setIsArrowUp(false);
+
+  };
+
+  const handleLinkClick = () => {
+    setIsDropdownOpen(false);
+    setIsArrowUp(false);
+  };
 
   useEffect(() => {
     if (sessionUser) dispatch(getCart());
@@ -134,19 +153,40 @@ const NavBar = ({loaded}) => {
                 </ul>
         </div>
         </div>
-        <div className='header-upper-right'>
-            <div className='login-nav'>
-              <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-            </div>
-            <div className= 'line'>|</div>
-            <div className='sign-up-nav-container'>
-              <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
-            </div>
+   <div className='header-upper-right'>
+      <div className='dropdown' onMouseLeave={handleDropdownClose}>
+        <span className='dropdown-toggle' onMouseEnter={handleDropdownToggle}>
+          My Account{' '}
+          <span className={isArrowUp ? 'arrow-up' : 'arrow-down'}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+              <path d="M0 0l5 5 5-5z" fill="currentColor" />
+            </svg>
+          </span>
+        </span>
+        {isDropdownOpen && (
+          <div className='dropdown-menu'>
+            <NavLink
+              className='dropdown-item'
+              to='/login'
+              exact={true}
+              activeClassName='active'
+              onClick={handleLinkClick}
+            >
+              Login
+            </NavLink>
+            <NavLink
+              className='dropdown-item'
+              to='/sign-up'
+              exact={true}
+              activeClassName='active'
+              onClick={handleLinkClick}
+            >
+              Sign Up
+            </NavLink>
           </div>
+        )}
+      </div>
+    </div>
           </div>
         <div className='header'>
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
