@@ -72,7 +72,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         </div>
-        <button id='user-login' type='submit'>Login</button>
+        <button id='user-login' type='submit'>Sign In</button>
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
         <button id='create-an-account-link' onClick={() => history.push(`/sign-up`)} type='submit'>Create An Account</button>
     </form>

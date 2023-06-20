@@ -11,9 +11,8 @@ import './navbar.css'
 
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isArrowUp, setIsArrowUp] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
+  const [isHovered, setIsHovered] = useState(false);
   const cartItems= useSelector((state) => state?.cart?.cartItems);
   let cartItemsArray = [];
   if (cartItems && Object.keys(cartItems).length > 0) {
@@ -28,23 +27,6 @@ const NavBar = ({loaded}) => {
     })
     return sum
   }
-
-  const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-    setIsArrowUp(!isArrowUp);
-
-  };
-
-  const handleDropdownClose = () => {
-    setIsDropdownOpen(false);
-    setIsArrowUp(false);
-
-  };
-
-  const handleLinkClick = () => {
-    setIsDropdownOpen(false);
-    setIsArrowUp(false);
-  };
 
   useEffect(() => {
     if (sessionUser) dispatch(getCart());
@@ -71,6 +53,7 @@ const NavBar = ({loaded}) => {
         </div>
         </div>
         <div className='header-upper-right'>
+         <i class="fa-regular fa-circle-user"></i>
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
             id='upload-book-modal-button'
@@ -82,6 +65,8 @@ const NavBar = ({loaded}) => {
             <div className='log-out'>
             <LogoutButton />
             </div>
+            <svg width= '13' height='8' xmlns="http://www.w3.org/2000/svg" className="rhf-icon-down-arrow"><path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fill-rule="nonzero"></path></svg>
+
         </div>
         </div>
       <div className='header'>
@@ -153,38 +138,32 @@ const NavBar = ({loaded}) => {
                 </ul>
         </div>
         </div>
-   <div className='header-upper-right'>
-      <div className='dropdown' onMouseLeave={handleDropdownClose}>
-        <span className='dropdown-toggle' onMouseEnter={handleDropdownToggle}>
-          My Account{' '}
-          <span className={isArrowUp ? 'arrow-up' : 'arrow-down'}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
-              <path d="M0 0l5 5 5-5z" fill="currentColor" />
-            </svg>
-          </span>
-        </span>
-        {isDropdownOpen && (
-          <div className='dropdown-menu'>
-            <NavLink
-              className='dropdown-item'
-              to='/login'
-              exact={true}
-              activeClassName='active'
-              onClick={handleLinkClick}
-            >
-              Login
+        <div
+      className="header-upper-right"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={isHovered ? 'login-nav hovered' : 'login-nav'}>
+        <i className="fa-regular fa-circle-user"></i>
+       <span className='my-account'> MY ACCOUNT</span>
+        {isHovered && (
+          <div className="dropdown-content">
+            <NavLink className='login-button' to='/login' exact={true} activeClassName='active'>
+              Sign In
             </NavLink>
-            <NavLink
-              className='dropdown-item'
-              to='/sign-up'
-              exact={true}
-              activeClassName='active'
-              onClick={handleLinkClick}
-            >
-              Sign Up
+            <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
+              Create an Account
             </NavLink>
           </div>
         )}
+        <svg
+          width='13'
+          height='8'
+          xmlns="http://www.w3.org/2000/svg"
+          className={isHovered ? 'rhf-icon-up-arrow' : 'rhf-icon-down-arrow'}
+        >
+          <path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fillRule="nonzero"></path>
+        </svg>
       </div>
     </div>
           </div>
