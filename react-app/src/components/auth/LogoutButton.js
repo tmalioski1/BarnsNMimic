@@ -20,7 +20,7 @@ const LogoutButton = () => {
     }
   };
 
-  return <button className='log-out-button' onClick={onLogout}>Logout</button>;
+  return <button className='log-out-button' onClick={onLogout}>Sign Out</button>;
 };
 
 export default LogoutButton;

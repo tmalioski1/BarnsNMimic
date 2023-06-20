@@ -11,7 +11,8 @@ import './navbar.css'
 
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state?.session?.user);
+  const firstName = sessionUser?.first_name.toUpperCase()
   const [isHovered, setIsHovered] = useState(false);
   const cartItems= useSelector((state) => state?.cart?.cartItems);
   let cartItemsArray = [];
@@ -52,21 +53,39 @@ const NavBar = ({loaded}) => {
                 </ul>
         </div>
         </div>
-        <div className='header-upper-right'>
+        <div className='header-upper-right'
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+        <div className={isHovered ? 'logout-nav hovered': 'logout-nav'}>
          <i class="fa-regular fa-circle-user"></i>
+         <span className='hi-user'>HI, {firstName}</span>
+         {isHovered && (
+          <div className='logged-in-dropdown-content'>
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
             id='upload-book-modal-button'
-            buttonText='Upload'
+            buttonText='Upload Book'
             modalComponent={<UploadNewBook />}
             />
             </div>
-            <div className= 'line'>|</div>
+            <div className='logged-in-dropdown-cart-link-container'>
+            <NavLink className='logged-in-dropdown-cart-link' to='/checkout'>Your Cart</NavLink>
+            </div>
             <div className='log-out'>
             <LogoutButton />
             </div>
-            <svg width= '13' height='8' xmlns="http://www.w3.org/2000/svg" className="rhf-icon-down-arrow"><path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fill-rule="nonzero"></path></svg>
-
+          </div>
+         )}
+          <svg
+          width='13'
+          height='8'
+          xmlns="http://www.w3.org/2000/svg"
+          className={isHovered ? 'rhf-icon-up-arrow' : 'rhf-icon-down-arrow'}
+        >
+          <path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fillRule="nonzero"></path>
+        </svg>
+        </div>
         </div>
         </div>
       <div className='header'>

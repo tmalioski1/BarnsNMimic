@@ -151,44 +151,111 @@
   margin-right: 10px;
 }
 
+.logout-nav {
+  display: flex;
+  align-items: center;
+  width: 100%
+}
+
+.logout-nav.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  justify-content: space-between;
+}
+
+.logged-in-dropdown-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100%;
+  left: 0;
+  border: 1px solid lightgrey;
+  z-index: 999;
+  background-color: white;
+  height: 14vh;
+  width: 12vw;
+  cursor: default;
+}
+
+
+
+
+
+.hi-user{
+  font-family: Lato,sans-serif;
+  font-weight: 500;
+  color: #484848!important;
+  font-size: .78vw;
+  margin-right: .7vw;
+}
+#upload-book-modal-button-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 1.2vh;
+
+}
+
+#upload-book-modal-button-container:hover{
+  background-color: lightgray;
+}
 .Upload.delete-and-edit{
   background-color: transparent;
   border: none;
-  padding: 0;
-  font-family: "Poynter Oldstyle Display Narrow", serif;
-  font-size: 1.3vw;
-  font-weight: 100;
-  color: rgb(136, 134, 134);
+  font-family: Lato,sans-serif;
+  font-size: .85vw;
+  font-weight: 400;
+  color: #212529;
   cursor: pointer;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
 }
 
-.Upload.delete-and-edit:hover {
-  text-decoration: underline;
-
+.logged-in-dropdown-cart-link-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+}
+.logged-in-dropdown-cart-link-container:hover{
+  background-color: lightgray;
 }
 
-.line {
-  color: rgb(213, 210, 210);
-  margin-right: .8vw;
-  margin-left: .8vw;
-  height: 100%;
-  font-size: 3vh;
+.logged-in-dropdown-cart-link {
+  font-family: Lato,sans-serif;
+  font-size: .85vw;
+  font-weight: 400;
+  color: #212529;
+  cursor: pointer;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
+  text-decoration: none;
+
 }
 
 .log-out-button{
   background-color: transparent;
   border: none;
   padding: 0;
-  font-family: "Poynter Oldstyle Display Narrow", serif;
-  font-size: 1.3vw;
-  font-weight: 100;
-  color: rgb(136, 134, 134);
+  font-family: Lato,sans-serif;
+  font-size:  .95vw;
+  font-weight: 400;
+  color: rgb(62, 60, 60);
   cursor: pointer;
+  text-decoration: underline;
+  margin-left: 1vw;
+  margin-top: 1.8vh;
 }
 
-.log-out-button:hover {
-  text-decoration: underline;
+.log-out-button:hover{
+color:rgb(59, 124, 100)
 }
+
+
 
 .header{
     text-decoration: none;
