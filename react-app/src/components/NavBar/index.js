@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import OpenModalButton from '../OpenModalButton'
@@ -11,7 +11,9 @@ import './navbar.css'
 
 const NavBar = ({loaded}) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state?.session?.user);
+  const firstName = sessionUser?.first_name.toUpperCase()
+  const [isHovered, setIsHovered] = useState(false);
   const cartItems= useSelector((state) => state?.cart?.cartItems);
   let cartItemsArray = [];
   if (cartItems && Object.keys(cartItems).length > 0) {
@@ -51,18 +53,39 @@ const NavBar = ({loaded}) => {
                 </ul>
         </div>
         </div>
-        <div className='header-upper-right'>
+        <div className='header-upper-right'
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+        <div className={isHovered ? 'logout-nav hovered': 'logout-nav'}>
+         <i class="fa-regular fa-circle-user"></i>
+         <span className='hi-user'>HI, {firstName}</span>
+         {isHovered && (
+          <div className='logged-in-dropdown-content'>
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
             id='upload-book-modal-button'
-            buttonText='Upload'
+            buttonText='Upload Book'
             modalComponent={<UploadNewBook />}
             />
             </div>
-            <div className= 'line'>|</div>
+            <div className='logged-in-dropdown-cart-link-container'>
+            <NavLink className='logged-in-dropdown-cart-link' to='/checkout'>Your Cart</NavLink>
+            </div>
             <div className='log-out'>
             <LogoutButton />
             </div>
+          </div>
+         )}
+          <svg
+          width='13'
+          height='8'
+          xmlns="http://www.w3.org/2000/svg"
+          className={isHovered ? 'rhf-icon-up-arrow' : 'rhf-icon-down-arrow'}
+        >
+          <path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fillRule="nonzero"></path>
+        </svg>
+        </div>
         </div>
         </div>
       <div className='header'>
@@ -134,19 +157,34 @@ const NavBar = ({loaded}) => {
                 </ul>
         </div>
         </div>
-        <div className='header-upper-right'>
-            <div className='login-nav'>
-              <NavLink className='login-nav' to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-            </div>
-            <div className= 'line'>|</div>
-            <div className='sign-up-nav-container'>
-              <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
-            </div>
+        <div
+      className="header-upper-right"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={isHovered ? 'login-nav hovered' : 'login-nav'}>
+        <i className="fa-regular fa-circle-user"></i>
+       <span className='my-account'> MY ACCOUNT</span>
+        {isHovered && (
+          <div className="dropdown-content">
+            <NavLink className='login-button' to='/login' exact={true} activeClassName='active'>
+              Sign In
+            </NavLink>
+            <NavLink className='sign-up-nav' to='/sign-up' exact={true} activeClassName='active'>
+              Create an Account
+            </NavLink>
           </div>
+        )}
+        <svg
+          width='13'
+          height='8'
+          xmlns="http://www.w3.org/2000/svg"
+          className={isHovered ? 'rhf-icon-up-arrow' : 'rhf-icon-down-arrow'}
+        >
+          <path d="M1.56.344l5.075 5.192 4.84-5.18 1.096 1.024L6.66 7.708.487 1.392z" fill="#000" fillRule="nonzero"></path>
+        </svg>
+      </div>
+    </div>
           </div>
         <div className='header'>
           <NavLink className={'homeLink'} to='/' exact={true} activeClassName='active'>
