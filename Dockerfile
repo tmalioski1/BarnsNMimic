@@ -22,7 +22,6 @@ EXPOSE 8000
 EXPOSE 3000
 
 WORKDIR /var/www
-COPY backend/. .
 COPY . .
 COPY --from=build-stage /react-app/build/* app/static/
 
