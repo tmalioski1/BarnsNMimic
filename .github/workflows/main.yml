@@ -14,6 +14,6 @@ jobs:
     - name: Login to Heroku Container registry
       run: heroku container:login
     - name: Build and push
-      run: heroku container:push -a barnesnmimic-e2bc434b3ebb web
+      run: heroku container:push -a barnesnmimic web
     - name: Release
-      run: heroku container:release -a barnesnmimic-e2bc434b3ebb web
+      run: heroku container:release -a barnesnmimic web
