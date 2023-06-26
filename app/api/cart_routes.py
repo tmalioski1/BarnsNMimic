@@ -51,26 +51,17 @@ def add_cart_item():
 
     if has_active_cart:
         cart = Cart.query \
-            .filter(Cart.user_id == current_user.get_id()) \
-            .filter(Cart.purchased == False).one()
+        .filter(Cart.user_id == current_user.get_id()) \
+        .filter(Cart.purchased == False).one()
 
         book = Book.query.get(request.json['book_id'])
-        button_clicked = request.json.get('button_clicked')
-
-        if button_clicked == 'paperback':
-            price = book.price_paperback
-        elif button_clicked == 'hardcover':
-            price = book.price_hardcover
-        elif button_clicked == 'eBook':
-            price = book.price_eBook
-        else:
-            return jsonify(error='Invalid button clicked'), 400
-
+        price = book.price_paperback
         new_cart_item = CartItem(
-            cart_id=cart.to_dict()["id"],
-            book_id=request.json['book_id'],
-            quantity=1,
-            price=price
+            cart_id = cart.to_dict()["id"],
+            book_id = request.json['book_id'],
+            quantity = 1,
+            price= price
+
         )
 
         db.session.add(new_cart_item)
@@ -79,32 +70,22 @@ def add_cart_item():
         return new_cart_item.to_dict()
 
     else:
-        order_number = f'FS{random.randint(10000, 100000)}'
+        order_number = (f'FS{random.randint(10000, 100000)}')
         cart = Cart(
-            user_id=current_user.get_id(),
-            total_price=0,
-            purchased=False,
+            user_id = current_user.get_id(),
+            total_price = 0,
+            purchased = False,
             order_number=order_number
         )
         db.session.add(cart)
         db.session.commit()
 
         book = Book.query.get(request.json['book_id'])
-        button_clicked = request.json.get('button_clicked')
-
-        if button_clicked == 'paperback':
-            price = book.price_paperback
-        elif button_clicked == 'hardcover':
-            price = book.price_hardcover
-        elif button_clicked == 'eBook':
-            price = book.price_eBook
-        else:
-            return jsonify(error='Invalid button clicked'), 400
-
+        price = book.price_paperback
         new_cart_item = CartItem(
-            cart_id=cart.to_dict()["id"],
-            book_id=request.json['book_id'],
-            quantity=1,
+            cart_id = cart.to_dict()["id"],
+            book_id = request.json['book_id'],
+            quantity = 1,
             price=price
         )
 
@@ -112,7 +93,6 @@ def add_cart_item():
         db.session.commit()
 
         return new_cart_item.to_dict()
-
 
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
