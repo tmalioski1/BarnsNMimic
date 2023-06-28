@@ -17,11 +17,6 @@ ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
 
-# Backup env for local testing
-# ENV SECRET_KEY=7a08ae3a5617c8dd41929491b6e0b9db
-# ENV DATABASE_URL=sqlite:///dev.db
-# ENV SCHEMA=flask_schema
-#also manually enter S3 passwords 
 
 EXPOSE 5000
 EXPOSE 8000
