@@ -16,12 +16,12 @@ FROM python:3.9
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
-ENV SECRET_KEY=7a08ae3a5617c8dd41929491b6e0b9db
-ENV DATABASE_URL=sqlite:///dev.db
-ENV SCHEMA=flask_schema
-ENV S3_BUCKET=barnesnmimicbucket
-ENV S3_KEY=AKIAWBJCFPNNLR4C33MS
-ENV S3_SECRET=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
+
+# Backup env for local testing
+# ENV SECRET_KEY=7a08ae3a5617c8dd41929491b6e0b9db
+# ENV DATABASE_URL=sqlite:///dev.db
+# ENV SCHEMA=flask_schema
+#also manually enter S3 passwords 
 
 EXPOSE 5000
 EXPOSE 8000
