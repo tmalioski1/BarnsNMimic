@@ -18,22 +18,26 @@ import './bookdetails.css';
 const BookDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const sessionUser = useSelector(state => state?.session?.user);
-  const bookObj = useSelector(state => state?.books?.singleBook);
+  const sessionUser = useSelector(state => state.session.user);
+  const bookObj = useSelector(state => state.books.singleBook);
   const bookData = Object.values(bookObj)
   const book = bookData[0]
-  const reviewsObj = useSelector(state => state?.reviews?.reviews)
+  const reviewsObj = useSelector(state => state.reviews.reviews)
   const reviews = Object.values(reviewsObj)
-  const userObj = useSelector(state => state?.session?.user)
-  const cart = useSelector((state) => state?.cart)
-  const cartItems = useSelector(state=> state.cartItems)
-  const cartItemsArray= Object.values(cartItems)
+  const userObj = useSelector(state => state.session?.user)
+  const cart = useSelector((state) => state.cart)
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [itemPrice, setItemPrice] = useState(book?.price_paperback || 0)
   const history = useHistory()
+
   const [users, setUsers] = useState([]);
+  let thisCartItem;
+  for (let item in cart.cartItems) {
+    if (+cart.cartItems[item]?.book_id === +id)
+      thisCartItem = cart.cartItems[item];
+  }
 
 
+console.log('this is the bookid----', book?.id)
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -66,7 +70,20 @@ const BookDetails = () => {
     }
   }
 
-console.log('itemPrice---', itemPrice)
+
+  const handleAdditiontoCart = async () => {
+
+    if (thisCartItem) {
+      if (thisCartItem.quantity < 10) {
+        await dispatch(
+          editCartItem(thisCartItem, thisCartItem.quantity + 1)
+        );
+      }
+    } else {
+      await dispatch(postCartItem(book.id));
+    }
+    await dispatch(getCart())
+  }
 
 
   function dateFix (string) {
@@ -83,32 +100,6 @@ console.log('itemPrice---', itemPrice)
     return joinedArray
   }
 
-  const handleClick = (buttonClickedValue) => {
-    const payload = {
-      book_id: book.id,
-      button_clicked: buttonClickedValue // Set the appropriate value based on the button clicked
-    };
-
-    // Make the API call to the backend
-    fetch('/api/cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response from the backend
-        console.log(data);
-        // ...
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error(error);
-        // ...
-      });
-  };
 
 
 if(!users.length){
@@ -154,13 +145,15 @@ const today = new Date()
     </div>
     <div className="book-details-all-prices">
     {sessionUser &&
-
-<button className="book-details-paperback-price" onClick={() => handleClick('paperback')}>
-  <div>Paperback</div>
-  <div className="price-to-bold">
-    {'$' + bookData[0]?.price_paperback.toFixed(2)}
-  </div>
-</button> }
+    <button className="book-details-paperback-price"
+     onClick={() => window.location.reload()}>
+        <div>
+          Paperback
+        </div>
+        <div className="price-to-bold">
+          ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
+        </div>
+      </button> }
 
       {!sessionUser &&
           <NavLink to={`/login`}>
@@ -169,22 +162,19 @@ const today = new Date()
                Paperback
              </div>
              <div className="price-to-bold">
-               ${bookData[0]?.price_paperback ? bookData[0]?.price_paperback.toFixed(2) : 0.0}
+               ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
              </div>
            </button>
            </NavLink>
       }
 
       {sessionUser &&
-     <button className='book-details-hardcover-price' onClick={() => setItemPrice(book.price_hardcover)
-     }>
-    <div>
-    Hardcover
-    </div>
-    <div className='price-to-bold'>
-   {'$' +bookData[0]?.price_hardcover.toFixed(2)}
-   </div>
-   </button>}
+      <button className="book-details-hardcover-price" >
+        <div>
+        <NotAvailableModal buttonTxt="Hardcover" bookData={bookData}/>
+        </div>
+
+      </button>}
       {!sessionUser &&
          <NavLink to={`/login`}>
          <button className="book-details-hardcover-price">
@@ -192,20 +182,16 @@ const today = new Date()
               Hardcover
             </div>
             <div className="price-to-bold">
-              ${bookData[0]?.price_hardcover ? bookData[0]?.price_hardcover.toFixed(2) : 0.0}
+              ${bookData[0].price_hardcover ? bookData[0].price_hardcover.toFixed(2) : 0.0}
             </div>
           </button>
           </NavLink>
       }
       {sessionUser &&
-<button className='book-details-eBook-price' onClick={() => setItemPrice(book.price_eBook)
-        }>
-       <div>
-       eBook
-       </div>
-       <div className='price-to-bold'>
-      {'$' +bookData[0]?.price_eBook.toFixed(2)}
-      </div>
+      <button className="book-details-eBook-price">
+      <div>
+        <NotAvailableModal buttonTxt="eBook" bookData={bookData}/>
+        </div>
       </button>}
 
       {!sessionUser &&
@@ -215,7 +201,7 @@ const today = new Date()
               eBook
             </div>
             <div className="price-to-bold">
-              ${bookData[0]?.price_eBook ? bookData[0]?.price_eBook.toFixed(2) : 0.0}
+              ${bookData[0].price_eBook ? bookData[0].price_eBook.toFixed(2) : 0.0}
             </div>
           </button>
           </NavLink>
@@ -236,15 +222,7 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
           {sessionUser && userObj?.id !== bookData[0].publisher_id &&
-          <button className='book-add-to-cart-button' onClick= {async (e) => {
-            let foundItem = cartItemsArray.find(item => item.book_id === id && item.price === itemPrice)
-            if (!foundItem) {
-              await dispatch(postCartItem(book?.id))
-            }
-              else {
-                await dispatch(editCartItem(foundItem, foundItem.quantity + 1))
-              }
-          }}>
+          <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
             <OpenModalButton
             buttonText={'ADD TO CART'}
             onButtonClick={() => setIsCartOpen(true)}
@@ -268,18 +246,18 @@ const today = new Date()
           </div>
           <div className='overview-container'>
             <h2 className='overview-title'>Overview</h2>
-            <div style={{whiteSpace: 'pre-wrap'}} className='overview-text'>{bookData[0]?.overview}</div>
+            <div style={{whiteSpace: 'pre-wrap'}} className='overview-text'>{bookData[0].overview}</div>
           </div>
           <h2 className='product-details-title'>Product Details</h2>
           <div className='product-details-container'>
-            <div className='publisher-details'><span className="publisher-key">Publisher:</span>{bookData[0]?.publisher}</div>
-            <div className='publication-date-details'><span className="publication-date-key">Publication date:</span>{dateFix(bookData[0]?.publication_date)}</div>
-            <div className='page-number-details'><span className="page-key">Pages:</span>{bookData[0]?.pages}</div>
+            <div className='publisher-details'><span className="publisher-key">Publisher:</span>{bookData[0].publisher}</div>
+            <div className='publication-date-details'><span className="publication-date-key">Publication date:</span>{dateFix(bookData[0].publication_date)}</div>
+            <div className='page-number-details'><span className="page-key">Pages:</span>{bookData[0].pages}</div>
           </div>
           <div className='editorial-review-container'>
           <h2 className='editorial-review-title'>Editorial Review</h2>
           <div className='editorial-review-text-container'>
-          <div className='editorial-review-text'>{bookData[0]?.editorial_review}</div>
+          <div className='editorial-review-text'>{bookData[0].editorial_review}</div>
           </div>
           </div>
           <div className='customer-reviews-container'>
@@ -295,7 +273,7 @@ const today = new Date()
             {sessionUser && userObj?.id !== bookData[0]?.publisher_id && !(reviews.find(review => userObj?.id === review?.user_id)) && publicationDate < today &&
                 <OpenModalButton
                 id='write-review-button'
-                modalComponent={<ReviewModal currentBookId={ `${bookData[0]?.id}` } />}
+                modalComponent={<ReviewModal currentBookId={ `${bookData[0].id}` } />}
                 buttonText={'Write A Review'}
              />}
             </div>

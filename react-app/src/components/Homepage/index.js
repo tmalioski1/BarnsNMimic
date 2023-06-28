@@ -43,6 +43,7 @@ return null
 
 
 
+
 return (
   <>
    <div className='gold-bar'> &nbsp; </div>
