@@ -19,7 +19,7 @@ def all_reviews(id):
 # get all books for homepage
 @book_routes.route('/')
 def all_books():
-    books = Book.query.all()
+    books = Book.query.all(endpoint='https://barnesnmimic-e2bc434b3ebb.herokuapp.com/api/books/')
     print('this is the books----', books)
     return jsonify({'books': [book.to_dict() for book in books]})
 
