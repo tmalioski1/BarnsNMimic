@@ -12,8 +12,8 @@ from .api.cart_routes import cart_routes
 from .seeds import seed_commands
 from .config import Config
 
-app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
-# app = Flask(__name__)
+# app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+app = Flask(__name__)
 
 
 # Setup login manager
@@ -23,6 +23,7 @@ login.login_view = 'auth.unauthorized'
 
 @login.user_loader
 def load_user(id):
+    print('this is the user---', User)
     return User.query.get(int(id))
 
 
@@ -93,7 +94,6 @@ def react_root(path):
         # return app.send_from_directory('public', 'favicon.ico')
         print('Favicon requested')
         return app.send_static_file('favicon.ico')
-    print(f'React route requested: {path}')
     return app.send_static_file('index.html')
 
 
