@@ -55,6 +55,7 @@ def https_redirect():
         if request.headers.get('X-Forwarded-Proto') == 'http':
             url = request.url.replace('http://', 'https://', 1)
             code = 301
+            print('redirect should work')
             return redirect(url, code=code)
 
 
