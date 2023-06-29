@@ -6,6 +6,7 @@ COPY react-app/. .
 # You have to set this because it should be set during build time.
 ENV REACT_APP_BASE_URL=https://barnesnmimic-e2bc434b3ebb.herokuapp.com
 
+
 # Build our React App
 RUN npm install
 RUN npm run build
@@ -16,7 +17,6 @@ FROM python:3.9
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
-
 
 EXPOSE 5000
 EXPOSE 8000
