@@ -20,7 +20,6 @@ def all_reviews(id):
 @book_routes.route('/')
 def all_books():
     books = Book.query.all()
-    print('this is the books----', books)
     return jsonify({'books': [book.to_dict() for book in books]})
 
 
