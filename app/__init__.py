@@ -91,13 +91,10 @@ def react_root(path):
     or index.html requests
     """
     if path == 'favicon.ico':
-        # Return the favicon file over HTTPS
+        # return app.send_from_directory('public', 'favicon.ico')
         print('Favicon requested')
         return app.send_static_file('favicon.ico')
-
-    # Redirect the index.html request to HTTPS
-    url = request.url.replace('http://', 'https://', 1)
-    return redirect(url, code=301)
+    return app.send_static_file('index.html')
 
 
 @app.errorhandler(404)
