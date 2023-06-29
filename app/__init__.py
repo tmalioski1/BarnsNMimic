@@ -52,6 +52,7 @@ def https_redirect():
         if request.headers.get('X-Forwarded-Proto') == 'http':
             url = request.url.replace('http://', 'https://', 1)
             code = 301
+            print('this is the request statement', f'Redirecting to: {url}')
             return redirect(url, code=code)
 
 
@@ -76,6 +77,7 @@ def api_help():
     route_list = { rule.rule: [[ method for method in rule.methods if method in acceptable_methods ],
                     app.view_functions[rule.endpoint].__doc__ ]
                     for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
+    print('API help requested')
     return route_list
 
 
@@ -89,10 +91,13 @@ def react_root(path):
     """
     if path == 'favicon.ico':
         # return app.send_from_directory('public', 'favicon.ico')
+        print('Favicon requested')
         return app.send_static_file('favicon.ico')
+    print(f'React route requested: {path}')
     return app.send_static_file('index.html')
 
 
 @app.errorhandler(404)
 def not_found(e):
+    print('this is the error: 404 Not Found')
     return app.send_static_file('index.html')
