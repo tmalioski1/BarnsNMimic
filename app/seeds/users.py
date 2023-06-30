@@ -7,12 +7,12 @@ def seed_users():
         first_name='DemoFName', last_name='DemoLName', username='Demo', email='demo@aa.io', password='password')
     marnie = User(
         first_name='Marnie', last_name='Marnelia', username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-         first_name='Bobbie', last_name='Franklin', username='bobbie', email='bobbie@aa.io', password='password')
+    admin = User(
+         first_name='admin', last_name='admin', username='admin', email='admin@aa.io', password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(admin)
     db.session.commit()
 
 

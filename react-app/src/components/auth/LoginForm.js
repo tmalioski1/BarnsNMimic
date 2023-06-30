@@ -29,6 +29,12 @@ const LoginForm = () => {
     return dispatch(login(email, password));
   }
 
+  const demoAdminLogin = () => {
+    setEmail('admin@aa.io')
+    setPassword('password')
+    return dispatch(login(email, password));
+  }
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -74,6 +80,7 @@ const LoginForm = () => {
         </div>
         <button id='user-login' type='submit'>Sign In</button>
         <button id='demo-user-login' onClick={demoLogin} type='submit'>Demo User</button>
+        <button id='demo-user-login' onClick={demoAdminLogin} type='submit'>Demo Admin</button>
         <button id='create-an-account-link' onClick={() => history.push(`/sign-up`)} type='submit'>Create An Account</button>
     </form>
     </div>
