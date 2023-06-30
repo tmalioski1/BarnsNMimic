@@ -144,7 +144,7 @@ const today = new Date()
     </div>
     </div>
     <div className="book-details-all-prices">
-    {sessionUser &&
+    {sessionUser && sessionUser.id !== book.publisher_id &&
     <button className="book-details-paperback-price"
      onClick={() => window.location.reload()}>
         <div>
@@ -168,7 +168,7 @@ const today = new Date()
            </NavLink>
       }
 
-      {sessionUser &&
+      {sessionUser && sessionUser.id !== book.publisher_id &&
       <button className="book-details-hardcover-price" >
         <div>
         <NotAvailableModal buttonTxt="Hardcover" bookData={bookData}/>
@@ -187,7 +187,7 @@ const today = new Date()
           </button>
           </NavLink>
       }
-      {sessionUser &&
+      {sessionUser && sessionUser.id !== book.publisher_id &&
       <button className="book-details-eBook-price">
       <div>
         <NotAvailableModal buttonTxt="eBook" bookData={bookData}/>
