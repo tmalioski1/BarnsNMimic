@@ -62,6 +62,7 @@ const NavBar = ({loaded}) => {
          <span className='hi-user'>HI, {firstName}</span>
          {isHovered && (
           <div className='logged-in-dropdown-content'>
+            {sessionUser.id === 3 &&
             <div id='upload-book-modal-button-container'>
             <OpenModalButton
             id='upload-book-modal-button'
@@ -69,9 +70,12 @@ const NavBar = ({loaded}) => {
             modalComponent={<UploadNewBook />}
             />
             </div>
+  }
+            {sessionUser.id !== 3 &&
             <div className='logged-in-dropdown-cart-link-container'>
             <NavLink className='logged-in-dropdown-cart-link' to='/checkout'>Your Cart</NavLink>
             </div>
+  }
             <div className='log-out'>
             <LogoutButton />
             </div>

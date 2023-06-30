@@ -3,7 +3,7 @@ import datetime
 
 def seed_books():
   demo_book = Book(
-    publisher_id = 1, title='The Prince', author= 'Niccolò Machiavelli',  price_paperback=12.50, price_hardcover=20.95, price_eBook=10.95, genre='Non-Fiction', overview= 'A timeless classic!', editorial_review= 'Continues to captivate centuries later!', publication_date= '05/29/2017', publisher= 'Fall River Press', cover_art='https://kbimages1-a.akamaihd.net/a319db5c-ee33-41d3-b25b-c64e3921f618/1200/1200/False/the-prince-13.jpg', pages= 128)
+    publisher_id = 3, title='The Prince', author= 'Niccolò Machiavelli',  price_paperback=12.50, price_hardcover=20.95, price_eBook=10.95, genre='Non-Fiction', overview= 'A timeless classic!', editorial_review= 'Continues to captivate centuries later!', publication_date= '05/29/2017', publisher= 'Fall River Press', cover_art='https://kbimages1-a.akamaihd.net/a319db5c-ee33-41d3-b25b-c64e3921f618/1200/1200/False/the-prince-13.jpg', pages= 128)
   demo_book2 = Book(
     publisher_id = 3, title='Meditations', author= 'Marcus Aurelius',  price_paperback=9.50, price_hardcover=24.00, price_eBook=10.95, genre='Non-Fiction', overview= 'A true masterpiece!', editorial_review= 'Ancient wisdom still relevant for today.', publication_date= '02/10/1996', publisher= 'Penguin Publishing Group', cover_art='https://sisteews.sirv.com/meditations-41%20(1).jpg', pages= 304)
   demo_book3 = Book(

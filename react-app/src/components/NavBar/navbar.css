@@ -217,7 +217,6 @@
 .logged-in-dropdown-cart-link-container {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid lightgrey;
 }
 .logged-in-dropdown-cart-link-container:hover{
   background-color: lightgray;
@@ -231,8 +230,7 @@
   cursor: pointer;
   margin-left: 1vw;
   margin-right: 1vw;
-  padding-top: .5vh;
-  padding-bottom: .5vh;
+  padding-top: 1.2vh;
   text-decoration: none;
 
 }
