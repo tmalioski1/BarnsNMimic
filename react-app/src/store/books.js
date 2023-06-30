@@ -46,10 +46,9 @@ export const getOneBook = (id) => async(dispatch) => {
 }
 
 export const getAllBooks = () => async (dispatch) => {
-    const response = await fetch('/api/books/');
-    console.log('this is the response2----', response2)
-    const response2 = await fetch(`/api/books/`);
-    console.log('this is the response2----', response2)
+    const response = await fetch(`/api/books/`);
+    // const response2 = await fetch(`/api/books/`);
+    // console.log('this is the response2----', response2)
     if (response.ok) {
       const books = await response.json();
       dispatch(getAll(books));
