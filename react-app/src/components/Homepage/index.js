@@ -9,7 +9,6 @@ import Carousel from "../Carousel/index"
 
 
 
-
 const Homepage = () => {
   const dispatch = useDispatch();
   const booksObj = useSelector(state => state.books.allBooks);
@@ -27,9 +26,9 @@ const Homepage = () => {
 
 
 
-
   useEffect(() => {
       dispatch(getAllBooks())
+      console.log('did we get all books?')
       if (user) dispatch(getCart())
     }, [dispatch, user])
 
