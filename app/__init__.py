@@ -53,6 +53,7 @@ def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
         print('this is Flask_ENV in production----', os.environ.get('FLASK_ENV'))
         if request.headers.get('X-Forwarded-Proto') == 'http':
+            print('these are the request.headers----', request.headers)
             url = request.url.replace('http://', 'https://', 1)
             code = 301
             print('redirect should work')
