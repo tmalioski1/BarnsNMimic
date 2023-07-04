@@ -117,12 +117,16 @@ const NavBar = ({loaded}) => {
             </div>
           </div>
           <div className='header-right'>
+            {sessionUser.id !== 3 &&
           <div className='shopping-cart-icon'>
             <i className="fa-solid fa-cart-shopping" onClick={() => history.push(`/checkout`)}></i>
             </div>
+  }
             {sessionUser && cartItemCount && cartItemCount(cartItemsArray) !== 0 ? <span className="cart-item-count-splash">{cartItemCount(cartItemsArray)}</span> : ""}
           </div>
+
         </div>
+
         <div class="categories-container">
         <NavLink to='/books/fiction' exact={true} activeClassName='active'>Fiction</NavLink>
         <div class="categories-line-seperator"></div>
