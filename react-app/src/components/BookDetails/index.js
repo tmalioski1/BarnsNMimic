@@ -37,7 +37,6 @@ const BookDetails = () => {
   }
 
 
-console.log('this is the bookid----', book?.id)
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -85,6 +84,27 @@ console.log('this is the bookid----', book?.id)
     await dispatch(getCart())
   }
 
+const handleClick = (buttonClickedValue) => {
+  const payload = {
+    book_id: book.id,
+    button_clicked: buttonClickedValue
+  };
+
+  fetch('/api/cart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
 
   function dateFix (string) {
     const array = string.split('-')
@@ -145,15 +165,12 @@ const today = new Date()
     </div>
     <div className="book-details-all-prices">
     {sessionUser && sessionUser.id !== book.publisher_id &&
-    <button className="book-details-paperback-price"
-     onClick={() => window.location.reload()}>
-        <div>
-          Paperback
-        </div>
-        <div className="price-to-bold">
-          ${bookData[0].price_paperback ? bookData[0].price_paperback.toFixed(2) : 0.0}
-        </div>
-      </button> }
+      <button className="book-details-paperback-price" onClick={() => handleClick('paperback')}>
+  <div>Paperback</div>
+  <div className="price-to-bold">
+    {'$' + bookData[0]?.price_paperback.toFixed(2)}
+  </div>
+</button>}
 
       {!sessionUser &&
           <NavLink to={`/login`}>
@@ -169,12 +186,12 @@ const today = new Date()
       }
 
       {sessionUser && sessionUser.id !== book.publisher_id &&
-      <button className="book-details-hardcover-price" >
-        <div>
-        <NotAvailableModal buttonTxt="Hardcover" bookData={bookData}/>
-        </div>
-
-      </button>}
+     <button className="book-details-hardcover-price" onClick={() => handleClick('hardcover')}>
+     <div>Hardcover</div>
+     <div className="price-to-bold">
+       {'$' + bookData[0]?.price_hardcover.toFixed(2)}
+     </div>
+   </button>}
       {!sessionUser &&
          <NavLink to={`/login`}>
          <button className="book-details-hardcover-price">
@@ -188,11 +205,12 @@ const today = new Date()
           </NavLink>
       }
       {sessionUser && sessionUser.id !== book.publisher_id &&
-      <button className="book-details-eBook-price">
-      <div>
-        <NotAvailableModal buttonTxt="eBook" bookData={bookData}/>
-        </div>
-      </button>}
+     <button className="book-details-eBook-price" onClick={() => handleClick('eBook')}>
+     <div>eBook</div>
+     <div className="price-to-bold">
+       {'$' + bookData[0]?.price_eBook.toFixed(2)}
+     </div>
+   </button>}
 
       {!sessionUser &&
          <NavLink to={`/login`}>

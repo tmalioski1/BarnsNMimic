@@ -14,6 +14,8 @@ const Homepage = () => {
   const booksObj = useSelector(state => state.books.allBooks);
   const user = useSelector((state) => state.session.user);
   const books = Object.values(booksObj)
+  const cart = useSelector((state) => state.cart)
+  console.log('this is the cart---', cart)
   const fictionBooks = [...books.filter(book => book.genre === 'Fiction'), ...books.filter(book => book.genre === 'Fiction')];
   const nonFictionBooks = [...books.filter(book => book.genre === 'Non-Fiction'), ...books.filter(book => book.genre === 'Non-Fiction')];
   const scienceFictionBooks =[...books.filter(book => book.genre === 'Science Fiction'), ...books.filter(book => book.genre === 'Science Fiction')];
@@ -28,7 +30,6 @@ const Homepage = () => {
 
   useEffect(() => {
       dispatch(getAllBooks())
-      console.log('did we get all books?')
       if (user) dispatch(getCart())
     }, [dispatch, user])
 

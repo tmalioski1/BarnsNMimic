@@ -40,7 +40,7 @@ def get_cart():
 
 @cart_routes.route("", methods=["POST"])
 @login_required
-def add_cart_item():
+def create_cart_item():
     """
     A logged-in user can send a post request to add a product to their currently active cart.
     """
@@ -50,17 +50,27 @@ def add_cart_item():
 
     if has_active_cart:
         cart = Cart.query \
-        .filter(Cart.user_id == current_user.get_id()) \
-        .filter(Cart.purchased == False).one()
+            .filter(Cart.user_id == current_user.get_id()) \
+            .filter(Cart.purchased == False).one()
 
         book = Book.query.get(request.json['book_id'])
-        price = book.price_paperback
-        new_cart_item = CartItem(
-            cart_id = cart.to_dict()["id"],
-            book_id = request.json['book_id'],
-            quantity = 1,
-            price= price
+        button_clicked = request.json.get('button_clicked')
 
+        if button_clicked == 'paperback':
+            price = book.price_paperback
+        elif button_clicked == 'hardcover':
+            price = book.price_hardcover
+        elif button_clicked == 'eBook':
+            price = book.price_eBook
+        else:
+            return jsonify(error='Invalid button clicked'), 400
+
+        new_cart_item = CartItem(
+            cart_id=cart.to_dict()["id"],
+            book_id=request.json['book_id'],
+            quantity=1,
+            price=price,
+            added=False
         )
 
         db.session.add(new_cart_item)
@@ -69,23 +79,34 @@ def add_cart_item():
         return new_cart_item.to_dict()
 
     else:
-        order_number = (f'FS{random.randint(10000, 100000)}')
+        order_number = f'FS{random.randint(10000, 100000)}'
         cart = Cart(
-            user_id = current_user.get_id(),
-            total_price = 0,
-            purchased = False,
+            user_id=current_user.get_id(),
+            total_price=0,
+            purchased=False,
             order_number=order_number
         )
         db.session.add(cart)
         db.session.commit()
 
         book = Book.query.get(request.json['book_id'])
-        price = book.price_paperback
+        button_clicked = request.json.get('button_clicked')
+
+        if button_clicked == 'paperback':
+            price = book.price_paperback
+        elif button_clicked == 'hardcover':
+            price = book.price_hardcover
+        elif button_clicked == 'eBook':
+            price = book.price_eBook
+        else:
+            return jsonify(error='Invalid button clicked'), 400
+
         new_cart_item = CartItem(
-            cart_id = cart.to_dict()["id"],
-            book_id = request.json['book_id'],
-            quantity = 1,
-            price=price
+            cart_id=cart.to_dict()["id"],
+            book_id=request.json['book_id'],
+            quantity=1,
+            price=price,
+            added=False
         )
 
         db.session.add(new_cart_item)
@@ -93,20 +114,29 @@ def add_cart_item():
 
         return new_cart_item.to_dict()
 
+
+
+
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_cart_item(id):
     """
-    Query for a single cart item by id from the current user's active cart and update the quantity.
+    Query for a single cart item by id and add the item to the cart.
     """
-    print('hi, this is PUT')
     cart_item = CartItem.query.get(id)
-    print('this is the cart_item---', cart_item)
+    existing_cart_item = CartItem.query.filter_by(book_id=cart_item.book_id, price=cart_item.price, added=True).first()
+    if existing_cart_item:
+        setattr(existing_cart_item, "quantity", request.json['quantity'])
+        return existing_cart_item.to_dict()
+    else:
+        setattr(cart_item, "added", True)
+        return cart_item.to_dict()
 
-    setattr(cart_item, "quantity", request.json['quantity'])
-    print('this is the quantity---', cart_item.quantity)
-    db.session.commit()
-    return cart_item.to_dict()
+
+
+
+
+
 
 
 @cart_routes.route("/<int:id>", methods=["DELETE"])
