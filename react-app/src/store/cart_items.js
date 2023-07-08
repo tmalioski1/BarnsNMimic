@@ -37,18 +37,18 @@ export const postCartItem = (book_id) => async (dispatch) => {
   }
 };
 
-export const editCartItem = (cartItem, quantity) => async dispatch => {
+export const editCartItem = (cartItem, data) => async dispatch => {
   const response = await fetch(`/api/cart/${cartItem.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 'quantity': quantity })
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
   });
 
   if (response.ok) {
-      const updatedCartItem = await response.json();
-      dispatch(updateCartItem(updatedCartItem));
-      return updatedCartItem;
-  };
+    const updatedCartItem = await response.json();
+    dispatch(updateCartItem(updatedCartItem));
+    return updatedCartItem;
+  }
 };
 export const removeCartItem = (cartItemId) => async (dispatch) => {
   const response = await fetch(`/api/cart/${cartItemId}`, {

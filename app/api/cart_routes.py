@@ -134,11 +134,6 @@ def update_cart_item(id):
 
 
 
-
-
-
-
-
 @cart_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_cart_item(id):

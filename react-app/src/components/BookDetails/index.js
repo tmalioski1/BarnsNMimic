@@ -26,17 +26,14 @@ const BookDetails = () => {
   const reviews = Object.values(reviewsObj)
   const userObj = useSelector(state => state.session?.user)
   const cart = useSelector((state) => state.cart)
+  const cartItemArray = cart?.cartItems ? Object.values(cart.cartItems) : [];
+  const newCartItem = cartItemArray[cartItemArray?.length - 1];
   const [isCartOpen, setIsCartOpen] = useState(false);
   const history = useHistory()
 
   const [users, setUsers] = useState([]);
-  let thisCartItem;
-  for (let item in cart.cartItems) {
-    if (+cart.cartItems[item]?.book_id === +id)
-      thisCartItem = cart.cartItems[item];
-  }
 
-
+  console.log('newCartItem---', newCartItem)
 
   useEffect(() => {
     dispatch(getOneBook(id))
@@ -71,18 +68,23 @@ const BookDetails = () => {
 
 
   const handleAdditiontoCart = async () => {
+    let data = {};
+    const existingCartItem = cartItemArray.find(item => {
+      return item.book_id === newCartItem.book_id && item.price === newCartItem.price && item.added === true;
+    });
 
-    if (thisCartItem) {
-      if (thisCartItem.quantity < 10) {
-        await dispatch(
-          editCartItem(thisCartItem, thisCartItem.quantity + 1)
-        );
-      }
+    if (existingCartItem) {
+      data = {
+        quantity: existingCartItem.quantity + 1,
+      };
     } else {
-      await dispatch(postCartItem(book.id));
+      data = {
+        added: true,
+      };
     }
-    await dispatch(getCart())
-  }
+
+    await dispatch(editCartItem(newCartItem, data));
+  };
 
 const handleClick = (buttonClickedValue) => {
   const payload = {
@@ -240,12 +242,11 @@ const today = new Date()
           <div className='book-add-to-cart'>
 
           {sessionUser && userObj?.id !== bookData[0].publisher_id &&
-          <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(book.id).then(() => setIsCartOpen(true))}>
+          <button className='book-add-to-cart-button' onClick={() => handleAdditiontoCart(newCartItem).then(() => setIsCartOpen(true))}>
             <OpenModalButton
             buttonText={'ADD TO CART'}
             onButtonClick={() => setIsCartOpen(true)}
             modalComponent={<CartModal
-              currentBookId={id}
               onClose={() => setIsCartOpen(false)}
             />}
 
