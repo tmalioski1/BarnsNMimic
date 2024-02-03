@@ -33,7 +33,6 @@ const BookDetails = () => {
 
   const [users, setUsers] = useState([]);
 
-  console.log('newCartItem---', newCartItem)
 
   useEffect(() => {
     dispatch(getOneBook(id))
