@@ -3,7 +3,7 @@
 A clone of the popular book store's site, designed to match the style and basic functionality of https://www.barnesandnoble.com/.  
 
 ## Deployment through Heroku.com
-Render Live Deployment link:
+Live Deployment link:
 https://barnesnmimic-e2bc434b3ebb.herokuapp.com
 
 ## Technologies Used
